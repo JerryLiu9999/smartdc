@@ -2883,7 +2883,7 @@ var aboutContent =
 	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
 	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
 	'<BR>' +
-	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0204.2</center></font></label>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0204.3</center></font></label>' +
 	'<BR>' +
 	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
 	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
@@ -13285,7 +13285,7 @@ async function selectAudioDefaultDevice(devices) {
 async function initializeDevices() {
     try {
         //const hasPermissions = await checkMediaPermissions();
-        const hasPermissions = await checkCameraPermission();
+        const hasPermissions = await checkCameraPermissionEx();
 
         if (hasPermissions) {
             PreviousDevices = await makeDeviceList();
@@ -13367,6 +13367,50 @@ async function checkMediaPermissions() {
     } catch (error) {
         console.log('無法檢查權限:', error);
         connectError();
+        return false;
+    }
+}
+
+async function checkCameraPermissionEx() {
+    try {
+        if (navigator.permissions && navigator.permissions.query) {
+            // 檢查攝影機權限
+            const cameraPermission = await navigator.permissions.query({ name: 'camera' });
+            console.log('Camera Permission:', cameraPermission.state);
+
+            // 檢查麥克風權限
+            const microphonePermission = await navigator.permissions.query({ name: 'microphone' });
+            console.log('Microphone Permission:', microphonePermission.state);
+
+            // 判斷是否有權限
+            if (cameraPermission.state === 'granted' && microphonePermission.state === 'granted') {
+                console.log('已取得攝影機和麥克風的權限');
+                return true;
+            } else {
+                //console.log('尚未取得完整權限');
+                let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                stream.getTracks().forEach(track => track.stop());
+                return true;
+            }
+        } else {
+            // 嘗試請求攝影機權限
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            console.log("Camera / Audio permission granted.");
+
+            // 停止攝影機流
+            stream.getTracks().forEach(track => track.stop());
+
+            return true;
+        }
+    } catch (error) {
+        if (error.name === "NotAllowedError") {
+            console.warn("Camera permission denied.");
+        } else if (error.name === "NotFoundError") {
+            console.warn("No camera found on the device.");
+        } else {
+            console.error("An error occurred:", error);
+        }
+
         return false;
     }
 }
