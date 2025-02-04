@@ -1,1 +1,14291 @@
-"use strict";const e="ImageDatabase",t="Images";function o(){return new Promise(((o,a)=>{const n=indexedDB.open(e,1);n.onupgradeneeded=e=>{e.target.result.createObjectStore(t,{keyPath:"name"})},n.onsuccess=e=>{const t=e.target.result;o(t)},n.onerror=e=>{a(e.target.error)}}))}var a;(a=navigator.userAgent).match(/chrome|chromium|crios/i)||a.match(/firefox|fxios/i)||a.match(/safari/i)||a.match(/opr\//i)||a.match(/edg/i)||a.match(/msie|trident/i);function n(e,t,o){var a=document.getElementById(t),n=document.createElement(e);n.id=o,a.appendChild(n)}function r(e,t){n("canvas",e,t)}function c(e,t){n("div",e,t)}function s(e,t){n("span",e,t)}function l(e,t){n("select",e,t)}function d(e,t){n("img",e,t)}function u(e,t){n("input",e,t)}function p(e,t){n("label",e,t)}function g(e,t){document.getElementById(e).hidden=!t}if(void 0===m)var m={over:0,normal:1,click:2};if(void 0===f)var f={left:1,right:3};if(void 0===h)var h={start:0,move:1,end:2,undo:3,redo:4,mirror:5,flip:6,brightness:7,zoom:8,pan:9,whiteBalance:10};if(void 0===b)var b={w:0,h:1,data:2};if(void 0===v)var v={value:0,status:1};if(void 0===w)var w={before:0,after:1};if(void 0===I)var I={toolBar:0,scrollBar:1,colorBar:2,sysToolBar:3,displayCanvas:4};if(void 0===x)var x={id:0,pic:1,state:2,groupId:3};function y(e,t,o,a,n,r){c(o,a),$("#"+a).data("btnData",e),function(e,t){var o,a="",n=e.length;for(o=0;o<n;o++)a+='<span class="'+t+' toolBar" id="'+e[o][x.id]+'"></span>';$("#"+t).html(a)}(e,a);var i="."+a;document.getElementById(a).classList.add("scrollable"),$(i).css(t);var s,l,d=!1,u=!1,p=!1,g=t.width,m=t.height;"right"===n&&(u=!0,g=0,d=!0),"left"===n&&(g=0,d=!0),"top-right"===n&&(u=!0,m=0,g=-t.width),"top-left"===n&&(m=0),"bottom"===n&&(g=60,m=0,p=!0),$(i).attr("style",(function(e,o){return o+(u?" left: calc(100% - "+(t.width-e*g)+"px);":" left: "+e*g+"px;")+(" top: "+(0+e*m)+"px;")})),$(i).hover(T,D),null==r?$(i).on("click",H):$(i).on("click",r),d&&(s={top:rn+"px",height:"calc(100% - "+rn+"px)",width:t.width+"px",background:ye.toolBarColorLeave,opacity:ye.toolBarOpacityLeave,position:"absolute"},u?s.right="0px":s.left="0px",$("#"+a).css(s)),p&&(l={top:"calc(100% - "+2*ye.scrollIconH+"px)",left:"48px",height:"30px",width:"60px",background:"#00000000",opacity:ye.toolBarOpacityLeave,position:"absolute"},$("#"+a).css(l))}function C(e,t){var o,a=e.length;for(o=0;o<a;o++)if(t===e[o][x.id])return o;return-1}function B(e,t,o){var a,n,r,i;a="#"+e[t][x.id],n=Yn(e[t][x.pic]),$(a).css("background",n),no?o===m.over?(r=ye.toolBarColorEnter,i=ye.toolBarOpacityEnter):o===m.normal?(r=ye.toolBarColorHide,i=ye.toolBarOpacityHide):(r=ye.toolBarColorClick,i=ye.toolBarOpacityClick):o===m.over?(r=ye.toolBarColorEnter,i=ye.toolBarOpacityEnter):o===m.normal?(r=ye.toolBarColorLeave,i=ye.toolBarOpacityLeave):(r=ye.toolBarColorClick,i=ye.toolBarOpacityClick),$(a).css("background-color",r),$(a).css("background-position","center center"),$(a).css("background-repeat","no-repeat"),$(a).css("opacity",i)}function S(e){var t,o=e.length;for(t=0;t<o;t++)1===e[t][x.state]?B(e,t,m.click):2===e[t][x.state]?B(e,t,m.over):B(e,t,m.normal)}function W(e,t){var o,a=e.length;for(o=0;o<a;o++)if(t===e[o][x.groupId]&&e[o][x.state]>0)return o;return-1}function _(e,t){var o,a=1;if(e[t][x.state]&&(a=0),o=e[t][x.groupId],function(e,t){var o,a=0,n=e.length;for(o=0;o<n;o++)t===e[o][x.groupId]&&(a+=1);return a}(e,o)>1&&(a=1),o>0){var n=W(e,o);n>=0&&o===e[n][x.groupId]&&(e[n][x.state]=0,B(e,n,m.normal))}e[t][x.state]=a,a&&(B(e,t,m.click),0===o&&setTimeout((function(){e[t][x.state]=0,B(e,t,m.normal)}),100))}function k(e,t){var o="#"+e.target.id,a=$(o).parent().data("btnData"),n=C(a,e.target.id);0===a[n][x.state]&&B(a,n,t)}function T(e){k(e,m.over)}function D(e){k(e,m.normal)}function H(e){Hn(I.toolBar,m.click,e);var t=$("#"+e.target.id).parent().data("btnData"),o=C(t,e.target.id);o>=0&&_(t,o)}function M(e,t,o){var a,n=$("#"+e).data("btnData");for(a=0;a<n.length;a++)if(t==n[a][x.id])return n[a][x.state]=o,void S(n)}function P(e,t){var o,a=$("#"+e).data("btnData");for(o=0;o<a.length;o++)a[o][x.state]=t;S(a)}if(void 0===z)var z={color:0,state:1};function R(e,t,o,a,n){var r,i,s,l;c(o,a),r={position:"absolute","margin-left":"0px",background:ye.drawSetBackground,opacity:ye.drawSetOpacity},i=e.length,s=ye.colorIconW,l=ye.colorIconH,r.width=s*i+"px",r.height=l+"px",r.left="calc(100% - "+s*i+"px)",r.top="0px",$("#"+a).css(r),e.fnNotify=n,$("#"+a).data("colorData",e),function(e,t){var o,a,n=e.length;for(o=0;o<n;o++)c(t,a=e[o][z.color]),$("#"+a).addClass(t+" colorBar")}(e,a);var d="."+a;$(d).css(t),$(d).attr("style",(function(o,a){return a+(" left: calc(100% - "+t.width*(o+1)+"px);")+" top: 0px;"+(" background: #"+e[o][z.color]+";")+(" margin: "+ye.colorIconMarginNormal+"px;")+(" width: "+(t.width-2*ye.colorIconMarginNormal)+"px;")+(" height: "+(t.height-2*ye.colorIconMarginNormal)+"px;")})),$(d).hover(E,L),$(d).on("click",F),G($("#"+a))}function F(e){var t,o=$("#"+e.target.id).parent().data("colorData");for(t=0;t<o.length;t++)e.target.id===o[t][z.color]?o[t][z.state]=1:o[t][z.state]=0;Y(o),G($("#"+e.target.id).parent()),Hn(I.colorBar,m.click,e)}function A(e,t){var o="#"+e.target.id,a=$(o).parent().data("colorData"),n=function(e,t){var o,a=e.length;for(o=0;o<a;o++)if(t===e[o][z.color])return o;return-1}(a,e.target.id);0===a[n][z.state]&&O(a,n,t)}function E(e){A(e,m.over)}function L(e){A(e,m.normal)}function O(e,t,o){var a,n,r="#"+e[t][z.color];o===m.over?(a=ye.colorIconMarginOver,n=ye.colorIconW-2*ye.colorIconMarginNormal):o===m.normal?(a=ye.colorIconMarginNormal,n=ye.colorIconW-2*ye.colorIconMarginNormal):(a=ye.colorIconMarginClick,n=ye.colorIconW-2*ye.colorIconMarginClick),$(r).css("margin",a+"px"),$(r).css("width",n+"px"),$(r).css("height",n+"px")}function Y(e){var t,o=e.length;for(t=0;t<o;t++)1===e[t][z.state]?O(e,t,m.click):O(e,t,m.normal)}function X(e){e=e.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,(function(e,t,o,a){return t+t+o+o+a+a}));var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function G(e){var t,o,a,n,r,i=$(e).data("colorData");if(i.fnNotify)for(o=0;o<i.length;o++)i[o][z.state]&&(a=X("#"+(t=i[o][z.color])).r,n=X("#"+t).g,r=X("#"+t).b,i.fnNotify(t,a,n,r))}if(void 0===z)z={color:0,state:1};function q(e,t,o,a,n){var i,c,l,d;s(o,a),i={position:"absolute","margin-left":"0px",background:ye.drawSetBackground,opacity:ye.drawSetOpacity},c=e.length,l=ye.cb2BlockW,d=ye.cb2BlockH,i.width=l*c+"px",i.height=d+"px",i.top="40px",i.left="0px",$("#"+a).css(i),e.fnNotify=n,$("#"+a).data("colorData",e),function(e,t){var o,a,n,i,c,l,d,u,p,g,m,f,h=e.length;d=ye.cb2BlockW-2*ye.cb2FrameGap,u=ye.cb2BlockH-2*ye.cb2FrameGap;var b={position:"absolute",left:ye.cb2FrameGap,top:ye.cb2FrameGap,width:d,height:u,opacity:1},v={position:"absolute",left:0,top:0,width:ye.scrollIconW,height:ye.scrollIconH,opacity:1};for(o=0;o<h;o++){p=J("#"+(f=e[o][z.color])).r,g=J("#"+f).g,m=J("#"+f).b,s(t,a=f),i="#"+a,v.left=(h-1-o)*ye.scrollIconW,$(i).css(v),r(a,n=a+"_canvas"),i="#"+n,$(i).hover(N,j),$(i).on("click",U),$(i).css(b),$(i).attr("width",d),$(i).attr("height",u),l=(c=document.getElementById(n)).getContext("2d"),mn(c);var w="rgba("+p+", "+g+", "+m+", 1)";l.fillStyle=w,l.fillRect(0,0,d,u)}}(e,a),Q($("#"+a))}function U(e){var t,o=e.target.id,a=$("#"+o).parent().attr("id"),n=$("#"+a).parent().attr("id"),r=$("#"+n).data("colorData");for(t=0;t<r.length;t++)a===r[t][z.color]?r[t][z.state]=1:r[t][z.state]=0;K(r),Q($("#"+n)),Hn(I.colorBar,m.click,e)}function V(e,t){var o=e.target.id,a=$("#"+o).parent().attr("id"),n=$("#"+a).parent().attr("id"),r=$("#"+n).data("colorData"),i=function(e,t){var o,a=e.length;for(o=0;o<a;o++)if(t===e[o][z.color])return o;return-1}(r,a);0===r[i][z.state]&&Z(r,i,t)}function N(e){V(e,m.over)}function j(e){V(e,m.normal)}function Z(e,t,o){var a,n="#"+e[t][z.color];a=o===m.over?ye.cb2MouseColorEnter:o===m.normal?ye.cb2MouseColorLeave:ye.cb2MouseColorClick,$(n).css("background",a)}function K(e){var t,o=e.length;for(t=0;t<o;t++)1===e[t][z.state]?Z(e,t,m.click):Z(e,t,m.normal)}function J(e){e=e.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,(function(e,t,o,a){return t+t+o+o+a+a}));var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function Q(e){var t,o,a,n,r,i=$(e).data("colorData");if(i.fnNotify)for(o=0;o<i.length;o++)i[o][z.state]&&(a=J("#"+(t=i[o][z.color])).r,n=J("#"+t).g,r=J("#"+t).b,i.fnNotify(t,a,n,r))}function ee(e){var t="#"+e.target.id,o=$(t).parent().data("scrollData"),a=e.offsetX;a<=ye.scrollTickH/2&&(a=0),a>o.length&&(a=o.length),o.curPos=a,te(o.id),oe(o.id)}function te(e){var t,o,a,n,r,i,c,s,l=$("#"+e).data("scrollData");o=(t=document.getElementById(e+"-canvas")).getContext("2d"),mn(t),s=(l.iconSize-ye.scrollTickH)/2,a=ye.scrollTickH/2,n=s+(ye.scrollTickH-ye.scrollLineH)/2,r=l.length,i=ye.scrollLineH,o.rect(a,n,r,i),o.fillStyle=l.color,o.fill(),a=ye.scrollTickH/2+l.curPos,n=s+ye.scrollTickH/2,c=ye.scrollTickH/2,o.arc(a,n,c,0,2*Math.PI,!1),o.fillStyle=l.color,o.fill()}function oe(e){var t=$("#"+e).data("scrollData");t.fnNotify&&t.fnNotify(t.length,t.curPos)}function ae(e,t){var o=$("#"+e).data("scrollData");t<=o.length&&(o.curPos=t,te(e))}function ne(){var e,t,o="configDrawDlg";c("uiArea",o),e="#"+o,$(e).css("background",xe.ColorLeave),$(e).css("top","calc(100% - 100px)"),$(e).css("left",an-300-ye.toolBarIconW+"px"),$(e).css("width","300px"),$(e).css("height","70px"),$(e).css("position","absolute"),$(e).hide(),function(){var e={iconL:"30x_30alpha.png",iconSize:ye.scrollIconH,length:ye.scrollOpacityW,curPos:ye.scrollOpacityDefPos,startX:0,startY:0,color:ye.scrollColor};if(0===ye.disableDrawingOpacityScrollBar){function o(e){var t;t=e.currentTarget?e.currentTarget.value:e,Ga.opacity=.1+t/100*.9,Ga.opacity=Ga.opacity.toFixed(1),In()}It(e,"configDrawDlg","drawingOpacity",o,100)}var t={iconL:"30x30lineWidth.png",iconSize:ye.scrollIconH,length:ye.scrollLineWidthW,curPos:ye.scrollLineWidthDefPos,startX:160,startY:0,color:ye.scrollColor};if(0===ye.disableDrawingLineWidthScrollBar){function a(e){var t;t=e.currentTarget?e.currentTarget.value:e,Ga.lineWidth=ye.lineWidthMin+(ye.lineWidthMax-ye.lineWidthMin)*(t/100),Ga.lineWidth=Math.floor(Ga.lineWidth)}It(t,"configDrawDlg","drawingLineWidth",a,10)}}(),t={position:"absolute",width:ye.colorIconW,height:ye.colorIconH,"margin-left":"0px",opacity:ye.colorIconOpacity},1===ye.disableColorBar?(R(Re,t,"configDrawDlg","drawingCfgColorBar",wt),Y(Re)):ye.cb2Apply?(q(ze,0,"configDrawDlg","drawingCfgColorBar",wt),K(ze)):(R(ze,t,"configDrawDlg","drawingCfgColorBar",wt),Y(ze))}function re(e,t,o,a,n){var r=t+"-icon";s(e,r),r="#"+r,$(r).css({background:Yn(o),top:n,left:a,width:ye.toolBarIconW+"px",height:ye.toolBarIconH+"px",position:"absolute"});var i=t+"-slider";return u(e,i),r="#"+i,$(r).attr("class","slider"),$(r).css({top:n,left:a+ye.toolBarIconW+16,width:"200px",height:ye.toolBarIconH+"px",position:"absolute"}),s(e,r=t+"-reset"),r="#"+r,$(r).css("background",Yn("undo.png")),$(r).css("top",n+"px"),$(r).css("left",a+ye.toolBarIconW+16+200+16+"px"),$(r).css("width",ye.toolBarIconW+"px"),$(r).css("height",ye.toolBarIconH+"px"),$(r).css("position","absolute"),$(r).on("click",(function(){"configDlg-rotate-slider"==i?$("#"+i).val(0):$("#"+i).val(1),$("#"+i).trigger("input")})),i}function ie(e,t,o,a,n,i=!1){var c,l,d,u,p={position:"absolute","margin-left":"0px",background:ye.scrollDlgBkg,opacity:ye.scrollDlgOpacity};s(o,a),l=e.iconSize+ye.scrollIconGap+e.length+ye.scrollTickH,void 0!==e.iconR&&(l+=ye.scrollIconGap+e.iconSize),d=e.iconSize+ye.toolBarIconH,p.left="calc(50% - "+l/2+"px)",p.top="calc(50% - "+(d-ye.titleIconH)/2+"px)",p.width=l+"px",p.height=d+"px",$("#"+a).css(p),s(a,c=a+"-close"),c="#"+c,u=Yn("close.png"),$(c).css("background",u),$(c).css("top","0px"),$(c).css("left",l-ye.toolBarIconW+"px"),$(c).css("width",ye.toolBarIconW+"px"),$(c).css("height",ye.toolBarIconH+"px"),$(c).css("position","absolute"),$(c).on("click",ce),i&&(s(a,c=a+"-reset"),c="#"+c,u=Yn("undo.png"),$(c).css("background",u),$(c).css("top","0px"),$(c).css("left",l/2-ye.toolBarIconW/2+"px"),$(c).css("width",ye.toolBarIconW+"px"),$(c).css("height",ye.toolBarIconH+"px"),$(c).css("position","absolute"),$(c).on("click",(function(){ae(a+"-scrollbar",e.length/2),te(a+"-scrollbar"),oe(a+"-scrollbar")}))),c=a+"-scrollbar",e.startY=ye.toolBarIconH,function(e,t,o,a,n){var i,c,l,d,u,p,g,h,b;s(o,a),g=e.iconSize+ye.scrollIconGap+e.length+ye.scrollTickH,void 0!==e.iconR&&(g+=ye.scrollIconGap+e.iconSize),t.left=e.startX+"px",t.top=e.startY+"px",t.width=g+"px",t.height=e.iconSize+"px",$("#"+a).css(t),e.id=a,e.mouseDown=!1,e.fnNotify=n,$("#"+a).data("scrollData",e),s(a,i=a+"-iconL"),r(a,h=a+"-canvas"),d=0,c="#"+i,l=Yn(e.iconL),$(c).css("background",l),$(c).css("top","0px"),$(c).css("left",d+"px"),$(c).css("width",e.iconSize+"px"),$(c).css("height",e.iconSize+"px"),$(c).css("position","absolute"),d+=e.iconSize,d+=ye.scrollIconGap,c="#"+h,u=e.length+ye.scrollTickH,p=e.iconSize,$(c).css("top","0px"),$(c).css("left",d+"px"),$(c).css("width",u+"px"),$(c).css("height",p+"px"),$(c).css("position","absolute"),$(c).attr("width",u),$(c).attr("height",p),d+=u,void 0!==e.iconR&&(s(a,i=a+"-iconR"),d+=ye.scrollIconGap,c="#"+i,l=Yn(e.iconR),$(c).css("background",l),$(c).css("top","0px"),$(c).css("left",d+"px"),$(c).css("width",e.iconSize+"px"),$(c).css("height",e.iconSize+"px"),$(c).css("position","absolute")),oe(a),c="#"+h,b=$("#"+a).data("scrollData"),$(c).on("mousedown",(function(e){f.left===e.which&&(b.mouseDown=!0,ee(e),Hn(I.scrollBar,m.click,e))})).on("mousemove",(function(e){b.mouseDown&&ee(e)})).on("mouseup",(function(){f.left===event.which&&(b.mouseDown=!1)})).on("mouseout",(function(){f.left===event.which&&(b.mouseDown=!1)})).on("touchstart",(function(e){tn(e)})).on("touchmove",(function(e){tn(e)})).on("touchend",(function(){tn(event)})).on("touchcancel",(function(){tn(event)}))}(e,t,a,c,n),te(c)}function ce(e){Wn()}if(void 0===se)var se={move:0,trAnchor:1,tlAnchor:2,brAnchor:3,blAnchor:4,down:5};function le(){var e,t,o,a={dispX:0,dispY:0,dispW:0,dispH:0,imgSrc:0,isActive:!1,x:0,y:0,w:0,h:0,mouseDown:!1,type:se.down,startX:0,startY:0};$("#importPictureWin").data("picData",a),e=ye.ipwRadius,t={position:"absolute",left:e+"px",top:e+"px",width:"calc(100% - "+2*e+"px)",height:"calc(100% - "+2*e+"px)",opacity:ye.ipwOpacity},r("importPictureWin","importPicture"),$("#importPicture").css(t),fe("importPicture",se.move),$("#importPictureWin").on("dblclick",(function(e){we(!0)})),o=ye.ipwRadiusExpandRatio,(o=Math.floor(o))<1&&(o=1),Ga.ipwRadiusExpandRatio=o,de("tlAnchor",se.tlAnchor),de("trAnchor",se.trAnchor),de("blAnchor",se.blAnchor),de("brAnchor",se.brAnchor),be(!1)}function de(e,t){var o,a,n,i,c,s="#"+e,l=ye.ipwRadius;switch(c=(i=2*l)*((n=Ga.ipwRadiusExpandRatio)-1)/2,Ga.ipwExtraSpace=c,r("importPictureWin",e),t){case se.trAnchor:o="calc(100% - "+(i+c)+"px)",a=-c+"px";break;case se.tlAnchor:o=-c+"px",a=-c+"px";break;case se.brAnchor:o="calc(100% - "+(i+c)+"px)",a="calc(100% - "+(i+c)+"px)";break;case se.blAnchor:o=-c+"px",a="calc(100% - "+(i+c)+"px)"}var d={position:"absolute",left:o,top:a,width:(i*=n)+"px",height:i+"px",opacity:ye.ipwOpacity};$(s).css(d),$(s).attr("width",i),$(s).attr("height",i);var u=2*Math.PI,p=document.getElementById(e).getContext("2d");p.fillStyle=ye.ipwColor,p.strokeStyle=ye.ipwColor,p.lineWidth=ye.ipwLineWidth,p.beginPath(),p.arc(l+c,l+c,l,0,u,!1),p.closePath(),p.fill(),fe(e,t)}var ue=!1;function pe(){var e=Ga.curMode.imgW/Xe,t="#importPictureWin",o=$(t).data("picData");o.x=($(t).offset().left-qe)*e,o.y=($(t).offset().top-Ue)*e,o.w=$(t).width()*e,o.h=$(t).height()*e,o.dispX=$(t).offset().left-qe,o.dispY=$(t).offset().top-Ue,o.dispW=$(t).width(),o.dispH=$(t).height()}function ge(e,t){var o=$("#importPictureWin").data("picData"),a=t.clientX-o.startX,n=t.clientY-o.startY,r=o.dispX,i=o.dispY,c=o.dispW,s=o.dispH;switch(e){case se.trAnchor:c+=a,i+=n,s-=n;break;case se.tlAnchor:r+=a,c-=a,i+=n,s-=n;break;case se.brAnchor:c+=a,s+=n;break;case se.blAnchor:r+=a,c-=a,s+=n}var l={left:qe+r,top:Ue+i,width:c,height:s};$("#importPictureWin").css(l)}function me(e){var t=$("#importPictureWin").data("picData"),o=e.clientX-t.startX,a=e.clientY-t.startY,n={left:qe+t.dispX+o,top:Ue+t.dispY+a};$("#importPictureWin").css(n)}function fe(e,t){var o="#importPictureWin",a=$(o).data("picData");Ga.curMode,ye.ipwRadius;o="#"+e,$(o).on("mousedown",(function(e){f.left===e.which&&function(e,t){var o,a,n=2*ye.ipwRadius,r=Ga.ipwExtraSpace;return se.move==t||(o=e.offsetX,a=e.offsetY,o>=r&&o<r+n&&a>=r&&a<r+n)}(e,t)&&(a.mouseDown=!0,a.startX=e.clientX,a.startY=e.clientY,a.type=t,ue=!0)})).on("dblclick",(function(e){we(!0)})).on("mousemove",(function(e){if(a.mouseDown)switch(a.type){case se.move:me(e);break;case se.trAnchor:case se.tlAnchor:case se.brAnchor:case se.blAnchor:ge(a.type,e)}})).on("mouseup",(function(e){f.left===e.which&&(a.mouseDown=!1,pe(),ue=!1)})).on("mouseout",(function(e){f.left,e.which})).on("touchstart",(function(e){tn(e)})).on("touchmove",(function(e){tn(e)})).on("touchend",(function(e){tn(e)})).on("touchcancel",(function(e){tn(e)}))}function he(e){var t,o,a=Ga.curMode,n="#importPictureWin",r=ye.ipwRadius;t=e.width,o=e.height;var i=200;t<i&&(o=o*i/t,t=i),o<i&&(t=t*i/o,o=i);var c,s,l,d,u=a.imgW-2*r,p=a.imgH-2*r;t>u&&(o=o*u/t,t=u),o>p&&(t=t*p/o,o=p),e.width,e.height,l=t+2*r,d=o+2*r,c=(a.imgW-l)/2,s=(a.imgH-d)/2;var g=$(n).data("picData");g.imgSrc=e,g.dispW=Xe,g.dispH=Ge,g.x=c,g.y=s,g.w=l,g.h=d,g.isActive=!0,ve(),n="#importPicture",$(n).attr("width",e.width),$(n).attr("height",e.height),document.getElementById("importPicture").getContext("2d").drawImage(e,0,0,e.width,e.height,0,0,e.width,e.height),be(!0)}function be(e){var t=$("#importPictureWin").data("picData");g("importPictureWin",e),t.isActive=e}function ve(){var e,t,o,a,n,r=$("#importPictureWin").data("picData"),i=Ga.curMode;if(void 0!==r&&0!=r.isActive){n=Xe/i.imgW,e=r.x*n,t=r.y*n,o=r.w*n,a=r.h*n;var c={position:"absolute",left:qe+e,top:Ue+t,width:o,height:a,opacity:ye.ipwOpacity};$("#importPictureWin").css(c),r.dispX=e,r.dispY=t,r.dispW=o,r.dispH=a}}function we(e){if(e){var t=$("#importPictureWin").data("picData"),o=Ga.curMode,a=Ga.drawContext,n=ye.ipwRadius*o.imgW/Xe;0!=t.isActive&&(fn(),a.drawImage(t.imgSrc,0,0,t.imgSrc.width,t.imgSrc.height,t.x+n,t.y+n,t.w-2*n,t.h-2*n),Cn(h.end),o.imageProcess&&o.imageProcess(),be(!1),uo&&attachCropBox(Xe,Ge))}else be(!1)}const Ie="SmartDc";var xe={resizeDelayMs:100,iconW:48,iconH:48,drawSetH:30,ColorEnter:"#555",ColorLeave:"#222",ColorClick:"#5B0303",ColorHide:"#000",OpacityEnter:"0.8",OpacityLeave:"0.8",OpacityClick:"0.8",OpacityHide:"0",resolutionIdx:-1,languageIdx:0},ye={cfgVersion:"1.5.0",bgColor:"#000",titleIconH:xe.iconH,toolBarIconW:xe.iconW,toolBarIconH:xe.iconH,modeIconW:100,modeIconH:xe.iconH,mouseColorEnter:xe.ColorEnter,mouseColorLeave:xe.ColorLeave,mouseColorClick:xe.ColorClick,mouseOpacityEnter:xe.OpacityEnter,mouseOpacityLeave:xe.OpacityLeave,mouseOpacityClick:xe.OpacityClick,drawSetH:xe.drawSetH,drawSetBackground:xe.ColorLeave,drawSetOpacity:xe.OpacityLeave,colorIconW:30,colorIconH:xe.drawSetH,colorIconMarginClick:3,colorIconMarginNormal:6,colorIconMarginOver:4,colorIconOpacity:"1.0",cb2Apply:1,cb2BlockW:30,cb2BlockH:xe.drawSetH,cb2FrameGap:6,cb2MouseColorEnter:xe.ColorEnter,cb2MouseColorLeave:xe.ColorLeave,cb2MouseColorClick:xe.ColorClick,scrollIconW:30,scrollIconH:xe.drawSetH,scrollIconGap:0,scrollTickH:12,scrollLineH:2,scrollColor:"#EEE",scrollGroupGap:8,scrollOpacityW:90,scrollOpacityDefPos:80,scrollLineWidthW:90,scrollLineWidthDefPos:30,lineWidthMin:4,lineWidthMax:40,scrollDlgBkg:xe.ColorLeave,scrollDlgOpacity:xe.OpacityLeave,scrollBrighnessW:180,scrollBrighnessDefPos:90,brightnewwMin:-128,brightnewwMax:128,whiteBalanceMin:-25,whiteBalanceMax:25,scrollZoomW:180,scrollZoomDefPos:0,zoomMaxRatio:8,panWinGapX:4,panWinGapY:4,panWinColor:xe.ColorLeave,panCropColor:"#555",panOpacity:xe.OpacityLeave,sdBkg:xe.ColorLeave,sdOpacity:xe.OpacityLeave,sdIconW:xe.iconW,sdIconH:xe.iconH,sdExtraW:14,sdIconScrollGap:4,sdGroupGap:0,sdScrollGap:8,sdFrameGapX:4,sdFrameGapY:4,sdScrollH:30,sdVideoRsoW:120,sdFontFamilyW:120,sdFontStyleW:120,sdFontSizeW:60,tidBkg:xe.ColorLeave,tidOpacity:xe.OpacityLeave,tidIconW:xe.iconW,tidIconH:xe.iconH,tidTextFrmW:300,tidTextFrmH:200,tidFrameGap:8,tidIconFrmGap:4,tidTextSize:20,eraserOpacity:.8,minArrowSize:10,toolBarColorEnter:xe.ColorEnter,toolBarColorLeave:xe.ColorLeave,toolBarColorClick:xe.ColorClick,toolBarColorHide:xe.ColorHide,toolBarOpacityEnter:xe.OpacityEnter,toolBarOpacityLeave:xe.OpacityLeave,toolBarOpacityClick:xe.OpacityClick,toolBarOpacityHide:xe.OpacityHide,ipwColor:"#AAA",ipwOpacity:1,ipwLineWidth:6,ipwRadius:16,ipwRadiusExpandRatio:1,defPreviewRsoX:1280,defPreviewRsoY:720,defDrawingBoardW:1920,defDrawingBoardH:1080,drawingBoardBgColor:"#FFF",defPictureW:1920,defPictureH:1080,thumbW:160,thumbH:120,thumbPadding:10,thumbFrmSize:4,thumbFrmColorNormal:"#000",thumbFrmColorChecked:"#FF0",pbInfoW:240,pbInfoH:24,pbInfoColor:"#FF0",pbInfoColor_Page:"#FF0",pbInfoColor_Item:"#3F3",pbInfoFontSize:"150%",pbInfoFontWWeight:"normal",aboutWinW:400,aboutWinH:340,aboutBkg:"#222",aboutOpacity:1,aboutIconW:xe.iconW,aboutIconH:xe.iconH,aboutGapX:30,pcdBkg:xe.ColorLeave,pcdOpacity:xe.OpacityLeave,pcdIconOverlayY:20,pcdIconW:xe.iconW,pcdIconH:xe.iconH,pcdTextW:80,pcdTextH:20,pcdUnitW:60,pcdUnitH:16,pcdUnitOffsetY:4,pcdExtraW:12,pcdCapturePeriodSec:1,pcdCaptureIntervalHour:1,pcibBkg:xe.ColorLeave,pcibOpacity:xe.OpacityLeave,pcibIconW:xe.iconW,pcibIconH:xe.iconH,pcibTextH:24,pcibTextW:120,pcibTextColor:"#2F2",pcibTextFontSize:"150%",pcidGapY:4,cdIconW:xe.iconW,cdIconH:xe.iconH,cdFrameGap:26,cdIconGap:10,cdBkg:xe.ColorLeave,cdOpacity:xe.OpacityLeave,cdMouseColorEnter:xe.ColorEnter,cdMouseColorLeave:xe.ColorLeave,cdMouseColorClick:xe.ColorClick,sysInfoWinW:88,sysInfoWinH:82,sysInfoH:16,sysInfoGap:4,disableDrawingCanvasOverlay:0,disableDrawingToolBar:0,disableColorBar:0,disableDrawingOpacityScrollBar:0,disableDrawingLineWidthScrollBar:0,disableDrawTextSetting:0},Ce=[["btn_freehand","freeHand.png",0,1],["btn_arrow","arrow.png",0,1],["btn_eraser","ereser.png",0,1],["btn_line","line.png",0,1],["btn_rectangleLine","rectangleLine.png",0,1],["btn_rectangle","rectangle.png",0,1],["btn_circleLine","circleLine.png",0,1],["btn_circle","circle.png",0,1],["btn_erase_all","clearAll.png",0,0],["btn_text","text.png",0,1],["btn_configDraw","config.png",0,0]],$e=[],Be=[["btn_record","record.png",0,0]],Se=[["btn_setting","setting.png",0,0],["btn_capture","capture.png",0,0],["btn_freeze","Freeze.png",0,3],["btn_timesave","timesave.png",0,0],["btn_mirrow","mirrow.png",0,5],["btn_flip","flip.png",0,6],["btn_config","config.png",0,0],["btn_zoom","zoom.png",0,0],["btn_importPic","inportPic.png",0,0],["btn_redo","redo.png",0,0],["btn_undo","undo.png",0,0]],We=[["scbtn_transform","perspectiveImage.png",0,0],["scbtn_importPic","inportPic.png",0,0],["Dummy","dummy.png",0,0],["scbtn_fullcrop","fullPhoto.png",0,6],["scbtn_redo","redo.png",0,0],["scbtn_undo","undo.png",0,0]],_e=[["scbtn_preview","backScanMode.png",0,0],["scbtn_saveDisk","savePlayback.png",0,0],["scbtn_ocr","ocr.png",0,0],["Dummy","dummy.png",0,0],["scbtn_mirrow","mirrow.png",0,5],["scbtn_flip","flip.png",0,6],["scbtn_redo2","redo.png",0,0],["scbtn_undo2","undo.png",0,0]],ke=[["mscbtn_capture","perspectiveImage.png",0,0],["mscbtn_merge","Merge_multiscan.png",0,0],["mscbtn_cancel","close.png",0,0],["Dummy","dummy.png",0,0],["mscbtn_fullcrop","fullPhoto.png",0,6]],Te=[["mode_about","about.png",0,0],["mode_preview","preview.png",1,1],["mode_playback","playback.png",0,1],["mode_drawingBoard","drawingboard.png",0,1]],De=[["sys_fullPhoto","fullPhoto.png",0,1]],He=[["btn_saveDisk","saveDisk.png",0,0],["btn_delete","delete.png",0,0],["Dummy","dummy.png",0,0],["btn_Next","next_page.png",0,0],["btn_Previous","previous_page.png",0,0]],Me=[["ppbtn_savePlayback","savePlayback.png",0,0],["ppbtn_closeAndBackPlayback","closeAndBackPlayback.png",0,0],["ppbtn_zoom","zoom.png",0,0],["ppbtn_importPic","inportPic.png",0,0],["ppbtn_redo","redo.png",0,0],["ppbtn_undo","undo.png",0,0]],Pe=[["dbbtn_savePlayback","savePlayback.png",0,0],["dbbtn_redo","redo.png",0,0],["dbbtn_undo","undo.png",0,0],["dbbtn_importPic","inportPic.png",0,0]],ze=[["782D91",0],["1B1464",0],["0000FF",1],["00FF00",0],["FFFF00",0],["F15A24",0],["FF0000",0],["FFFFFF",0],["999999",0],["000000",0]],Re=[],Fe=[["Arial",1],["Serif",0],["Verdana",0],["Courier New",0]],Ae=[["lbNormal",1],["lbBold",0],["lbItalic",0],["lbBoldItalic",0]],Ee=[["English",1,"./locales/en/messages.json"],["Deutsch",0,"./locales/de/messages.json"],["Française",0,"./locales/fr/messages.json"],["Español",0,"./locales/es/messages.json"],["繁體中文",0,"./locales/zh_TW/messages.json"],["Русский",0,"./locales/ru/messages.json"]],Le=[[8,0],[12,0],[16,0],[20,0],[24,0],[28,1],[36,0],[48,0],[72,0]];var Oe,Ye,Xe,Ge,qe,Ue,Ve,Ne,je,Ze,Ke,Je,Qe=[[1280,720,1],[1024,768,0]],et=[[1920,1080,0],[1280,720,1],[1024,768,0]],tt=[[1920,1080,0],[1280,720,1],[1024,768,0]],ot=[[1920,1080,0],[1280,720,1],[1024,768,0]],at=[[4160,3120,0],[3840,2160,0],[2048,1536,0],[1920,1080,0],[1280,1024,0],[1280,960,0],[1280,720,1],[1024,768,0],[640,480,0]],nt=[[3264,2448,0],[2592,1944,0],[2048,1536,0],[1920,1080,0],[1600,1200,0],[1280,960,0],[1280,720,1],[1024,768,0]],rt=[[1920,1080,0],[1280,720,1],[1024,768,0]],it=[[0,0,rt],[1276,21264,Qe],[1276,21296,Qe],[1276,21305,Qe],[1276,25392,et],[1276,25401,et],[1276,25424,tt],[1276,25433,tt],[1276,25856,ot],[1276,25865,ot],[1276,34185,at],[4429,34185,at],[1276,9760,nt],[1276,9856,nt],[1276,8329,[[2592,1944,0],[2048,1536,0],[1920,1080,0],[1600,1200,0],[1280,960,0],[1280,720,1],[1024,768,0]]],[1276,9864,[[3840,3104,0],[3840,2160,0],[3264,2448,0],[2592,1944,0],[2048,1536,0],[1920,1080,0],[1600,1200,0],[1280,720,1],[1024,768,0]]],[1276,9808,[[2560,1920,0],[2560,1440,0],[2048,1536,0],[1920,1080,0],[1600,1200,0],[1280,960,0],[1280,720,1],[1024,768,0]]]];function ct(e,t,o){var a={position:"absolute",left:0,top:0,width:t,height:o,display:!1},n="#"+e;$(n).css(a),$(n).attr("width",t),$(n).attr("height",o)}function st(e,t,o,a){r(e,t),ct(t,o,a)}function lt(e){var t,o,a=["WebGL","baseImageCanvas","imageProcessCanvas","drawingCanvas","tempDrawingCanvas","combineCanvas"];for(t=0;t<a.length;t++)o=e+"-"+a[t],document.getElementById(o).hidden=!0}function dt(e,t,o){var a,n=["WebGL","baseImageCanvas","imageProcessCanvas","drawingCanvas","tempDrawingCanvas","combineCanvas"];for(a=0;a<n.length;a++)st(e,e+"-"+n[a],t,o)}function ut(e,t,o){var a,n=["WebGL","baseImageCanvas","imageProcessCanvas","drawingCanvas","tempDrawingCanvas","combineCanvas"];for(a=0;a<n.length;a++)ct(e.baseId+"-"+n[a],t,o)}function pt(e){var t,o,a=["baseImageCanvas","imageProcessCanvas","drawingCanvas","tempDrawingCanvas","combineCanvas"],n=["baseImageContext","imageProcessContext","drawingContext","tempDrawingContext","combineContext"];for(o=0;o<a.length;o++)t=e.baseId+"-"+a[o],e[a[o]]=document.getElementById(t),e[n[o]]=e[a[o]].getContext("2d")}Ve="div",Ne="baseArea",(je=document.createElement(Ve)).id=Ne,document.body.appendChild(je),c("baseArea","appTitle"),c("baseArea","previewArea"),n("video","previewArea","videoSrc"),dt("previewArea",ye.defPreviewRsoX,ye.defPreviewRsoY),c("baseArea","playbackArea"),dt("playbackArea",ye.defPictureW,ye.defPictureH),c("baseArea","drawingArea"),dt("drawingArea",ye.defDrawingBoardW,ye.defDrawingBoardH),c("baseArea","imageDisplayArea"),r("imageDisplayArea","displayCanvas"),r("imageDisplayArea","saveFileCanvas"),c("baseArea","uiArea"),s("uiArea","importPictureWin"),c("uiArea","drawingCfgArea"),Ze={position:"absolute","margin-left":"0px",background:ye.drawSetBackground,opacity:ye.drawSetOpacity},Ke=ye.toolBarIconW,Je=ye.drawSetH,Ze.width="calc(100% - "+2*Ke+"px)",Ze.height=Je+"px",Ze.left=Ke+"px",Ze.top="calc(100% - "+Je+"px)",$("#drawingCfgArea").css(Ze),s("uiArea","panWin"),r("panWin","cropWin"),s("uiArea","settingDlg"),s("uiArea","textInputDlg"),Oe=document.getElementById("displayCanvas"),Ye=Oe.getContext("2d"),lt("previewArea"),lt("playbackArea"),lt("drawingArea"),g("saveFileCanvas",!1);var gt={position:"absolute",left:0,top:0,width:800,height:260,style:"border:1px dashed black",background:ye.bgColor};function mt(){var e,t,o,a,n,r,i;no?(t=an,o=nn):(t=an-2*xe.iconW,o=nn-rn-xe.drawSetH),t*Ga.imgH<o*Ga.imgW?(r=t,a=(an-t)/2,i=Math.floor(r*Ga.imgH/Ga.imgW),n=Math.floor((o-i)/2)):(i=o,n=0,r=Math.floor(i*Ga.imgW/Ga.imgH),a=Math.floor((t-r)/2),no||(a+=xe.iconW)),no||(n+=rn),gt.left=a,gt.top=n,gt.width=r,gt.height=i,(e=$("#displayCanvas")).css(gt),e.attr("width",r),e.attr("height",i),qe=a,Ue=n,Xe=r,Ge=i}var ft,ht,bt=[];function vt(e,t){g(e,t)}function wt(e,t,o,a){Ga.colorHex=e,Ga.colorR=t,Ga.colorG=o,Ga.colorB=a,In()}function It(e,t,o,a,n){s(t,o);var r=o+"-iconL";s(o,r);var i=e.startX;d="#"+r;var c=Yn(e.iconL);$(d).css("background",c),$(d).css("top","0px"),$(d).css("left",i+"px"),$(d).css("width",e.iconSize+"px"),$(d).css("height",e.iconSize+"px"),$(d).css("position","absolute"),i+=e.iconSize;var l=o+"-slider";u(t=o,l);var d="#"+l;$(d).attr("class","slider_min"),$(d).css({top:0,left:i,width:"100px",height:"30px",position:"absolute"}),$(d).attr({type:"range",max:100,min:0,step:2,value:n});d="#"+l;$(d).on("input",a),a(n)}function xt(){var e={position:"absolute","margin-left":"0px"};ie({iconL:"brightness_down.png",iconR:"brightness_up.png",iconSize:ye.toolBarIconW,length:ye.scrollBrighnessW,curPos:ye.scrollBrighnessDefPos,startX:0,startY:0,color:ye.scrollColor},e,"uiArea","brightnessDlg",$t,!0),yt(!1),ie({iconL:"wb_b.png",iconR:"wb_r.png",iconAuto:"undo.png",iconSize:ye.toolBarIconW,length:ye.scrollBrighnessW,curPos:ye.scrollBrighnessDefPos,startX:0,startY:0,color:ye.scrollColor},e,"uiArea","whiteBalanceDlg",Bt,!0),Ct(!1),function(){var e,t,o="zoomDlg",a=24,n=36,r=380,i=120;c("uiArea",o),e="#"+o,$(e).css("background",xe.ColorLeave),$(e).css("top","calc(50%)"),$(e).css("left",ye.toolBarIconW+"px"),$(e).css("width",r+"px"),$(e).css("height",i+"px"),$(e).css("position","absolute"),$(e).hide(),s(o,e=o+"-close"),e="#"+e;var l=Yn("close.png");$(e).css("background",l),$(e).css("top","0px"),$(e).css("left",r-ye.toolBarIconW+"px"),$(e).css("width",ye.toolBarIconW+"px"),$(e).css("height",ye.toolBarIconH+"px"),$(e).css("position","absolute"),$(e).on("click",(function(){$("#"+o).hide()})),t=function(e,t,o,a,n,r){var i;s(e,i=t+"-icon-L"),i="#"+i,$(i).css({background:Yn(o),top:r,left:n,width:ye.toolBarIconW+"px",height:ye.toolBarIconH+"px",position:"absolute"}),s(e,i=t+"-icon-R"),i="#"+i,$(i).css({background:Yn(a),top:r,left:n+ye.toolBarIconW+16+200+16,width:ye.toolBarIconW+"px",height:ye.toolBarIconH+"px",position:"absolute"});var c=t+"-slider";return u(e,c),i="#"+c,$(i).attr("class","slider"),$(i).css({top:r,left:n+ye.toolBarIconW+16,width:"200px",height:ye.toolBarIconH+"px",position:"absolute"}),c}(o,e=o+"-zoom","zoom_in.png","zoom_out.png",a,n),e="#"+t,$(e).attr({type:"range",max:100,min:0,step:2,value:0}),$(e).on("input",(function(e){var t=1+(ye.zoomMaxRatio-1)*e.currentTarget.value/100;t=t.toFixed(1),Ga.curMode&&qn(t,e.currentTarget.value)}))}()}function yt(e){g("brightnessDlg",e)}function Ct(e){g("whiteBalanceDlg",e)}function $t(e,t){}function Bt(e,t){}function St(){var e,t,o,a,n,r,i,c,s,d,u,p={position:"absolute","margin-left":"0px",background:ye.sdBkg,opacity:ye.sdOpacity},g=5;1===ye.disableDrawTextSetting&&(g=1),e=2*ye.sdFrameGapX+ye.sdIconW+ye.sdIconScrollGap+ye.sdFontFamilyW+ye.sdFontStyleW+ye.sdFontSizeW+2*ye.sdScrollGap,e+=ye.sdExtraW,t=ye.sdFrameGapY*g+ye.sdIconH*(g+1)+ye.sdGroupGap,p.left="calc(50% - "+e/2+"px)",p.top="calc(50% - "+(t-ye.titleIconH)/2+"px)",p.width=e+"px",p.height=t+"px",$("#settingDlg").css(p),Wt("settingDlg","sdClsoeIcon","close.png",o=e-ye.sdFrameGapX-ye.sdIconW,a=ye.sdFrameGapY),$("#sdClsoeIcon").on("click",ga),a=+ye.sdIconH,Wt("settingDlg","sdVideoRsoIcon","setting_reslution.png",o=ye.sdFrameGapX,a),o+=ye.sdIconW+ye.sdIconScrollGap,n="settingDlg",r="sdVideoRsoScrollbar",i=Ga.curVideoResolutionList,c=o,s=a,d=ye.sdVideoRsoW,Ga.idVideoResolutionList=r,l(n,r),kt(i),u="#"+r,$(u).css("top",s+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(u).css("left",c+"px"),$(u).css("width",d+"px"),$(u).css("height",ye.sdScrollH+"px"),$(u).css("position","absolute"),a+=ye.sdIconH+ye.sdGroupGap,Wt("settingDlg","sdVideoinputIcon","setting_videoinput.png",o=ye.sdFrameGapX,a),o+=ye.sdIconW+ye.sdIconScrollGap,function(e,t,o,a,n,r){var i;Ga.idVideoinputSelect=t,l(e,t),i="#"+t,$(i).css("top",n+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(i).css("left",a+"px"),$(i).css("width",2*r+ye.sdIconScrollGap+"px"),$(i).css("height",ye.sdScrollH+"px"),$(i).css("position","absolute")}("settingDlg","sdVideoinputScrollbar",Ga.curVideopinputList,o,a,ye.sdVideoRsoW),a+=ye.sdIconH+ye.sdGroupGap,Wt("settingDlg","sdAudioinputIcon","setting_audioinput.png",o=ye.sdFrameGapX,a),o+=ye.sdIconW+ye.sdIconScrollGap,function(e,t,o,a,n,r){var i;Ga.idAudioinputSelect=t,l(e,t),i="#"+t,$(i).css("top",n+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(i).css("left",a+"px"),$(i).css("width",2*r+ye.sdIconScrollGap+"px"),$(i).css("height",ye.sdScrollH+"px"),$(i).css("position","absolute")}("settingDlg","sdAudioinputScrollbar",Ga.curAudioinputList,o,a,ye.sdVideoRsoW),a+=ye.sdIconH+ye.sdGroupGap,0===ye.disableDrawTextSetting&&(Wt("settingDlg","sdFontIcon","setting_textEdit.png",o=ye.sdFrameGapX,a),o+=ye.sdIconW+ye.sdIconScrollGap,Tt("settingDlg","sdfontFamily",Fe,o,a,ye.sdFontFamilyW),o+=ye.sdFontFamilyW+ye.sdScrollGap,function(e,t,o,a,n,r){var i,c,s,d="";for(l(e,t),d="",i=0;i<o.length;i++)c=t+"-"+o[i][v.value],s="WebMod",d+="<option"+(1===o[i][v.status]?' selected="true"':"")+' id="'+c+'">'+s+"</option>";$("#"+t).html(d),c="#"+t,$(c).css("top",n+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(c).css("left",a+"px"),$(c).css("width",r+"px"),$(c).css("height",ye.sdScrollH+"px"),$(c).css("position","absolute")}("settingDlg","fontStyle",Ae,o,a,ye.sdFontStyleW),o+=ye.sdFontStyleW+ye.sdScrollGap,Tt("settingDlg","fontSize",Le,o,a,ye.sdFontSizeW),a+=ye.sdIconH+ye.sdGroupGap),Wt("settingDlg","sdLanguageIcon","setting_language.png",o=ye.sdFrameGapX,a),o+=ye.sdIconW+ye.sdIconScrollGap,function(e,t,o,a,n,r){var i,c,s,d="";for(l(e,t),d="",i=0;i<o.length;i++)c=t+"-"+o[i][v.value],s=o[i][v.value],d+="<option"+(1===o[i][v.status]?' selected="true"':"")+' id="'+c+'">'+s+"</option>";$("#"+t).html(d),c="#"+t,$(c).css("top",n+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(c).css("left",a+"px"),$(c).css("width",r+"px"),$(c).css("height",ye.sdScrollH+"px"),$(c).css("position","absolute")}("settingDlg","sdLanguageFamily",Ee,o,a,ye.sdFontFamilyW),Dt(!1),Tn()}function Wt(e,t,o,a,n){var r,i;s(e,t),r="#"+t,i=Yn(o),$(r).css("background",i),$(r).css("top",n+"px"),$(r).css("left",a+"px"),$(r).css("width",ye.sdIconW+"px"),$(r).css("height",ye.sdIconH+"px"),$(r).css("position","absolute")}function _t(e){var t;t="#"+Ga.idVideoResolutionList,$(t+" > option").remove(),kt(e)}function kt(e){var t,o,a,n,r,i="";for(r=Ga.idVideoResolutionList,i="",t=0;t<e.length;t++)o=r+"-"+e[t][b.w]+"x"+e[t][b.h],a=e[t][b.w]+" x "+e[t][b.h],-1==xe.resolutionIdx||xe.resolutionIdx>=e.length?1===e[t][b.data]?(n=' selected="true"',Ga.reqImgW=e[t][b.w],Ga.reqImgH=e[t][b.h]):n="":t==xe.resolutionIdx?(n=' selected="true"',Ga.reqImgW=e[t][b.w],Ga.reqImgH=e[t][b.h]):n="",i+="<option"+n+' id="'+o+'">'+a+"</option>";$("#"+r).html(i)}function Tt(e,t,o,a,n,r){var i,c,s,d="";for(l(e,t),d="",i=0;i<o.length;i++)c=t+"-"+o[i][v.value],s=o[i][v.value],d+="<option"+(1===o[i][v.status]?' selected="true"':"")+' id="'+c+'">'+s+"</option>";$("#"+t).html(d),c="#"+t,$(c).css("top",n+(ye.sdIconH-ye.sdScrollH)/2+"px"),$(c).css("left",a+"px"),$(c).css("width",r+"px"),$(c).css("height",ye.sdScrollH+"px"),$(c).css("position","absolute")}function Dt(e){g("settingDlg",e)}function Ht(){var e,t,o,a,r,i;e=ye.tidFrameGap+ye.tidTextFrmW+ye.tidFrameGap,t=ye.tidFrameGap+ye.tidIconH+ye.tidIconFrmGap+ye.tidTextFrmH+ye.tidFrameGap,o="#textInputDlg",$(o).css("top","calc(50% - "+(t-ye.titleIconH)/2+"px)"),$(o).css("left","calc(50% - "+e/2+"px)"),$(o).css("width",e+"px"),$(o).css("height",t+"px"),$(o).css("position","absolute"),$(o).css("background",ye.tidBkg),$(o).css("opacity",ye.tidOpacity),s("textInputDlg","textInputClose"),o="#textInputClose",i=Yn("yes.png"),a=e-ye.tidFrameGap-ye.tidIconW,r=ye.tidFrameGap,$(o).css("background",i),$(o).css("top",r+"px"),$(o).css("left",a+"px"),$(o).css("width",ye.tidIconW+"px"),$(o).css("height",ye.tidIconH+"px"),$(o).css("position","absolute"),$(o).on("click",zo),function(e,t){n("textarea",e,t)}("textInputDlg","textInputArea"),o="#textInputArea",a=ye.tidFrameGap,r=ye.tidFrameGap+ye.tidIconH+ye.tidIconFrmGap,$(o).css("position","absolute"),$(o).css("resize","none"),$(o).css("top",r+"px"),$(o).css("left",a+"px"),$(o).css("width",ye.tidTextFrmW+"px"),$(o).css("height",ye.tidTextFrmH+"px"),$(o).css("padding","0px"),$(o).attr("cols",ye.tidTextFrmW),$(o).attr("rows",ye.tidTextFrmH),Mt(!1)}function Mt(e){g("textInputDlg",e),e&&setTimeout((function(){$("#textInputArea").focus()}),300)}function Pt(){return document.getElementById("textInputArea").value.length}function zt(){g("aboutDlg",!0)}function Rt(){g("aboutDlg",!1)}function Ft(e,t,o,a,n,r,i){var c,s;c="#"+e,i&&(s=Yn(t),$(c).css("background",s)),$(c).css("top",a+"px"),$(c).css("left",o+"px"),$(c).css("width",n+"px"),$(c).css("height",r+"px"),$(c).css("position","absolute")}function At(e,t,o,a,n){s(e,t),Ft(t,o,a,n,ye.pcdIconW,ye.pcdIconH,!0)}function Et(e,t,o,a,n){p(e,t),Ft(t,!1,o,a+ye.pcdUnitOffsetY,ye.pcdUnitW,ye.pcdUnitH,!1),$("#"+t).css("text-align","right"),function(e,t){e=document.getElementById(e),Xn(e,t)}(t,n)}function Lt(e,t,o,a,n){var r="#"+t;u(e,t),Ft(t,!1,o,a,ye.pcdTextW,ye.pcdTextH,!1),$(r).keydown((function(e){-1!==$.inArray(e.keyCode,[46,8])||e.keyCode>=35&&e.keyCode<=40||(e.shiftKey||e.keyCode<48||e.keyCode>57)&&(e.keyCode<96||e.keyCode>105)&&e.preventDefault()})),$(r).attr("value",n),$(r).css("text-align","center")}function Ot(e){g("periodicCaptureDlg",e)}function Yt(){var e,t,o,a;a=Math.min(Ue+Ge,nn-ye.drawSetH),e=ye.pcibTextW+ye.pcibIconW,t=ye.pcibIconH,o="#periodicCaptureInfoBar",$(o).css("position","absolute"),$(o).css("background",ye.pcibBkg),$(o).css("opacity",ye.pcibOpacity),$(o).css("left","calc(50% - "+e/2+"px)"),$(o).css("top",a-t-ye.pcidGapY+"px"),$(o).css("width",e+"px"),$(o).css("height",t+"px")}function Xt(){Ga.capturePeriodRun=!1,Gt(!1)}function Gt(e){g("periodicCaptureInfoBar",e)}function qt(){var e,t,o;e=2*ye.cdFrameGap+2*ye.cdIconW+ye.cdIconGap,t=2*ye.cdFrameGap+ye.cdIconH,o="#confirmDlg",$(o).css("position","absolute"),$(o).css("background",ye.cdBkg),$(o).css("opacity",ye.cdOpacity),$(o).css("left","calc(50% - "+e/2+"px)"),$(o).css("top","calc(50% - "+t/2+"px)"),$(o).css("width",e+"px"),$(o).css("height",t+"px")}function Ut(){var e,t,o="confirmDlg",a=o+"_yes",n=o+"_no";function r(e,t,a,n){var r,i;s(o,e),r="#"+e,i=Yn(t),$(r).css("background",i),$(r).css("left",a+"px"),$(r).css("top",n+"px"),$(r).css("width",ye.cdIconW+"px"),$(r).css("height",ye.cdIconH+"px"),$(r).css("position","absolute"),$(r).on("mousedown",(function(e){f.left===e.which&&($(r).css("background-color",ye.cdMouseColorClick),function(e){var t,o="confirmDlg",a=o+"_yes";t=document.getElementById(o),t.clickHandler&&t.clickHandler(e==a)}(e.target.id))})).on("mousemove",(function(e){$(r).css("background-color",ye.cdMouseColorEnter)})).on("mouseout",(function(){$(r).css("background-color",ye.cdMouseColorLeave)}))}s("uiArea",o),qt(),r(n,"no.png",e=ye.cdFrameGap,t=ye.cdFrameGap),r(a,"yes.png",e+=ye.cdIconW+ye.cdIconGap,t),Vt(!1)}function Vt(e){g("confirmDlg",e)}function Nt(e){document.getElementById("confirmDlg").clickHandler=e}function jt(){var e=ft.files;e.length&&-1!=e[0].type.indexOf("image")&&function(e){var t=new Image;if(t.addEventListener("load",(function(){e.name,t.width,t.height,e.type,Math.round(e.size/1024);he(t)})),-1!=e.type.indexOf("tif")){var o=new FileReader;o.onload=function(e){var o=e.target.result,a=new Tiff({buffer:o}).toCanvas();a&&(t.src=a.toDataURL())},o.readAsArrayBuffer(e)}else t.src=window.URL.createObjectURL(e)}(e[0])}function Zt(){$("#imgInput").val(""),ft.click(),document.body.onfocus=function(){uo&&setTimeout((function(){document.getElementById("importPictureWin").hidden&&attachCropBox(Xe,Ge)}),200),document.body.onfocus=null}}function Kt(){u("uiArea","imgInput"),(ft=document.getElementById("imgInput")).hidden=!0,ft.type="file",ft.accept=".jpg, .png, .jpeg, .bmp, .tif, .tiff|image/*",ft.onchange=jt,ir()}function Jt(e,t,o,a){var n={x:0,y:0,w:0,h:0};return e*a<o*t?(n.w=e,n.x=0,n.h=Math.floor(n.w*a/o),n.y=Math.floor((t-n.h)/2)):(n.h=t,n.y=0,n.w=Math.floor(n.h*o/a),n.x=Math.floor((e-n.w)/2)),n}function Qt(e){var t;for(t=0;t<e.length;t++)e[t].fileEntrySub&&e[t].fileEntrySub.remove((function(){}),(function(){})),e[t].fileEntryOrg.remove((function(){}),(function(){})),$("#"+e[t].id).parent().remove();ir()}async function eo(e,t){if(0!=e.length&&!(er.length<=0)){for(var o=0;o<er.length;o++)if(er[o].name==e[0].fileName){var a;a=-1!=er[o].name.indexOf("mp4")||-1!=er[o].name.indexOf("webm")?URL.createObjectURL(er[o].video):er[o].normalImage;const e=document.createElement("a");e.href=a,e.download=er[o].name,document.body.appendChild(e),e.click(),document.body.removeChild(e),URL.revokeObjectURL(a);break}return}}$(document).on("webkitfullscreenchange",(function(){if(document.fullscreenElement)(ht=document.fullscreenElement).style.border="none";else{var e=ye.thumbFrmSize+"px solid "+ye.thumbFrmColorChecked;ht.style.border=e}}));var to,oo=-1;function ao(){if(Ar||(Ar=document.getElementById("videoSrc")),to||(to=document.getElementById("previewArea-WebGL")),Er){Vr.bindTexture(Vr.TEXTURE_2D,Nr),Vr.texImage2D(Vr.TEXTURE_2D,0,Vr.RGBA,Vr.RGBA,Vr.UNSIGNED_BYTE,Ar),Vr.useProgram(Kr),Vr.bindBuffer(Vr.ARRAY_BUFFER,oi),Vr.enableVertexAttribArray(Jr),Vr.vertexAttribPointer(Jr,2,Vr.FLOAT,!1,0,0),Vr.bindBuffer(Vr.ARRAY_BUFFER,ai),Vr.enableVertexAttribArray(Qr),Vr.vertexAttribPointer(Qr,2,Vr.FLOAT,!1,0,0),Vr.uniform1f(ei,parseFloat(document.getElementById("configDlg-brightness-slider").value));const t=parseFloat(document.getElementById("configDlg-whiteBalence-slider").value);Vr.uniform3f(ti,t,1,2-t),Vr.clear(Vr.COLOR_BUFFER_BIT),Vr.drawArrays(Vr.TRIANGLES,0,6);var e=Ar.currentTime;e&&e!==oo&&(oo=e,new Date,function(e){var t=Go;if(t.freeze&&!aa){oa.width=Go.imgW,oa.height=Go.imgH,oa.getContext("2d").drawImage(e,0,0)}if(aa=t.freeze,function(){var e,t;if(0==Ga.frameRateInit){for(Ga.frameRateInit=!0,Ga.frameLastTime=new Date,Ga.frameSlotIdx=Ga.frameCnt,e=0;e<Ga.frameCnt;e++)Ga.frameInterval[e]=0;return}var o=new Date,a=o-Ga.frameLastTime,n=Ga.frameSlotIdx%Ga.frameCnt;for(Ga.frameLastTime=o,Ga.frameInterval[n]=a,t=0,e=0;e<Ga.frameCnt;e++)t+=Ga.frameInterval[e];Ga.frameRate=1e3*Ga.frameCnt/t,Ga.frameRate=Ga.frameRate.toFixed(2),0==n&&Ln();Ga.frameSlotIdx=n+1}(),Ga.checkVideoResolution)return Ga.checkVideoResolution=!1,void ma();if(t.freeze&&uo)return;ta[0]=1+Ga.previewBrightnessAdj/100+Ga.previewWhiteBalanceAdj/100,ta[6]=1+Ga.previewBrightnessAdj/100,ta[12]=1+Ga.previewBrightnessAdj/100-Ga.previewWhiteBalanceAdj/100;var o="",a=document.querySelector("#filter feColorMatrix");null!=a&&(ta.forEach((e=>o+=e+" ")),a.setAttribute("values",o),t.baseImageContext.filter="url(#filter)");t.freeze?ea(t.baseImageContext,oa):ea(t.baseImageContext,e);ra()}(to))}requestAnimationFrame(ao)}var no=!1,ro=!1,io=0,co=0;function so(e){no=e,window.onresize(),Ga.showToolBar=!Ga.showToolBar,qa(Ga.showToolBar),function(){var e;e=Ga.showToolBar?"btnHideFunctionIcon":"btnShowFunctionIcon";jn("sys_fullPhoto",e)}(),ln()}function lo(e){switch(e.target.id){case"sys_close":if(Br)return Dr(),void setTimeout((function(){lo(e)}),1e3);1==chrome.app.window.current().isFullscreen()&&document.webkitCancelFullScreen(),window.close();break;case"sys_fullScreen":return document.body.clientWidth>=window.screen.width&&document.body.clientHeight>=window.screen.height-50&&!ro?($("#dialogSave").hasClass("ui-dialog-content")&&!0===$("#dialogSave").dialog("isOpen")&&$("#dialogSave").dialog("close"),document.webkitCancelFullScreen(),void window.resizeTo(840,660)):(ro?($("#dialogSave").hasClass("ui-dialog-content")&&!0===$("#dialogSave").dialog("isOpen")&&$("#dialogSave").dialog("close"),window.resizeTo(io,co)):(io=document.body.clientWidth,co=document.body.clientHeight,window.resizeTo(window.screen.width,window.screen.height)),void(ro=!ro));case"sys_fullPhoto":so(!no);break;case"sys_smallScreen":if(Br||Ga.capturePeriodRun)return $("#dialogSave").hasClass("ui-dialog-content")&&!0===$("#dialogSave").dialog("isOpen")&&$("#dialogSave").dialog("close"),$("#dialogSave").dialog({title:"!",dialogClass:"no-close",autoOpen:!1,width:250,height:100,show:{effect:"fade",duration:500},buttons:{No:function(){$(this).dialog("close")},Yes:function(){Br&&Dr(),Ga.capturePeriodRun&&Xt(),chrome.windows.update(appID,{state:"minimized"}),$(this).dialog("close")}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html("<br/>Minimizing the window will stop taking pictures or videos. Continue?<br/> "),void $("#dialogSave").dialog("open");chrome.app.window.current().minimize()}}var uo=!1,po=!1,go={freeze:!1,flip:!1,mirror:!1,zoomRatio:1,zoomX:0,zoomY:0,zoomW:0,zoomH:0,panWinW:0,panWinH:0,zoomScrollBarPos:0,previewRotate:0,canvas:null};function mo(e){e.freeze=!1,e.flip=!1,e.mirror=!1,e.zoomRatio=1,e.zoomX=0,e.zoomY=0,e.zoomW=0,e.zoomH=0,e.panWinW=0,e.panWinH=0,e.zoomScrollBarPos=0,Ga.previewRotate=0}function fo(e){if("mode_about"!=e.target.id){if(!$("#dialogSave").is(":visible")){if(Br)return Dr(),void setTimeout((function(){fo(e)}),1e3);switch(Ga.curMode.baseId){case"playbackArea":"mode_about"!=e.target.id&&"mode_playback"!=e.target.id&&Ba(Ga.curMode);break;case"previewArea":var t=Ga.curMode;if(1==Ga.capturePeriodRun)return $("#dialogSave").dialog({title:"!",dialogClass:"no-close",autoOpen:!1,width:250,height:100,show:{effect:"fade",duration:500},buttons:{No:function(){$(this).dialog("close")},Yes:function(){$(this).dialog("close"),Xt(),setTimeout((function(){fo(e)}),500)}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html("<br/>Discard Interval Timer Shooting?<br/> "),void $("#dialogSave").dialog("open");if("mode_preview"!=e.target.id&&Xt(),!uo&&!po){if("mode_preview"==e.target.id)return;o=t,go.freeze=o.freeze,go.flip=o.flip,go.mirror=o.mirror,go.zoomRatio=o.zoomRatio,go.zoomX=o.zoomX,go.zoomY=o.zoomY,go.zoomW=o.zoomW,go.zoomH=o.zoomH,go.panWinW=o.panWinW,go.panWinH=o.panWinH,go.zoomScrollBarPos=o.zoomScrollBarPos,go.previewRotate=Ga.previewRotate,null==go.canvas&&(go.canvas=document.createElement("canvas")),go.canvas.width=o.baseImageCanvas.width,go.canvas.height=o.baseImageCanvas.height,go.canvas.getContext("2d").drawImage(o.baseImageCanvas,0,0),$("#captureHit").hide()}if(uo&&(Ro=!1,bn(t),$("#displayCanvas").css("transform","scale(1,1)"),P("scanToolBarS2",0),mo(Go)),po&&Eo.length)return $("#dialogSave").hasClass("ui-dialog-content")&&!0===$("#dialogSave").dialog("isOpen")&&$("#dialogSave").dialog("close"),$("#dialogSave").dialog({title:"!",dialogClass:"no-close",autoOpen:!1,width:250,height:100,show:{effect:"fade",duration:500},buttons:{No:function(){$(this).dialog("close")},Yes:function(){Eo=[],Yo(),$(this).dialog("close"),setTimeout((function(){fo(e)}),300)}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html("<br/>Discard captured images?<br/> "),void $("#dialogSave").dialog("open");t.imageProcess&&t.imageProcess(),removeCropBox(),uo=!1,po=!1;break;case"drawingArea":P("drawingToolBar",0),Ga.fnDraw=null}var o;switch(e.target.id){case"mode_preview":_r(!0),function(e){e.freeze=go.freeze,e.flip=go.flip,e.mirror=go.mirror,e.zoomRatio=go.zoomRatio,e.zoomX=go.zoomX,e.zoomY=go.zoomY,e.zoomW=go.zoomW,e.zoomH=go.zoomH,e.panWinW=go.panWinW,e.panWinH=go.panWinH,e.zoomScrollBarPos=go.zoomScrollBarPos,Ga.previewRotate=go.previewRotate}(Go),Ua(Go),go.freeze&&(!function(e){null!=go.canvas&&(e.baseImageContext.drawImage(go.canvas,0,0),e.imageProcess())}(Go),Go.imageProcess());break;case"mode_playback":ya.curMode!=xa.image&&ir(),Ua(ya),_r(!1);break;case"mode_drawingBoard":Ua(La),_r(!1);break;case"mode_about":kn("mode_about",zt,Rt);break;case"mode_scan":uo=!0,bn(Go),mo(Go),Go.imageProcess(),Ua(Go),bo(),vt(Ga.curMode.lToolBar,!1),vt(Ga.curMode.rToolBar,!1),vt(Ga.curMode.bToolBar,!1),_r(!1),vt(Ga.curMode.lS1ToolBar,!0),vt(Ga.curMode.lS2ToolBar,!1),vt(Ga.curMode.lMsToolBar,!1),Fo=!1,attachCropBox(Xe,Ge,!0),P("scanToolBarS1",0);break;case"mode_multiscan":po=!0,mo(Go),Ua(Go),bo(),vt(Ga.curMode.lToolBar,!1),vt(Ga.curMode.rToolBar,!1),vt(Ga.curMode.bToolBar,!1),_r(!1),vt(Ga.curMode.lMsToolBar,!0),vt(Ga.curMode.lS1ToolBar,!1),vt(Ga.curMode.lS2ToolBar,!1),Fo=!1,attachCropBox(Xe,Ge,!0),P("multiscanToolBar",0),Eo.length?Oo():Yo()}H(e)}}else kn("mode_about",zt,Rt)}if(void 0===ho)var ho={id:0,fn:1};function bo(){P("drawingToolBar",0),Ga.fnDraw=null}function vo(e){var t,o=[["btn_freehand",Co],["btn_arrow",$o],["btn_eraser",So],["btn_line",Wo],["btn_rectangleLine",_o],["btn_rectangle",ko],["btn_circleLine",To],["btn_circle",Do],["btn_text",Ho]],a=Ga.curMode;if("btn_erase_all"==e.target.id)mn(a.drawingCanvas),hn(a),a.imageProcess&&a.imageProcess(),Wn();else if("btn_configDraw"==e.target.id)$("#configDrawDlg").toggle(500);else{for(t=0;t<o.length;t++)e.target.id==o[t][ho.id]&&(Ga.fnDraw=o[t][ho.fn]);Wn()}H(e)}function wo(e,t,o,a){var n={x:0,y:0,w:0,h:0,centerX:0,centerY:0,endX:0,endY:0,regularX:0,regularY:0,regularSide:0};return n.x=Math.min(e,o),n.y=Math.min(t,a),n.w=Math.abs(o-e),n.h=Math.abs(a-t),n.centerX=n.x+n.w/2,n.centerY=n.y+n.h/2,n.endX=n.x+n.w,n.endY=n.y+n.h,n.regularX=n.x,n.regularY=n.y,n.w>n.h?(n.regularSide=n.h,n.regularX!==e&&(n.regularX=e-n.regularSide)):(n.regularSide=n.w,n.regularY!==t&&(n.regularY=t-n.regularSide)),n}function Io(e,t,o,a,n){var r,i;t=(r=wo(t,o,a,n)).x,o=r.y,i=r.centerX,r.centerY,a=r.endX,n=r.endY,e.moveTo(i,o),e.bezierCurveTo(a,o,a,n,i,n),e.bezierCurveTo(t,n,t,o,i,o)}var xo=0,yo=new Array;function Co(e){var t=Ga.drawContext;switch(e){case h.start:fn(),t.strokeStyle=Ga.drawStyle,t.lineWidth=Ga.lineWidth,yo.push({x:Ga.drawStartX,y:Ga.drawStartY}),yo.push({x:Ga.drawStartX,y:Ga.drawStartY}),yo.push({x:Ga.drawStartX,y:Ga.drawStartY});break;case h.move:if(0==yo.length)return;if((n=new Date).getTime()-xo<10)break;xo=n.getTime(),yo.push({x:Ga.drawCurX,y:Ga.drawCurY}),t.clearRect(0,0,Ga.drawCanvas.width,Ga.drawCanvas.height),t.moveTo(yo[0].x,yo[0].y),t.beginPath();for(var o=1;o<yo.length-2;o++){var a=(yo[o].x+yo[o+1].x)/2,n=(yo[o].y+yo[o+1].y)/2;t.quadraticCurveTo(yo[o].x,yo[o].y,a,n)}t.quadraticCurveTo(yo[o].x,yo[o].y,yo[o+1].x,yo[o+1].y),t.stroke();break;case h.end:yo=[]}}function $o(e){switch(e){case h.start:break;case h.move:fn();var t={x:Ga.drawStartX,y:Ga.drawStartY},o={x:Ga.drawCurX,y:Ga.drawCurY},a=function(e,t,o){var a={end1:{x:0,y:0},end2:{x:0,y:0}},n=t.x-e.x,r=t.y-e.y,i=Math.sqrt(n*n+r*r),c=n/i,s=r/i;return a.end1.x=t.x-c*o-s*o,a.end1.y=t.y-s*o+c*o,a.end2.x=t.x-c*o+s*o,a.end2.y=t.y-s*o-c*o,a}(t,o,Math.max(2*Ga.lineWidth,ye.minArrowSize)),n=Ga.drawContext;n.fillStyle=Ga.drawStyle,n.strokeStyle=Ga.drawStyle,n.lineWidth=Ga.lineWidth,n.beginPath(),n.moveTo(t.x,t.y),n.lineTo((a.end1.x+a.end2.x)/2,(a.end1.y+a.end2.y)/2),n.closePath(),n.stroke(),n.moveTo(o.x,o.y),n.lineTo(a.end1.x,a.end1.y),n.lineTo(a.end2.x,a.end2.y),n.closePath(),n.fill();case h.end:}}function Bo(e,t,o,a,n){var r,i;r=t-a/2,i=o-a/2,void 0===n?(r-=1,i-=1,a+=2,e.clearRect(r-1,i-1,a+2,a+2)):(e.beginPath(),e.strokeStyle=n,e.fillStyle=n,e.lineWidth=0,e.rect(r,i,a,a),e.fill(),e.stroke())}function So(e){var t=Ga.baseContext,o=2*Ga.lineWidth;switch(o<10&&(o=10),e){case h.start:fn(),Bo(t,Ga.drawCurX,Ga.drawCurY,o,Ga.eraserStyle);break;case h.move:Bo(t,Ga.drawLastX,Ga.drawLastY,o),Bo(t,Ga.drawCurX,Ga.drawCurY,o,Ga.eraserStyle);break;case h.end:Bo(t,Ga.drawCurX,Ga.drawCurY,o)}}function Wo(e){switch(e){case h.start:break;case h.move:fn();var t=Ga.drawContext;t.strokeStyle=Ga.drawStyle,t.lineWidth=Ga.lineWidth,t.beginPath(),t.moveTo(Ga.drawStartX,Ga.drawStartY),t.lineTo(Ga.drawCurX,Ga.drawCurY),t.stroke();case h.end:}}function _o(e){switch(e){case h.start:break;case h.move:fn();var t,o=Ga.drawContext;o.strokeStyle=Ga.drawStyle,o.lineWidth=Ga.lineWidth,t=wo(Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY),o.beginPath(),Ga.drawRegularShape?o.rect(t.regularX,t.regularY,t.regularSide,t.regularSide):o.rect(t.x,t.y,t.w,t.h),o.stroke();case h.end:}}function ko(e){switch(e){case h.start:break;case h.move:fn();var t,o=Ga.drawContext;o.fillStyle=Ga.drawStyle,o.strokeStyle=Ga.clearStyle,o.lineWidth=0,t=wo(Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY),Ga.drawRegularShape?o.rect(t.regularX,t.regularY,t.regularSide,t.regularSide):o.rect(t.x,t.y,t.w,t.h),o.fill();case h.end:}}function To(e){switch(e){case h.start:break;case h.move:var t,o=Ga.drawContext;fn(),o.strokeStyle=Ga.drawStyle,o.lineWidth=Ga.lineWidth,o.beginPath(),Ga.drawRegularShape?Io(o,(t=wo(Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY)).regularX,t.regularY,t.regularX+t.regularSide/3*4,t.regularY+t.regularSide):Io(o,Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY),o.closePath(),o.stroke();case h.end:}}function Do(e){switch(e){case h.start:break;case h.move:var t,o=Ga.drawContext;fn(),o.fillStyle=Ga.drawStyle,Ga.drawRegularShape?Io(o,(t=wo(Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY)).regularX,t.regularY,t.regularX+t.regularSide/3*4,t.regularY+t.regularSide):Io(o,Ga.drawStartX,Ga.drawStartY,Ga.drawCurX,Ga.drawCurY),o.fill();case h.end:}}function Ho(e){switch(e){case h.start:0==Ga.drawText&&kn("textInputDlg",Mo,Po);break;case h.move:break;case h.end:0==Ga.drawText&&Pt()&&Cn(h.end)}}function Mo(){var e,t;t="rgb("+Ga.colorR+","+Ga.colorG+","+Ga.colorB+")",e="#textInputArea",$(e).css("font",ye.tidTextSize+"px "+Ga.fontFamily),$(e).css("color",t),-1!=Ga.fontStyle.indexOf("Bold")?($(e).css("font-weight","bold"),Ga.fontBold=!0):($(e).css("font-weight","normal"),Ga.fontBold=!1),-1!=Ga.fontStyle.indexOf("Italic")?($(e).css("font-style","italic"),Ga.fontItalic=!0):($(e).css("font-style","normal"),Ga.fontItalic=!1),document.getElementById("textInputArea").value="",Ga.drawFontStyle=Ga.drawStyle,Ga.drawing=!1,Ga.drawText=!0,Mt(!0)}function Po(){Mt(!1),fn(),Ga.drawText=!1,Ga.fnDraw&&Ga.fnDraw(h.end)}function zo(){Mt(!1),fn(),function(){var e,t,o,a,n,r,i,c,s,l;if(0==Pt())return;e=Ga.drawStartX,t=Ga.drawStartY,a=Ga.fontSize,n=Ga.drawContext,r=function(){return document.getElementById("textInputArea").value}(),l="",Ga.fontBold&&(l+="Bold ");Ga.fontItalic&&(l+="Italic ");n.fillStyle=Ga.drawFontStyle,n.strokeStyle=Ga.drawStyle,n.font=l+a+"pt "+Ga.fontFamily,i=r,o=t;for(;-1!=i.indexOf("\n");)o+=a,s=i.indexOf("\n"),c=i.substring(0,s),n.fillText(c,e,o),i=i.substring(s+1);n.fillText(i,e,o+a)}(),Ga.drawText=!1,Ga.fnDraw&&Ga.fnDraw(h.end)}var Ro=!1,Fo=!1;async function Ao(e){var t,o,a,n,r,i=Go;switch(e.target.id){case"scbtn_importPic":we(!1),removeCropBox(),Zt();break;case"scbtn_fullcrop":Fo?attachCropBox(Xe,Ge,!0):attachCropBoxFull(Xe,Ge),Fo=!Fo;break;case"scbtn_transform":if(0==$("#cropBox").length)return;o=Ha(),a=o.width,n=o.height,r=new Image,Ga.curMode.freeze=!0,r.width=a,r.height=n,r.src=o.toDataURL(),r.onload=function(){var e=Ga.curMode,t=e.baseImageContext,o=e.imgW/a,i=e.imgH/n;fn(),t.beginPath(),t.rect(0,0,e.imgW,e.imgH),t.fillStyle="black",t.fill(),a/n>=e.imgW/e.imgH?t.drawImage(r,0,(e.imgH-n*o)/2,e.imgW,n*o):t.drawImage(r,(e.imgW-a*i)/2,0,a*i,e.imgH),Cn(h.end),e.imageProcess&&e.imageProcess()},removeCropBox(),bn(i),vt(Ga.curMode.lS1ToolBar,!1),vt(Ga.curMode.rToolBar,!0),vt(Ga.curMode.bToolBar,!0),vt(Ga.curMode.lS2ToolBar,!0),Ro=!0;break;case"scbtn_preview":!function(){var e=Go;e.freeze=!1,removeCropBox(),bn(e),mn(document.getElementById("previewArea-combineCanvas")),fn(),function(){var e=document.getElementById("displayCanvas");e.width+=0}(),e.imageProcess&&e.imageProcess();Fo?attachCropBoxFull(Xe,Ge):attachCropBox(Xe,Ge);vt(Ga.curMode.lS2ToolBar,!1),vt(Ga.curMode.rToolBar,!1),vt(Ga.curMode.bToolBar,!1),vt(Ga.curMode.lS1ToolBar,!0),P("scanToolBarS2",0),e.mirror=!1,e.flip=!1,Ro=!1}();break;case"scbtn_mirrow":i.mirror=!i.mirror,Cn(h.mirror);break;case"scbtn_flip":i.flip=!i.flip,Cn(h.flip);break;case"scbtn_config":Wn(),$("#configDlg").toggle(500);break;case"scbtn_setting":kn("btn_setting",ua,pa);break;case"scbtn_ocr":t={launch:!0,senderName:Ie},chrome.runtime.sendMessage(OcrAppID,t,(function(e){if(chrome.runtime.lastError)return $("#dialogOcr").dialog({dialogClass:"no-close",autoOpen:!1,width:250,height:140,show:{effect:"fade",duration:500},hide:{effect:"fade",duration:500},buttons:{"Add it now":function(){var e=OcrAppLink;window.open(e),$(this).dialog("close")},Later:function(){$(this).dialog("close")}}}),$("#dlgOcrTxt").text("This feature requires installing a free OCR extension from the Chrome Web Store."),void $("#dialogOcr").dialog("open");document.getElementById("previewArea-combineCanvas").toBlob((function(e){setTimeout((function(){Ma(e)}),200)}))}));break;case"scbtn_saveDisk":Ko(),Pn(i.combineCanvas);break;case"scbtn_redo":case"scbtn_redo2":Cn(h.redo);break;case"scbtn_undo":Cn(h.undo);break;case"scbtn_undo2":if(1==i.canvasStep)return;Cn(h.undo)}H(e)}var Eo=[];function Lo(e=null){$("#dialogSave").dialog({dialogClass:"no-close",autoOpen:!1,width:250,height:80,show:{effect:"fade",duration:500},hide:{effect:"fade",duration:500},buttons:{JPG:function(){$(this).dialog("close"),async function(e){var t=Mn("");if(Ga.lastSaveFilename==t)return;for(var o=0;o<e.length;o++)Pn(e[o],t+"-"+o)}(Eo),Eo=[],e&&fo(e),Yo()},PDF:function(){$(this).dialog("close"),async function(e){for(var t=Mn(""),o=-1,a=-1,n=0;n<e.length;n++)e[n].width>o&&(o=e[n].width),e[n].height>a&&(a=e[n].height);for(var r=new jsPDF({orientation:o>a?"l":"p",unit:"pt",format:[o,a]}),i=0;i<e.length;i++){var c=(o-e[i].width)/2,s=(a-e[i].height)/2;i>0&&r.addPage();var l=await e[i].toDataURL("image/jpeg",1);await r.addImage(l,"JPEG",c,s,e[i].width,e[i].height)}r.save(t+".pdf")}(Eo),Eo=[],e&&fo(e),Yo()},X:function(){$(this).dialog("close")}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html(""),$("#dialogSave").dialog("open")}function Oo(e=""){$("#lbMsCnt").text(e),$("#lbMsCnt").show(),$("#mscbtn_cancel").show()}function Yo(){$("#lbMsCnt").hide(),$("#mscbtn_cancel").hide()}function Xo(e){var t,o,a,n=Go;switch(e.target.id){case"mscbtn_capture":if(0==$("#cropBox").length||0==Er)return;$("#dialogSave").is(":visible")&&$("#dialogSave").dialog("close");var r=Ha();Eo.push((t=r,o=document.createElement("canvas"),a=o.getContext("2d"),o.width=t.width,o.height=t.height,a.drawImage(t,0,0),o)),0==$("#lbMsCnt").length&&(p("uiArea","lbMsCnt"),$("#lbMsCnt").addClass("MultiScanCnt"),$("#lbMsCnt").css({top:nn-80,left:an/2,position:"absolute"})),Oo(Eo.length),n.imageProcess&&n.imageProcess();break;case"mscbtn_merge":if(0==Eo.length)return $("#dialogSave").dialog({dialogClass:"no-close",title:"!",autoOpen:!1,width:250,height:100,show:{effect:"fade",duration:500},hide:{effect:"fade",duration:500},buttons:{OK:function(){$(this).dialog("close")}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html("<br>Please take pictures first."),void $("#dialogSave").dialog("open");Lo();break;case"mscbtn_cancel":if(Eo.length)return $("#dialogSave").dialog({title:"!",dialogClass:"no-close",autoOpen:!1,width:250,height:100,show:{effect:"fade",duration:500},buttons:{No:function(){$(this).dialog("close")},Yes:function(){Eo=[],Yo(),$(this).dialog("close")}},close:function(e,t){$(this).dialog("destroy")}}),$("#dialogSave").html("<br/>Discard captured images?<br/> "),void $("#dialogSave").dialog("open");break;case"mscbtn_fullcrop":Fo?attachCropBox(Xe,Ge,!0):attachCropBoxFull(Xe,Ge),Fo=!Fo}n.mirror&&n.flip?$("#displayCanvas").css("transform","scale(-1,-1)"):!n.mirror&&n.flip?$("#displayCanvas").css("transform","scale(1,-1)"):n.mirror&&!n.flip?$("#displayCanvas").css("transform","scale(-1,1)"):n.mirror||n.flip||$("#displayCanvas").css("transform","scale(1,1)"),H(e)}var Go={baseId:"previewArea",lToolBar:"previewToolBar",lS1ToolBar:"scanToolBarS1",lS2ToolBar:"scanToolBarS2",lMsToolBar:"multiscanToolBar",rToolBar:"drawingToolBar",bToolBar:"drawingCfgArea",taskCtrl:function(e){var t=Go;e?(t.panMove=!1,Ga.capturePeriodRun&&Gt(!0),t.zoomRatio>1&&Nn(!0)):(we(!1),Gt(!1),Nn(!1))},start:function(){ma(),qo()},init:function(){var e=Go;Rr=e.imgW=Ga.reqImgW,Fr=e.imgH=Ga.reqImgH,ut(e,Rr,Fr),pt(e),vn(e),function(){function e(e,t){var o,a,n,r,i=Ga.curMode,c=i.panWinW/i.imgW;return o=i.zoomX*c,a=i.zoomY*c,n=i.zoomW*c,r=i.zoomH*c,e>=o&&e<=o+n&&t>=a&&t<=a+r}$("#cropWin").on("mousedown",(function(t){e(t.offsetX,t.offsetY)&&(Ga.panMove=!0,Ga.panMoveX=t.offsetX,Ga.panMoveY=t.offsetY)})).on("mousemove",(function(e){Ga.panMove&&function(e,t){var o=Ga.curMode,a=o.imgW/o.panWinW;o.zoomX+=(e-Ga.panMoveX)*a,o.zoomY+=(t-Ga.panMoveY)*a,o.zoomX=Math.max(o.zoomX,0),o.zoomY=Math.max(o.zoomY,0),o.zoomX+o.zoomW>o.imgW&&(o.zoomX=o.imgW-o.zoomW);o.zoomY+o.zoomH>o.imgH&&(o.zoomY=o.imgH-o.zoomH);Vn(),Cn(h.pan),Ga.panMoveX=e,Ga.panMoveY=t}(e.offsetX,e.offsetY)})).on("mouseup",(function(e){Ga.panMove=!1})).on("mouseout",(function(e){Ga.panMove=!1})).on("touchstart",(function(e){tn(e)})).on("touchmove",(function(e){tn(e)})).on("touchend",(function(){tn(event)})).on("touchcancel",(function(){tn(event)}))}(),Nn(!1),Na(e,!1)},onResize:qo,canvasCtrl:function(e){var t=Go;switch(e){case h.start:return!1;case h.move:t.hasTempDraw=!0;break;case h.end:0==Ga.drawText&&(t.hasTempDraw=!1,t.mergeTempDraw=!0);break;case h.undo:t.canvasStep>0&&(t.reqUndo=!0);break;case h.redo:t.canvasStep<t.canvasArray.length-1&&(t.reqRedo=!0)}return!t.freeze},imageProcess:ra,chgBaseImgCtrl:async function(e,t,o){var a=Go;switch(e){case w.before:a.zoomRatio=1,Nn(!1),a.freeze=!1,M("previewToolBar","btn_freeze",0),await qr(),Rr=a.imgW=t,Fr=a.imgH=o;break;case w.after:await Gr()}},imgW:ye.defPreviewRsoX,imgH:ye.defPreviewRsoY,freeze:!1,hasTempDraw:!1,mergeTempDraw:!1,reqUndo:!1,reqRedo:!1,flip:!1,mirror:!1,zoomRatio:1,zoomX:0,zoomY:0,zoomW:ye.defPreviewRsoX,zoomH:ye.defPreviewRsoY,panWinW:0,panWinH:0,zoomScrollBarPos:0};function qo(){Go.freeze&&ja(),!uo&&!po||Ro||(removeCropBox(),attachCropBox(Xe,Ge)),Un(),Vn(),Yt()}async function Uo(e){var t=Go;switch(e.target.id){case"btn_freeze":t.freeze=!t.freeze;break;case"btn_undo":Cn(h.undo);break;case"btn_redo":Cn(h.redo);break;case"btn_mirrow":t.mirror=!t.mirror,t.zoomX=t.imgW-t.zoomX-t.zoomW,Vn(),Cn(h.mirror);break;case"btn_flip":t.flip=!t.flip,t.zoomY=t.imgH-t.zoomY-t.zoomH,Vn(),Cn(h.flip);break;case"btn_config":Wn(),$("#configDlg").toggle(500);break;case"btn_brightness":kn("btn_brightness",ca,sa);break;case"btn_whitebalance":kn("btn_whitebalance",la,da);break;case"btn_zoom":$("#configDlg").hide(),$("#zoomDlg").toggle(500);break;case"btn_setting":kn("btn_setting",ua,pa);break;case"btn_capture":if(void 0===window.stream||!window.stream.active||!Er)break;Pn(t.combineCanvas),$("#captureHit").css({position:"absolute",top:"60px",left:an/2-20+"px"}),$("#captureHit").show(100),jo=1500,null==No&&(No=setInterval(Zo,500));break;case"btn_timesave":if(void 0===window.stream||!window.stream.active||!Er)break;0==Ga.capturePeriodRun&&kn("btn_timesave",ba,ha);break;case"btn_importPic":Zt();break;case"btn_record":if(void 0===window.stream||!window.stream.active||!Er)break;$("#dialogSave").hasClass("ui-dialog-content")&&!0===$("#dialogSave").dialog("isOpen")&&$("#dialogSave").dialog("close"),Ga.capturePeriodRun&&Xt(),bn(t),(t.flip||t.mirror)&&(t.flip=!1,t.mirror=!1,Vn(),Cn(h.flip),Cn(h.mirror),M("previewToolBar","btn_flip",0),M("previewToolBar","btn_mirrow",0)),t.zoomRatio>1&&Gn(),t.freeze&&(t.freeze=!1,M("previewToolBar","btn_freeze",0)),Br?Dr():Tr();break;case"btn_pause":Br&&(Sr?(clearInterval(Vo),function(){Sr=!1,mr.resume();var e=new Date;vr=e.getTime(),Mr()}()):(Vo=setInterval(Qo,2e3),function(){Sr=!0,mr.pause();var e=(new Date).getTime();Ir+=e-vr}()));break;case"btn_test":chrome.windows.getCurrent((function(e){chrome.windows.update(e.id,{state:"minimized"})}))}H(e)}var Vo,No=null,jo=0;function Zo(){(jo-=500)<=0&&($("#captureHit").hide(150),clearInterval(No),No=null)}function Ko(){$("#SaveHit").css({position:"absolute",top:"60px",left:an/2-20+"px"}),$("#SaveHit").show(100),jo=1500,null==No&&(No=setInterval(Jo,500))}function Jo(){(jo-=500)<=0&&($("#SaveHit").hide(150),clearInterval(No),No=null)}function Qo(){$("#recordtime").fadeOut(500),$("#recordtime").fadeIn(500)}function ea(e,t){var o=Go;e.drawImage(t,0,0,o.imgW,o.imgH)}var ta=["1","0","0","0","0","0","1","0","0","0","0","0","1","0","0","0","0","0","1","0"],oa=document.createElement("canvas"),aa=!1;var na=0;function ra(){var e=Go,t=e.imageProcessContext,o=1,a=1,n=0,r=0;e.mirror&&(o=-1,n=e.imgW),e.flip&&(a=-1,r=e.imgH),0==Ga.previewRotate?(t.save(),t.translate(n,r),t.scale(o,a),ea(e.imageProcessContext,e.baseImageCanvas),t.restore(),na=0):(Ga.previewRotate!=na&&(t.fillStyle="black",t.fillRect(0,0,e.imgW,e.imgH)),t.save(),t.translate(e.imgW/2,e.imgH/2),t.rotate(Math.PI/180*Ga.previewRotate),t.scale(o,a),t.drawImage(e.baseImageCanvas,-e.imgW/2,-e.imgH/2,e.imgW,e.imgH),t.restore(),na=Ga.previewRotate),function(){var e=Go;e.reqUndo?(e.reqUndo=!1,Bn(e)):e.reqRedo?(e.reqRedo=!1,Sn(e)):function(){var e=Go;1==e.zoomRatio?ea(e.combineContext,e.imageProcessCanvas):e.combineContext.drawImage(e.imageProcessCanvas,e.zoomX,e.zoomY,e.zoomW,e.zoomH,0,0,e.imgW,e.imgH);if(1===ye.disableDrawingCanvasOverlay)return void ia();e.mergeTempDraw&&(e.mergeTempDraw=!1,ea(e.drawingContext,e.tempDrawingCanvas),hn(e));ea(e.combineContext,e.drawingCanvas),function(){var e=Go;e.hasTempDraw&&ea(e.combineContext,e.tempDrawingCanvas);ia()}()}()}()}function ia(){Va(Go)&&ja()}function ca(){yt(!0)}function sa(){yt(!1)}function la(){Ct(!0)}function da(){Ct(!1)}function ua(){Dt(!0)}function pa(){Dt(!1),Tn(),async function(){const e=document.getElementById(Ga.idVideoinputSelect);zr!=e.value&&(Pr=e.value,await qr(),await Gr())}(),ma(),ar()}function ga(){Wn()}function ma(){var e;if(e=document.getElementById("sdVideoRsoScrollbar").selectedIndex,Ga.reqImgW=Ga.curVideoResolutionList[e][b.w],Ga.reqImgH=Ga.curVideoResolutionList[e][b.h],screen.width<screen.height)if(window.matchMedia("(orientation: portrait)").matches){if(Ga.reqImgH<Ga.reqImgW){var t=Ga.reqImgW;Ga.reqImgW=Ga.reqImgH,Ga.reqImgH=t}}else if(Ga.reqImgH>Ga.reqImgW){t=Ga.reqImgW;Ga.reqImgW=Ga.reqImgH,Ga.reqImgH=reqImgW}Ga.reqImgW==Ga.imgW&&Ga.reqImgH==Ga.imgH||(Dn(Ga.reqImgW,Ga.reqImgH),function(e){var t;if(e<=Ga.curVideoResolutionList.length-1){for(t=0;t<Ga.curVideoResolutionList.length;t++)Ga.curVideoResolutionList[t][b.data]=0;Ga.curVideoResolutionList[e][b.data]=1}}(e))}function fa(){Wn()}function ha(){Ot(!1)}function ba(){Ot(!0)}window.addEventListener("orientationchange",(()=>{ma()}));function va(){var e;Wn(),Ga.capturePeriodSec=document.getElementById("periodicCaptureDlg_periodText").value,Ga.captureIntervalHour=document.getElementById("periodicCaptureDlg_intervalText").value,Ga.capturePeriodSec<1||(e=60*Ga.captureIntervalHour/Ga.capturePeriodSec,e=Math.floor(e),Ga.capturePeriodTotalCnt=e,Ga.capturePeriodTotalCnt&&(Ga.capturePeriodRun=!0,Ga.capturePeriodCurCnt=0,Ga.capturePeriodMs=1e3*Ga.capturePeriodSec,Ia(),Gt(!0)))}var wa=null;function Ia(){var e=Go;if(null==wa&&(wa=document.createElement("canvas")),Ga.capturePeriodCurCnt>=Ga.capturePeriodTotalCnt)return Ga.capturePeriodRun=!1,void Gt(!1);if(0!=Ga.capturePeriodRun){var t;Pn(e.combineCanvas)&&(Ga.capturePeriodCurCnt+=1,t=Ga.capturePeriodCurCnt+" / "+Ga.capturePeriodTotalCnt,Xn(document.getElementById("periodicCaptureInfoBar_text"),t),Ga.capturePeriodCurCnt>=Ga.capturePeriodTotalCnt&&(Ga.capturePeriodMs=1e3)),setTimeout((function(){Ia()}),Ga.capturePeriodMs)}}if(void 0===xa)var xa={thumbnail:0,image:1};var ya={baseId:"playbackArea",lToolBar:"thumbnailToolBar",rToolBar:"playbackRToolBar",bToolBar:"playbackInfoBar",taskCtrl:function(e){e?wn(!1):(we(!1),wn(!0),Nn(!1))},start:function(){var e=ya;e.curMode==xa.image?(Ra(),wn(!0),e.zoomRatio>1&&(Un(),Vn(),Nn(!0))):(e.zoomScrollBarPos=0,e.zoomRatio=1)},init:function(){var e=ya;pt(e),vn(e),function(){c("playbackArea","thumbDiv");var e=ye.toolBarIconW,t=ye.toolBarIconH,o=ye.titleIconH,a={position:"absolute",left:e+"px",top:o+"px",width:"calc(100% - "+2*e+"px)",height:"calc(100% - "+(o+t)+"px)","text-align":"center",overflow:"auto","user-select":"none"};$("#thumbDiv").css(a)}(),function(){var e="playbackInfoBar",t="#"+e;s("uiArea",e);var o={top:"calc(100% - "+ye.toolBarIconH+"px)",left:ye.toolBarIconW+"px",height:xe.iconH+"px",width:"calc(100% - "+2*ye.toolBarIconW+"px)",background:ye.toolBarColorLeave,opacity:ye.toolBarOpacityLeave,position:"absolute"};$(t).css(o),g(e,!1),p(e,"pbFileInfo_Text"),p(e,"pbFileInfo_Page"),p(e,"pbFileInfo_Item"),t="#"+(e="pbFileInfo_Text"),o.top=(xe.iconH-ye.pbInfoH)/2+"px",o.left="calc(40% - "+ye.pbInfoW/2+"px)",o.height=ye.pbInfoH,o.width=ye.pbInfoW/2,$(t).css(o),$(t).css("line-height",ye.pbInfoH+"px"),$(t).css("font-size",ye.pbInfoFontSize),$(t).css("font-weight",ye.pbInfoFontWWeight),$(t).css("color",ye.pbInfoColor_Page),$(t).css("text-align","left"),t="#"+(e="pbFileInfo_Page"),o.top=(xe.iconH-ye.pbInfoH)/2+"px",o.left="calc(40% - "+(ye.pbInfoW/2-ye.pbInfoW/2)+"px)",o.height=ye.pbInfoH,o.width=ye.pbInfoW-ye.pbInfoW/2,$(t).css(o),$(t).css("line-height",ye.pbInfoH+"px"),$(t).css("font-size",ye.pbInfoFontSize),$(t).css("font-weight",ye.pbInfoFontWWeight),$(t).css("color",ye.pbInfoColor_Page),$(t).css("text-align","left"),t="#"+(e="pbFileInfo_Item"),o.top=(xe.iconH-ye.pbInfoH)/2+"px",o.left="calc(60% - "+ye.pbInfoW/2+"px)",o.height=ye.pbInfoH,o.width=ye.pbInfoW,$(t).css(o),$(t).css("line-height",ye.pbInfoH+"px"),$(t).css("font-size",ye.pbInfoFontSize),$(t).css("font-weight",ye.pbInfoFontWWeight),$(t).css("color",ye.pbInfoColor_Item),$(t).css("text-align","left")}(),Na(e,!1)},onResize:function(){ja(),Un(),Vn()},canvasCtrl:function(e){var t=ya;switch(e){case h.start:return!1;case h.move:t.hasTempDraw=!0;break;case h.end:0==Ga.drawText&&(t.hasTempDraw=!1,t.mergeTempDraw=!0);break;case h.undo:t.canvasStep>0&&(t.reqUndo=!0);break;case h.redo:t.canvasStep<t.canvasArray.length-1&&(t.reqRedo=!0)}return!1},imageProcess:Ra,chgBaseImgCtrl:function(e,t,o){var a=ya;switch(e){case w.before:break;case w.after:if(0==a.curImage)return;Wa(!1),_a(xa.image),Wa(!no),a.imgW=a.curImage.width,a.imgH=a.curImage.height,a.baseImageContext.drawImage(a.curImage,0,0,a.curImage.width,a.curImage.height),Ra(),Ca(!1),wn(!0)}},imgW:ye.defPictureW,imgH:ye.defPictureH,curImage:0,curMode:xa.thumbnail,zoomRatio:1,zoomX:0,zoomY:0,zoomW:ye.defPreviewRsoX,zoomH:ye.defPreviewRsoY,panWinW:0,panWinH:0,zoomScrollBarPos:0};function Ca(e){g("thumbDiv",e)}function $a(e){var t,o;switch(e.target.id){case"btn_delete":(t=$("img.selected,Video.selected")).length&&kn("btn_delete",Aa,Ea);break;case"btn_saveDisk":for(t=$("img.selected,Video.selected"),o=0;o<t.length;o++)if("IMG"==t[o].tagName){0;break}eo(t);break;case"btn_toggleAll":Ga.thumbFileCnt!=Ga.thumbSelectedFileCnt?(dr(!0),Ga.thumbSelectedFileCnt=Ga.thumbFileCnt):(dr(!1),Ga.thumbSelectedFileCnt=0),br();break;case"btn_Next":!async function(){Ga.thumbnailCurrPage+=1,Ga.thumbnailCurrPage=Ga.thumbnailCurrPage%Ga.thumbnailTotalPage,await ir()}();break;case"btn_Previous":!async function(){Ga.thumbnailCurrPage+=Ga.thumbnailTotalPage-1,Ga.thumbnailCurrPage=Ga.thumbnailCurrPage%Ga.thumbnailTotalPage,await ir()}()}H(e)}function Ba(e){Wa(!1),_a(xa.thumbnail),Wa(!0),wn(!1),Ca(!0),e.curMode=xa.thumbnail,e.zoomRatio=1,e.zoomScrollBarPos=0,Nn(!1),Wn()}function Sa(e){var t,o=ya;switch("ppbtn_transform"==e.target.id&&(0==$("#cropBox").length?(attachCropBox(Xe,Ge),kn("btn_delete",Ta,Da)):(kn("btn_delete",Ta,Da),removeCropBox())),e.target.id){case"ppbtn_closeAndBackPlayback":Ba(o);break;case"ppbtn_redo":Cn(h.redo);break;case"ppbtn_undo":Cn(h.undo);break;case"ppbtn_importPic":Zt();break;case"ppbtn_savePlayback":Pn(o.combineCanvas,"",!0);break;case"ppbtn_zoom":$("#configDlg").hide(),$("#zoomDlg").toggle(500);break;case"ppbtn_transform":break;case"ppbtn_ocr":t={launch:!0,senderName:Ie},chrome.runtime.sendMessage(OcrAppID,t,(function(e){if(chrome.runtime.lastError)return $("#dialogOcr").dialog({dialogClass:"no-close",autoOpen:!1,width:250,height:140,show:{effect:"fade",duration:500},hide:{effect:"fade",duration:500},buttons:{"Add it now":function(){var e=OcrAppLink;window.open(e),$(this).dialog("close")},Later:function(){$(this).dialog("close")}}}),$("#dlgOcrTxt").text("This feature requires installing a free OCR extension from the Chrome Web Store."),void $("#dialogOcr").dialog("open");document.getElementById("displayCanvas").toBlob((function(e){setTimeout((function(){Ma(e)}),200)}))}))}H(e)}function Wa(e){var t=ya;g(t.lToolBar,e),g(t.rToolBar,e),g(t.bToolBar,e)}function _a(e){var t=ya;switch(e){case xa.thumbnail:t.lToolBar="thumbnailToolBar",t.rToolBar="playbackRToolBar",t.bToolBar="playbackInfoBar";break;case xa.image:t.lToolBar="picPlaybackToolBar",t.rToolBar="drawingToolBar",t.bToolBar="drawingCfgArea"}}function ka(e){e&&function(){var e=document.getElementById("croppath").getAttribute("d").split(/(?=[LMC])/),t=[],o=[];t[0]=parseInt(e[0].replace("M","").replace("L","").replace("Z","").split(",")[0]),t[1]=parseInt(e[0].replace("M","").replace("L","").replace("Z","").split(",")[1]),t[2]=parseInt(e[1].replace("M","").replace("L","").replace("Z","").split(",")[0]),t[3]=parseInt(e[1].replace("M","").replace("L","").replace("Z","").split(",")[1]),t[4]=parseInt(e[2].replace("M","").replace("L","").replace("Z","").split(",")[0]),t[5]=parseInt(e[2].replace("M","").replace("L","").replace("Z","").split(",")[1]),t[6]=parseInt(e[3].replace("M","").replace("L","").replace("Z","").split(",")[0]),t[7]=parseInt(e[3].replace("M","").replace("L","").replace("Z","").split(",")[1]);var a=ya,n=a.curImage,r=document.getElementById("displayCanvas").width,i=document.getElementById("displayCanvas").height;a.zoomRatio>1?(t[0]=parseInt(a.zoomX+t[0]/r*n.width/a.zoomRatio),t[1]=parseInt(a.zoomY+t[1]/i*n.height/a.zoomRatio),t[2]=parseInt(a.zoomX+t[2]/r*n.width/a.zoomRatio),t[3]=parseInt(a.zoomY+t[3]/i*n.height/a.zoomRatio),t[4]=parseInt(a.zoomX+t[4]/r*n.width/a.zoomRatio),t[5]=parseInt(a.zoomY+t[5]/i*n.height/a.zoomRatio),t[6]=parseInt(a.zoomX+t[6]/r*n.width/a.zoomRatio),t[7]=parseInt(a.zoomY+t[7]/i*n.height/a.zoomRatio)):(t[0]=t[0]/r*n.width,t[1]=t[1]/i*n.height,t[2]=t[2]/r*n.width,t[3]=t[3]/i*n.height,t[4]=t[4]/r*n.width,t[5]=t[5]/i*n.height,t[6]=t[6]/r*n.width,t[7]=t[7]/i*n.height);var c=(t[0]+t[6])/2,s=(t[1]+t[3])/2,l=Math.floor((t[2]+t[4])/2-c),d=Math.floor((t[7]+t[5])/2-s);o[0]=c,o[1]=s,o[2]=c+l,o[3]=s,o[4]=c+l,o[5]=s+d,o[6]=c,o[7]=s+d,perspectiveTran=PerspT(t,o);for(var u=x(n),p=u.getContext("2d",{willReadFrequently:!0}),g=p.getImageData(0,0,l,d),m=p.getImageData(0,0,n.width,n.height).data.slice(0),f=0;f<d;f++)for(var h=0;h<l;h++){var b=perspectiveTran.transformInverse(h+c,f+s),v=4*(f*l+h),w=4*(Math.round(b[1])*n.width+Math.round(b[0]));g.data[v]=m[w],g.data[v+1]=m[w+1],g.data[v+2]=m[w+2]}(u=document.getElementById("saveFileCanvas")).width=l,u.height=d,u.getContext("2d",{willReadFrequently:!0}).putImageData(g,0,0);var I=new Image;function x(e){var t=document.getElementById("saveFileCanvas"),o=t.getContext("2d",{willReadFrequently:!0});return $("#saveFileCanvas").attr("width",e.width),$("#saveFileCanvas").attr("height",e.height),o.drawImage(e,0,0,e.width,e.height),t}I.onload=function(){Pa(this)},I.width=l,I.height=d,I.src=u.toDataURL(),Gn()}(),Wn()}function Ta(){Nt(ka),Vt(!0)}function Da(){Vt(!1),Go.freeze=!1}function Ha(){var e=document.getElementById("croppath").getAttribute("d").split(/(?=[LMC])/),t=[],o=[],a=[],n=[],r=[];a[0]=parseInt(e[0].replace("M","").replace("L","").replace("Z","").split(",")[0]),a[1]=parseInt(e[0].replace("M","").replace("L","").replace("Z","").split(",")[1]),a[2]=parseInt(e[1].replace("M","").replace("L","").replace("Z","").split(",")[0]),a[3]=parseInt(e[1].replace("M","").replace("L","").replace("Z","").split(",")[1]),a[4]=parseInt(e[2].replace("M","").replace("L","").replace("Z","").split(",")[0]),a[5]=parseInt(e[2].replace("M","").replace("L","").replace("Z","").split(",")[1]),a[6]=parseInt(e[3].replace("M","").replace("L","").replace("Z","").split(",")[0]),a[7]=parseInt(e[3].replace("M","").replace("L","").replace("Z","").split(",")[1]);var c=(a[1]+a[3]+a[5]+a[7])/4;for(i=0;i<4;i++){a[2*i+1]-c<0?(n.push(a[2*i]),n.push(a[2*i+1])):(r.push(a[2*i]),r.push(a[2*i+1]))}for(;n.length>0;){var s=0,l=9999;for(i=0;i<n.length;i++)n[2*i]<l&&(l=n[2*i],s=i);t.push(n[2*s]),t.push(n[2*s+1]),n.splice(2*s,2)}for(;r.length>0;){var d=0,u=-9999;for(i=0;i<r.length;i++)n[2*i]>u&&(u=n[2*i],d=i);t.push(r[2*d]),t.push(r[2*d+1]),r.splice(2*d,2)}var p=Go,g=document.getElementById("displayCanvas").width,m=document.getElementById("displayCanvas").height;t[0]=t[0]/g*p.imgW,t[1]=t[1]/m*p.imgH,t[2]=t[2]/g*p.imgW,t[3]=t[3]/m*p.imgH,t[4]=t[4]/g*p.imgW,t[5]=t[5]/m*p.imgH,t[6]=t[6]/g*p.imgW,t[7]=t[7]/m*p.imgH;var f=(t[0]+t[6])/2,h=(t[1]+t[3])/2,b=Math.abs(Math.floor((t[2]+t[4])/2-f)),v=Math.abs(Math.floor((t[7]+t[5])/2-h));o[0]=f,o[1]=h,o[2]=f+b,o[3]=h,o[4]=f+b,o[5]=h+v,o[6]=f,o[7]=h+v,perspectiveTran=PerspT(t,o);var w=document.getElementById("previewArea-combineCanvas"),I=document.getElementById("tempCanvas");I.width=w.width,I.height=w.height;var x=I.getContext("2d",{willReadFrequently:!0});x.drawImage(w,0,0);for(var y=new ImageData(b,v),C=x.getImageData(0,0,p.imgW,p.imgH).data.slice(0),$=0;$<v;$++)for(var B=0;B<b;B++){var S=perspectiveTran.transformInverse(B+f,$+h),W=4*($*b+B),_=4*(Math.round(S[1])*p.imgW+Math.round(S[0]));y.data[W]=C[_],y.data[W+1]=C[_+1],y.data[W+2]=C[_+2],y.data[W+3]=255}var k=document.getElementById("saveFileCanvas");return k.width=b,k.height=v,k.getContext("2d",{willReadFrequently:!0}).putImageData(y,0,0),k}function Ma(e){var t=262144,o=0,a=t,n=e.size%t,r=Math.floor(e.size/t),i=0;0!=n&&(r+=1);var c=new FileReader;document.getElementById("displayCanvas");function s(){if(!(++i>r)){i==r&&0!=n&&(a=o+n);var s=e.slice(o,a);o=a,a+=t,c.readAsBinaryString(s)}}c.onload=function(){var e={blobAsText:c.result,mimeString:"mimeString",chunks:r};chrome.runtime.sendMessage(OcrAppID,e,(function(e){chrome.runtime.lastError})),s()},c.onerror=function(){appendLog("An error ocurred while reading file")},s()}function Pa(e){var t=ya;t.curImage=e,t.curMode=xa.image,Dn(e.width,e.height),Wn(),Un(),Vn()}function za(e,t){var o=ya;e.drawImage(t,0,0,o.imgW,o.imgH,0,0,o.imgW,o.imgH)}function Ra(){var e=ya;za(e.imageProcessContext,e.baseImageCanvas),function(){var e=ya;e.reqUndo?(e.reqUndo=!1,Bn(e)):e.reqRedo?(e.reqRedo=!1,Sn(e)):function(){var e=ya;1==e.zoomRatio?za(e.combineContext,e.imageProcessCanvas):e.combineContext.drawImage(e.imageProcessCanvas,e.zoomX,e.zoomY,e.zoomW,e.zoomH,0,0,e.imgW,e.imgH);e.mergeTempDraw&&(e.mergeTempDraw=!1,za(e.drawingContext,e.tempDrawingCanvas),hn(e));za(e.combineContext,e.drawingCanvas),function(){var e=ya;e.hasTempDraw&&za(e.combineContext,e.tempDrawingCanvas);!function(){var e=ya;Va(e)&&ja()}()}()}()}()}function Fa(e){var t;Wn(),e&&(t=$("img.selected, video.selected"),Qt(t))}function Aa(){var e,t,o;Nt(Fa),e="btnCancel",o=(t="confirmDlg")+"_no",jn(t+"_yes","btnDelete"),jn(o,e),Vt(!0)}function Ea(){Vt(!1)}var La={baseId:"drawingArea",lToolBar:"drawingBoardToolBar",rToolBar:"drawingToolBar",bToolBar:"drawingCfgArea",taskCtrl:function(e){e||we(!1)},start:function(){Oa()},init:function(){var e=La;pt(e),vn(e),e.baseImageContext.rect(0,0,e.imgW,e.imgH),e.baseImageContext.fillStyle=ye.drawingBoardBgColor,e.baseImageContext.fill(),e.combineContext.drawImage(e.baseImageCanvas,0,0,e.imgW,e.imgH,0,0,e.imgW,e.imgH),Na(e,!1)},onResize:Oa,canvasCtrl:function(e){var t=La;switch(e){case h.start:return!1;case h.move:t.hasTempDraw=!0;break;case h.end:0==Ga.drawText&&(t.hasTempDraw=!1,t.mergeTempDraw=!0);break;case h.undo:t.canvasStep>0&&(t.reqUndo=!0);break;case h.redo:t.canvasStep<t.canvasArray.length-1&&(t.reqRedo=!0)}return!1},imageProcess:function(){var e=La;Xa(e.imageProcessContext,e.baseImageCanvas),function(){var e=La;e.reqUndo?(e.reqUndo=!1,Bn(e)):e.reqRedo?(e.reqRedo=!1,Sn(e)):function(){var e=La;Xa(e.combineContext,e.imageProcessCanvas),e.mergeTempDraw&&(e.mergeTempDraw=!1,Xa(e.drawingContext,e.tempDrawingCanvas),hn(e));Xa(e.combineContext,e.drawingCanvas),function(){var e=La;e.hasTempDraw&&Xa(e.combineContext,e.tempDrawingCanvas);!function(){var e=La;Va(e)&&ja()}()}()}()}()},imgW:ye.defDrawingBoardW,imgH:ye.defDrawingBoardH,hasTempDraw:!1,mergeTempDraw:!1,reqUndo:!1,reqRedo:!1};function Oa(){ja()}function Ya(e){var t=La;switch(e.target.id){case"dbbtn_undo":Cn(h.undo);break;case"dbbtn_redo":Cn(h.redo);break;case"dbbtn_importPic":Zt();break;case"dbbtn_savePlayback":Ko(),Pn(t.combineCanvas)}H(e)}function Xa(e,t){var o=La;e.drawImage(t,0,0,o.imgW,o.imgH,0,0,o.imgW,o.imgH)}var Ga={appVersion:"20180904-1",curMode:void 0,showToolBar:!0,imgW:void 0,imgH:void 0,reqImgW:void 0,reqImgH:void 0,baseCanvas:void 0,baseContext:void 0,drawCanvas:void 0,drawContext:void 0,drawStyle:void 0,eraserStyle:void 0,clearStyle:"rgba(0,0,0,0)",opacity:void 0,lineWidth:void 0,colorHex:void 0,colorR:void 0,colorG:void 0,colorB:void 0,drawStartX:void 0,drawStartY:void 0,drawCurX:void 0,drawCurY:void 0,drawLastX:void 0,drawLastY:void 0,drawing:void 0,drawingMove:!1,fnDraw:void 0,activeDlg:!1,activeDlgCloseFn:!1,previewBrightnessAdj:0,previewWhiteBalanceAdj:0,previewRotate:0,fontFamily:"Arial",fontStyle:"Normal",fontSize:12,fontBold:!1,fontItalic:!1,drawText:!1,drawFontStyle:void 0,thumbnailCnt:0,thumbnailBuild:!1,thumbnailCurrPage:0,thumbnailTotalPage:1,thumbnailEntries:null,thumbnailReflesh:!1,capturing:!1,lastSaveFilename:"",ctrlPress:!1,showSysInfo:!1,frameRateInit:!1,frameCnt:16,frameSlotIdx:0,frameInterval:[],frameLastTime:0,frameRate:0,thumbFileCnt:0,thumbSelectedFileCnt:0,capturePeriodRun:!1,capturePeriodSec:ye.pcdCapturePeriodSec,captureIntervalHour:ye.pcdCaptureIntervalHour,capturePeriodTotalCnt:0,capturePeriodCurCnt:0,capturePeriodMs:0,resizeDelayMs:xe.resizeDelayMs,ipwRadiusExpandRatio:1,ipwExtraSpace:0,panMove:!1,panMoveX:0,panMoveY:0,drawRegularShape:!1,curVideoResolutionList:rt,reqVideoResolutionList:!1,idVideoResolutionList:0,curAudioinputList:0,idAudioinputSelect:0,idVideoinputSelect:0,checkVideoResolution:!1};function qa(e){document.getElementById("appTitle")&&vt("appTitle",e),vt("modeToolBar",e),vt("bottomToolBarData","previewArea"==Ga.curMode.baseId&&!uo&&!po&&e),void 0!==Ga.curMode.lToolBar&&vt(Ga.curMode.lToolBar,!uo&&!po&&e),void 0!==Ga.curMode.lS1ToolBar&&vt(Ga.curMode.lS1ToolBar,uo&&e&&!Ro),void 0!==Ga.curMode.lS2ToolBar&&vt(Ga.curMode.lS2ToolBar,uo&&e&&Ro),void 0!==Ga.curMode.lMsToolBar&&vt(Ga.curMode.lMsToolBar,po&&e),void 0!==Ga.curMode.rToolBar&&vt(Ga.curMode.rToolBar,(uo&&Ro||!uo)&&!po&&e),void 0!==Ga.curMode.bToolBar&&vt(Ga.curMode.bToolBar,(uo&&Ro||!uo)&&!po&&e)}function Ua(e){Ga.curMode&&(qa(!1),Ga.activeDlgCloseFn&&Ga.activeDlgCloseFn(),_n(),Ga.curMode.taskCtrl&&Ga.curMode.taskCtrl(!1),Na(Ga.curMode,!1)),Ga.curMode=e,Ga.curMode.taskCtrl&&Ga.curMode.taskCtrl(!0),function(e,t){Ga.imgW=e,Ga.imgH=t}(Ga.curMode.imgW,Ga.curMode.imgH),mt(),Fn(),Ln(),Ga.curMode.start&&Ga.curMode.start(),Ga.baseCanvas=Ga.curMode.drawingCanvas,Ga.baseContext=Ga.curMode.drawingContext,Ga.drawCanvas=Ga.curMode.tempDrawingCanvas,Ga.drawContext=Ga.curMode.tempDrawingContext,Ga.imgW=Ga.curMode.imgW,Ga.imgH=Ga.curMode.imgH,qa(Ga.showToolBar),Na(Ga.curMode,!0)}function Va(e){return e===Ga.curMode}function Na(e,t){g(e.baseId,t)}function ja(){var e=Ga.curMode;Ye.drawImage(e.combineCanvas,0,0,e.imgW,e.imgH,0,0,Xe,Ge)}function Za(){var e;$("#displayCanvas").on("mousedown",un).on("mousemove",dn).on("mouseup",pn).on("mouseout",gn).on("touchstart",Ka).on("touchend",Ja).on("touchmove",Qa).on("touchcancel",en),e=0,s("uiArea","sysInfoWin"),An("appVersion",e++),An("cfgVersion",e++),An("imgSize",e++),An("frmRate",e++),An("redoundo",e++),On(!1)}function Ka(e){tn(e)}function Ja(e){tn(e)}function Qa(e){tn(e)}function en(e){}function tn(e){if(e.originalEvent){ln();var t=e.originalEvent.changedTouches[0],o="";switch(e.type){case"touchstart":o="mousedown";break;case"touchmove":o="mousemove";break;case"touchend":o="mouseup";break;default:return}var a="mousemove"==o?1:0,n=new MouseEvent(o,{bubbles:!0,cancelable:!0,view:window,detail:1,screenX:t.screenX,screenY:t.screenY,clientX:t.clientX,clientY:t.clientY,ctrlKey:!1,altKey:!1,shiftKey:!1,metaKey:!1,button:0,buttons:a,relatedTarget:null});t.target.dispatchEvent(n),e.preventDefault()}}var on,an,nn,rn,cn=null,sn=0;function ln(){if(no){var e=document.getElementById("sys_fullPhoto");e.style.backgroundColor=ye.toolBarColorLeave,e.style.opacity=ye.toolBarOpacityLeave,sn=3,cn||(cn=setInterval((function(){if(0==(sn-=1)){if(no){var e=document.getElementById("sys_fullPhoto");e.style.backgroundColor=ye.toolBarColorHide,e.style.opacity=ye.toolBarOpacityHide}clearInterval(cn),cn=null}}),1e3))}}function dn(e){if(Ga.fnDraw&&Ga.drawing&&(0==e.buttons?(void 0===on&&(on=e),yn(on),Ga.fnDraw(h.end),Ga.drawing=!1,Ga.drawingMove&&Cn(h.end)):(yn(e),on=e,Ga.drawingMove=!0,Ga.fnDraw(h.move),Cn(h.move))),ue){var t=$("#importPictureWin").data("picData");t.mouseDown&&(0==t.type?me(e):ge(t.type,e))}}function un(e){Hn(I.displayCanvas,m.click,e),!Ga.fnDraw||Br&&!Sr||(fn(),Ga.drawing=!0,Ga.drawingMove=!1,function(e){var t=xn();Ga.drawStartX=e.offsetX*t,Ga.drawStartY=e.offsetY*t,Ga.drawStartX=Math.floor(10*Ga.drawStartX)/10,Ga.drawStartY=Math.floor(10*Ga.drawStartY)/10,Ga.drawCurX=Ga.drawLastX=Ga.drawStartX,Ga.drawCurY=Ga.drawLastY=Ga.drawStartY}(e),Ga.fnDraw(h.start),Cn(h.start))}function pn(e){if(Ga.fnDraw&&Ga.drawing&&(yn(e),Ga.fnDraw(h.end),Ga.drawing=!1,Cn(h.end)),ue){$("#importPictureWin").data("picData").mouseDown=!1,pe(),ue=!1}}function gn(e){Ga.fnDraw&&Ga.drawing&&2==W(Ce,1)&&(Ga.fnDraw(h.end),Cn(h.end))}function mn(e){e.width+=0}function fn(){mn(Ga.drawCanvas)}function hn(e){e.canvasArray.length&&e.canvasStep!=e.canvasArray.length-1&&(e.canvasArray.length=e.canvasStep+1),e.canvasStep+=1,e.canvasArray.push(e.drawingCanvas.toDataURL())}function bn(e){e.canvasArray.length=0,e.canvasStep=-1,mn(e.drawingCanvas),hn(e)}function vn(e){e.canvasArray=new Array,bn(e)}function wn(e){g("displayCanvas",e)}function In(){Ga.drawStyle="rgba("+Ga.colorR+", "+Ga.colorG+", "+Ga.colorB+", "+Ga.opacity+")",Ga.eraserStyle="rgba("+Ga.colorR+", "+Ga.colorG+", "+Ga.colorB+", "+ye.eraserOpacity+")"}function xn(){return Ga.imgW/Xe}function yn(e){var t=xn();Ga.drawLastX=Ga.drawCurX,Ga.drawLastY=Ga.drawCurY,Ga.drawCurX=e.offsetX*t,Ga.drawCurY=e.offsetY*t,Ga.drawCurX=Math.floor(10*Ga.drawCurX)/10,Ga.drawCurY=Math.floor(10*Ga.drawCurY)/10}function Cn(e){var t=Ga.curMode;if(t.canvasCtrl&&1==t.canvasCtrl(e))Ln();else{switch(e){case h.start:case h.move:case h.end:case h.undo:case h.redo:case h.mirror:case h.flip:case h.brightness:case h.whiteBalance:case h.zoom:case h.pan:t.imageProcess&&t.imageProcess()}Ln()}}function $n(e){var t=new Image;t.src=e.canvasArray[e.canvasStep],t.onload=function(){mn(e.drawingCanvas),e.drawingContext.drawImage(t,0,0,e.imgW,e.imgH),e.imageProcess&&e.imageProcess()}}function Bn(e){e.canvasStep>0&&(e.canvasStep-=1,$n(e))}function Sn(e){e.canvasStep<e.canvasArray.length-1&&(e.canvasStep+=1,$n(e))}function Wn(){Ga.activeDlgCloseFn&&Ga.activeDlgCloseFn(),_n()}function _n(){Ga.activeDlgCloseFn=!1,Ga.activeDlg=!1,$("#configDlg").hide(),$("#zoomDlg").hide(),$("#configDrawDlg").hide(),removeCropBox()}function kn(e,t,o){Ga.activeDlgCloseFn&&(Ga.activeDlgCloseFn(),Ga.activeDlgCloseFn=!1),Ga.activeDlg!=e?(Ga.activeDlg=e,o&&(Ga.activeDlgCloseFn=o),t&&t()):Ga.activeDlg=!1}function Tn(){var e;1!==ye.disableDrawTextSetting&&(e=document.getElementById("sdfontFamily").selectedIndex,Ga.fontFamily=Fe[e][v.value],e=document.getElementById("fontStyle").selectedIndex,Ga.fontStyle=Ae[e][v.value],e=document.getElementById("fontSize").selectedIndex,Ga.fontSize=Le[e][v.value])}async function Dn(e,t){var o=Ga.curMode;o.chgBaseImgCtrl&&await o.chgBaseImgCtrl(w.before,e,t),ut(o,e,t),fn(),bn(o),Ga.imgW=e,Ga.imgH=t,mt(),Fn(),Ln(),o.chgBaseImgCtrl&&await o.chgBaseImgCtrl(w.after,e,t),Gn(),Un(),Vn()}function Hn(e,t,o){if(t===m.click)we(!0)}function Mn(e){var t=new Date,o=t.getFullYear(),a=t.getMonth()+1,n=t.getDate(),r=t.getHours(),i=t.getMinutes(),c=t.getSeconds(),s=t.getMilliseconds();a<10&&(a="0"+a),n<10&&(n="0"+n),r<10&&(r="0"+r),i<10&&(i="0"+i),c<10&&(c="0"+c),s<10?s="00"+s:s<99&&(s="0"+s);var l=o+a+n+"-"+r+i+c+"-"+s;return""!=e&&(l+="."+e),l}async function Pn(e,a="",n=!1){""==a&&(a=Mn(""));var r=a+".jpg";if(Ga.lastSaveFilename==r)return!1;Ga.capturing=!0,Ga.lastSaveFilename=r;var i,c,s,l,d=ye.thumbW,u=ye.thumbH,p=ye.thumbPadding;i=d-2*p,c=u-2*p,e.width/e.height>i/c?(s=i,l=e.height*i/e.width):(s=e.width*c/e.height,l=c);var g=document.getElementById("tempCanvas");g.width=s,g.height=l,g.getContext("2d").drawImage(e,0,0,s,l);const m=(await o()).transaction(t,"readwrite").objectStore(t),f={name:r,normalImage:e.toDataURL(),thumbnailImage:g.toDataURL()};return m.add(f),n&&ir(),!0}function zn(e){if("Control"!=e.key)switch(e.key){case"I":case"i":Ga.ctrlPress&&(Ga.showSysInfo=!Ga.showSysInfo,On(Ga.showSysInfo))}else Ga.ctrlPress=!0}function Rn(e){if(Ga.ctrlPress){var t=Ga.curMode.zoomScrollBarPos;t-=e.deltaY/10,t=Math.min(Math.max(t,0),ye.scrollZoomW),function(e,t){var o;o=(o=1+(ye.zoomMaxRatio-1)*t/e).toFixed(1),Ga.curMode&&qn(o,t)}(ye.scrollZoomW,t)}}function Fn(){var e,t,o,a,n={position:"absolute","margin-left":"0px",background:xe.ColorLeave,opacity:xe.OpacityLeave};o=ye.sysInfoWinW,a=ye.sysInfoWinH,e=Math.min(an-ye.toolBarIconW,qe+Xe),e-=o,t=Math.min(Ue+Ge,nn-ye.drawSetH),n.width=o+"px",n.height=a+"px",n.left=e-ye.sysInfoGap+"px",n.top=t-ye.sysInfoGap-a+"px",$("#sysInfoWin").css(n),$("#configDrawDlg").css("top","calc(100% - 100px)"),$("#configDrawDlg").css("left",an-300-ye.toolBarIconW+"px");var r,i=document.getElementById("bottomToolBarData");i&&((r=an/2-30)<320&&(r=320),i.style.left=r+"px");(i=document.getElementById("recordtime"))&&((r=an/2-32)<320&&(r=320),i.style.left=r+"px")}function An(e,t){var o="sysInfoWin-"+e;p("sysInfoWin",o);var a={position:"absolute","margin-left":"0px"};a.left=ye.sysInfoGap+"px",a.top=ye.sysInfoGap+t*ye.sysInfoH+"px",a.height=ye.sysInfoH+"px",a.width=ye.sysInfoWinW-2*ye.sysInfoGap+"px",$("#"+o).css(a)}function En(e,t){Xn(document.getElementById("sysInfoWin-"+e),t)}function Ln(){var e;En("appVersion",Ga.appVersion),En("cfgVersion",ye.cfgVersion),En("imgSize",Ga.imgW+"x"+Ga.imgH),En("frmRate",Ga.frameRate),En("redoundo",(e=Ga.curMode).canvasStep+1+" / "+e.canvasArray.length)}function On(e){e&&(Fn(),Ln()),g("sysInfoWin",e)}function Yn(e){return"url('css/images/icon/"+e+"')"}function Xn(e,t){var o;o=document.createTextNode(t),e.innerText=o.textContent}function Gn(){qn(1,0),$("#zoomDlg-zoom-slider").val(0)}function qn(e,t){var o,a,n,r,i,c,s=Ga.curMode;n=s.zoomX+s.zoomW/2,r=s.zoomY+s.zoomH/2,o=n-(i=s.imgW/e)/2,a=r-(c=s.imgH/e)/2,o=Math.max(o,0),a=Math.max(a,0),o=Math.min(o,s.imgW-i),a=Math.min(a,s.imgH-c),s.zoomRatio=e,s.zoomX=o,s.zoomY=a,s.zoomW=i,s.zoomH=c,Cn(h.zoom),Nn(!(e<=1)),Vn(),s.zoomScrollBarPos=t}function Un(){var e,t,o=Ga.curMode,a={position:"absolute","margin-left":"0px",background:ye.panWinColor,opacity:ye.panOpacity},n=Xe/8,r=Ge/8;e=Math.max(ye.toolBarIconW,qe),t=Math.min(Ue+Ge,nn-ye.drawSetH),a.width=n+"px",a.height=r+"px",a.left=e+ye.panWinGapX+"px",a.top=t-ye.panWinGapY-r+"px",$("#panWin").css(a),a.left=0,a.top=0,a.background="undefined",a.opacity=1,$("#cropWin").css(a),ct("cropWin",n,r),o.panWinW=n,o.panWinH=r}function Vn(){var e,t,o,a,n,r,i=Ga.curMode,c=i.panWinW/i.imgW;e=i.zoomX*c,t=i.zoomY*c,o=i.zoomW*c,a=i.zoomH*c,r=(n=document.getElementById("cropWin")).getContext("2d"),mn(n),r.fillStyle=ye.panCropColor,r.fillRect(e,t,o,a)}function Nn(e){g("panWin",e),g("cropWin",e)}function jn(e,t){var o;(o=document.getElementById(e))&&(o.title=Kn(t))}function Zn(e,t){var o;(o=document.getElementById(e))&&(o.innerHTML=Kn(t))}function Kn(e){return null==Jn[e]||void 0===Jn[e]?Qn[e].message:Jn[e].message}var Jn,Qn,er,tr=null;function or(){an=window.innerWidth,nn=window.innerHeight,rn=ye.titleIconH,mt(),Ga.curMode&&Ga.curMode.onResize&&Ga.curMode.onResize(),Fn(),ve(),qt(),$("#lbMsCnt").length>0&&$("#lbMsCnt").css({top:nn-80,left:an/2})}function ar(){var e,t=[["btn_freehand","btnFreehand"],["btn_arrow","btnArrow"],["btn_eraser","btnEraser"],["btn_line","btnLine"],["btn_rectangleLine","btnRectangle"],["btn_rectangle","btnFilledRectangle"],["btn_circleLine","btnEllipse"],["btn_circle","btnFilledEllipse"],["btn_erase_all","btnEraseAll"],["btn_text","btnText"],["btn_setting","btnSetting"],["btn_capture","btnCapture"],["btn_freeze","btnFreezeLiveView"],["btn_timesave","btnIntervalShooting"],["btn_mirrow","btnFlipVertical"],["btn_flip","btnFlipHorizontal"],["btn_zoom","btnZoom"],["btn_importPic","btnImportImageFile"],["btn_redo","btnRedo"],["btn_undo","btnUndo"],["btn_record","btnRecord"],["btn_whitebalance","btnWhiteBalance"],["btn_brightness","btnBrightness"],["btn_config","btnConfig"],["mode_about","btnAbout"],["mode_preview","btnLiveView"],["mode_playback","btnGallery"],["mode_drawingBoard","btnDrawingBoard"],["mode_scan","btnScanMode"],["mode_multiscan","btnMultiScanMode"],["sys_close","btnCloseWindow"],["sys_fullScreen","btnMaxWindow"],["sys_fullPhoto","btnHideFunctionIcon"],["sys_smallScreen","btnMinWindow"],["btn_saveDisk","btnSaveToDisk"],["btn_delete","btnDelete"],["btn_toggleAll","btnToogleSelectAll"],["btn_Next","btn_Next"],["btn_Previous","btn_Previous"],["ppbtn_savePlayback","btnSaveToGallery"],["ppbtn_closeAndBackPlayback","btnBackToGallery"],["ppbtn_zoom","btnZoom"],["ppbtn_importPic","btnImportImageFile"],["ppbtn_redo","btnRedo"],["ppbtn_undo","btnUndo"],["ppbtn_transform","ppbtn_transform"],["ppbtn_ocr","ppbtn_ocr"],["dbbtn_savePlayback","btnSaveToGallery"],["dbbtn_redo","btnRedo"],["dbbtn_undo","btnUndo"],["dbbtn_importPic","btnImportImageFile"],["sdVideoRsoIcon","textVideoResolution"],["sdFontIcon","textFont"],["periodicCaptureDlg_periodIcon","textInterval"],["periodicCaptureDlg_intervalIcon","textDuration"],["periodicCaptureDlg_startIcon","btnStart"],["periodicCaptureInfoBar","btnCancel"],["drawingOpacity","textTransparency"],["drawingLineWidth","textWidth"],["scbtn_transform","scbtn_transform"],["scbtn_importPic","scbtn_importPic"],["scbtn_fullcrop","scbtn_fullcrop"],["scbtn_redo","scbtn_redo"],["scbtn_redo2","scbtn_redo"],["scbtn_undo","scbtn_undo"],["scbtn_undo2","scbtn_undo"],["scbtn_preview","scbtn_preview"],["scbtn_saveDisk","scbtn_saveDisk"],["scbtn_ocr","scbtn_ocr"],["scbtn_flip","scbtn_flip"],["scbtn_mirrow","scbtn_mirrow"],["scbtn_fullcrop","scbtn_fullcrop"],["mscbtn_capture","mscbtn_capture"],["mscbtn_merge","mscbtn_merge"],["mscbtn_fullcrop","mscbtn_fullcrop"],["configDlg-brightness-icon","config_brightness"],["configDlg-brightness-slider","config_brightness"],["configDlg-brightness-reset","config_reset"],["configDlg-rotate-icon","config_rotate"],["configDlg-rotate-slider","config_rotate"],["configDlg-rotate-reset","config_reset"],["configDlg-whiteBalence-icon","config_wb"],["configDlg-whiteBalence-slider","config_wb"],["configDlg-whiteBalence-reset","config_reset"],["dialogSave","dlgSave"]],o=[["pbFileInfo_Text","lbPage"],["fontStyle-lbNormal","lbNormal"],["fontStyle-lbBold","lbBold"],["fontStyle-lbItalic","lbItalic"],["fontStyle-lbBoldItalic","lbBoldItalic"],["periodicCaptureDlg_periodUnit","lbSeconds"],["periodicCaptureDlg_intervalUnit","lbMinutes"]],a=document.getElementById("sdLanguageFamily").selectedIndex,n=Ee[a][2];xe.languageIdx=a,$.getJSON(n,(function(a){for(Jn=a,e=0;e<t.length;e++)jn(t[e][0],t[e][1]);for(e=0;e<o.length;e++)Zn(o[e][0],o[e][1])}))}window.onresize=function(e){if(xe.resizeDelayMs){if(Ga.resizeDelayMs=xe.resizeDelayMs,tr)return;tr=setInterval((function(){Ga.resizeDelayMs-=xe.resizeDelayMs/2,Ga.resizeDelayMs<=0&&(clearInterval(tr),tr=null,or())}),xe.resizeDelayMs/2)}else or()},window.onmousemove=function(){ln()},window.onload=async function(){var e,t,o,a,n,r,i,l,d;or(),$("body").css("background-color",ye.bgColor),(e={position:"absolute",width:ye.toolBarIconW,height:ye.toolBarIconH,"margin-left":"0px"}).width=ye.toolBarIconW,e.height=ye.toolBarIconH,y(bt,e,"uiArea","playbackRToolBar","right"),1===ye.disableDrawingToolBar?(y($e,e,"uiArea","drawingToolBar","right",vo),S($e)):(y(Ce,e,"uiArea","drawingToolBar","right",vo),S(Ce)),y(He,e,"uiArea","thumbnailToolBar","left",$a),S(He),y(Me,e,"uiArea","picPlaybackToolBar","left",Sa),S(Me),y(Pe,e,"uiArea","drawingBoardToolBar","left",Ya),S(Pe),y(Se,e,"uiArea","previewToolBar","left",Uo),S(Se),y(We,e,"uiArea","scanToolBarS1","left",Ao),S(We),y(_e,e,"uiArea","scanToolBarS2","left",Ao),S(_e),y(ke,e,"uiArea","multiscanToolBar","left",Xo),S(ke),y(De,e,"uiArea","sysToolBar","top-right",lo),S(De),e.width=ye.modeIconW/2,e.height=xe.drawSetH,y(Be,e,"uiArea","bottomToolBarData","bottom",Uo),S(Be),$("#btn_pause").hide(),e.width=ye.modeIconW,e.height=ye.modeIconH,y(Te,e,"uiArea","modeToolBar","top-left",fo),S(Te),$("#Dummy").unbind("mouseenter mouseleave click"),function(){var e,t=["playbackRToolBar","previewToolBar","drawingToolBar","thumbnailToolBar","picPlaybackToolBar","drawingBoardToolBar","scanToolBarS1","scanToolBarS2"];for(e=0;e<t.length;e++)vt(t[e],!1)}(),xt(),St(),Ht(),le(),function(){var e,t="configDlg";c("uiArea",t),e="#"+t,$(e).css("background",xe.ColorLeave),$(e).css("top","calc(50%)"),$(e).css("left",ye.toolBarIconW+"px"),$(e).css("width","420px"),$(e).css("height","200px"),$(e).css("position","absolute"),$(e).hide(),s(t,e=t+"-close"),e="#"+e;var o=Yn("close.png");$(e).css("background",o),$(e).css("top","0px"),$(e).css("left",420-ye.toolBarIconW+"px"),$(e).css("width",ye.toolBarIconW+"px"),$(e).css("height",ye.toolBarIconH+"px"),$(e).css("position","absolute"),$(e).on("click",(function(){$("#"+t).hide()})),e="#"+re(t,e=t+"-brightness","brightness.png",24,36),$(e).attr({type:"range",max:2,min:0,step:.01,value:1}),$(e).on("input",(function(e){Ga.previewBrightnessAdj=Math.floor(e.currentTarget.value),Ga.curMode&&Cn(h.brightness)})),e="#"+re(t,e=t+"-rotate","rotate.png",24,84),$(e).attr({type:"range",max:180,min:-180,step:5,value:0}),$(e).on("input",(function(e){Ga.previewRotate=Math.floor(e.currentTarget.value)})),e="#"+re(t,e=t+"-whiteBalence","wb.png",24,132),$(e).attr({type:"range",max:1.5,min:.5,step:.01,value:1}),$(e).on("input",(function(e){Ga.previewWhiteBalanceAdj=Math.floor(e.currentTarget.value),Ga.curMode&&Cn(h.whiteBalance)}))}(),ne(),n=(a="aboutDlg")+"-close",r=a+"-content",c("uiArea",a),c(a,n),c(a,r),t="#"+a,$(t).css("top","calc(50% - "+(ye.aboutWinH-ye.titleIconH)/2+"px)"),$(t).css("left","calc(50% - "+ye.aboutWinW/2+"px)"),$(t).css("width",ye.aboutWinW+"px"),$(t).css("height",ye.aboutWinH+"px"),$(t).css("position","absolute"),$(t).css("background",ye.aboutBkg),$(t).css("opacity",ye.aboutOpacity),t="#"+n,o=Yn("close.png"),$(t).css("background",o),$(t).css("top","0px"),$(t).css("left","calc(100% - "+ye.aboutIconW+"px)"),$(t).css("width",ye.aboutIconW+"px"),$(t).css("height",ye.aboutIconH+"px"),$(t).css("position","absolute"),$(t).click((function(){g("aboutDlg",!1)})),t="#"+r,$(t).css("top",ye.aboutIconH+"px"),$(t).css("left",ye.aboutGapX+"px"),$(t).css("width",ye.aboutWinW-2*ye.aboutGapX+"px"),$(t).css("height",ye.aboutWinH-ye.aboutIconH+"px"),$(t).css("position","absolute"),$(t).html('\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<center><img src="css/images/icon/logo 60.png"></img></center>\t\t\t\t\t\t\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label><font size="5" color="#FF0"><center>Smart DC</center></font></label>\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<label><font size="3" color="#88F"><center>Version 1.24.1211</center></font></label>\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<BR>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'),t="#companyLink",$(t).click((function(){window.open("http://www.tekspring.com")})),t="#manualLink",$(t).click((function(){window.open("https://www.dropbox.com/s/fa4rvuvi48uvksu/TS-82-913-90022.pdf?dl=0")})),g(a,!1),function(){var e,t,o,a,n,r="periodicCaptureDlg",i=r+"_periodIcon",s=r+"_periodText",l=r+"_periodUnit",d=r+"_intervalIcon",u=r+"_intervalText",p=r+"_intervalUnit",g=r+"_close",m=r+"_startIcon",f=(ye.pcdIconH-ye.pcdTextH)/2,h=(ye.pcdIconH-ye.pcdUnitH)/2;c("uiArea",r),a=ye.pcdIconW+ye.pcdTextW+ye.pcdUnitW+ye.pcdExtraW,n=4*ye.pcdIconH-3*ye.pcdIconOverlayY,e="#"+r,$(e).css("position","absolute"),$(e).css("background",ye.pcdBkg),$(e).css("opacity",ye.pcdOpacity),$(e).css("left","calc(50% - "+a/2+"px)"),$(e).css("top","calc(50% - "+(n-ye.titleIconH)/2+"px)"),$(e).css("width",a+"px"),$(e).css("height",n+"px"),At(r,g,"close.png",t=a-ye.pcdIconW,o=0),$("#"+g).on("click",fa),At(r,i,"timesave_time.png",t=0,o+=ye.pcdIconH-ye.pcdIconOverlayY),Lt(r,s,t+=ye.pcdIconW,o+f,Ga.capturePeriodSec),Et(r,l,t+=ye.pcdTextW,o+h,""),At(r,d,"timesave_keep.png",t=0,o+=ye.pcdIconH-ye.pcdIconOverlayY),Lt(r,u,t+=ye.pcdIconW,o+f,Ga.captureIntervalHour),Et(r,p,t+=ye.pcdTextW,o+h,""),o+=ye.pcdIconH-ye.pcdIconOverlayY,At(r,m,"timesave_star.png",t=(a-ye.pcdIconW)/2,o),$("#"+m).on("click",va),Ot(!1)}(),function(){var e,t="periodicCaptureInfoBar",o=t+"_text",a=t+"_icon";s("uiArea",t),Yt(),p(t,o),e="#"+o,$(e).css("position","absolute"),$(e).css("left",0),$(e).css("top",(ye.pcibIconH-ye.pcibTextH)/2+"px"),$(e).css("width",ye.pcibTextW+"px"),$(e).css("height",ye.pcibTextH+"px"),$(e).css("text-align","center"),$(e).css("line-height",ye.pcibTextH+"px"),$(e).css("font-size",ye.pcibTextFontSize),$(e).css("color",ye.pcibTextColor),s(t,a),e="#"+a,$(e).css("position","absolute"),$(e).css("left",ye.pcibTextW+"px"),$(e).css("top",0),$(e).css("width",ye.pcibIconW+"px"),$(e).css("height",ye.pcibIconH+"px"),$(e).css("background",Yn("timesave_star.png")),$(e).on("click",Xt),Gt(!1)}(),Ut(),d={position:"absolute",background:ye.mouseColorLeave,padding:"0 0 0 0px",top:"0px",height:ye.titleIconH+"px",opacity:ye.mouseOpacityLeave},i=ye.modeIconW*Te.length,l=ye.toolBarIconW*De.length,d.left=i+"px",d.width="calc(100% - "+(i+l)+"px)",$("#appTitle").css(d),$("#appTitle").css("-webkit-app-region","drag"),Za(),Go.init(),ya.init(),La.init(),Kt(),Ua(Go);try{await async function(){try{await navigator.mediaDevices.getUserMedia({video:!0,audio:!0}),navigator.mediaDevices.ondevicechange=async()=>{await Xr(),await Gr()},await Xr(),await Gr()}catch(e){alert("請允許使用相機和麥克風的權限")}}()}catch(e){}ao(),ar()},document.body.addEventListener("keydown",(function(e){zn(e)})),document.body.addEventListener("keyup",(function(e){!function(e){"Control"!=e.key||(Ga.ctrlPress=!1)}(e)})),document.body.addEventListener("wheel",(function(e){Rn(e)})),document.oncontextmenu=function(){return!1};const nr=30;var rr=!1;async function ir(){if(rr)return;rr=!0,er=[];const e=await o(),a=e.transaction(t,"readonly").objectStore(t).count();a.onsuccess=()=>{var o=a.result;Ga.thumbnailTotalPage=parseInt((o-1)/nr)+1,Ga.thumbnailCurrPage=Math.min(Ga.thumbnailCurrPage,Ga.thumbnailTotalPage-1);let n=0;var r=nr*Ga.thumbnailCurrPage,i=Math.min(r+nr,o);e.transaction(t,"readonly").objectStore(t).openCursor(null,"prev").onsuccess=e=>{const t=e.target.result;return t?(n>=r&&n<i&&er.push(t.value),n++,n<i?void t.continue():(cr(),void(rr=!1))):(cr(),void(rr=!1))}}}function cr(){Ga.thumbSelectedFileCnt=0,Ga.thumbnailCnt=0,Ga.thumbFileCnt=0,Ca(!1),$("#thumbDiv").empty();for(var e=0;e<er.length;e++)er[e].name.indexOf(".jpg")>0&&(Ga.thumbnailCnt+=1,sr(er[e],e)),(er[e].name.indexOf(".mp4")>0||er[e].name.indexOf(".webm")>0)&&lr(er[e],e);br(),setTimeout((function(){Ca(!0)}),100)}function sr(e,t,o=!1){var a,n,r,i="thumb_"+t,s="img_"+t,l=ye.thumbW,u=ye.thumbH,p=ye.thumbPadding;if(o){var g=document.createElement("div");g.id=i,document.getElementById("thumbDiv").prepend(g)}else c("thumbDiv",i);n=l-2*p,r=u-2*p,a="#"+i,$(a).css("width",n+"px"),$(a).css("height",r+"px"),$(a).css("padding",p+"px"),$(a).css("position","relative"),$(a).css("display","inline-block"),d(i,s);var m=new Image;m.addEventListener("load",(function(){var t=Jt(n,r,m.width,m.height),o=ye.thumbFrmSize+"px solid "+ye.thumbFrmColorNormal;a="#"+s;var i={left:t.x+p,top:t.y+p,width:t.w,height:t.h,position:"absolute",border:o};$(a).css(i),$(a).addClass("thumbImg"),(a=document.getElementById(s)).src=e.thumbnailImage,a.fileName=e.name,a.checked=!1,$(a).on("click",(function(e){var t,o,a=document.getElementById(e.target.id);a.checked?(a.checked=!1,t=ye.thumbFrmColorNormal,gr()):(dr(!1),a.checked=!0,t=ye.thumbFrmColorChecked,pr()),o=ye.thumbFrmSize+"px solid "+t,$(this).css("border",o),$(this).toggleClass("selected")})),$(a).dblclick((function(){document.getElementById(this.id).checked=!0;var t=ye.thumbFrmColorChecked;pr();var o=ye.thumbFrmSize+"px solid "+t;$(this).css("border",o),$(this).toggleClass("selected");var a=new Image;a.src=e.normalImage,a.addEventListener("load",(function(){Pa(a)}))})),ur()})),m.src=e.thumbnailImage}function lr(e,t,o=!1){var a,r,i,s="thumb_"+t,l="img_"+t,d="vIcon_"+t,u=ye.thumbW,p=ye.thumbH,g=ye.thumbPadding;if(o){var m=document.createElement("div");m.id=s,document.getElementById("thumbDiv").prepend(m)}else c("thumbDiv",s);r=u-2*g,i=p-2*g,a="#"+s,$(a).css("width",r+"px"),$(a).css("height",i+"px"),$(a).css("padding",g+"px"),$(a).css("position","relative"),$(a).css("display","inline-block"),function(e,t){n("video",e,t)}(s,l),c(s,d);var f=Jt(r,i,1280,720),h=ye.thumbFrmSize+"px solid "+ye.thumbFrmColorNormal;a="#"+l;var b={left:f.x+g,top:f.y+g,width:f.w,height:f.h,position:"absolute",border:h};$(a).css(b),$(a).addClass("thumbImg"),a=document.getElementById(l),e.name.indexOf(".mp4"),a.src=URL.createObjectURL(e.video),a.autoplay=!1,a.controls=!1,a.loop=!1,a.fileName=e.name,a.checked=!1,b={right:6,bottom:17,width:36,height:12,position:"absolute",backgroundColor:"#000",color:"#EEE",textAlign:"center",fontSize:12,opacity:.75},$("#"+d).css(b),a.addEventListener("loadedmetadata",(function(){var e=Math.round(a.duration);document.getElementById(d).innerText=Math.floor(e/60)+":"+Hr(e%60,2)})),$(a).on("click",(function(e){var t,o,a=document.getElementById(e.target.id);a.checked?(a.checked=!1,t=ye.thumbFrmColorNormal,gr()):(dr(!1),a.checked=!0,t=ye.thumbFrmColorChecked,pr()),o=ye.thumbFrmSize+"px solid "+t,$(this).css("border",o),$(this).toggleClass("selected")})),$(a).dblclick((function(){var e=document.getElementById(this.id);e.checked=!0;var t=ye.thumbFrmColorChecked;pr();var o,a=ye.thumbFrmSize+"px solid "+t;$(this).css("border",a),$(this).toggleClass("selected"),e.muted=!1,e.currentTime=0,(o=e).webkitRequestFullscreen?o.webkitRequestFullscreen():o.mozRequestFullScreen?o.mozRequestFullScreen():o.requestFullscreen?o.requestFullscreen():o.msRequestFullscreen&&o.msRequestFullscreen()})),a.addEventListener("ended",(function(e){null!=document.fullscreenElement&&document.exitFullscreen()}),!1),a.addEventListener("mouseover",(function(e){var t=a.play();void 0!==t&&t.then((e=>{a.muted=!0,a.play()})).catch((e=>{}))})),a.addEventListener("mouseleave",(function(e){var t=a.play();void 0!==t&&t.then((e=>{a.pause(),a.currentTime=0})).catch((e=>{}))})),ur()}function Qt(o){var a;const n=indexedDB.open(e);n.onsuccess=e=>{const n=e.target.result.transaction(t,"readwrite").objectStore(t).openCursor();n.onsuccess=e=>{const t=e.target.result;if(t)for(a=0;a<o.length;a++)t.value.name===o[a].fileName?t.delete():t.continue()},n.onerror=e=>{}},n.onerror=e=>{},ir()}function dr(e){var t,o,a,n,r,i=$(".thumbImg"),c="selected";for(e?(a=!0,n=ye.thumbFrmColorChecked):(a=!1,n=ye.thumbFrmColorNormal),r=ye.thumbFrmSize+"px solid "+n,o=0;o<i.length;o++)document.getElementById(i[o].id).checked=a,(t=$("#"+i[o].id)).css("border",r),e?t.addClass(c):t.removeClass(c)}function ur(){Ga.thumbFileCnt+=1,br()}function pr(){hr()}function gr(){hr()}var mr,fr=-1;function hr(){-1==fr?(fr=2,setTimeout(hr,100)):fr>0?(fr-=1,setTimeout(hr,100)):(fr=-1,function(){var e=$(".thumbImg"),t="selected";Ga.thumbSelectedFileCnt=0;for(var o=0;o<e.length;o++){var a=document.getElementById(e[o].id),n=$("#"+e[o].id);a.checked?(Ga.thumbSelectedFileCnt+=1,n.addClass(t)):n.removeClass(t)}br()}())}function br(){var e,t,o=Math.min(Ga.thumbnailCurrPage+1,Ga.thumbnailTotalPage)+"/"+Ga.thumbnailTotalPage,a="Number of images： "+Math.min(Ga.thumbFileCnt,nr);e=o,t=a,Xn(document.getElementById("pbFileInfo_Page"),e),Xn(document.getElementById("pbFileInfo_Item"),t),function(){var e;e=Ga.thumbFileCnt&&Ga.thumbFileCnt===Ga.thumbSelectedFileCnt?"btnUnselectAll":"btnSelectAll";jn("btn_toggleAll",e)}()}var vr,wr,Ir,xr,yr,Cr,$r=[],Br=!1,Sr=!1,Wr=900;function _r(e){g("bottomToolBarData",e),e&&$("#btn_pause").hide()}function kr(e){var t,o=["btn_setting","btn_capture","btn_freeze","btn_timesave","btn_mirrow","btn_flip","btn_config","btn_zoom","btn_importPic","btn_redo","btn_undo","btn_freehand","btn_arrow","btn_eraser","btn_line","btn_rectangleLine","btn_rectangle","btn_circleLine","btn_circle","btn_erase_all","btn_text","drawingCfgColorBar","drawingOpacity","drawingLineWidth"];for(t=0;t<o.length;t++)vt(o[t],e);e?document.getElementById("sysToolBar").style.background=ye.toolBarColorLeave:document.getElementById("sysToolBar").style.backgroundColor="#000"}async function Tr(){if(!Br)return Br=!0,Ga.imgW,Ga.imgH,_r(!1),kr(!1),Wn(),$("#btn_pause").show(),void setTimeout(Tr,500);Sr=!1,document.getElementById("recordtime").style.fontSize="18px",document.getElementById("recordtime").style.fontWeight="bold",document.getElementById("recordtime").style.color="red",document.getElementById("recordtime").style.position="absolute",document.getElementById("recordtime").style.bottom="60px",document.getElementById("recordtime").style.left=document.documentElement.clientWidth/2-32+"px",document.getElementById("recordtime").style.visibility="visible";var e=new Date;vr=e.getTime(),Ir=0,Mr();var a=Go.combineCanvas,n=document.getElementById("sdAudioinputScrollbar").value;const r=await navigator.mediaDevices.getUserMedia({audio:{deviceId:{exact:n}}});let i;xr=a.captureStream(),r.getAudioTracks().forEach((e=>xr.addTrack(e))),Cr=window.stream,window.stream=xr,$r=[],MediaRecorder.isTypeSupported('video/webm; codecs="vp9, opus"')?(i='video/webm; codecs="vp9, opus"',yr="webm"):MediaRecorder.isTypeSupported('video/webm; codecs="vp8, vorbis"')?(i='video/webm; codecs="vp8, vorbis"',yr="webm"):MediaRecorder.isTypeSupported('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')?(i='video/mp4; codecs="avc1.42E01E, mp4a.40.2"',yr="mp4"):MediaRecorder.isTypeSupported("video/webm")?(i="video/webm",yr="webm"):MediaRecorder.isTypeSupported("video/mp4")&&(i="video/mp4",yr="mp4"),(mr=new MediaRecorder(xr,{audioBitsPerSecond:128e3,videoBitsPerSecond:5e6,mimeType:i})).ondataavailable=function(e){e.data&&e.data.size>0&&($r.push(e.data),async function(){var e=Mn(yr);if("mp4"==yr){const a=(await o()).transaction(t,"readwrite").objectStore(t);let n=new Blob($r,{type:"video/mp4"});const r={name:e,video:n};a.add(r),$r=[],n=null}else if("webm"==yr){let a=new Blob($r,{type:"video/webm"});setTimeout((function(){ysFixWebmDuration(a,wr,(async function(n){const r=(await o()).transaction(t,"readwrite").objectStore(t),i={name:e,video:n};r.add(i),$r=[],a=null}))}),100)}}())},mr.start(),_r(!0)}async function Dr(){Br=!1,document.getElementById("recordtime").style.visibility="hidden",kr(!0),$("#btn_pause").hide(),mr.stop(),xr.getTracks().forEach((function(e){e.stop(),xr.removeTrack(e)})),window.stream=Cr;var e=(new Date).getTime();Sr?(Sr=!1,wr=Ir):wr=Ir+e-vr}function Hr(e,t){return(e=""+e).length>=t?e:Hr("0"+e,t)}function Mr(){if(Br&&!Sr){var e=(new Date).getTime();wr=Ir+e-vr;var t=Math.floor(wr/1e3);if(t>=Wr)return void Dr();document.getElementById("recordtime").innerText=Hr(Math.floor(t/60),2)+" : "+Hr(t%60,2),setTimeout((()=>{Mr()}),1e3)}}var Pr="",zr="",Rr=ye.defPreviewRsoX,Fr=ye.defPreviewRsoY,Ar=document.getElementById("videoSrc");var Er=!1;var Lr=!1,Or=0,Yr=0;async function Xr(){try{const a=document.getElementById(Ga.idVideoinputSelect),n=document.getElementById(Ga.idAudioinputSelect),r=await navigator.mediaDevices.enumerateDevices();a.innerHTML="",n.innerHTML="";var e=null,t=null;if(Lr=!1,r.forEach((o=>{if("videoinput"===o.kind){parseInt("0x"+o.label.split(":")[0].split("(")[1],16),parseInt("0x"+o.label.split(")")[0].split(":")[1],16);const t=document.createElement("option");t.value=o.deviceId,t.textContent=o.label||`未命名裝置 (${o.deviceId})`,a.appendChild(t),null==e&&(e=o.deviceId),o.label.indexOf("Document Camera")>-1&&(Ga.reqVideoResolutionList=it[0][2],Lr=!0,e=o.deviceId,o.deviceId)}if("audioinput"===o.kind){const e=document.createElement("option");e.value=o.deviceId,e.textContent=o.label||`未命名裝置 (${o.deviceId})`,n.appendChild(e),-1!=o.label.indexOf("Document Camera")&&(t=o.deviceId)}})),!Lr){const e=await navigator.mediaDevices.getUserMedia({video:!0}),t=e.getVideoTracks()[0].getCapabilities();Ga.reqVideoResolutionList=[[t.width.max/2,t.height.max/2,1]],Or=t.width.max/2,Yr=t.height.max/2}await void(Ga.reqVideoResolutionList!==Ga.curVideoResolutionList&&(Ga.curVideoResolutionList=Ga.reqVideoResolutionList,Ga.reqVideoResolutionList=!1,_t(Ga.curVideoResolutionList),o=document.getElementById("sdVideoRsoScrollbar").selectedIndex,Rr=Ga.curVideoResolutionList[o][b.w],Fr=Ga.curVideoResolutionList[o][b.h],Va(Go)&&(Ga.checkVideoResolution=!0))),a.value=e,Pr=e,t&&(n.value=t)}catch(e){}var o}async function Gr(){const e=document.getElementById(Ga.idAudioinputSelect);var t;t=Lr?{audio:{deviceId:{exact:e.value}},video:{deviceId:{exact:Pr},width:{ideal:Ga.reqImgW,max:1920},height:{ideal:Ga.reqImgH,max:1080}}}:{audio:{deviceId:{exact:e.value}},video:{deviceId:{exact:Pr},width:{ideal:Or,max:Or},height:{ideal:Yr,max:Yr}}};try{const e=await navigator.mediaDevices.getUserMedia(t);zr=Pr,window.stream=e,e.getAudioTracks()[0].enabled=!1;e.getVideoTracks()[0];Ar.srcObject=e,Ar.onloadeddata=()=>{!function(){var e=document.getElementById("previewArea-WebGL");if(!(Vr=e.getContext("webgl")))throw new Error("WebGL not supported");const t="\n    attribute vec4 a_position;\n    attribute vec2 a_texCoord;\n    varying vec2 v_texCoord;\n    void main() {\n      gl_Position = a_position;\n      v_texCoord = a_texCoord;\n    }\n  ",o="\n    precision mediump float;\n    uniform sampler2D u_image;\n    uniform float u_brightness;\n    uniform vec3 u_whiteBalance;\n    varying vec2 v_texCoord;\n    void main() {\n      vec4 color = texture2D(u_image, v_texCoord);\n      color.rgb *= u_brightness; // Apply brightness adjustment\n      color.r *= u_whiteBalance.r;\n      color.g *= u_whiteBalance.g;\n      color.b *= u_whiteBalance.b;\n      gl_FragColor = color;\n    }\n  ";jr=ni(Vr,Vr.VERTEX_SHADER,t),Zr=ni(Vr,Vr.FRAGMENT_SHADER,o),Kr=function(e,t,o){const a=e.createProgram();if(e.attachShader(a,t),e.attachShader(a,o),e.linkProgram(a),!e.getProgramParameter(a,e.LINK_STATUS))return e.deleteProgram(a),null;return a}(Vr,jr,Zr),Jr=Vr.getAttribLocation(Kr,"a_position"),Qr=Vr.getAttribLocation(Kr,"a_texCoord"),ei=Vr.getUniformLocation(Kr,"u_brightness"),ti=Vr.getUniformLocation(Kr,"u_whiteBalance"),oi=Vr.createBuffer(),Vr.bindBuffer(Vr.ARRAY_BUFFER,oi),Vr.bufferData(Vr.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),Vr.STATIC_DRAW),ai=Vr.createBuffer(),Vr.bindBuffer(Vr.ARRAY_BUFFER,ai),Vr.bufferData(Vr.ARRAY_BUFFER,new Float32Array([0,0,1,0,0,1,0,1,1,0,1,1]),Vr.STATIC_DRAW),Nr=Vr.createTexture(),Vr.bindTexture(Vr.TEXTURE_2D,Nr),Vr.texParameteri(Vr.TEXTURE_2D,Vr.TEXTURE_WRAP_S,Vr.CLAMP_TO_EDGE),Vr.texParameteri(Vr.TEXTURE_2D,Vr.TEXTURE_WRAP_T,Vr.CLAMP_TO_EDGE),Vr.texParameteri(Vr.TEXTURE_2D,Vr.TEXTURE_MIN_FILTER,Vr.LINEAR)}(),Vr.viewport(0,0,Ga.reqImgW,Ga.reqImgH)},or(),Ar.setAttribute("playsinline",""),Ar.setAttribute("webkit-playsinline",""),await Ar.load();var o=Ar.play();void 0!==o&&await o.then((e=>{Ar.muted=!0,Ar.hidden=!0,Er=!0})).catch((e=>{}))}catch(e){}}async function qr(){window.stream&&window.stream.getVideoTracks()[0].stop(),Er=!1}let Ur=[];!function(e,t){let o}((function(){navigator.mediaDevices.enumerateDevices().then((async e=>{const t=e.map((e=>e.deviceId));JSON.stringify(t)!==JSON.stringify(Ur)&&(await Xr(),await Gr(),Ur=t)}))}),500);var Vr,Nr,jr,Zr,Kr,Jr,Qr,ei,ti,oi,ai;function ni(e,t,o){const a=e.createShader(t);return e.shaderSource(a,o),e.compileShader(a),e.getShaderParameter(a,e.COMPILE_STATUS)?a:(e.deleteShader(a),null)}
+
+'use strict';
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// init 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// init IndexedDB
+const dbName = 'ImageDatabase';
+const storeName = 'Images';
+
+// indexedDB.deleteDatabase('ImageDatabase').onsuccess = () => {
+// 	console.log('資料庫已刪除');
+// };
+
+function delay(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function openDatabase() {
+	return new Promise((resolve, reject) => {
+		const request = indexedDB.open(dbName, 1);
+
+		request.onupgradeneeded = event => {
+			const db = event.target.result;
+			db.createObjectStore(storeName, { keyPath: 'name' });
+		};
+
+		request.onsuccess = event => {
+			const result = event.target.result;
+			//console.log('成功取得資料:', result);
+			resolve(result);
+		};
+
+		request.onerror = event => {
+			console.error('openDatabase fail:', event.target.error);
+			reject(event.target.error);
+		};
+	});
+}
+
+function detectBrowser() {
+	var userAgent = navigator.userAgent;
+
+	if (userAgent.match(/chrome|chromium|crios/i)) {
+		return "Chrome";
+	} else if (userAgent.match(/firefox|fxios/i)) {
+		return "Firefox";
+	} else if (userAgent.match(/safari/i)) {
+		return "Safari";
+	} else if (userAgent.match(/opr\//i)) {
+		return "Opera";
+	} else if (userAgent.match(/edg/i)) {
+		return "Edge";
+	} else if (userAgent.match(/msie|trident/i)) {
+		return "Internet Explorer";
+	} else {
+		return "unknown";
+	}
+}
+
+var Browser = detectBrowser();
+console.log("Browser:", Browser);
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// create element  
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function createDocumentElement(tagId, childId) {
+	let parent = document.createElement(tagId);
+	parent.id = childId;
+	document.body.appendChild(parent);
+}
+
+function createElement(tagId, parentId, childId) {
+	let parent = document.getElementById(parentId);
+	let child = document.createElement(tagId);
+
+	child.id = childId;
+
+	parent.appendChild(child);
+}
+
+function createCanvasElement(parentId, childId) {
+	createElement("canvas", parentId, childId)
+}
+
+function createDivElement(parentId, childId) {
+	createElement("div", parentId, childId)
+}
+
+function createSpanElement(parentId, childId) {
+	createElement("span", parentId, childId)
+}
+
+function createSelectElement(parentId, childId) {
+	createElement("select", parentId, childId)
+}
+
+function createTextareaElement(parentId, childId) {
+	createElement("textarea", parentId, childId)
+}
+
+function createImgElement(parentId, childId) {
+	createElement("img", parentId, childId)
+}
+
+function createVideoElement(parentId, childId) {
+	createElement("video", parentId, childId)
+}
+
+function createInputElement(parentId, childId) {
+	createElement("input", parentId, childId)
+}
+
+function createLabelElement(parentId, childId) {
+	createElement("label", parentId, childId)
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// operation   
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function showElement(id, mode) {
+	var eleId;
+
+	eleId = document.getElementById(id);
+	eleId.hidden = !mode;
+}
+
+
+if (typeof MouseStatus == "undefined") {
+	var MouseStatus = {};
+	MouseStatus.over = 0;
+	MouseStatus.normal = 1;
+	MouseStatus.click = 2;
+}
+
+if (typeof MouseBtnId == "undefined") {
+	var MouseBtnId = {};
+	MouseBtnId.left = 1;
+	MouseBtnId.right = 3;
+}
+
+if (typeof DrawState == "undefined") {
+	var DrawState = {};
+	DrawState.start = 0;
+	DrawState.move = 1;
+	DrawState.end = 2;
+	DrawState.undo = 3;
+	DrawState.redo = 4;
+	DrawState.mirror = 5;
+	DrawState.flip = 6;
+	DrawState.brightness = 7;
+	DrawState.zoom = 8;
+	DrawState.pan = 9;
+	DrawState.whiteBalance = 10;
+}
+
+if (typeof VrField == "undefined") {
+	var VrField = {};
+	VrField.w = 0;
+	VrField.h = 1;
+	VrField.data = 2;
+}
+
+if (typeof FontField == "undefined") {
+	var FontField = {};
+	FontField.value = 0;
+	FontField.status = 1;
+}
+
+if (typeof BaseImgChg == "undefined") {
+	var BaseImgChg = {};
+	BaseImgChg.before = 0;
+	BaseImgChg.after = 1;
+}
+
+if (typeof UiType == "undefined") {
+	var UiType = {};
+	UiType.toolBar = 0;
+	UiType.scrollBar = 1;
+	UiType.colorBar = 2;
+	UiType.sysToolBar = 3;
+	UiType.displayCanvas = 4;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof BtnData == "undefined") {
+	var BtnData = {};
+	BtnData.id = 0;
+	BtnData.pic = 1;
+	BtnData.state = 2;
+	BtnData.groupId = 3;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  create
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function createToolBarBtns(btnData, parentId) {
+	var strTotal = "";
+	var strElement;
+
+	var len = btnData.length;
+	var i;
+
+	// set style
+
+	for (i = 0; i < len; i++) {
+		strElement = '<span class="' + parentId + ' toolBar" id="' + btnData[i][BtnData.id] + '"></span>';
+		strTotal += strElement;
+	}
+
+	$('#' + parentId).html(strTotal);
+}
+
+function createToolBar(btnData, cssCfg, parentId, id, position, funcClick) {
+	// create div element
+	createDivElement(parentId, id);
+
+	// save button data
+
+	$('#' + id).data('btnData', btnData);
+
+	// create buttons
+
+	createToolBarBtns(btnData, id);
+
+	// set style
+
+	var eleString = '.' + id;
+
+	var toolBar = document.getElementById(id);
+	toolBar.classList.add('scrollable');
+
+	$(eleString).css(cssCfg);
+
+	// set pos
+
+	var isFullH = false;
+	var isFullW = false;
+	var isRight = false;
+	var isBottom = false;
+	var startY = 0;
+	var offsetX = cssCfg.width;
+	var offsetY = cssCfg.height;
+
+	if ('right' === position) {
+		isRight = true;
+		offsetX = 0;
+		isFullH = true;
+
+	}
+
+	if ('left' === position) {
+		offsetX = 0;
+		isFullH = true;
+	}
+
+	if ('top-right' === position) {
+		isRight = true;
+		offsetY = 0;
+		offsetX = -cssCfg.width;
+	}
+
+	if ('top-left' === position) {
+		offsetY = 0;
+		//isFullW = false;
+		isFullW = true;
+	}
+
+	if ('bottom' === position) {
+		offsetX = 60;
+		offsetY = 0;
+		isBottom = true;
+	}
+
+	$(eleString).attr('style', function (index, previousValue) {
+		var attrLeft;
+
+		if (isRight) attrLeft = ' left: calc(100% - ' + (cssCfg.width - index * offsetX) + 'px);';
+		else attrLeft = ' left: ' + index * offsetX + 'px;';
+
+		var curY;
+		var attrTop;
+
+		curY = startY + index * offsetY;
+
+		if (isBottom) attrTop = ' top: ' + (curY) + 'px;';
+		else attrTop = ' top: ' + curY + 'px;';
+
+		return previousValue + attrLeft + attrTop;
+	});
+
+	// set mouse event handler
+
+	$(eleString).hover(toolBarOnMouseEnter, toolBarOnMouseLeave);
+
+	if (funcClick == undefined) {
+		$(eleString).on('click', toolBarOnMouseClick);
+	}
+	else {
+		$(eleString).on('click', funcClick);
+	}
+
+	// set container element with full height
+
+	if (isFullH) {
+		(function () {
+			var cssH =
+			{
+				top: titleH + 'px',
+				height: 'calc(100% - ' + titleH + 'px)',
+				width: cssCfg.width + 'px',
+				background: appCfg.toolBarColorLeave,
+				opacity: appCfg.toolBarOpacityLeave,
+				position: 'absolute',
+			};
+
+			if (isRight) cssH.right = '0px';
+			else cssH.left = '0px';
+
+			$('#' + id).css(cssH);
+		})();
+	}
+
+	if (isFullW) {
+		(function () {
+			var cssH =
+			{
+				top: 0 + 'px',
+				height: cssCfg.height + 'px',
+				width: 'calc(100% - 48px)',
+				background: appCfg.toolBarColorLeave,
+				opacity: appCfg.toolBarOpacityLeave,
+				position: 'absolute',
+			};
+
+			if (isRight) cssH.right = '0px';
+			else cssH.left = '0px';
+
+			$('#' + id).css(cssH);
+		})();
+	}
+
+	// set container element with full width
+	if (isBottom) {
+		(function () {
+			var cssW =
+			{
+				top: 'calc(100% - ' + (appCfg.scrollIconH * 2) + 'px)',
+				left: '48px', //'340px',//appCfg.toolBarIconW + 'px',
+				height: '30px',//appCfg.scrollIconH + 'px',//appCfg.toolBarIconH + 'px',
+				width: '60px',
+				background: "#00000000",//appCfg.toolBarColorLeave,
+				opacity: appCfg.toolBarOpacityLeave,
+				position: 'absolute',
+			};
+
+			$('#' + id).css(cssW);
+		})();
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  update 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function getToolBarBtnIdx(btnData, btnId) {
+	var i;
+	var len = btnData.length;
+
+	for (i = 0; i < len; i++) {
+		if (btnId === btnData[i][BtnData.id]) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+function setToolBarBtnPic(btnData, idx, state) {
+	var eleId;
+	var bkg;
+	var color;
+	var opacity;
+
+	eleId = "#" + btnData[idx][BtnData.id];
+
+	bkg = fcGetDefIconPath(btnData[idx][BtnData.pic]);
+	$(eleId).css('background', bkg);
+
+	if (fullPhotoMode) {
+		if (state === MouseStatus.over) {
+			color = appCfg.toolBarColorEnter;
+			opacity = appCfg.toolBarOpacityEnter;
+		}
+		else if (state === MouseStatus.normal) {
+			color = appCfg.toolBarColorHide;
+			opacity = appCfg.toolBarOpacityHide;
+			// color = appCfg.toolBarColorLeave;
+			// opacity = appCfg.toolBarOpacityLeave;
+		}
+		else {
+			color = appCfg.toolBarColorClick;
+			opacity = appCfg.toolBarOpacityClick;
+		}
+	}
+	else {
+		if (state === MouseStatus.over) {
+			color = appCfg.toolBarColorEnter;
+			opacity = appCfg.toolBarOpacityEnter;
+		}
+		else if (state === MouseStatus.normal) {
+			color = appCfg.toolBarColorLeave;
+			opacity = appCfg.toolBarOpacityLeave;
+		}
+		else {
+			color = appCfg.toolBarColorClick;
+			opacity = appCfg.toolBarOpacityClick;
+		}
+	}
+
+	$(eleId).css('background-color', color);
+	$(eleId).css('background-position', 'center center');
+	$(eleId).css('background-repeat', 'no-repeat');
+	$(eleId).css('opacity', opacity);
+}
+
+function updateToolBar(btnData) {
+	var i;
+	var len = btnData.length;
+
+	for (i = 0; i < len; i++) {
+		if (1 === btnData[i][BtnData.state]) {
+			setToolBarBtnPic(btnData, i, MouseStatus.click);
+		}
+		else if (2 === btnData[i][BtnData.state]) {
+			setToolBarBtnPic(btnData, i, MouseStatus.over);
+		}
+		else {
+			setToolBarBtnPic(btnData, i, MouseStatus.normal);
+		}
+	}
+}
+
+function getToolBarSelectedBtnIdx(btnData, groupId) {
+	let i;
+	const len = btnData.length;
+
+	for (i = 0; i < len; i++) {
+		if (groupId === btnData[i][BtnData.groupId]) {
+			if (btnData[i][BtnData.state] > 0) {
+				return i;
+			}
+		}
+	}
+
+	return -1;
+}
+
+function getToolBarGroupIdBtnCnt(btnData, groupId) {
+	var cnt = 0;
+	var i;
+	var len = btnData.length;
+
+	for (i = 0; i < len; i++) {
+		if (groupId === btnData[i][BtnData.groupId]) {
+			cnt += 1;
+		}
+	}
+
+	return cnt;
+}
+
+function selectToolBarBtn(btnData, idx) {
+	// toggle selectd button state
+
+	var state = 1;
+
+	if (btnData[idx][BtnData.state]) {
+		state = 0;
+	}
+
+	// get group id
+
+	let groupId = btnData[idx][BtnData.groupId];
+
+	if (getToolBarGroupIdBtnCnt(btnData, groupId) > 1) {
+		state = 1;
+	}
+
+	// clear selected button state
+
+	if (groupId > 0) {
+		let preSelected = getToolBarSelectedBtnIdx(btnData, groupId);
+
+		if (preSelected >= 0) {
+			if (groupId === btnData[preSelected][BtnData.groupId]) {
+				btnData[preSelected][BtnData.state] = 0;
+				setToolBarBtnPic(btnData, preSelected, MouseStatus.normal);
+			}
+		}
+
+		if (preSelected == idx) return;
+	}
+
+	// set and update selected button
+
+	btnData[idx][BtnData.state] = state;
+	if (state) {
+		setToolBarBtnPic(btnData, idx, MouseStatus.click);
+
+		if (0 === groupId) {
+			setTimeout(function () {
+				btnData[idx][BtnData.state] = 0;
+				setToolBarBtnPic(btnData, idx, MouseStatus.normal);
+			},
+				100);
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  mouse event 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function toolBarOnMouseHoverHandler(event, state) {
+	var eleId = '#' + event.target.id;
+	var btnData = $(eleId).parent().data('btnData');
+
+	var idx = getToolBarBtnIdx(btnData, event.target.id);
+
+	if (0 === btnData[idx][BtnData.state]) {
+		setToolBarBtnPic(btnData, idx, state);
+	}
+}
+
+function toolBarOnMouseEnter(event) {
+	toolBarOnMouseHoverHandler(event, MouseStatus.over);
+}
+
+function toolBarOnMouseLeave(event) {
+	toolBarOnMouseHoverHandler(event, MouseStatus.normal);
+}
+
+function toolBarOnMouseClick(event) {
+	fcMouseEventNotify(UiType.toolBar, MouseStatus.click, event);
+
+	var btnData = $('#' + event.target.id).parent().data('btnData');
+	var idx = getToolBarBtnIdx(btnData, event.target.id);
+	if (idx >= 0) {
+		selectToolBarBtn(btnData, idx);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  control 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function toolBarGetElementState(id, member) {
+	var btnData = $('#' + id).data('btnData');
+	var i;
+
+	for (i = 0; i < btnData.length; i++) {
+		if (member == btnData[i][BtnData.id]) {
+			return btnData[i][BtnData.state];
+		}
+	}
+}
+
+function toolBarSetElementState(id, member, state) {
+	var btnData = $('#' + id).data('btnData');
+	var i;
+
+	for (i = 0; i < btnData.length; i++) {
+		if (member == btnData[i][BtnData.id]) {
+			btnData[i][BtnData.state] = state;
+			updateToolBar(btnData);
+			return;
+		}
+	}
+}
+
+function toolBarSetAllElementState(id, state) {
+	var btnData = $('#' + id).data('btnData');
+	var i;
+
+	for (i = 0; i < btnData.length; i++) {
+		btnData[i][BtnData.state] = state;
+	}
+	updateToolBar(btnData);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof ColorData == "undefined") {
+	var ColorData = {};
+	ColorData.color = 0;
+	ColorData.state = 1;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  create
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function createColorBarBtns(colorData, parentId) {
+	var strTotal = "";
+	var strElement;
+
+	var len = colorData.length;
+	var i;
+	var eleId;
+
+	for (i = 0; i < len; i++) {
+		//eleId = parentId + '-' + colorData[i][ColorData.color];
+		eleId = colorData[i][ColorData.color];
+
+		createDivElement(parentId, eleId);
+
+		$('#' + eleId).addClass(parentId + ' colorBar');
+	}
+}
+
+function createColorBar(colorData, cssCfg, parentId, id, funcNotify) {
+	// create div element
+
+	createDivElement(parentId, id);
+
+	// set css
+
+	(function () {
+		var css =
+		{
+			position: 'absolute',
+			'margin-left': '0px',
+			background: appCfg.drawSetBackground,
+			opacity: appCfg.drawSetOpacity,
+		};
+
+		var len = colorData.length;
+
+		var w = appCfg.colorIconW;
+		var h = appCfg.colorIconH;
+
+		css.width = (w * len) + 'px';
+		css.height = h + 'px';
+		css.left = 'calc(100% - ' + (w * len) + 'px)';
+		css.top = '0px';
+
+		$('#' + id).css(css);
+
+	})();
+
+	// save color data
+
+	colorData.fnNotify = funcNotify;
+
+	$('#' + id).data('colorData', colorData);
+
+	// create buttons
+
+	createColorBarBtns(colorData, id);
+
+	// set style
+
+	var eleString = '.' + id;
+
+	$(eleString).css(cssCfg);
+
+	// set pos
+
+	$(eleString).attr('style', function (index, previousValue) {
+		var attrLeft;
+		attrLeft = ' left: calc(100% - ' + (cssCfg.width * (index + 1)) + 'px);';
+
+		var attrTop;
+		attrTop = ' top: ' + 0 + 'px;';
+
+		var color;
+		color = ' background: #' + colorData[index][ColorData.color] + ';';
+
+		var margin;
+		margin = ' margin: ' + appCfg.colorIconMarginNormal + 'px;';
+
+		var width;
+		width = ' width: ' + (cssCfg.width - 2 * appCfg.colorIconMarginNormal) + 'px;';
+
+		var height;
+		height = ' height: ' + (cssCfg.height - 2 * appCfg.colorIconMarginNormal) + 'px;';
+
+		return previousValue + attrLeft + attrTop + color + margin + width + height;
+	});
+
+	// set mouse event handler
+
+	$(eleString).hover(colorBarOnMouseEnter, colorBarOnMouseLeave);
+
+	$(eleString).on('click', colorBarOnMouseClick);
+
+	// notify
+
+	colorBarNotify($('#' + id));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  mouse event 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function colorBarOnMouseClick(event) {
+	var colorData = $('#' + event.target.id).parent().data('colorData');
+	var i;
+
+	for (i = 0; i < colorData.length; i++) {
+		if (event.target.id === colorData[i][ColorData.color]) colorData[i][ColorData.state] = 1;
+		else colorData[i][ColorData.state] = 0;
+	}
+
+	updateColorBar(colorData);
+
+	colorBarNotify($('#' + event.target.id).parent());
+
+	fcMouseEventNotify(UiType.colorBar, MouseStatus.click, event);
+}
+
+function colorBarOnMouseHoverHandler(event, state) {
+	var eleId = '#' + event.target.id;
+	var colorData = $(eleId).parent().data('colorData');
+	var idx = getColorBarBtnIdx(colorData, event.target.id);
+
+	if (0 === colorData[idx][ColorData.state]) {
+		setColorBarBtn(colorData, idx, state);
+	}
+}
+
+function colorBarOnMouseEnter(event) {
+	colorBarOnMouseHoverHandler(event, MouseStatus.over);
+}
+
+function colorBarOnMouseLeave(event) {
+	colorBarOnMouseHoverHandler(event, MouseStatus.normal);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  update 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function getColorBarBtnIdx(colorData, btnId) {
+	var i;
+	var len = colorData.length;
+
+	for (i = 0; i < len; i++) {
+		if (btnId === colorData[i][ColorData.color]) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+function setColorBarBtn(colorData, idx, state) {
+	var eleId = "#" + colorData[idx][ColorData.color];
+	var margin;
+	var size;
+
+	if (state === MouseStatus.over) {
+		margin = appCfg.colorIconMarginOver;
+		size = appCfg.colorIconW - appCfg.colorIconMarginNormal * 2;
+	}
+	else if (state === MouseStatus.normal) {
+		margin = appCfg.colorIconMarginNormal;
+		size = appCfg.colorIconW - appCfg.colorIconMarginNormal * 2;
+	}
+	else {
+		margin = appCfg.colorIconMarginClick;
+		size = appCfg.colorIconW - appCfg.colorIconMarginClick * 2;
+	}
+
+	$(eleId).css('margin', margin + 'px');
+	$(eleId).css('width', size + 'px');
+	$(eleId).css('height', size + 'px');
+}
+
+function updateColorBar(colorData) {
+	var i;
+	var len = colorData.length;
+
+	for (i = 0; i < len; i++) {
+		if (1 === colorData[i][ColorData.state]) {
+			setColorBarBtn(colorData, i, MouseStatus.click);
+		}
+		else {
+			setColorBarBtn(colorData, i, MouseStatus.normal);
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  notify 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function hexToRgb(hex) {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+		return r + r + g + g + b + b;
+	});
+
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? {
+		r: parseInt(result[1], 16),
+		g: parseInt(result[2], 16),
+		b: parseInt(result[3], 16)
+	} : null;
+}
+
+function colorBarNotify(id$) {
+	var colorData = $(id$).data('colorData');
+	var color;
+	var i;
+	var r, g, b;
+
+	if (colorData.fnNotify) {
+		for (i = 0; i < colorData.length; i++) {
+			if (colorData[i][ColorData.state]) {
+				color = colorData[i][ColorData.color];
+
+				r = hexToRgb('#' + color).r;
+				g = hexToRgb('#' + color).g;
+				b = hexToRgb('#' + color).b;
+
+				colorData.fnNotify(color, r, g, b);
+			}
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof ColorData == "undefined") {
+	var ColorData = {};
+	ColorData.color = 0;
+	ColorData.state = 1;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  create
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function createColorBarBtnsType2(colorData, parentId) {
+	var len = colorData.length;
+	var i;
+	var spanId;
+	var canvasId;
+	var selector;
+	var id;
+	var ctx;
+	var w, h;
+	var r, g, b;
+	var color;
+
+	w = appCfg.cb2BlockW - 2 * appCfg.cb2FrameGap;
+	h = appCfg.cb2BlockH - 2 * appCfg.cb2FrameGap;
+
+	var cssCanvas =
+	{
+		position: 'absolute',
+		left: appCfg.cb2FrameGap,
+		top: appCfg.cb2FrameGap,
+		width: w,
+		height: h,
+		opacity: 1,
+	};
+
+	var cssSpan =
+	{
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: appCfg.scrollIconW,
+		height: appCfg.scrollIconH,
+		opacity: 1,
+	};
+
+
+	for (i = 0; i < len; i++) {
+		// get color
+
+		color = colorData[i][ColorData.color];
+
+		r = hexToRgbType2('#' + color).r;
+		g = hexToRgbType2('#' + color).g;
+		b = hexToRgbType2('#' + color).b;
+
+		// create base span
+
+		spanId = color;
+		createSpanElement(parentId, spanId);
+
+		// set span size
+
+		selector = '#' + spanId;
+
+		cssSpan.left = (len - 1 - i) * appCfg.scrollIconW;
+
+		$(selector).css(cssSpan);
+
+		// create canvas
+
+		canvasId = spanId + '_' + 'canvas';
+		createCanvasElement(spanId, canvasId);
+
+		// set canvas mouse event handler
+
+		selector = '#' + canvasId;
+
+		$(selector).hover(colorBarOnMouseEnterType2, colorBarOnMouseLeaveType2);
+
+		$(selector).on('click', colorBarOnMouseClickType2);
+
+		// set canvas size
+
+		$(selector).css(cssCanvas);
+
+		$(selector).attr('width', w);
+		$(selector).attr('height', h);
+
+		// draw color block
+
+		id = document.getElementById(canvasId);
+		ctx = id.getContext('2d');
+
+		fcClearCanvas(id);
+
+		var fillStyle = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + 1.0 + ')';
+
+		ctx.fillStyle = fillStyle;
+		ctx.fillRect(0, 0, w, h);
+	}
+}
+
+function createColorBarType2(colorData, cssCfg, parentId, id, funcNotify) {
+	// create div element
+
+	createSpanElement(parentId, id);
+
+	// set css
+
+	(function () {
+		var css =
+		{
+			position: 'absolute',
+			'margin-left': '0px',
+			background: appCfg.drawSetBackground,
+			opacity: appCfg.drawSetOpacity,
+		};
+
+		var len = colorData.length;
+
+		var w = appCfg.cb2BlockW;
+		var h = appCfg.cb2BlockH;
+
+		css.width = (w * len) + 'px';
+		css.height = h + 'px';
+
+
+		// old version, in the bottom bar
+		//css.left = 'calc(100% - ' + (w * len) + 'px)';
+		css.top = '40px'; //'calc(100% - ' + (h + 30) + 'px)';
+		css.left = '0px';
+
+		$('#' + id).css(css);
+
+	})();
+
+	// save color data
+
+	colorData.fnNotify = funcNotify;
+
+	$('#' + id).data('colorData', colorData);
+
+	// create buttons
+
+	createColorBarBtnsType2(colorData, id);
+
+	// notify
+
+	colorBarNotifyType2($('#' + id));
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  mouse event 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function colorBarOnMouseClickType2(event) {
+	var canvasId = event.target.id;
+	var spanId = $('#' + canvasId).parent().attr('id');
+	var baseId = $('#' + spanId).parent().attr('id');
+	var colorData = $('#' + baseId).data('colorData');
+	var i;
+
+	for (i = 0; i < colorData.length; i++) {
+		if (spanId === colorData[i][ColorData.color]) colorData[i][ColorData.state] = 1;
+		else colorData[i][ColorData.state] = 0;
+	}
+
+	updateColorBarType2(colorData);
+
+	colorBarNotifyType2($('#' + baseId));
+
+	fcMouseEventNotify(UiType.colorBar, MouseStatus.click, event);
+}
+
+function colorBarOnMouseHoverHandlerType2(event, state) {
+	var canvasId = event.target.id;
+	var spanId = $('#' + canvasId).parent().attr('id');
+	var baseId = $('#' + spanId).parent().attr('id');
+	var colorData = $('#' + baseId).data('colorData');
+	var idx = getColorBarBtnIdxType2(colorData, spanId);
+
+	if (0 === colorData[idx][ColorData.state]) {
+		setColorBarBtnType2(colorData, idx, state);
+	}
+}
+
+function colorBarOnMouseEnterType2(event) {
+	colorBarOnMouseHoverHandlerType2(event, MouseStatus.over);
+}
+
+function colorBarOnMouseLeaveType2(event) {
+	colorBarOnMouseHoverHandlerType2(event, MouseStatus.normal);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  update 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function getColorBarBtnIdxType2(colorData, btnId) {
+	var i;
+	var len = colorData.length;
+
+	for (i = 0; i < len; i++) {
+		if (btnId === colorData[i][ColorData.color]) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+function setColorBarBtnType2(colorData, idx, state) {
+	var eleId = "#" + colorData[idx][ColorData.color];
+	var bkColor;
+
+	if (state === MouseStatus.over) {
+		bkColor = appCfg.cb2MouseColorEnter;
+	}
+	else if (state === MouseStatus.normal) {
+		bkColor = appCfg.cb2MouseColorLeave;
+	}
+	else {
+		bkColor = appCfg.cb2MouseColorClick;
+	}
+
+	$(eleId).css('background', bkColor);
+}
+
+function updateColorBarType2(colorData) {
+	var i;
+	var len = colorData.length;
+
+	for (i = 0; i < len; i++) {
+		if (1 === colorData[i][ColorData.state]) {
+			setColorBarBtnType2(colorData, i, MouseStatus.click);
+		}
+		else {
+			setColorBarBtnType2(colorData, i, MouseStatus.normal);
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  notify 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function hexToRgbType2(hex) {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+		return r + r + g + g + b + b;
+	});
+
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? {
+		r: parseInt(result[1], 16),
+		g: parseInt(result[2], 16),
+		b: parseInt(result[3], 16)
+	} : null;
+}
+
+function colorBarNotifyType2(id$) {
+	var colorData = $(id$).data('colorData');
+	var color;
+	var i;
+	var r, g, b;
+
+	if (colorData.fnNotify) {
+		for (i = 0; i < colorData.length; i++) {
+			if (colorData[i][ColorData.state]) {
+				color = colorData[i][ColorData.color];
+
+				r = hexToRgbType2('#' + color).r;
+				g = hexToRgbType2('#' + color).g;
+				b = hexToRgbType2('#' + color).b;
+
+				colorData.fnNotify(color, r, g, b);
+			}
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  create
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function createScrollBar(scrollData, cssCfg, parentId, id, funcNotify) {
+	var iconId;
+	var canvasId;
+	var eleId;
+	var bkg;
+	var curX;
+	var w, h;
+	var totalW;
+
+	// create div element
+
+	createSpanElement(parentId, id);
+
+	// set div css
+
+	totalW = scrollData.iconSize + appCfg.scrollIconGap + scrollData.length + appCfg.scrollTickH;
+
+	if (typeof scrollData.iconR != "undefined") totalW += appCfg.scrollIconGap + scrollData.iconSize;
+
+	cssCfg.left = scrollData.startX + 'px';
+	cssCfg.top = scrollData.startY + 'px';
+	cssCfg.width = totalW + 'px';
+	cssCfg.height = scrollData.iconSize + 'px';
+
+	$('#' + id).css(cssCfg);
+
+	// save scroll data
+
+	scrollData.id = id;
+	scrollData.mouseDown = false;
+	scrollData.fnNotify = funcNotify;
+
+	$('#' + id).data('scrollData', scrollData);
+
+	// create child element
+
+	iconId = id + '-iconL';
+	createSpanElement(id, iconId);
+
+	var canvasId = id + '-canvas';
+	createCanvasElement(id, canvasId);
+
+	// set left icon style
+
+	curX = 0;
+
+	eleId = '#' + iconId;
+
+	bkg = fcGetDefIconPath(scrollData.iconL);
+	$(eleId).css('background', bkg);
+
+	$(eleId).css('top', 0 + 'px');
+	$(eleId).css('left', curX + 'px');
+	$(eleId).css('width', scrollData.iconSize + 'px');
+	$(eleId).css('height', scrollData.iconSize + 'px');
+	$(eleId).css('position', 'absolute');
+
+	curX += scrollData.iconSize;
+
+	// set canvas style
+
+	curX += appCfg.scrollIconGap;
+
+	eleId = '#' + canvasId;
+
+	w = scrollData.length + appCfg.scrollTickH;
+	h = scrollData.iconSize;
+
+	$(eleId).css('top', 0 + 'px');
+	$(eleId).css('left', curX + 'px');
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('position', 'absolute');
+
+	$(eleId).attr('width', w);
+	$(eleId).attr('height', h);
+
+	curX += w;
+
+	// set right icon style
+
+	if (typeof scrollData.iconR != "undefined") {
+		iconId = id + '-iconR';
+		createSpanElement(id, iconId);
+
+		curX += appCfg.scrollIconGap;
+
+		eleId = '#' + iconId;
+
+		bkg = fcGetDefIconPath(scrollData.iconR);
+		$(eleId).css('background', bkg);
+
+		$(eleId).css('top', 0 + 'px');
+		$(eleId).css('left', curX + 'px');
+		$(eleId).css('width', scrollData.iconSize + 'px');
+		$(eleId).css('height', scrollData.iconSize + 'px');
+		$(eleId).css('position', 'absolute');
+	}
+
+	// notify host
+
+	scrollBarNotify(id);
+
+	// set canvas mouse event handler 
+
+	eleId = '#' + canvasId;
+
+	(function () {
+
+		var sd = $('#' + id).data('scrollData');
+
+		$(eleId)
+			.on('mousedown', function (event) {
+				if (MouseBtnId.left === event.which) {
+					sd.mouseDown = true;
+
+					updateScrollPos(event);
+
+					fcMouseEventNotify(UiType.scrollBar, MouseStatus.click, event);
+				}
+			})
+			.on('mousemove', function (event) {
+				if (sd.mouseDown) {
+					updateScrollPos(event);
+				}
+			})
+			.on('mouseup', function () {
+				if (MouseBtnId.left === event.which) {
+					sd.mouseDown = false;
+				}
+			})
+			.on('mouseout', function () {
+				if (MouseBtnId.left === event.which) {
+					sd.mouseDown = false;
+				}
+			})
+			.on('touchstart', function (event) {
+				fcTouchHandler(event);
+			})
+			.on('touchmove', function (event) {
+				fcTouchHandler(event);
+			})
+			.on('touchend', function () {
+				fcTouchHandler(event);
+			})
+			.on('touchcancel', function () {
+				fcTouchHandler(event);
+			});
+	})();
+
+	return totalW;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  update
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function updateScrollPos(event) {
+	var eleId = '#' + event.target.id;
+	var sd = $(eleId).parent().data('scrollData');
+
+	var pos = event.offsetX;;
+	var offset = appCfg.scrollTickH / 2;
+
+	if (pos <= offset) pos = 0;
+	if (pos > sd.length) pos = sd.length;
+	sd.curPos = pos;
+
+	updateScrollBar(sd.id);
+
+	scrollBarNotify(sd.id);
+}
+
+function updateScrollBar(id) {
+	var canvas;
+	var eleId = '#' + id;
+	var sd = $(eleId).data('scrollData');
+	var context;
+	var x, y, w, h, r;
+	var offsetY;
+
+	canvas = document.getElementById(id + '-canvas');
+	context = canvas.getContext('2d');
+
+	// clear background
+
+	fcClearCanvas(canvas);
+
+	// account offset Y
+
+	offsetY = (sd.iconSize - appCfg.scrollTickH) / 2;
+
+	// draw axis
+
+	x = appCfg.scrollTickH / 2;
+	y = offsetY + (appCfg.scrollTickH - appCfg.scrollLineH) / 2;
+	w = sd.length;
+	h = appCfg.scrollLineH;
+
+	context.rect(x, y, w, h);
+	context.fillStyle = sd.color;
+	context.fill();
+
+	// draw tick
+
+	x = appCfg.scrollTickH / 2 + sd.curPos;
+	y = offsetY + appCfg.scrollTickH / 2;
+	r = appCfg.scrollTickH / 2;
+
+	context.arc(x, y, r, 0, 2 * Math.PI, false);
+	context.fillStyle = sd.color;
+	context.fill();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  notify
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function scrollBarNotify(id) {
+	var eleId = '#' + id;
+	var sd = $(eleId).data('scrollData');
+
+	if (sd.fnNotify) {
+		sd.fnNotify(sd.length, sd.curPos);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function scrollBarSetPos(id, pos) {
+	var sd = $('#' + id).data('scrollData');
+
+	if (pos <= sd.length) {
+		sd.curPos = pos;
+		updateScrollBar(id);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  create
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function showConfigDlg(mode) {
+	showElement('configDlg', mode);
+}
+
+function initConfigDlg() {
+	var eleId;
+	var sliderId;
+	var configDlg = "configDlg";
+
+	var x = 24;
+	var y = 36;
+	var gapV = 48;
+
+	var w = 370; //420;
+	var h = 200;
+
+	createDivElement("uiArea", configDlg);
+	eleId = "#" + configDlg;
+	$(eleId).css('background', appBaseCfg.ColorLeave);
+	$(eleId).css("top", "calc(50%)");
+	$(eleId).css('left', appCfg.toolBarIconW + "px");
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).hide()
+
+	// close icon
+	// eleId = configDlg + '-close';
+	// createSpanElement(configDlg, eleId);
+
+	// eleId = '#' + eleId;
+	// var bkg = fcGetDefIconPath("close.png");
+
+	// $(eleId).css('background', bkg);
+	// $(eleId).css('top', 0 + 'px');
+	// $(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
+	// $(eleId).css('width', appCfg.toolBarIconW + 'px');
+	// $(eleId).css('height', appCfg.toolBarIconH + 'px');
+	// $(eleId).css('position', 'absolute');
+	// $(eleId).on('click', function () {
+	// 	$("#" + configDlg).hide()
+	// });
+
+	// brightness
+	eleId = configDlg + '-brightness';
+	sliderId = createScrollBarII(configDlg, eleId, "brightness.png", x, y);
+	eleId = '#' + sliderId;
+	$(eleId).attr({
+		"type": "range",
+		"max": 2, //90,
+		"min": 0, //-90,
+		"step": 0.01, //2,
+		"value": 1 //0
+	});
+	$(eleId).on('input', function (m) {
+
+		appFC.previewBrightnessAdj = Math.floor(m.currentTarget.value);
+
+		if (appFC.curMode) {
+			fcCanvasCtrl(DrawState.brightness);
+		}
+	});
+
+	// rotate
+	eleId = configDlg + '-rotate';
+	sliderId = createScrollBarII(configDlg, eleId, "rotate.png", x, y + gapV);
+	eleId = '#' + sliderId;
+	$(eleId).attr({
+		"type": "range",
+		"max": 180,
+		"min": -180,
+		"step": 5,
+		"value": 0
+	});
+	$(eleId).on('input', function (m) {
+		appFC.previewRotate = Math.floor(m.currentTarget.value);
+	});
+
+	// white balence
+	eleId = configDlg + '-whiteBalence';
+	sliderId = createScrollBarII(configDlg, eleId, "wb.png", x, y + gapV * 2);
+	eleId = '#' + sliderId;
+	$(eleId).attr({
+		"type": "range",
+		"max": 1.5, //40,
+		"min": 0.5, //-40,
+		"step": 0.01, //1,
+		"value": 1 //0
+	});
+	$(eleId).on('input', function (m) {
+		appFC.previewWhiteBalanceAdj = Math.floor(m.currentTarget.value);
+
+		if (appFC.curMode) {
+			fcCanvasCtrl(DrawState.whiteBalance);
+		}
+	});
+}
+
+function initConfigDrawDlg() {
+	var eleId;
+	var sliderId;
+	var configDlg = "configDrawDlg";
+
+	var x = 24;
+	var y = 36;
+	var gapV = 48;
+
+	var w = 300;
+	var h = 70;
+
+	createDivElement("uiArea", configDlg);
+	eleId = "#" + configDlg;
+	$(eleId).css('background', appBaseCfg.ColorLeave);
+	$(eleId).css("top", "calc(100% - 100px)");
+	$(eleId).css('left', (winW - w - appCfg.toolBarIconW) + "px");
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).hide()
+
+	// close icon
+	// eleId = configDlg + '-close';
+	// createSpanElement(configDlg, eleId);
+
+	// eleId = '#' + eleId;
+	// var bkg = fcGetDefIconPath("close.png");
+
+	// $(eleId).css('background', bkg);
+	// $(eleId).css('top', 0 + 'px');
+	// $(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
+	// $(eleId).css('width', appCfg.toolBarIconW + 'px');
+	// $(eleId).css('height', appCfg.toolBarIconH + 'px');
+	// $(eleId).css('position', 'absolute');
+	// $(eleId).on('click', function () {
+	// 	$("#" + configDlg).hide()
+	// });
+
+	//
+	initScrollBar();
+	initColorBar();
+}
+
+function createScrollBarII(parentId, id, icon, x, y) {
+	var sliderW = 200;
+	var gapH = 16;
+
+	var eleId = id + "-icon";
+	createSpanElement(parentId, eleId);
+	eleId = '#' + eleId;
+	$(eleId).css({
+		"background": fcGetDefIconPath(icon),
+		"top": y,
+		"left": x,
+		"width": appCfg.toolBarIconW + 'px',
+		"height": appCfg.toolBarIconH + 'px',
+		"position": "absolute"
+	});
+
+	var sliderId = id + '-slider';
+	createInputElement(parentId, sliderId);
+
+	eleId = "#" + sliderId;
+	$(eleId).attr("class", "slider");
+	$(eleId).css({
+		"top": y,
+		"left": x + appCfg.toolBarIconW + gapH,
+		"width": sliderW + 'px',
+		"height": appCfg.toolBarIconH + 'px',
+		"position": "absolute"
+	});
+
+	eleId = id + '-reset';
+	createSpanElement(parentId, eleId);
+
+	eleId = '#' + eleId;
+	$(eleId).css('background', fcGetDefIconPath("undo.png"));
+	$(eleId).css('top', y + 'px');
+	$(eleId).css('left', (x + appCfg.toolBarIconW + gapH + sliderW + gapH) + 'px');
+	$(eleId).css('width', appCfg.toolBarIconW + 'px');
+	$(eleId).css('height', appCfg.toolBarIconH + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).on('click', function () {
+		if (sliderId == "configDlg-rotate-slider")
+			$("#" + sliderId).val(0);
+		else
+			$("#" + sliderId).val(1);
+
+		$("#" + sliderId).trigger("input");
+	});
+
+	return sliderId;
+}
+
+function createScrollBarIII(parentId, id, icon_L, icon_R, x, y) {
+	var sliderW = 200;
+	var gapH = 16;
+
+	// Left Icon
+	var eleId = id + "-icon-L";
+	createSpanElement(parentId, eleId);
+	eleId = '#' + eleId;
+	$(eleId).css({
+		"background": fcGetDefIconPath(icon_L),
+		"top": y,
+		"left": x,
+		"width": appCfg.toolBarIconW + 'px',
+		"height": appCfg.toolBarIconH + 'px',
+		"position": "absolute"
+	});
+
+	// Right Icon
+	var eleId = id + "-icon-R";
+	createSpanElement(parentId, eleId);
+	eleId = '#' + eleId;
+	$(eleId).css({
+		"background": fcGetDefIconPath(icon_R),
+		"top": y,
+		"left": x + appCfg.toolBarIconW + gapH + sliderW + gapH,
+		"width": appCfg.toolBarIconW + 'px',
+		"height": appCfg.toolBarIconH + 'px',
+		"position": "absolute"
+	});
+
+	// slider bar
+	var sliderId = id + '-slider';
+	createInputElement(parentId, sliderId);
+	eleId = "#" + sliderId;
+	$(eleId).attr("class", "slider");
+	$(eleId).css({
+		"top": y,
+		"left": x + appCfg.toolBarIconW + gapH,
+		"width": sliderW + 'px',
+		"height": appCfg.toolBarIconH + 'px',
+		"position": "absolute"
+	});
+
+	// eleId = id + '-reset';
+	// createSpanElement(parentId, eleId);
+
+	// eleId = '#' + eleId;
+	// $(eleId).css('background', fcGetDefIconPath("undo.png"));
+	// $(eleId).css('top', y + 'px');
+	// $(eleId).css('left', ( x + appCfg.toolBarIconW + gapH + sliderW + gapH )  + 'px');
+	// $(eleId).css('width', appCfg.toolBarIconW + 'px');
+	// $(eleId).css('height', appCfg.toolBarIconH + 'px');
+	// $(eleId).css('position', 'absolute');
+	// $(eleId).on('click', function(){
+	// 	$("#"+sliderId).val(0);
+	// 	$("#"+sliderId).trigger("input");
+	// });
+
+	return sliderId;
+}
+
+function createScrollBarDlg(scrollData, cssCfg, parentId, id, funcNotify, withReset = false) {
+	var eleId;
+	var w, h;
+	var bkg;
+	var dlgCss =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+		background: appCfg.scrollDlgBkg,
+		opacity: appCfg.scrollDlgOpacity,
+	};
+
+	// create div element
+
+	createSpanElement(parentId, id);
+
+	// set div css
+
+	w = scrollData.iconSize + appCfg.scrollIconGap + scrollData.length + appCfg.scrollTickH;
+	if (typeof scrollData.iconR != "undefined") w += appCfg.scrollIconGap + scrollData.iconSize;
+
+	h = scrollData.iconSize + appCfg.toolBarIconH;
+
+	dlgCss.left = 'calc(50% - ' + (w / 2) + 'px)';
+	dlgCss.top = 'calc(50% - ' + ((h - appCfg.titleIconH) / 2) + 'px)';
+	dlgCss.width = w + 'px';
+	dlgCss.height = h + 'px';
+
+	$('#' + id).css(dlgCss);
+
+	// create close icon element
+
+	eleId = id + '-close';
+	createSpanElement(id, eleId);
+
+	eleId = '#' + eleId;
+	bkg = fcGetDefIconPath("close.png");
+
+	$(eleId).css('background', bkg);
+	$(eleId).css('top', 0 + 'px');
+	$(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
+	$(eleId).css('width', appCfg.toolBarIconW + 'px');
+	$(eleId).css('height', appCfg.toolBarIconH + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).on('click', ScrollBarDlgClose);
+
+	// creat reset icon elment
+	if (withReset) {
+		eleId = id + '-reset';
+		createSpanElement(id, eleId);
+
+		eleId = '#' + eleId;
+		bkg = fcGetDefIconPath("undo.png");
+
+		$(eleId).css('background', bkg);
+		$(eleId).css('top', 0 + 'px');
+		$(eleId).css('left', (w / 2 - appCfg.toolBarIconW / 2) + 'px');
+		$(eleId).css('width', appCfg.toolBarIconW + 'px');
+		$(eleId).css('height', appCfg.toolBarIconH + 'px');
+		$(eleId).css('position', 'absolute');
+		$(eleId).on('click', function () {
+			scrollBarSetPos(id + '-scrollbar', scrollData.length / 2);
+			updateScrollBar(id + '-scrollbar');
+			scrollBarNotify(id + '-scrollbar');
+		});
+	}
+
+
+	// create scroll bar
+
+	eleId = id + '-scrollbar';
+
+	scrollData.startY = appCfg.toolBarIconH;
+
+	createScrollBar(scrollData, cssCfg, id, eleId, funcNotify);
+	updateScrollBar(eleId);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  event handler
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function ScrollBarDlgClose(event) {
+	fcCloseActiveDlg();
+}
+
+function ScrollBarDlgSetPos(id, pos) {
+	var eleId = id + '-scrollbar';
+
+	scrollBarSetPos(eleId, pos);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof PictureWinAction == "undefined") {
+	var PictureWinAction = {};
+	PictureWinAction.move = 0;
+	PictureWinAction.trAnchor = 1;
+	PictureWinAction.tlAnchor = 2;
+	PictureWinAction.brAnchor = 3;
+	PictureWinAction.blAnchor = 4;
+	PictureWinAction.down = 5;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  function 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initPictureWin() {
+	// set default data
+
+	var picData =
+	{
+		dispX: 0,
+		dispY: 0,
+		dispW: 0,
+		dispH: 0,
+		imgSrc: 0,
+		isActive: false,
+		x: 0,
+		y: 0,
+		w: 0,
+		h: 0,
+		mouseDown: false,
+		type: PictureWinAction.down,
+		startX: 0,
+		startY: 0,
+	};
+
+	var eleId = '#importPictureWin';
+
+	$(eleId).data('picData', picData);
+
+	// create image display area
+
+	displayPictureCreateImgDsiplayArea();
+
+	displayPictureMouseEvent('importPicture', PictureWinAction.move);
+
+	// $('#importPictureWin').on('click', function(event) {
+	// 	displayPictureWinClose(true);
+	// });
+
+	$('#importPictureWin').on('dblclick', function (event) {
+		displayPictureWinClose(true);
+	});
+
+	// verify expand ratio
+
+	var expandRatio;
+
+	expandRatio = appCfg.ipwRadiusExpandRatio;
+	expandRatio = Math.floor(expandRatio);
+	if (expandRatio < 1) expandRatio = 1;
+
+	appFC.ipwRadiusExpandRatio = expandRatio;
+
+	// create anchor
+
+	displayPictureCreateAnchor('tlAnchor', PictureWinAction.tlAnchor);
+	displayPictureCreateAnchor('trAnchor', PictureWinAction.trAnchor);
+	displayPictureCreateAnchor('blAnchor', PictureWinAction.blAnchor);
+	displayPictureCreateAnchor('brAnchor', PictureWinAction.brAnchor);
+
+	// hide
+
+	activePictureWin(false);
+}
+
+function displayPictureCreateImgDsiplayArea() {
+	var r = appCfg.ipwRadius;
+
+	var css =
+	{
+		position: 'absolute',
+		left: r + 'px',
+		top: r + 'px',
+		width: 'calc(100% - ' + 2 * r + 'px)',
+		height: 'calc(100% - ' + 2 * r + 'px)',
+		opacity: appCfg.ipwOpacity,
+	};
+
+	createCanvasElement('importPictureWin', 'importPicture');
+
+	$('#importPicture').css(css);
+}
+
+function displayPictureCreateAnchor(id, type) {
+	var eleId = "#" + id;
+	var x, y;
+	var r = appCfg.ipwRadius;
+	var expandRatio;
+	var size;
+	var extraSpace;
+
+	// caculate extra space
+
+	size = r * 2;
+	expandRatio = appFC.ipwRadiusExpandRatio;
+	extraSpace = size * (expandRatio - 1) / 2;
+	appFC.ipwExtraSpace = extraSpace;
+
+	// create
+
+	createCanvasElement('importPictureWin', id);
+
+	// set size
+
+	switch (type) {
+		case PictureWinAction.trAnchor:
+			x = 'calc(100% - ' + (size + extraSpace) + 'px)';
+			y = -extraSpace + 'px';
+			break;
+
+		case PictureWinAction.tlAnchor:
+			x = -extraSpace + 'px';
+			y = -extraSpace + 'px';
+			break;
+
+		case PictureWinAction.brAnchor:
+			x = 'calc(100% - ' + (size + extraSpace) + 'px)';
+			y = 'calc(100% - ' + (size + extraSpace) + 'px)';
+			break;
+
+		case PictureWinAction.blAnchor:
+			x = -extraSpace + 'px';
+			y = 'calc(100% - ' + (size + extraSpace) + 'px)';
+			break;
+	}
+
+	size = size * expandRatio;
+
+	var css =
+	{
+		position: 'absolute',
+		left: x,
+		top: y,
+		width: size + 'px',
+		height: size + 'px',
+		opacity: appCfg.ipwOpacity,
+	};
+
+	$(eleId).css(css);
+
+	$(eleId).attr('width', size);
+	$(eleId).attr('height', size);
+
+	// draw circle
+
+	var angle = Math.PI * 2;
+
+	var ctx = document.getElementById(id).getContext('2d');
+
+	ctx.fillStyle = appCfg.ipwColor;
+	ctx.strokeStyle = appCfg.ipwColor;
+	ctx.lineWidth = appCfg.ipwLineWidth;
+
+	ctx.beginPath();
+	ctx.arc((r + extraSpace), (r + extraSpace), r, 0, angle, false);
+	ctx.closePath();
+	ctx.fill();
+
+	// set mouse event handler
+
+	displayPictureMouseEvent(id, type);
+}
+
+var fnDisplayPicture = false;
+
+function updateImgSizeEx() {
+	var mc = appFC.curMode;
+	var ratio = mc.imgW / dispW;
+	var eleId = '#importPictureWin';
+	var pd = $(eleId).data('picData');
+
+	pd.x = ($(eleId).offset().left - dispX) * ratio;
+	pd.y = ($(eleId).offset().top - dispY) * ratio;
+	pd.w = ($(eleId).width()) * ratio;
+	pd.h = ($(eleId).height()) * ratio;
+
+	pd.dispX = $(eleId).offset().left - dispX;
+	pd.dispY = $(eleId).offset().top - dispY;
+	pd.dispW = $(eleId).width();
+	pd.dispH = $(eleId).height();
+}
+
+function updateSizeEx(type, event) {
+	var eleId = '#importPictureWin';
+	var pd = $(eleId).data('picData');
+
+	var dx = event.clientX - pd.startX;
+	var dy = event.clientY - pd.startY;
+
+	var x = pd.dispX;
+	var y = pd.dispY;
+	var w = pd.dispW;
+	var h = pd.dispH;
+
+	switch (type) {
+		case PictureWinAction.trAnchor:
+			w += dx;
+			y += dy;
+			h -= dy;
+			break;
+
+		case PictureWinAction.tlAnchor:
+			x += dx;
+			w -= dx;
+			y += dy;
+			h -= dy;
+			break;
+
+		case PictureWinAction.brAnchor:
+			w += dx;
+			h += dy;
+			break;
+
+		case PictureWinAction.blAnchor:
+			x += dx;
+			w -= dx;
+			h += dy;
+			break;
+	}
+
+	var css =
+	{
+		left: dispX + x,
+		top: dispY + y,
+		width: w,
+		height: h,
+	};
+
+	$('#importPictureWin').css(css);
+}
+
+function moveEx(event) {
+	var eleId = '#importPictureWin';
+	var pd = $(eleId).data('picData');
+	var dx = event.clientX - pd.startX;
+	var dy = event.clientY - pd.startY;
+	var css =
+	{
+		left: dispX + pd.dispX + dx,
+		top: dispY + pd.dispY + dy,
+	};
+	$('#importPictureWin').css(css);
+}
+
+function displayPictureMouseEvent(id, type) {
+	var eleId = '#importPictureWin';
+	var pd = $(eleId).data('picData');
+	var mc = appFC.curMode;
+
+	var r = appCfg.ipwRadius;
+	var r2 = r * r;
+
+	eleId = '#' + id;
+
+	$(eleId)
+		.on('mousedown', function (event) {
+			if (MouseBtnId.left === event.which) {
+				if (checkInside(event, type)) {
+					pd.mouseDown = true;
+
+					// pd.startX = event.offsetX;
+					// pd.startY = event.offsetY;
+
+					pd.startX = event.clientX;
+					pd.startY = event.clientY;
+
+					pd.type = type;
+
+					fnDisplayPicture = true;
+				}
+			}
+		})
+		.on('dblclick', function (event) {
+			displayPictureWinClose(true);
+		})
+		.on('mousemove', function (event) {
+			if (pd.mouseDown) {
+				switch (pd.type) {
+					case PictureWinAction.move:
+						//console.log(event.clientX);
+						moveEx(event);
+						break;
+
+					case PictureWinAction.trAnchor:
+					case PictureWinAction.tlAnchor:
+					case PictureWinAction.brAnchor:
+					case PictureWinAction.blAnchor:
+						updateSizeEx(pd.type, event);
+						break;
+				}
+			}
+		})
+		.on('mouseup', function (event) {
+			if (MouseBtnId.left === event.which) {
+				pd.mouseDown = false;
+				updateImgSizeEx();
+
+				fnDisplayPicture = false;
+			}
+		})
+		.on('mouseout', function (event) {
+			if (MouseBtnId.left === event.which) {
+				//pd.mouseDown = false;
+				//updateImgSize();
+			}
+		})
+		.on('touchstart', function (event) {
+			fcTouchHandler(event);
+		})
+		.on('touchmove', function (event) {
+			fcTouchHandler(event);
+		})
+		.on('touchend', function (event) {
+			fcTouchHandler(event);
+		})
+		.on('touchcancel', function (event) {
+			fcTouchHandler(event);
+		});
+
+	function updateImgSize() {
+		var mc = appFC.curMode;
+		var ratio = mc.imgW / dispW;
+
+		pd.x = pd.dispX * ratio;
+		pd.y = pd.dispY * ratio;
+		pd.w = pd.dispW * ratio;
+		pd.h = pd.dispH * ratio;
+	}
+
+	function updateSize(type, event) {
+		var dx = event.offsetX - pd.startX;
+		var dy = event.offsetY - pd.startY;
+
+		var x = pd.dispX;
+		var y = pd.dispY;
+		var w = pd.dispW;
+		var h = pd.dispH;
+
+		switch (type) {
+			case PictureWinAction.trAnchor:
+				w += dx;
+				y += dy;
+				h -= dy;
+				break;
+
+			case PictureWinAction.tlAnchor:
+				x += dx;
+				w -= dx;
+				y += dy;
+				h -= dy;
+				break;
+
+			case PictureWinAction.brAnchor:
+				w += dx;
+				h += dy;
+				break;
+
+			case PictureWinAction.blAnchor:
+				x += dx;
+				w -= dx;
+				h += dy;
+				break;
+		}
+
+		pd.dispX = x;
+		pd.dispY = y;
+		pd.dispW = w;
+		pd.dispH = h;
+
+		var css =
+		{
+			left: dispX + x,
+			top: dispY + y,
+			width: w,
+			height: h,
+		};
+
+		$('#' + event.target.id).parent().css(css);
+		//$('#importPictureWin').css(css);	
+	}
+
+	function move(event) {
+		var dx = event.offsetX - pd.startX;
+		var dy = event.offsetY - pd.startY;
+
+		pd.dispX += dx;
+		pd.dispY += dy;
+
+		var css =
+		{
+			left: dispX + pd.dispX,
+			top: dispY + pd.dispY,
+		};
+
+		$('#' + event.target.id).parent().css(css);
+	}
+
+	function checkInside(event, type) {
+		var size = appCfg.ipwRadius * 2;
+		var extraSpace = appFC.ipwExtraSpace;
+		var x, y;
+
+		if (PictureWinAction.move == type) return true;
+
+		x = event.offsetX;
+		y = event.offsetY;
+
+		if ((x >= extraSpace) && (x < (extraSpace + size)) && (y >= extraSpace) && (y < (extraSpace + size))) return true;
+
+		return false;
+	}
+}
+
+function displayPictureWin(image) {
+	var imgDrawW, imgDrawH;
+	var mc = appFC.curMode;
+	var id = 'importPictureWin';
+	var selector = '#' + id;
+	var r = appCfg.ipwRadius;
+
+	// ajust display size
+	imgDrawW = image.width;
+	imgDrawH = image.height;
+
+	// limit min size
+	var minSize = 200;//r*2;
+
+	if (imgDrawW < minSize) {
+		imgDrawH = imgDrawH * minSize / imgDrawW;
+		imgDrawW = minSize;
+	}
+
+	if (imgDrawH < minSize) {
+		imgDrawW = imgDrawW * minSize / imgDrawH;
+		imgDrawH = minSize;
+	}
+
+	// limit max size
+
+	var maxW = mc.imgW - r * 2;
+	var maxH = mc.imgH - r * 2;
+
+	if (imgDrawW > maxW) {
+		imgDrawH = imgDrawH * maxW / imgDrawW;
+		imgDrawW = maxW;
+	}
+
+	if (imgDrawH > maxH) {
+		imgDrawW = imgDrawW * maxH / imgDrawH;
+		imgDrawH = maxH;
+	}
+
+	// location in base image
+
+	var canvasImgW, canvasImgH;
+	var x, y;
+	var w, h;
+	var ratio;
+
+	canvasImgW = image.width + r * 2;
+	canvasImgH = image.height + r * 2;
+
+	w = imgDrawW + r * 2;
+	h = imgDrawH + r * 2;
+
+	x = (mc.imgW - w) / 2;
+	y = (mc.imgH - h) / 2;
+
+	// update store data
+
+	var pd = $(selector).data('picData');
+
+	pd.imgSrc = image;
+	pd.dispW = dispW;
+	pd.dispH = dispH;
+	pd.x = x;
+	pd.y = y;
+	pd.w = w;
+	pd.h = h;
+
+	// location in display area
+
+	pd.isActive = true;
+
+	resizePictureWin();
+
+	// ���J�v��
+
+	selector = '#importPicture'
+	$(selector).attr('width', image.width);
+	$(selector).attr('height', image.height);
+
+	var ctx = document.getElementById('importPicture').getContext('2d');
+
+	ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
+
+	// ��� 
+
+	activePictureWin(true);
+}
+
+function activePictureWin(mode) {
+	var pd = $('#' + 'importPictureWin').data('picData');
+
+	showElement('importPictureWin', mode);
+
+	pd.isActive = mode;
+}
+
+function resizePictureWin() {
+	var pd = $('#' + 'importPictureWin').data('picData');
+	var mc = appFC.curMode;
+	var x, y;
+	var w, h;
+	var ratio;
+
+	if (typeof pd == "undefined") return;
+
+	if (false == pd.isActive) return;
+
+	ratio = dispW / mc.imgW;
+
+	x = pd.x * ratio;
+	y = pd.y * ratio;
+	w = pd.w * ratio;
+	h = pd.h * ratio;
+
+	var css =
+	{
+		position: 'absolute',
+		left: dispX + x,
+		top: dispY + y,
+		width: w,
+		height: h,
+		opacity: appCfg.ipwOpacity,
+	};
+
+	$('#' + 'importPictureWin').css(css);
+
+	pd.dispX = x;
+	pd.dispY = y;
+	pd.dispW = w;
+	pd.dispH = h;
+}
+
+function displayPictureWinClose(draw) {
+	if (!draw) {
+		activePictureWin(false);
+		return;
+	}
+
+
+
+	var eleId = '#importPictureWin';
+	var pd = $(eleId).data('picData');
+
+	// var mc = appFC.curMode;
+	// var ratio = mc.imgW / dispW;
+	// pd.dispX = ($(eleId).offset().left - dispX) * ratio;
+	// pd.dispY = ($(eleId).offset().top - dispY) * ratio;
+	// pd.dispW = ($(eleId).width()) * ratio;
+	// pd.dispH = ($(eleId).height()) * ratio;
+
+	var mc = appFC.curMode;
+	var ctx = appFC.drawContext;
+	var r = appCfg.ipwRadius * mc.imgW / dispW;
+
+	if (false == pd.isActive)
+		return;
+
+	fcClearDrawingCanvas();
+
+	//console.log(pd);
+	//console.log(r);
+	ctx.drawImage(pd.imgSrc, 0, 0, pd.imgSrc.width, pd.imgSrc.height, pd.x + r, pd.y + r, pd.w - 2 * r, pd.h - 2 * r);
+
+	fcCanvasCtrl(DrawState.end);
+	if (mc.imageProcess) mc.imageProcess();
+
+	activePictureWin(false);
+
+	if (IsScanMode) {
+		//console.log("close active Picture Win");
+		attachCropBox(dispW, dispH);
+	}
+}
+
+
+const appName = "Documate";
+
+
+var appBaseCfg =
+{
+	// windows resize delay
+
+	resizeDelayMs: 100,
+
+	// mode / title / system / toolbar icon size
+
+	iconW: 48,
+	iconH: 48,
+
+	// drawing cfg area size 
+
+	drawSetH: 30,
+
+	// mouse event
+
+	ColorEnter: '#2874A6',
+	ColorLeave: '#154360',
+	ColorClick: '#1F618D',
+	ColorHide: '#000',
+
+	OpacityEnter: '1.0',
+	OpacityLeave: '1.0',
+	OpacityClick: '1.0',
+	OpacityHide: '0',
+
+	resolutionIdx: -1
+};
+
+var appCfg =
+{
+	// version
+
+	cfgVersion: '1.5.0',
+
+	// background color
+
+	bgColor: '#808080',//'#FAFAFA',
+
+	// used icon size
+
+	titleIconH: appBaseCfg.iconH,
+
+	toolBarIconW: appBaseCfg.iconW,
+	toolBarIconH: appBaseCfg.iconH,
+
+	modeIconW: 100,
+	modeIconH: appBaseCfg.iconH,
+
+	// common mouse event config
+
+	mouseColorEnter: appBaseCfg.ColorEnter,
+	mouseColorLeave: appBaseCfg.ColorLeave,
+	mouseColorClick: appBaseCfg.ColorClick,
+
+	mouseOpacityEnter: appBaseCfg.OpacityEnter,
+	mouseOpacityLeave: appBaseCfg.OpacityLeave,
+	mouseOpacityClick: appBaseCfg.OpacityClick,
+
+	// drawing config
+
+	drawSetH: appBaseCfg.drawSetH,
+
+	drawSetBackground: appBaseCfg.ColorLeave,
+	drawSetOpacity: appBaseCfg.OpacityLeave,
+
+	// drawing config color select bar type 1
+
+	colorIconW: 30,
+	colorIconH: appBaseCfg.drawSetH,
+	colorIconMarginClick: 3,
+	colorIconMarginNormal: 6,
+	colorIconMarginOver: 4,
+	colorIconOpacity: '1.0',
+
+	// drawing config color select bar type 2
+
+	cb2Apply: 1,
+
+	cb2BlockW: 30,
+	cb2BlockH: appBaseCfg.drawSetH,
+	cb2FrameGap: 6,
+	cb2MouseColorEnter: appBaseCfg.ColorEnter,
+	cb2MouseColorLeave: appBaseCfg.ColorLeave,
+	cb2MouseColorClick: appBaseCfg.ColorClick,
+
+	// scroll bar common set
+
+	scrollIconW: 30,
+	scrollIconH: appBaseCfg.drawSetH,
+	scrollIconGap: 0,
+	scrollTickH: 12,
+	scrollLineH: 2,
+	scrollColor: "#F8F9F9",
+	scrollGroupGap: 8,
+
+	// drawing config opacity scroll bar
+
+	scrollOpacityW: 90,
+	scrollOpacityDefPos: 80,
+
+	// drawing config line width scroll bar
+
+	scrollLineWidthW: 90,
+	scrollLineWidthDefPos: 30,
+
+	lineWidthMin: 4,
+	lineWidthMax: 40,
+
+	// scroll bar dialog
+
+	scrollDlgBkg: appBaseCfg.ColorLeave,
+	scrollDlgOpacity: appBaseCfg.OpacityLeave,
+
+	// brightness scroll bar
+
+	scrollBrighnessW: 180,
+	scrollBrighnessDefPos: 90,
+
+	brightnewwMin: -128,
+	brightnewwMax: 128,
+
+	whiteBalanceMin: -25,
+	whiteBalanceMax: 25,
+
+	// zoom scroll bar
+
+	scrollZoomW: 180,
+	scrollZoomDefPos: 0,
+
+	zoomMaxRatio: 8,
+
+	// pan window
+
+	panWinGapX: 4,
+	panWinGapY: 4,
+	panWinColor: appBaseCfg.ColorLeave,
+	panCropColor: '#555',
+	panOpacity: appBaseCfg.OpacityLeave,
+
+	// setting dialog
+
+	sdBkg: appBaseCfg.ColorLeave,
+	sdOpacity: appBaseCfg.OpacityLeave,
+
+	sdIconW: appBaseCfg.iconW,
+	sdIconH: appBaseCfg.iconH,
+
+	sdExtraW: 14,
+
+	sdIconScrollGap: 4,
+	sdGroupGap: 0,
+	sdScrollGap: 8,
+	sdFrameGapX: 4,
+	sdFrameGapY: 4,
+	sdScrollH: 30,
+
+	sdVideoRsoW: 120,
+	sdFontFamilyW: 100,
+	sdFontStyleW: 100,
+	sdFontSizeW: 40,
+
+	// text input dialog
+
+	tidBkg: appBaseCfg.ColorLeave,
+	tidOpacity: appBaseCfg.OpacityLeave,
+
+	tidIconW: appBaseCfg.iconW,
+	tidIconH: appBaseCfg.iconH,
+	tidTextFrmW: 300,
+	tidTextFrmH: 200,
+	tidFrameGap: 8,
+	tidIconFrmGap: 4,
+
+	tidTextSize: 20,
+
+	// drawing tool
+
+	eraserOpacity: 0.8,
+
+	minArrowSize: 10,
+
+	// tool bar 
+
+	toolBarColorEnter: appBaseCfg.ColorEnter,
+	toolBarColorLeave: appBaseCfg.ColorLeave,
+	toolBarColorClick: appBaseCfg.ColorClick,
+	toolBarColorHide: appBaseCfg.ColorHide,
+
+	toolBarOpacityEnter: appBaseCfg.OpacityEnter,
+	toolBarOpacityLeave: appBaseCfg.OpacityLeave,
+	toolBarOpacityClick: appBaseCfg.OpacityClick,
+	toolBarOpacityHide: appBaseCfg.OpacityHide,
+
+	// import picture window
+
+	ipwColor: '#AAA',
+	ipwOpacity: 1,
+	ipwLineWidth: 6,
+	ipwRadius: 16,
+
+	ipwRadiusExpandRatio: 1,
+
+	// video stream
+
+	defPreviewRsoX: 1920,
+	defPreviewRsoY: 1080,
+
+	// drawing board 
+
+	defDrawingBoardW: 1920,
+	defDrawingBoardH: 1080,
+
+	drawingBoardBgColor: '#FFF',
+
+	// playback
+
+	defPictureW: 1920,
+	defPictureH: 1080,
+
+	thumbW: 160,
+	thumbH: 120,
+	thumbPadding: 10,
+	thumbFrmSize: 4,
+	thumbFrmColorNormal: '#000',
+	thumbFrmColorChecked: '#FF0',
+
+	pbInfoW: 240,
+	pbInfoH: 24,
+	pbInfoColor: '#FF0',
+	pbInfoColor_Page: '#FF0',
+	pbInfoColor_Item: '#3F3',
+	pbInfoFontSize: '150%',
+	pbInfoFontWWeight: 'normal',
+
+	// about
+
+	aboutWinW: 400,
+	aboutWinH: 340,
+	aboutBkg: '#154360',
+	aboutOpacity: 1,
+	aboutIconW: appBaseCfg.iconW,
+	aboutIconH: appBaseCfg.iconH,
+	aboutGapX: 30,
+
+	// periodic capture dialog
+
+	pcdBkg: appBaseCfg.ColorLeave,
+	pcdOpacity: appBaseCfg.OpacityLeave,
+
+	pcdIconOverlayY: 20,
+	pcdIconW: appBaseCfg.iconW,
+	pcdIconH: appBaseCfg.iconH,
+	pcdTextW: 80,
+	pcdTextH: 20,
+	pcdUnitW: 60,
+	pcdUnitH: 16,
+	pcdUnitOffsetY: 4,
+	pcdExtraW: 12,
+
+	pcdCapturePeriodSec: 1,
+	pcdCaptureIntervalHour: 1,
+
+	// periodic capture info bar
+
+	pcibBkg: appBaseCfg.ColorLeave,
+	pcibOpacity: appBaseCfg.OpacityLeave,
+
+	pcibIconW: appBaseCfg.iconW,
+	pcibIconH: appBaseCfg.iconH,
+
+	pcibTextH: 24,
+	pcibTextW: 120,
+	pcibTextColor: '#2F2',
+	pcibTextFontSize: '150%',
+
+	pcidGapY: 4,
+
+	// confirm dialog
+
+	cdIconW: appBaseCfg.iconW,
+	cdIconH: appBaseCfg.iconH,
+
+	cdFrameGap: 26,
+	cdIconGap: 10,
+
+	cdBkg: appBaseCfg.ColorLeave,
+	cdOpacity: appBaseCfg.OpacityLeave,
+
+	cdMouseColorEnter: appBaseCfg.ColorEnter,
+	cdMouseColorLeave: appBaseCfg.ColorLeave,
+	cdMouseColorClick: appBaseCfg.ColorClick,
+
+	// sys info window
+
+	sysInfoWinW: 88,
+	sysInfoWinH: 82,
+	sysInfoH: 16,
+	sysInfoGap: 4,
+
+	// drawing canvas overlay
+
+	disableDrawingCanvasOverlay: 0,
+
+	// disable UI component
+
+	disableDrawingToolBar: 0,
+	disableColorBar: 0,
+	disableDrawingOpacityScrollBar: 0,
+	disableDrawingLineWidthScrollBar: 0,
+
+	disableDrawTextSetting: 0,
+};
+
+var drawingToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		//["sys_fullPhoto", "fullPhoto.png", 0, 1],
+		["btn_freehand", "freeHand.png", 0, 1],
+		["btn_arrow", "arrow.png", 0, 1],
+		["btn_eraser", "ereser.png", 0, 1],
+		["btn_line", "line.png", 0, 1],
+		["btn_rectangleLine", "rectangleLine.png", 0, 1],
+		["btn_rectangle", "rectangle.png", 0, 1],
+		["btn_circleLine", "circleLine.png", 0, 1],
+		["btn_circle", "circle.png", 0, 1],
+		["btn_erase_all", "clearAll.png", 0, 0],
+		["btn_text", "text.png", 0, 1],
+		["btn_configDraw", "config.png", 0, 0],
+	];
+
+var drawingToolBarDataEmpty =
+	[
+	];
+
+var bottomToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		//["btn_record", "record.png", 0, 0],
+		//[ "btn_pause",		  "pause.png",				0,			0 ]
+	]
+
+var previewToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		["btn_setting", "setting.png", 0, 0],
+		["btn_capture", "capture.png", 0, 0],
+		["btn_record", "record2.png", 0, 0],
+		["btn_freeze", "Freeze.png", 0, 3],
+		// ["btn_timesave", "timesave.png", 0, 0],
+		["btn_mirrow", "mirrow.png", 0, 5],
+		["btn_flip", "flip.png", 0, 6],
+		["btn_config", "config.png", 0, 0],
+		//[ "btn_brightness",    "brightness.png",	    0,			0 ],
+		//[ "btn_whitebalance",  "wb.png",        	    0,			0 ],
+		["btn_zoom", "zoom.png", 0, 0],
+		["btn_importPic", "inportPic.png", 0, 0],
+		["btn_redo", "redo.png", 0, 0],
+		["btn_undo", "undo.png", 0, 0],
+		//[ "btn_test",          "setting.png",	        0,			0 ],
+	];
+
+var scanToolBarData_S1 =
+	[
+		// element id          pic filename             selected	group id
+		//[ "scbtn_setting",     "setting.png",	        0,			0 ],
+		["scbtn_transform", "perspectiveImage.png", 0, 0],
+		["scbtn_importPic", "inportPic.png", 0, 0],
+		["Dummy", "dummy.png", 0, 0],
+		["scbtn_fullcrop", "fullPhoto.png", 0, 6],
+		["scbtn_redo", "redo.png", 0, 0],
+		["scbtn_undo", "undo.png", 0, 0],
+	];
+
+var scanToolBarData_S2 =
+	[
+		// element id          pic filename             selected	group id
+		//[ "scbtn_setting",     "setting.png",	        0,			0 ],
+		["scbtn_preview", "backScanMode.png", 0, 0],
+		["scbtn_saveDisk", "savePlayback.png", 0, 0],
+		["scbtn_ocr", "ocr.png", 0, 0],
+		["Dummy", "dummy.png", 0, 0],
+		["scbtn_mirrow", "mirrow.png", 0, 5],
+		["scbtn_flip", "flip.png", 0, 6],
+		//[ "scbtn_config",  	   "config.png",		    0,			0 ],
+		["scbtn_redo2", "redo.png", 0, 0],
+		["scbtn_undo2", "undo.png", 0, 0],
+	];
+
+var multiscanToolBarData =
+	[
+		// element id          	pic filename            selected	group id
+		["mscbtn_capture", "perspectiveImage.png", 0, 0],
+		["mscbtn_merge", "Merge_multiscan.png", 0, 0],
+		["mscbtn_cancel", "close.png", 0, 0],
+		["Dummy", "dummy.png", 0, 0],
+		["mscbtn_fullcrop", "fullPhoto.png", 0, 6],
+	]
+
+var modeToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		["mode_about", "about.png", 0, 0],
+		["mode_preview", "preview.png", 1, 1],
+		//["mode_playback", "playback.png", 0, 1],
+		["mode_drawingBoard", "drawingboard.png", 0, 1],
+		//[ "mode_scan",         "scanMode.png",	        0,			1 ],
+		//[ "mode_multiscan",    "MultiscanMode.png",     0,			1 ],
+	];
+
+var sysToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		//[ "sys_close",         "close.png",			    0,			1 ],
+		//[ "sys_fullScreen",    "fullScreen.png",		0,			1 ],
+		//[ "sys_fullPhoto",     "fullPhoto.png",		    0,			1 ],
+		//[ "sys_smallScreen",   "screenSmall.png",		0,			1 ],
+
+		["sys_fullPhoto", "fullPhoto.png", 0, 1],
+	];
+
+var thumbnailToolBarData =
+	[
+		// element id          pic filename             selected	group id
+		["btn_saveDisk", "saveDisk.png", 0, 0],
+		//[ "btn_uploadCloud",   "uploadCloud.png",		0,			0 ],
+		["btn_delete", "delete.png", 0, 0],
+		//[ "btn_toggleAll",     "select_all_check.png",  0,			0 ],
+		["Dummy", "dummy.png", 0, 0],
+		["btn_Next", "next_page.png", 0, 0],
+		["btn_Previous", "previous_page.png", 0, 0],
+	];
+
+var picPlaybackToolBarData =
+	[
+		// element id                   pic filename                selected	group id
+		["ppbtn_savePlayback", "savePlayback.png", 0, 0],
+		["ppbtn_closeAndBackPlayback", "closeAndBackPlayback.png", 0, 0],
+		["ppbtn_zoom", "zoom.png", 0, 0],
+		["ppbtn_importPic", "inportPic.png", 0, 0],
+		["ppbtn_redo", "redo.png", 0, 0],
+		["ppbtn_undo", "undo.png", 0, 0],
+
+		//["ppbtn_transform", "perspectiveImage.png", 0, 0],
+		//["ppbtn_ocr", "ocr.png", 0, 0],
+	];
+
+var drawingBoardToolBarData =
+	[
+		// element id                   pic filename                selected	group id
+		["dbbtn_savePlayback", "capture.png", 0, 0],
+		//["dbbtn_savePlayback", "savePlayback.png", 0, 0],
+		["dbbtn_redo", "redo.png", 0, 0],
+		["dbbtn_undo", "undo.png", 0, 0],
+		["dbbtn_importPic", "inportPic.png", 0, 0],
+	];
+
+var colorBarData =
+	[
+		// color    	selected
+		['782D91', 0],
+		['1B1464', 0],
+		['0000FF', 1],
+		['00FF00', 0],
+		['FFFF00', 0],
+		['F15A24', 0],
+		['FF0000', 0],
+		['FFFFFF', 0],
+		['999999', 0],
+		['000000', 0],
+	];
+
+var colorBarDataEmpty =
+	[
+	];
+
+var fontFamilyData =
+	[
+		["Arial", 1],
+		["Serif", 0],
+		["Verdana", 0],
+		["Courier New", 0],
+	];
+
+var fontStyleData =
+	[
+		["lbNormal", 1],
+		["lbBold", 0],
+		["lbItalic", 0],
+		["lbBoldItalic", 0],
+	];
+
+var LanguageData =
+	[
+		["English", 1, "./locales/en/messages.json"],
+		["Deutsch", 0, "./locales/de/messages.json"],
+		["Française", 0, "./locales/fr/messages.json"],
+		["Español", 0, "./locales/es/messages.json"],
+		["日本語", 0, "./locales/jp/messages.json"],
+		["繁體中文", 0, "./locales/zh_TW/messages.json"],
+		["Русский", 0, "./locales/ru/messages.json"],
+		["한국어", 0, "./locales/ko/messages.json"],
+		["Italiano", 0, "./locales/it/messages.json"],
+		["简体中文", 0, "./locales/sc/messages.json"],
+	];
+
+var fontSizeData =
+	[
+		[8, 0],
+		[12, 0],
+		[16, 0],
+		[20, 0],
+		[24, 0],
+		[28, 1],
+		[36, 0],
+		[48, 0],
+		[72, 0],
+	];
+
+var aboutCompanyLink = 'https://www.inswan.com/';
+var aboutManualLink = 'mailto:service@inswan.com';
+
+// var aboutContent = '																									\
+// 		<center><img src="css/images/icon/logo 60.png"></img></center>													\
+// 		<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>									\
+// 		<BR>																											\
+// 		<label><font size="2" color="#FAFAFA"><center>Ver : 1.22.0928</center></font></label>							\
+// 		<BR>																											\
+// 		<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>	\
+// 		<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>			\
+// 		<BR>																											\
+// 		<font size="2" color="#FAFAFA"><center>Inswan Copyright  ©  2022. All rights reserved.</center></font>			\
+// 	';
+
+var aboutContent =
+	'<center><img src="css/images/icon/logo 60.png"></img></center>' +
+	'<label><font size="5" color="#FAFAFA"><center>Documate</center></font></label>' +
+	'<BR>' +
+	'<label><font size="2" color="#FAFAFA"><center>Ver : 1.25.0204.1</center></font></label>' +
+	'<BR>' +
+	'<div id="companyLink" align="center"><font size="2" color="#88F">Official site : www.inswan.com</font></div>' +
+	'<div id="manualLink" align="center"><font size="2" color="#88F">Email : service@inswan.com</font></div>' +
+	'<BR>' +
+	'<font size="2" color="#FAFAFA"><center>Inswan Copyright  ©  2025. All rights reserved.</center></font>';
+
+function preInitAboutDlg() {
+	appCfg.aboutWinW = 400;
+	appCfg.aboutWinH = 380;
+}
+
+function afterInitAboutDlg() {
+	//fcUpdateElementHtml("manualLink", "textWidth");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// device list 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var vrl5330 =
+	[
+		// width  height   def 
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl6330 =
+	[
+		// width  height   def 
+		[1920, 1080, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl6350 =
+	[
+		// width  height   def 
+		[1920, 1080, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl6500 =
+	[
+		// width  height   def 
+		[1920, 1080, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl8589 =
+	[
+		// width  height   def 
+		[4160, 3120, 0],
+		[3840, 2160, 0],
+		[2048, 1536, 0],
+		[1920, 1080, 0],
+		[1280, 1024, 0],
+		[1280, 960, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+		[640, 480, 0],
+	];
+
+var vrl2089 =
+	[
+		// width  height   def 
+		[2592, 1944, 0],
+		[2048, 1536, 0],
+		[1920, 1080, 0],
+		[1600, 1200, 0],
+		[1280, 960, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl2620 =
+	[
+		// width  height   def 
+		[3264, 2448, 0],
+		[2592, 1944, 0],
+		[2048, 1536, 0],
+		[1920, 1080, 0],
+		[1600, 1200, 0],
+		[1280, 960, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var vrl2688 =
+	[
+		// width  height   def 
+		[3840, 3104, 0],
+		[3840, 2160, 0],
+		[3264, 2448, 0],
+		[2592, 1944, 0],
+		[2048, 1536, 0],
+		[1920, 1080, 0],
+		[1600, 1200, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	];
+
+var u4 =
+	[
+		// width  height   def 
+		[2560, 1920, 0],
+		[2560, 1440, 0],
+		[2048, 1536, 0],
+		[1920, 1080, 0],
+		[1600, 1200, 0],
+		[1280, 960, 0],
+		[1280, 720, 1],
+		[1024, 768, 0],
+	]
+
+var VideoResolutionList =
+	[
+		// width  height   def 
+		[1920, 1080, 0],
+		[1280, 720, 1],
+		[1280, 1024, 0],
+	];
+
+var DevList =
+	[
+		// VID     PID 
+		[0x0000, 0x0000, VideoResolutionList],
+		[0x04FC, 0x5310, vrl5330],
+		[0x04FC, 0x5330, vrl5330],
+		[0x04FC, 0x5339, vrl5330],
+
+		[0x04FC, 0x6330, vrl6330],
+		[0x04FC, 0x6339, vrl6330],
+
+		[0x04FC, 0x6350, vrl6350],
+		[0x04FC, 0x6359, vrl6350],
+
+		[0x04FC, 0x6500, vrl6500],
+		[0x04FC, 0x6509, vrl6500],
+
+		[0x04FC, 0x8589, vrl8589],
+		[0x114D, 0x8589, vrl8589],
+
+		[0x04FC, 0x2620, vrl2620],
+		[0x04FC, 0x2680, vrl2620],
+
+		[0x04FC, 0x2089, vrl2089],
+
+		[0x04FC, 0x2688, vrl2688],
+
+		[0x04FC, 0x2650, u4],
+
+		// 2020-12-07
+		//[ 0x045E, 0x0811, vrl6350 ], //--- Microsoft PC Cam
+		//[ 0x046D, 0x0821, vrl6350 ], //  Logitech C910
+	];
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// variable
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var imageDisplayCanvas;
+var imageDisplayContext;
+
+var dispW;
+var dispH;
+
+var dispX;
+var dispY;
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// create element
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function updateCanvasSize(id, w, h) {
+	var css =
+	{
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: w,
+		height: h,
+		display: false,
+	};
+
+	var selector = '#' + id;
+
+	$(selector).css(css);
+
+	$(selector).attr('width', w);
+	$(selector).attr('height', h);
+}
+
+function createImageCanvas(parentId, childId, w, h) {
+	createCanvasElement(parentId, childId);
+
+	updateCanvasSize(childId, w, h)
+}
+
+function hideCanvasGroup(parentId) {
+	var canvasTbl = [
+		'videoOrg',
+		'WebGL',
+		'baseImageCanvas',
+		'imageProcessCanvas',
+		'drawingCanvas',
+		'tempDrawingCanvas',
+		'combineCanvas',
+	];
+
+	var i;
+	var seperator = '-';
+	var childId;
+	var eleId;
+
+	for (i = 0; i < canvasTbl.length; i++) {
+		childId = parentId + seperator + canvasTbl[i];
+
+		eleId = document.getElementById(childId);
+		eleId.hidden = true;
+	}
+}
+
+function createCanvasGroup(parentId, w, h) {
+	var seperator = '-';
+	var childId;
+
+	var canvasTbl = [
+		'videoOrg',
+		'WebGL',
+		'baseImageCanvas',
+		'imageProcessCanvas',
+		//'drawingCanvas',
+		'tempDrawingCanvas',
+		'combineCanvas',
+	];
+
+	var i;
+
+	for (i = 0; i < canvasTbl.length; i++) {
+		childId = parentId + seperator + canvasTbl[i];
+		createImageCanvas(parentId, childId, w, h);
+	}
+
+	childId = parentId + seperator + 'drawingCanvas';
+	let maxLength = Math.max(window.screen.width, window.screen.height) * 1.5;
+	createImageCanvas(parentId, childId, maxLength, maxLength);
+}
+
+function resetCanvasGroupSize(modeCfg, w, h) {
+	let seperator = '-';
+	let childId;
+	let i;
+
+	const canvasTbl = [
+		'WebGL',
+		'baseImageCanvas',
+		'imageProcessCanvas',
+		//'drawingCanvas',
+		'tempDrawingCanvas',
+		'combineCanvas',
+	];
+
+	for (i = 0; i < canvasTbl.length; i++) {
+		childId = modeCfg.baseId + seperator + canvasTbl[i];
+		updateCanvasSize(childId, w, h);
+	}
+
+	childId = modeCfg.baseId + seperator + 'videoOrg';
+	updateCanvasSize(childId, videoW, videoH);
+}
+
+function getCanvasGroupContext(modeCfg) {
+	var seperator = '-';
+	var childId;
+	var eleId;
+
+	var canvasTbl = [
+		'baseImageCanvas',
+		'imageProcessCanvas',
+		'drawingCanvas',
+		'tempDrawingCanvas',
+		'combineCanvas',
+	];
+
+	var contextTbl = [
+		'baseImageContext',
+		'imageProcessContext',
+		'drawingContext',
+		'tempDrawingContext',
+		'combineContext',
+	];
+
+	var i;
+
+	for (i = 0; i < canvasTbl.length; i++) {
+		childId = modeCfg.baseId + seperator + canvasTbl[i];
+		modeCfg[canvasTbl[i]] = document.getElementById(childId);
+		modeCfg[contextTbl[i]] = modeCfg[canvasTbl[i]].getContext('2d');
+	}
+}
+
+(function () {
+	// create base area 
+
+	createDocumentElement('div', 'baseArea');
+
+	// create title bar 
+
+	createDivElement('baseArea', 'appTitle');
+
+	// create preview area
+
+	createDivElement('baseArea', 'previewArea');
+
+	createElement('video', 'previewArea', 'videoSrc');
+
+	createCanvasGroup('previewArea', appCfg.defPreviewRsoX, appCfg.defPreviewRsoY);
+
+	// create playback area
+
+	createDivElement('baseArea', 'playbackArea');
+
+	createCanvasGroup('playbackArea', appCfg.defPictureW, appCfg.defPictureH);
+
+	// create drawing area
+
+	createDivElement('baseArea', 'drawingArea');
+
+	createCanvasGroup('drawingArea', appCfg.defDrawingBoardW, appCfg.defDrawingBoardH);
+
+	// final image display area
+
+	createDivElement('baseArea', 'imageDisplayArea');
+
+	createCanvasElement('imageDisplayArea', 'displayCanvas');
+	//createElement("svg", 'imageDisplayArea', "svgTest");
+	//createElement("canvas", "svgTest", 'displayCanvas');
+
+	createCanvasElement('imageDisplayArea', 'saveFileCanvas');
+
+	// UI display area
+
+	createDivElement('baseArea', 'uiArea');
+
+	createSpanElement('uiArea', 'importPictureWin');
+
+	createDivElement('uiArea', 'drawingCfgArea');
+	setDrawingCfgArea();
+
+	createSpanElement('uiArea', 'panWin');
+	createCanvasElement('panWin', 'cropWin');
+
+	createSpanElement('uiArea', 'settingDlg');
+
+	createSpanElement('uiArea', 'textInputDlg');
+
+	// asign common use variable
+
+	imageDisplayCanvas = document.getElementById('displayCanvas');
+	imageDisplayContext = imageDisplayCanvas.getContext('2d');
+	// const existingStyle = imageDisplayCanvas.getAttribute('style') || '';
+	// const newStyle = `${existingStyle}; filter: url(#filter)`;
+	// imageDisplayCanvas.setAttribute('style', newStyle);
+
+	// hide canvas group
+
+	hideCanvasGroup('previewArea');
+	hideCanvasGroup('playbackArea');
+	hideCanvasGroup('drawingArea');
+
+	// hide save file canvas
+
+	showElement('saveFileCanvas', false);
+
+})();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// body
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function cfgBody() {
+	$('body').css('background-color', appCfg.bgColor);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// title bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function updateTitleBarSize() {
+	titleW = winW;
+	titleH = appCfg.titleIconH;
+}
+
+function cfgTitleBar() {
+	var cssCfg =
+	{
+		position: 'absolute',
+		background: appCfg.mouseColorLeave,
+		padding: '0 0 0 0px',
+		top: '0px',
+		height: appCfg.titleIconH + 'px',
+		opacity: appCfg.mouseOpacityLeave,
+	}
+
+	var x;
+	var w;
+
+	var modeBarW;
+	var sysBarW;
+
+	modeBarW = appCfg.modeIconW * modeToolBarData.length;
+	sysBarW = appCfg.toolBarIconW * sysToolBarData.length;
+
+	cssCfg.left = modeBarW + 'px';
+	cssCfg.width = 'calc(100% - ' + (modeBarW + sysBarW) + 'px)';
+
+	// $('#appTitle').css(cssCfg);
+	// $('#appTitle').css('-webkit-app-region', 'drag');
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// adjust size
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var cssCommonSizeObj =
+{
+	position: 'absolute',
+	left: 0,
+	top: 0,
+	width: 800,
+	height: 260,
+	style: 'border:1px dashed black',
+	background: appCfg.bgColor,
+}
+
+function adjImageDisplayArea() {
+	let id$;
+	let totalW, totalH;
+	let x, y, w, h;
+
+	if (fullPhotoMode) {
+		w = totalW = winW;
+		h = totalH = winH;
+		x = 0;
+		y = 0;
+	}
+	else {
+		w = totalW = winW - appBaseCfg.iconW * 2;
+		h = totalH = winH - titleH - appBaseCfg.drawSetH;
+		x = appBaseCfg.iconW;
+		y = titleH;
+	}
+
+	cssCommonSizeObj.left = x;
+	cssCommonSizeObj.top = y;
+	cssCommonSizeObj.width = w;
+	cssCommonSizeObj.height = h;
+
+	id$ = $('#displayCanvas');
+	id$.css(cssCommonSizeObj);
+	id$.attr('width', w);
+	id$.attr('height', h);
+
+	dispX = x;
+	dispY = y;
+	dispW = w;
+	dispH = h;
+
+	calculateCropVertices(videoW, videoH, w, h);
+	//console.log("adjImageDisplayArea Disp", dispX, dispY, dispW, dispH);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var nullToolBarData = [];
+
+function initToolBar() {
+	var cssToolBar =
+	{
+		position: 'absolute',
+		width: appCfg.toolBarIconW,
+		height: appCfg.toolBarIconH,
+		'margin-left': '0px',
+	};
+
+	cssToolBar.width = appCfg.toolBarIconW;
+	cssToolBar.height = appCfg.toolBarIconH;
+
+	createToolBar(nullToolBarData, cssToolBar, 'uiArea', 'playbackRToolBar', 'right');
+
+	if (1 === appCfg.disableDrawingToolBar) {
+		createToolBar(drawingToolBarDataEmpty, cssToolBar, 'uiArea', 'drawingToolBar', 'right', drawingToolBarOnClick);
+		updateToolBar(drawingToolBarDataEmpty);
+	}
+	else {
+		createToolBar(drawingToolBarData, cssToolBar, 'uiArea', 'drawingToolBar', 'right', drawingToolBarOnClick);
+		updateToolBar(drawingToolBarData);
+	}
+
+	createToolBar(thumbnailToolBarData, cssToolBar, 'uiArea', 'thumbnailToolBar', 'left', thumbnailToolBarOnClick);
+	updateToolBar(thumbnailToolBarData);
+
+	createToolBar(picPlaybackToolBarData, cssToolBar, 'uiArea', 'picPlaybackToolBar', 'left', picturePlaybackToolBarOnClick);
+	updateToolBar(picPlaybackToolBarData);
+
+	createToolBar(drawingBoardToolBarData, cssToolBar, 'uiArea', 'drawingBoardToolBar', 'left', drawingBoardToolBarOnClick);
+	updateToolBar(drawingBoardToolBarData);
+
+	createToolBar(previewToolBarData, cssToolBar, 'uiArea', 'previewToolBar', 'left', previewToolBarOnClick);
+	updateToolBar(previewToolBarData);
+
+	createToolBar(scanToolBarData_S1, cssToolBar, 'uiArea', 'scanToolBarS1', 'left', scanToolBarOnClick);
+	updateToolBar(scanToolBarData_S1);
+
+	createToolBar(scanToolBarData_S2, cssToolBar, 'uiArea', 'scanToolBarS2', 'left', scanToolBarOnClick);
+	updateToolBar(scanToolBarData_S2);
+
+	createToolBar(multiscanToolBarData, cssToolBar, 'uiArea', 'multiscanToolBar', 'left', multiscanToolBarOnClick);
+	updateToolBar(multiscanToolBarData);
+
+	createToolBar(sysToolBarData, cssToolBar, 'uiArea', 'sysToolBar', 'top-right', sysToolBarOnClick);
+	updateToolBar(sysToolBarData);
+
+	cssToolBar.width = appCfg.modeIconW / 2;
+	cssToolBar.height = appBaseCfg.drawSetH;
+
+	createToolBar(bottomToolBarData, cssToolBar, 'uiArea', 'bottomToolBarData', 'bottom', previewToolBarOnClick);
+	updateToolBar(bottomToolBarData);
+	$("#btn_pause").hide();
+
+	cssToolBar.width = appCfg.modeIconW;
+	cssToolBar.height = appCfg.modeIconH;
+
+	createToolBar(modeToolBarData, cssToolBar, 'uiArea', 'modeToolBar', 'top-left', modeToolBarOnClick);
+	updateToolBar(modeToolBarData);
+
+	$("#Dummy").unbind('mouseenter mouseleave click');
+
+	// custom config
+	// const button = document.getElementById('btn_record');
+	// button.addEventListener('mouseenter', eventInterceptor, true);
+}
+
+function eventInterceptor(event) {
+	if (!IsDeviceConnected) {
+		event.stopImmediatePropagation(); // 阻止其他處理器的執行
+		console.log('MouseOver event is temporarily disabled');
+	}
+}
+
+function hideAllToolBars() {
+	var idTbl = [
+		'playbackRToolBar',
+		'previewToolBar',
+		'drawingToolBar',
+		'thumbnailToolBar',
+		'picPlaybackToolBar',
+		'drawingBoardToolBar',
+		'scanToolBarS1',
+		'scanToolBarS2',
+	];
+
+	var i;
+
+	for (i = 0; i < idTbl.length; i++) {
+		showToolBar(idTbl[i], false);
+	}
+}
+
+function showToolBar(id, mode) {
+	showElement(id, mode);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// drawing config area
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function setDrawingCfgArea() {
+	var css =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+		background: appCfg.drawSetBackground,
+		opacity: appCfg.drawSetOpacity,
+	};
+
+	var w = appCfg.toolBarIconW;
+	var h = appCfg.drawSetH;
+
+	css.width = 'calc(100% - ' + (w * 2) + 'px)';
+	css.height = h + 'px';
+	css.left = w + 'px';
+	css.top = 'calc(100% - ' + h + 'px)';
+
+	$('#drawingCfgArea').css(css);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// color bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initColorBar() {
+	var cssColorBar =
+	{
+		position: 'absolute',
+		width: appCfg.colorIconW,
+		height: appCfg.colorIconH,
+		'margin-left': '0px',
+		opacity: appCfg.colorIconOpacity,
+	};
+
+	if (1 === appCfg.disableColorBar) {
+		createColorBar(colorBarDataEmpty, cssColorBar, 'configDrawDlg', 'drawingCfgColorBar', fcColorBarNotify);
+		//createColorBar(colorBarDataEmpty, cssColorBar, 'drawingCfgArea', 'drawingCfgColorBar', fcColorBarNotify);
+		updateColorBar(colorBarDataEmpty);
+	}
+	else {
+		if (appCfg.cb2Apply) {
+			createColorBarType2(colorBarData, cssColorBar, 'configDrawDlg', 'drawingCfgColorBar', fcColorBarNotify);
+			//createColorBarType2(colorBarData, cssColorBar, 'drawingCfgArea', 'drawingCfgColorBar', fcColorBarNotify);
+			updateColorBarType2(colorBarData);
+		}
+		else {
+			createColorBar(colorBarData, cssColorBar, 'configDrawDlg', 'drawingCfgColorBar', fcColorBarNotify);
+			//createColorBar(colorBarData, cssColorBar, 'drawingCfgArea', 'drawingCfgColorBar', fcColorBarNotify);
+			updateColorBar(colorBarData);
+		}
+	}
+}
+
+function fcColorBarNotify(color, r, g, b) {
+	appFC.colorHex = color;
+	appFC.colorR = r;
+	appFC.colorG = g;
+	appFC.colorB = b;
+
+	fcUpdateDrawStyle();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// scroll bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initScrollBar() {
+
+	var w = 0;
+
+	var cssScrollBar =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+	};
+
+	// for opacity
+	var scrollBarOpacity =
+	{
+		iconL: '30x_30alpha.png',
+		iconSize: appCfg.scrollIconH,
+		length: appCfg.scrollOpacityW,
+		curPos: appCfg.scrollOpacityDefPos,
+		startX: 0,
+		startY: 0,
+		color: appCfg.scrollColor,
+	};
+
+	if (0 === appCfg.disableDrawingOpacityScrollBar) {
+		//createScrollBar(scrollBarOpacity, cssScrollBar, 'drawingCfgArea', 'drawingOpacity', opacityScrollBarNotify);
+		// updateScrollBar('drawingOpacity');
+
+		createScrollBarMin(scrollBarOpacity, 'configDrawDlg', 'drawingOpacity', scrollOpacity, 100);
+		//createScrollBarMin(scrollBarOpacity, 'drawingCfgArea', 'drawingOpacity', scrollOpacity, 100);
+
+		function scrollOpacity(m) {
+			var value;
+			if (m.currentTarget)
+				value = m.currentTarget.value;
+			else
+				value = m;
+
+			appFC.opacity = 0.1 + (value / 100) * 0.9;
+			appFC.opacity = appFC.opacity.toFixed(1);
+			fcUpdateDrawStyle();
+		}
+	}
+
+	// for line width
+	var scrollBarLineWidth =
+	{
+		iconL: '30x30lineWidth.png',
+		iconSize: appCfg.scrollIconH,
+		length: appCfg.scrollLineWidthW,
+		curPos: appCfg.scrollLineWidthDefPos,
+		startX: 160,
+		startY: 0,
+		color: appCfg.scrollColor,
+	};
+
+	//scrollBarLineWidth.startX = w + appCfg.scrollGroupGap;
+
+	if (0 === appCfg.disableDrawingLineWidthScrollBar) {
+		//createScrollBar(scrollBarLineWidth, cssScrollBar, 'drawingCfgArea', 'drawingLineWidth', lineWidthScrollBarNotify);
+		//updateScrollBar('drawingLineWidth');
+
+		createScrollBarMin(scrollBarLineWidth, 'configDrawDlg', 'drawingLineWidth', scrollLineWidth, 10);
+		//createScrollBarMin(scrollBarLineWidth, 'drawingCfgArea', 'drawingLineWidth', scrollLineWidth, 10);
+
+		function scrollLineWidth(m) {
+			var value;
+			if (m.currentTarget)
+				value = m.currentTarget.value;
+			else
+				value = m;
+
+			appFC.lineWidth = (appCfg.lineWidthMin + (appCfg.lineWidthMax - appCfg.lineWidthMin) * (value / 100));
+			appFC.lineWidth = Math.floor(appFC.lineWidth);
+		}
+	}
+}
+
+function createScrollBarMin(scrollData, parentId, id, fun, initValue) {
+	createSpanElement(parentId, id);
+
+	// Icon
+	var iconId = id + '-iconL';
+	createSpanElement(id, iconId);
+
+	// set left icon style
+	var curX = scrollData.startX;
+
+	eleId = '#' + iconId;
+
+	var bkg = fcGetDefIconPath(scrollData.iconL);
+	$(eleId).css('background', bkg);
+
+	$(eleId).css('top', 0 + 'px');
+	$(eleId).css('left', curX + 'px');
+	$(eleId).css('width', scrollData.iconSize + 'px');
+	$(eleId).css('height', scrollData.iconSize + 'px');
+	$(eleId).css('position', 'absolute');
+
+	curX += scrollData.iconSize;
+
+	// slider bar
+	parentId = id;
+	var sliderId = id + '-slider';
+	createInputElement(parentId, sliderId);
+
+	var eleId = "#" + sliderId;
+	$(eleId).attr("class", "slider_min");
+	$(eleId).css({
+		"top": 0,
+		"left": curX,
+		"width": 100 + 'px',
+		"height": 30 + 'px',
+		"position": "absolute",
+	});
+	$(eleId).attr({
+		"type": "range",
+		"max": 100,
+		"min": 0,
+		"step": 2,
+		"value": initValue
+	});
+
+	var eleId = "#" + sliderId;
+	$(eleId).on('input', fun);
+
+	fun(initValue);
+}
+
+function opacityScrollBarNotify(length, pos) {
+	appFC.opacity = 0.1 + (pos / length) * 0.9;
+
+	appFC.opacity = appFC.opacity.toFixed(1);
+
+	fcUpdateDrawStyle();
+}
+
+function lineWidthScrollBarNotify(length, pos) {
+	appFC.lineWidth = (appCfg.lineWidthMin + (appCfg.lineWidthMax - appCfg.lineWidthMin) * (pos / length));
+
+	appFC.lineWidth = Math.floor(appFC.lineWidth);
+
+	//console.log("line width: " + appFC.lineWidth);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// scroll bar dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initScrollBarDlg() {
+
+	var w;
+
+	var cssScrollBar =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+	};
+
+	// for brightness
+
+	var scrollBarBrightness =
+	{
+		iconL: 'brightness_down.png',
+		iconR: 'brightness_up.png',
+		iconSize: appCfg.toolBarIconW,
+		length: appCfg.scrollBrighnessW,
+		curPos: appCfg.scrollBrighnessDefPos,
+		startX: 0,
+		startY: 0,
+		color: appCfg.scrollColor,
+	};
+
+	createScrollBarDlg(scrollBarBrightness, cssScrollBar, 'uiArea', 'brightnessDlg', brightnessScrollBarNotify, true);
+	showBrightnessDlg(false);
+
+	// for white balance
+
+	var scrollWhiteBalance =
+	{
+		iconL: 'wb_b.png',
+		iconR: 'wb_r.png',
+		iconAuto: 'undo.png',
+		iconSize: appCfg.toolBarIconW,
+		length: appCfg.scrollBrighnessW,
+		curPos: appCfg.scrollBrighnessDefPos,
+		startX: 0,
+		startY: 0,
+		color: appCfg.scrollColor,
+	};
+
+	createScrollBarDlg(scrollWhiteBalance, cssScrollBar, 'uiArea', 'whiteBalanceDlg', whiteBalanceScrollBarNotify, true);
+	showWhiteBalanceDlg(false);
+
+	// for zoom
+
+	// var scrollBarZoom =
+	// {
+	// 	iconL: 'zoom_in.png',
+	// 	iconR: 'zoom_out.png',
+	// 	iconSize: appCfg.toolBarIconW,
+	// 	length: appCfg.scrollZoomW,
+	// 	curPos: appCfg.scrollZoomDefPos,
+	// 	startX: 0,
+	// 	startY: 0,
+	// 	color: appCfg.scrollColor,
+	// };
+
+	// createScrollBarDlg(scrollBarZoom, cssScrollBar, 'uiArea', 'zoomDlg', zoomScrollBarNotify);
+	// showZoomDlg(false);
+
+	creatZoomDlg();
+}
+
+function creatZoomDlg() {
+	var eleId;
+	var sliderId;
+	var zoomDlg = "zoomDlg";
+
+	var x = 24;
+	var y = 36;
+	var gapV = 48;
+
+	var w = 380;
+	var h = 120;
+
+	createDivElement("uiArea", zoomDlg);
+	eleId = "#" + zoomDlg;
+	$(eleId).css('background', appBaseCfg.ColorLeave);
+	$(eleId).css("top", "calc(50%)");
+	$(eleId).css('left', appCfg.toolBarIconW + "px");
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).hide()
+
+	// close icon
+	eleId = zoomDlg + '-close';
+	createSpanElement(zoomDlg, eleId);
+
+	eleId = '#' + eleId;
+	var bkg = fcGetDefIconPath("close.png");
+
+	$(eleId).css('background', bkg);
+	$(eleId).css('top', 0 + 'px');
+	$(eleId).css('left', (w - appCfg.toolBarIconW) + 'px');
+	$(eleId).css('width', appCfg.toolBarIconW + 'px');
+	$(eleId).css('height', appCfg.toolBarIconH + 'px');
+	$(eleId).css('position', 'absolute');
+	$(eleId).on('click', function () {
+		$("#" + zoomDlg).hide()
+	});
+
+	// zoom
+	eleId = zoomDlg + '-zoom';
+	sliderId = createScrollBarIII(zoomDlg, eleId, "zoom_in.png", "zoom_out.png", x, y);
+	eleId = '#' + sliderId;
+	$(eleId).attr({
+		"type": "range",
+		"max": 100,
+		"min": 0,
+		"step": 2,
+		"value": 0
+	});
+	$(eleId).on('input', function (m) {
+
+		//appFC.previewBrightnessAdj = Math.floor(m.currentTarget.value);
+
+		var zoom = 1 + (appCfg.zoomMaxRatio - 1) * m.currentTarget.value / 100;
+
+		//zoom = 1 + (appCfg.zoomMaxRatio - 1)*pos/length;	
+
+		zoom = zoom.toFixed(1);
+
+		if (appFC.curMode) {
+			fcUpdateZoomRatio(zoom, m.currentTarget.value);
+		}
+	});
+}
+
+function showBrightnessDlg(mode) {
+	showElement('brightnessDlg', mode);
+}
+
+function showWhiteBalanceDlg(mode) {
+	showElement('whiteBalanceDlg', mode);
+}
+
+function showZoomDlg(mode) {
+	showElement('zoomDlg', mode);
+}
+
+function brightnessScrollBarNotify(length, pos) {
+	// var brightness;
+
+	// brightness = appCfg.brightnewwMin + (appCfg.brightnewwMax - appCfg.brightnewwMin) * pos / length;
+
+	// brightness = Math.floor(brightness);
+
+	// appFC.previewBrightnessAdj = brightness;
+
+	// if (appFC.curMode) {
+	// 	fcCanvasCtrl(DrawState.brightness);
+	// }
+}
+
+function whiteBalanceScrollBarNotify(length, pos) {
+	// var wb;
+	// wb = appCfg.whiteBalanceMin + (appCfg.whiteBalanceMax - appCfg.whiteBalanceMin) * pos / length;
+	// wb = Math.floor(wb);
+
+	// appFC.previewWhiteBalanceAdj = wb;
+
+	// if (appFC.curMode) {
+	// 	fcCanvasCtrl(DrawState.whiteBalance);
+	// }
+}
+
+function zoomScrollBarNotify(length, pos) {
+	var zoom;
+
+	zoom = 1 + (appCfg.zoomMaxRatio - 1) * pos / length;
+
+	zoom = zoom.toFixed(1);
+
+	if (appFC.curMode) {
+		fcUpdateZoomRatio(zoom, pos);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// setting dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initSettingDlg() {
+	var dlgCss =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+		background: appCfg.sdBkg,
+		opacity: appCfg.sdOpacity,
+	};
+
+	var totalW, totalH;
+	var curX, curY;
+
+	var noSettingLine = 3; //5; disable resolution
+
+	if (1 === appCfg.disableDrawTextSetting) {
+		noSettingLine = 1;
+	}
+
+	// set window size
+
+	totalW = appCfg.sdFrameGapX * 2 + appCfg.sdIconW + appCfg.sdIconScrollGap + appCfg.sdFontFamilyW + appCfg.sdFontStyleW + appCfg.sdFontSizeW + appCfg.sdScrollGap * 2;
+	totalW += appCfg.sdExtraW;
+	totalH = appCfg.sdFrameGapY * noSettingLine + appCfg.sdIconH * (noSettingLine + 1) + appCfg.sdGroupGap;
+
+	dlgCss.left = 'calc(50% - ' + (totalW / 2) + 'px)';
+	dlgCss.top = 'calc(50% - ' + ((totalH - appCfg.titleIconH) / 2) + 'px)';
+	dlgCss.width = totalW + 'px';
+	dlgCss.height = totalH + 'px';
+
+	$('#settingDlg').css(dlgCss);
+
+	// set close icon
+	curX = totalW - appCfg.sdFrameGapX - appCfg.sdIconW;
+	curY = appCfg.sdFrameGapY;
+	// createSettingDlgIcon('settingDlg', 'sdClsoeIcon', 'close.png', curX, curY);
+	// $('#sdClsoeIcon').on('click', previewSetttingDlgCloseClick);
+
+	// video resolution icon
+	// curY = + appCfg.sdIconH;
+	// curX = appCfg.sdFrameGapX;
+	// createSettingDlgIcon('settingDlg', 'sdVideoRsoIcon', 'setting_reslution.png', curX, curY);
+
+	// video resolution scroll bar
+	// curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+	// createVideoResolutionScrollBar('settingDlg', 'sdVideoRsoScrollbar', appFC.curVideoResolutionList, curX, curY, appCfg.sdVideoRsoW);
+
+	// video selector icon
+	// curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+	curX = appCfg.sdFrameGapX;
+	createSettingDlgIcon('settingDlg', 'sdVideoinputIcon', 'setting_videoinput.png', curX, curY);
+
+	// video selector
+	curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+	createVideoinputScrollBar('settingDlg', 'sdVideoinputScrollbar', appFC.curVideopinputList, curX, curY, appCfg.sdVideoRsoW);
+
+	// audio selector icon
+	curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+	curX = appCfg.sdFrameGapX;
+	createSettingDlgIcon('settingDlg', 'sdAudioinputIcon', 'setting_audioinput.png', curX, curY);
+
+	// audio selector
+	curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+	createAudioinputScrollBar('settingDlg', 'sdAudioinputScrollbar', appFC.curAudioinputList, curX, curY, appCfg.sdVideoRsoW);
+
+	// test settings
+	curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+
+	if (0 === appCfg.disableDrawTextSetting) {
+		// text icon
+
+		curX = appCfg.sdFrameGapX;
+
+		createSettingDlgIcon('settingDlg', 'sdFontIcon', 'setting_textEdit.png', curX, curY);
+
+		curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+
+		// text family scroll bar
+
+		createFontScrollBar('settingDlg', 'sdfontFamily', fontFamilyData, curX, curY, appCfg.sdFontFamilyW);
+
+		curX += (appCfg.sdFontFamilyW + appCfg.sdScrollGap);
+
+		createFontScrollBar_ML('settingDlg', 'fontStyle', fontStyleData, curX, curY, appCfg.sdFontStyleW);
+
+		curX += (appCfg.sdFontStyleW + appCfg.sdScrollGap);
+
+		createFontScrollBar('settingDlg', 'fontSize', fontSizeData, curX, curY, appCfg.sdFontSizeW);
+
+		curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+
+	}
+
+	//================================
+	// Language icon
+	curX = appCfg.sdFrameGapX;
+	//curY += (appCfg.sdIconH + appCfg.sdGroupGap);
+
+	createSettingDlgIcon('settingDlg', 'sdLanguageIcon', 'setting_language.png', curX, curY);
+
+	curX += (appCfg.sdIconW + appCfg.sdIconScrollGap);
+
+	// Language scroll bar
+
+	createLanguageScrollBar('settingDlg', 'sdLanguageFamily', LanguageData, curX, curY, appCfg.sdFontFamilyW);
+
+	//================================
+
+	// hide dialog
+
+	showSettingDlg(false);
+
+	// update font config
+
+	fcUpdateFontCfg();
+}
+
+function createSettingDlgIcon(parentId, id, pic, startX, startY) {
+	var eleId;
+	var bkg;
+
+	createSpanElement(parentId, id);
+
+	eleId = '#' + id;
+
+	bkg = fcGetDefIconPath(pic);
+
+	$(eleId).css('background', bkg);
+	$(eleId).css('top', startY + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', appCfg.sdIconW + 'px');
+	$(eleId).css('height', appCfg.sdIconH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function updateVideoResolutionElement(data) {
+	cleanVideoResolutionElement();
+	createVideoResolutionElement(data);
+}
+
+function cleanVideoResolutionElement() {
+	var eleId = "#" + appFC.idVideoResolutionList;
+
+	$(eleId + " > option").remove();
+}
+
+function createVideoResolutionElement(data) {
+	var strTotal = "";
+	var i;
+	var eleId;
+	var dispStr;
+	var selStr;
+	var strElement;
+	var id;
+
+	id = appFC.idVideoResolutionList;
+
+	strTotal = '';
+
+	for (i = 0; i < data.length; i++) {
+		eleId = id + '-' + data[i][VrField.w] + 'x' + data[i][VrField.h];
+		dispStr = data[i][VrField.w] + ' x ' + data[i][VrField.h];
+
+		if (appBaseCfg.resolutionIdx == -1 || appBaseCfg.resolutionIdx >= data.length) {
+			if (data[i][VrField.data] === 1) {
+				selStr = ' selected="true"';
+
+				appFC.reqImgW = data[i][VrField.w];
+				appFC.reqImgH = data[i][VrField.h];
+			}
+			else {
+				selStr = ''
+			}
+		}
+		else {
+			if (i == appBaseCfg.resolutionIdx) {
+				selStr = ' selected="true"';
+
+				appFC.reqImgW = data[i][VrField.w];
+				appFC.reqImgH = data[i][VrField.h];
+			}
+			else {
+				selStr = ''
+			}
+		}
+
+		strElement = '<option' + selStr + ' id="' + eleId + '">' + dispStr + '</option>';
+		strTotal += strElement;
+	}
+
+	$('#' + id).html(strTotal);
+}
+
+function createVideoResolutionScrollBar(parendId, id, data, startX, startY, width) {
+	var eleId;
+
+	appFC.idVideoResolutionList = id;
+
+	createSelectElement(parendId, id);
+
+	createVideoResolutionElement(data);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', width + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function updateAudioinputElement() {
+	cleanAudioinputElement();
+}
+
+function cleanAudioinputElement() {
+	var eleId = "#" + appFC.idAudioinputSelect;
+	$(eleId + " > option").remove();
+}
+
+function createAudioinputScrollBar(parendId, id, data, startX, startY, width) {
+	var eleId;
+
+	appFC.idAudioinputSelect = id;
+
+	createSelectElement(parendId, id);
+	//createAudioinputElement(data);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', (width * 2 + appCfg.sdIconScrollGap) + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function createVideoinputScrollBar(parendId, id, data, startX, startY, width) {
+	var eleId;
+
+	appFC.idVideoinputSelect = id;
+
+	createSelectElement(parendId, id);
+	//createAudioinputElement(data);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', (width * 2 + appCfg.sdIconScrollGap) + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function createLanguageScrollBar(parendId, id, data, startX, startY, width) {
+	var strTotal = "";
+	var strElement;
+	var i;
+	var eleId;
+	var dispStr;
+	var selStr;
+
+	createSelectElement(parendId, id);
+
+	strTotal = '';
+
+	for (i = 0; i < data.length; i++) {
+		eleId = id + '-' + data[i][FontField.value];
+		dispStr = data[i][FontField.value];
+
+		if (data[i][FontField.status] === 1) selStr = ' selected="true"';
+		else selStr = ''
+
+		strElement = '<option' + selStr + ' id="' + eleId + '">' + dispStr + '</option>';
+		strTotal += strElement;
+	}
+
+	$('#' + id).html(strTotal);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', width + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function createFontScrollBar(parendId, id, data, startX, startY, width) {
+	var strTotal = "";
+	var strElement;
+	var i;
+	var eleId;
+	var dispStr;
+	var selStr;
+
+	createSelectElement(parendId, id);
+
+	strTotal = '';
+
+	for (i = 0; i < data.length; i++) {
+		eleId = id + '-' + data[i][FontField.value];
+		dispStr = data[i][FontField.value];
+
+		if (data[i][FontField.status] === 1) selStr = ' selected="true"';
+		else selStr = ''
+
+		strElement = '<option' + selStr + ' id="' + eleId + '">' + dispStr + '</option>';
+		strTotal += strElement;
+	}
+
+	$('#' + id).html(strTotal);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', width + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function createFontScrollBar_ML(parendId, id, data, startX, startY, width) {
+	var strTotal = "";
+	var strElement;
+	var i;
+	var eleId;
+	var dispStr;
+	var selStr;
+
+	createSelectElement(parendId, id);
+
+	strTotal = '';
+
+	for (i = 0; i < data.length; i++) {
+		eleId = id + '-' + data[i][FontField.value];
+
+		// webmod
+		dispStr = "WebMod";
+		//dispStr = chrome.i18n.getMessage(data[i][FontField.value]);
+
+		//dispStr = get_i18n_Message(data[i][FontField.value]);
+		//console.log(data[i][FontField.value],dispStr);
+
+		if (data[i][FontField.status] === 1) selStr = ' selected="true"';
+		else selStr = ''
+
+		strElement = '<option' + selStr + ' id="' + eleId + '">' + dispStr + '</option>';
+		strTotal += strElement;
+	}
+
+	$('#' + id).html(strTotal);
+
+	eleId = '#' + id;
+
+	$(eleId).css('top', (startY + (appCfg.sdIconH - appCfg.sdScrollH) / 2) + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', width + 'px');
+	$(eleId).css('height', appCfg.sdScrollH + 'px');
+	$(eleId).css('position', 'absolute');
+
+}
+function showSettingDlg(mode) {
+	showElement('settingDlg', mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// text input dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initTextInputDlg() {
+	var totalW;
+	var totalH;
+	var eleId;
+	var x, y;
+	var bkg;
+
+	totalW = appCfg.tidFrameGap + appCfg.tidTextFrmW + appCfg.tidFrameGap;
+	totalH = appCfg.tidFrameGap + appCfg.tidIconH + appCfg.tidIconFrmGap + appCfg.tidTextFrmH + appCfg.tidFrameGap;
+
+	// set dialog size
+
+	eleId = '#textInputDlg';
+
+	$(eleId).css('top', 'calc(50% - ' + ((totalH - appCfg.titleIconH) / 2) + 'px)');
+	$(eleId).css('left', 'calc(50% - ' + (totalW / 2) + 'px)');
+	$(eleId).css('width', totalW + 'px');
+	$(eleId).css('height', totalH + 'px');
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('background', appCfg.tidBkg);
+	$(eleId).css('opacity', appCfg.tidOpacity);
+
+	// close icon
+
+	createSpanElement('textInputDlg', 'textInputClose');
+
+	eleId = '#textInputClose';
+
+	bkg = fcGetDefIconPath('yes.png');
+
+	x = totalW - appCfg.tidFrameGap - appCfg.tidIconW;
+	y = appCfg.tidFrameGap;
+
+	$(eleId).css('background', bkg);
+	$(eleId).css('top', y + 'px');
+	$(eleId).css('left', x + 'px');
+	$(eleId).css('width', appCfg.tidIconW + 'px');
+	$(eleId).css('height', appCfg.tidIconH + 'px');
+	$(eleId).css('position', 'absolute');
+
+	// $(eleId).attr({
+	// 	contenteditable: "true",
+	// 	inputmode: "none"
+	// });
+
+	$(eleId).on('click', textInputDlgCloseClick);
+
+	// text input area
+
+	createTextareaElement('textInputDlg', 'textInputArea');
+
+	eleId = '#textInputArea';
+
+	x = appCfg.tidFrameGap;
+	y = appCfg.tidFrameGap + appCfg.tidIconH + appCfg.tidIconFrmGap;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('resize', 'none');
+
+	$(eleId).css('top', y + 'px');
+	$(eleId).css('left', x + 'px');
+	$(eleId).css('width', appCfg.tidTextFrmW + 'px');
+	$(eleId).css('height', appCfg.tidTextFrmH + 'px');
+
+	$(eleId).css('padding', 0 + 'px');
+
+	$(eleId).attr('cols', appCfg.tidTextFrmW);
+	$(eleId).attr('rows', appCfg.tidTextFrmH);
+
+	// hide dialog
+
+	showTextInputDlg(false);
+}
+
+function showTextInputDlg(mode) {
+	showElement('textInputDlg', mode);
+
+	if (mode) {
+		setTimeout(function () {
+			$('#textInputArea').focus();
+		}, 300);
+	}
+}
+
+function updateTextInputCfg() {
+	var eleId;
+	var color;
+
+	color = 'rgb(' + appFC.colorR + ',' + appFC.colorG + ',' + appFC.colorB + ')';
+
+	eleId = '#textInputArea';
+
+	$(eleId).css('font', appCfg.tidTextSize + 'px' + ' ' + appFC.fontFamily);
+	$(eleId).css('color', color);
+
+	if (-1 != appFC.fontStyle.indexOf("Bold")) {
+		$(eleId).css('font-weight', 'bold');
+
+		appFC.fontBold = true;
+	}
+	else {
+		$(eleId).css('font-weight', 'normal');
+
+		appFC.fontBold = false;
+	}
+
+	if (-1 != appFC.fontStyle.indexOf("Italic")) {
+		$(eleId).css('font-style', 'italic');
+
+		appFC.fontItalic = true;
+	}
+	else {
+		$(eleId).css('font-style', 'normal');
+
+		appFC.fontItalic = false;
+	}
+}
+
+function resetTextInputContent() {
+	var eleId;
+
+	eleId = document.getElementById('textInputArea');
+
+	eleId.value = '';
+}
+
+function getTextInputContent() {
+	var eleId;
+
+	eleId = document.getElementById('textInputArea');
+
+	return eleId.value;
+}
+
+function getTextInputLength() {
+	var eleId;
+
+	eleId = document.getElementById('textInputArea');
+
+	return eleId.value.length;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// about dialog   
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function initAboutDlg() {
+	var baseId = 'aboutDlg';
+	var closeId = baseId + '-' + 'close';
+	var contentId = baseId + '-' + 'content';
+	var eleId;
+	var bkg;
+
+	// create element
+
+	createDivElement('uiArea', baseId);
+	createDivElement(baseId, closeId);
+	createDivElement(baseId, contentId);
+
+	// set window
+
+	eleId = '#' + baseId;
+
+	$(eleId).css('top', 'calc(50% - ' + ((appCfg.aboutWinH - appCfg.titleIconH) / 2) + 'px)');
+	$(eleId).css('left', 'calc(50% - ' + (appCfg.aboutWinW / 2) + 'px)');
+	$(eleId).css('width', appCfg.aboutWinW + 'px');
+	$(eleId).css('height', appCfg.aboutWinH + 'px');
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('background', appCfg.aboutBkg);
+	$(eleId).css('opacity', appCfg.aboutOpacity);
+
+	// set close icon
+
+	eleId = '#' + closeId;
+
+	bkg = fcGetDefIconPath('close.png');
+
+	$(eleId).css('background', bkg);
+	$(eleId).css('top', '0' + 'px');
+	$(eleId).css('left', 'calc(100% - ' + appCfg.aboutIconW + 'px)');
+	$(eleId).css('width', appCfg.aboutIconW + 'px');
+	$(eleId).css('height', appCfg.aboutIconH + 'px');
+	$(eleId).css('position', 'absolute');
+
+	$(eleId).click(function () {
+		showElement('aboutDlg', false);
+		//fcCloseActiveDlg();
+	});
+
+	// set content area
+
+	eleId = '#' + contentId;
+
+	$(eleId).css('top', appCfg.aboutIconH + 'px');
+	$(eleId).css('left', appCfg.aboutGapX + 'px');
+	$(eleId).css('width', (appCfg.aboutWinW - 2 * appCfg.aboutGapX) + 'px');
+	$(eleId).css('height', (appCfg.aboutWinH - appCfg.aboutIconH) + 'px');
+	$(eleId).css('position', 'absolute');
+
+	$(eleId).html(aboutContent);
+
+	// set company link
+
+	eleId = '#companyLink';
+
+	$(eleId).click(function () {
+		window.open(aboutCompanyLink);
+	});
+
+	// set manual link
+
+	eleId = '#manualLink';
+
+	$(eleId).click(function () {
+		window.open(aboutManualLink);
+	});
+
+	// hide dialog
+
+	showElement(baseId, false);
+}
+
+function aboutDlgOpen() {
+	showElement('aboutDlg', true);
+}
+
+function aboutDlgClose() {
+	showElement('aboutDlg', false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// periodic capture dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function setPeriodicCaptureDlgElement(id, pic, startX, startY, width, height, hasPic) {
+	var eleId;
+	var bkg;
+
+	eleId = '#' + id;
+
+	if (hasPic) {
+		bkg = fcGetDefIconPath(pic);
+		$(eleId).css('background', bkg);
+	}
+
+	$(eleId).css('top', startY + 'px');
+	$(eleId).css('left', startX + 'px');
+	$(eleId).css('width', width + 'px');
+	$(eleId).css('height', height + 'px');
+	$(eleId).css('position', 'absolute');
+}
+
+function createPeriodicCaptureDlgIcon(parentId, id, pic, startX, startY) {
+	createSpanElement(parentId, id);
+
+	setPeriodicCaptureDlgElement(id, pic, startX, startY, appCfg.pcdIconW, appCfg.pcdIconH, true);
+}
+
+function createPeriodicCaptureDlgUnit(parentId, id, startX, startY, text) {
+	createLabelElement(parentId, id);
+
+	setPeriodicCaptureDlgElement(id, false, startX, startY + appCfg.pcdUnitOffsetY, appCfg.pcdUnitW, appCfg.pcdUnitH, false);
+
+	$('#' + id).css('text-align', 'right');
+
+	periodicCaptureDlgUpdateText(id, text);
+}
+
+function createPeriodicCaptureDlgText(parentId, id, startX, startY, text) {
+	var eleId = '#' + id;
+
+	createInputElement(parentId, id);
+
+	setPeriodicCaptureDlgElement(id, false, startX, startY, appCfg.pcdTextW, appCfg.pcdTextH, false);
+
+	$(eleId).keydown(function (e) {
+		// Allow: backspace, delete
+		if ($.inArray(e.keyCode, [46, 8]) !== -1 ||
+			// Allow: home, end, left, right, down, up
+			(e.keyCode >= 35 && e.keyCode <= 40)) {
+			// let it happen, don't do anything
+			return;
+		}
+
+		// Ensure that it is a number and stop the keypress
+		if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+
+	$(eleId).attr('value', text);
+
+	$(eleId).css('text-align', 'center');
+}
+
+function periodicCaptureDlgPeriod() {
+	var baseId = 'periodicCaptureDlg';
+	var periodText = baseId + '_' + 'periodText';
+
+	return document.getElementById(periodText).value;
+}
+
+function periodicCaptureDlgInterval() {
+	var baseId = 'periodicCaptureDlg';
+	var intervalText = baseId + '_' + 'intervalText';
+
+	return document.getElementById(intervalText).value;
+}
+
+function periodicCaptureDlgUpdateText(id, text) {
+	var id;
+
+	id = document.getElementById(id);
+
+	fcUpdateElementText(id, text);
+}
+
+function initPeriodicCaptureDlg() {
+	var baseId = 'periodicCaptureDlg';
+
+	var periodIcon = baseId + '_' + 'periodIcon';
+	var periodText = baseId + '_' + 'periodText';
+	var periodUnit = baseId + '_' + 'periodUnit';
+
+	var intervalIcon = baseId + '_' + 'intervalIcon';
+	var intervalText = baseId + '_' + 'intervalText';
+	var intervalUnit = baseId + '_' + 'intervalUnit';
+
+	var closeIcon = baseId + '_' + 'close';
+	var startIcon = baseId + '_' + 'startIcon';
+
+	var eleId;
+	var x, y;
+	var textOffsetY = (appCfg.pcdIconH - appCfg.pcdTextH) / 2;
+	var unitOffsetY = (appCfg.pcdIconH - appCfg.pcdUnitH) / 2;
+
+	// set dialog size
+
+	createDivElement('uiArea', baseId);
+
+	var totalW;
+	var totalH;
+
+	totalW = appCfg.pcdIconW + appCfg.pcdTextW + appCfg.pcdUnitW + appCfg.pcdExtraW;
+	totalH = appCfg.pcdIconH * 4 - appCfg.pcdIconOverlayY * 3;
+
+	eleId = '#' + baseId;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('background', appCfg.pcdBkg);
+	$(eleId).css('opacity', appCfg.pcdOpacity);
+
+	$(eleId).css('left', 'calc(50% - ' + (totalW / 2) + 'px)');
+	$(eleId).css('top', 'calc(50% - ' + ((totalH - appCfg.titleIconH) / 2) + 'px)');
+	$(eleId).css('width', totalW + 'px');
+	$(eleId).css('height', totalH + 'px');
+
+	// set close icon
+
+	x = totalW - appCfg.pcdIconW;
+	y = 0;
+
+	createPeriodicCaptureDlgIcon(baseId, closeIcon, 'close.png', x, y);
+
+	$('#' + closeIcon).on('click', previewPeriodicCaptureDlgClickClose);
+
+	y += appCfg.pcdIconH - appCfg.pcdIconOverlayY;
+
+	// set periodic element
+
+	x = 0;
+	createPeriodicCaptureDlgIcon(baseId, periodIcon, 'timesave_time.png', x, y);
+
+	x += appCfg.pcdIconW;
+	createPeriodicCaptureDlgText(baseId, periodText, x, y + textOffsetY, appFC.capturePeriodSec);
+
+	x += appCfg.pcdTextW;
+	//createPeriodicCaptureDlgUnit(baseId, periodUnit, x, y + unitOffsetY, chrome.i18n.getMessage("lbSeconds"));
+	createPeriodicCaptureDlgUnit(baseId, periodUnit, x, y + unitOffsetY, "");
+	//createPeriodicCaptureDlgUnit(baseId, periodUnit, x, y + unitOffsetY, get_i18n_Message("lbSeconds"));
+
+
+	y += appCfg.pcdIconH - appCfg.pcdIconOverlayY;
+
+	// set interval element
+
+	x = 0;
+	createPeriodicCaptureDlgIcon(baseId, intervalIcon, 'timesave_keep.png', x, y);
+
+	x += appCfg.pcdIconW;
+	createPeriodicCaptureDlgText(baseId, intervalText, x, y + textOffsetY, appFC.captureIntervalHour);
+
+	x += appCfg.pcdTextW;
+	//createPeriodicCaptureDlgUnit(baseId, intervalUnit, x, y + unitOffsetY, chrome.i18n.getMessage("lbMinutes"));
+	createPeriodicCaptureDlgUnit(baseId, intervalUnit, x, y + unitOffsetY, "");
+	//createPeriodicCaptureDlgUnit(baseId, intervalUnit, x, y + unitOffsetY, get_i18n_Message("lbMinutes"));
+
+	y += appCfg.pcdIconH - appCfg.pcdIconOverlayY;
+
+	// set start icon
+
+	x = (totalW - appCfg.pcdIconW) / 2;
+
+	createPeriodicCaptureDlgIcon(baseId, startIcon, 'timesave_star.png', x, y);
+
+	$('#' + startIcon).on('click', previewPeriodicCaptureRun);
+
+	// hide dialog
+
+	showPeriodicCaptureDlg(false);
+}
+
+function showPeriodicCaptureDlg(mode) {
+	showElement('periodicCaptureDlg', mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// periodic capture info bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function resizePeriodicCaptureInfoBar() {
+	var baseId = 'periodicCaptureInfoBar';
+	var totalW, totalH;
+	var eleId;
+	var y;
+
+	y = Math.min((dispY + dispH), (winH - appCfg.drawSetH));
+
+	totalW = appCfg.pcibTextW + appCfg.pcibIconW;
+	totalH = appCfg.pcibIconH;
+
+	eleId = '#' + baseId;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('background', appCfg.pcibBkg);
+	$(eleId).css('opacity', appCfg.pcibOpacity);
+
+	$(eleId).css('left', 'calc(50% - ' + (totalW / 2) + 'px)');
+	$(eleId).css('top', (y - totalH - appCfg.pcidGapY) + 'px');
+	$(eleId).css('width', totalW + 'px');
+	$(eleId).css('height', totalH + 'px');
+}
+
+function initPeriodicCaptureInfoBar() {
+	var baseId = 'periodicCaptureInfoBar';
+	var textId = baseId + '_' + 'text';
+	var iconId = baseId + '_' + 'icon';
+
+	var eleId;
+
+	// set base element
+
+	createSpanElement('uiArea', baseId);
+
+	resizePeriodicCaptureInfoBar();
+
+	// set text element
+
+	createLabelElement(baseId, textId);
+
+	eleId = '#' + textId;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('left', 0);
+	$(eleId).css('top', ((appCfg.pcibIconH - appCfg.pcibTextH) / 2) + 'px');
+	$(eleId).css('width', appCfg.pcibTextW + 'px');
+	$(eleId).css('height', appCfg.pcibTextH + 'px');
+
+	$(eleId).css('text-align', 'center');
+	$(eleId).css('line-height', appCfg.pcibTextH + 'px');
+	$(eleId).css('font-size', appCfg.pcibTextFontSize);
+	$(eleId).css('color', appCfg.pcibTextColor);
+
+	// set stop icon
+
+	createSpanElement(baseId, iconId);
+
+	eleId = '#' + iconId;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('left', appCfg.pcibTextW + 'px');
+	$(eleId).css('top', 0);
+	$(eleId).css('width', appCfg.pcibIconW + 'px');
+	$(eleId).css('height', appCfg.pcibIconH + 'px');
+
+	$(eleId).css('background', fcGetDefIconPath('timesave_star.png'));
+
+	$(eleId).on('click', stopPeriodicCapture);
+
+	// hide info bar
+
+	showPeriodicCaptureInfoBar(false);
+}
+
+function stopPeriodicCapture() {
+	appFC.capturePeriodRun = false;
+
+	showPeriodicCaptureInfoBar(false);
+}
+
+function showPeriodicCaptureInfoBar(mode) {
+	showElement('periodicCaptureInfoBar', mode);
+}
+
+function updatePeriodicCaptureInfoBar() {
+	var baseId = 'periodicCaptureInfoBar';
+	var textId = baseId + '_' + 'text';
+
+	var id;
+	var text;
+
+	text = appFC.capturePeriodCurCnt + ' / ' + appFC.capturePeriodTotalCnt;
+
+	id = document.getElementById(textId);
+
+	fcUpdateElementText(id, text);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// confirm dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function resizeConfirmDlg() {
+	var baseId = 'confirmDlg';
+	var totalW, totalH;
+	var eleId;
+
+	totalW = appCfg.cdFrameGap * 2 + appCfg.cdIconW * 2 + appCfg.cdIconGap;
+	totalH = appCfg.cdFrameGap * 2 + appCfg.cdIconH;
+
+	eleId = '#' + baseId;
+
+	$(eleId).css('position', 'absolute');
+	$(eleId).css('background', appCfg.cdBkg);
+	$(eleId).css('opacity', appCfg.cdOpacity);
+
+	$(eleId).css('left', 'calc(50% - ' + (totalW / 2) + 'px)');
+	$(eleId).css('top', 'calc(50% - ' + (totalH / 2) + 'px)');
+	$(eleId).css('width', totalW + 'px');
+	$(eleId).css('height', totalH + 'px');
+}
+
+function initConfirmDlg() {
+	var baseId = 'confirmDlg';
+	var yesId = baseId + '_' + 'yes';
+	var noId = baseId + '_' + 'no';
+	var startX, startY;
+
+	// create base element
+
+	createSpanElement('uiArea', baseId);
+
+	resizeConfirmDlg();
+
+	// create icon
+
+	startX = appCfg.cdFrameGap;
+	startY = appCfg.cdFrameGap;
+
+	createConfirmDlgIcon(noId, 'no.png', startX, startY);
+
+	startX += appCfg.cdIconW + appCfg.cdIconGap;
+
+	createConfirmDlgIcon(yesId, 'yes.png', startX, startY);
+
+	function createConfirmDlgIcon(id, picture, x, y) {
+		var eleId;
+		var bkg;
+
+		createSpanElement(baseId, id);
+
+		eleId = '#' + id;
+
+		bkg = fcGetDefIconPath(picture);
+		$(eleId).css('background', bkg);
+
+		$(eleId).css('left', x + 'px');
+		$(eleId).css('top', y + 'px');
+		$(eleId).css('width', appCfg.cdIconW + 'px');
+		$(eleId).css('height', appCfg.cdIconH + 'px');
+		$(eleId).css('position', 'absolute');
+
+		$(eleId)
+			.on('mousedown', function (event) {
+				if (MouseBtnId.left === event.which) {
+					$(eleId).css('background-color', appCfg.cdMouseColorClick);
+
+					handleCinfirmDlgClick(event.target.id);
+				}
+			})
+			.on('mousemove', function (event) {
+				$(eleId).css('background-color', appCfg.cdMouseColorEnter);
+			})
+			.on('mouseout', function () {
+				$(eleId).css('background-color', appCfg.cdMouseColorLeave);
+			});
+	}
+
+	// handle click
+
+	function handleCinfirmDlgClick(id) {
+		//console.log(id + " clicked");
+
+		var baseId = 'confirmDlg';
+		var yesId = baseId + '_' + 'yes';
+		var noId = baseId + '_' + 'no';
+
+		var eleId;
+		var result;
+
+		eleId = document.getElementById(baseId);
+
+		if (eleId.clickHandler) {
+			eleId.clickHandler(id == yesId);
+		}
+	}
+
+	// hide dialog
+
+	showConfirmDlg(false);
+}
+
+function showConfirmDlg(mode) {
+	var baseId = 'confirmDlg';
+
+	showElement(baseId, mode);
+}
+
+function setConfirmDlgClickHandler(fn) {
+	var baseId = 'confirmDlg';
+	var eleId;
+
+	eleId = document.getElementById(baseId);
+
+	eleId.clickHandler = fn;
+}
+
+function setConfirmDlgTip(tipYes, tipNo) {
+	var baseId = 'confirmDlg';
+	var yesId = baseId + '_' + 'yes';
+	var noId = baseId + '_' + 'no';
+
+	fcUpdateElementTitle(yesId, tipYes);
+	fcUpdateElementTitle(noId, tipNo);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  get local storage image file 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var inputFiles;
+
+function lsInitSelectFilesDlg() {
+	createInputElement('uiArea', 'imgInput');
+
+	inputFiles = document.getElementById('imgInput');
+	inputFiles.hidden = true;
+	inputFiles.type = 'file';
+	inputFiles.accept = ".jpg, .png, .jpeg, .bmp, .tif, .tiff|image/*";
+	inputFiles.onchange = lsGetSelectFilesList;
+}
+
+function lsGetSelectFilesList() {
+	var files = inputFiles.files;
+	//console.log(inputFiles.files[0].webkitRelativePath);
+
+	if (files.length) {
+		if (-1 != files[0].type.indexOf("image")) {
+			fcLoadImage(files[0]);
+		}
+	}
+}
+
+function lsSelectFilesDlg() {
+
+	$('#imgInput').val('');
+	inputFiles.click();
+
+	document.body.onfocus = function () {
+		if (IsScanMode) {
+			setTimeout(function () {
+				var ele = document.getElementById("importPictureWin");
+				//console.log(ele.hidden);
+				if (ele.hidden) {
+					attachCropBox(dispW, dispH);
+				}
+			}, 200);
+		}
+		document.body.onfocus = null;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  image file 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcLoadTiff(file) {
+	var image = new Image();
+
+	var reader = new FileReader();
+	reader.onload = (function (theFile) {
+		return function (e) {
+			var buffer = e.target.result;
+			var tiff = new Tiff({ buffer: buffer });
+			var canvas = tiff.toCanvas();
+			var width = tiff.width();
+			var height = tiff.height();
+			if (canvas) {
+				image.src = canvas.toDataURL();
+			}
+		};
+	})(file);
+	reader.readAsArrayBuffer(file);
+
+	image.addEventListener("load", function () {
+		var imageInfo = file.name + ' ' +
+			image.width + 'x' +
+			image.height + ' ' +
+			file.type + ' ' +
+			Math.round(file.size / 1024) + 'KB';
+		//console.log(imageInfo);
+
+		displayPictureWin(image);
+	});
+}
+
+function fcLoadImage(file) {
+	var image = new Image();
+
+	image.addEventListener("load",
+		function () {
+			var imageInfo = file.name + ' ' +
+				image.width + 'x' +
+				image.height + ' ' +
+				file.type + ' ' +
+				Math.round(file.size / 1024) + 'KB';
+			//console.log(imageInfo);
+
+			displayPictureWin(image);
+		}
+	);
+
+	if (-1 != file.type.indexOf("tif")) {
+		var reader = new FileReader();
+		reader.onload = (function (theFile) {
+			return function (e) {
+				var buffer = e.target.result;
+				var tiff = new Tiff({ buffer: buffer });
+				var canvas = tiff.toCanvas();
+				//var width = tiff.width();
+				//var height = tiff.height();
+				if (canvas) {
+					image.src = canvas.toDataURL();
+				}
+			};
+		})(file);
+		reader.readAsArrayBuffer(file);
+	}
+	else {
+		image.src = window.URL.createObjectURL(file);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  init 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function galleryInit() {
+	lsInitSelectFilesDlg();
+
+	refleshGallery();
+	//galleryFillThumbnailDiv_Page();
+}
+
+// function refleshGallery() {
+// 	//console.log("refleshGallery");
+
+// 	if (!appFs) {
+// 		setTimeout(function () {
+// 			refleshGallery();
+// 		},
+// 			50);
+
+// 		return;
+// 	}
+
+// 	appFC.thumbnailReflesh = false;
+// 	appFC.thumbnailEntries = null;
+
+// 	var dirReader = appFs.root.createReader();
+
+// 	dirReader.readEntries(
+// 		enumFiles,
+// 		errorHandler
+// 	);
+
+// 	function enumFiles(entries) {
+// 		if (appFC.thumbnailEntries == null) {
+// 			appFC.thumbnailEntries = entries;
+// 			//console.log("init entries", appFC.thumbnailEntries.length);
+// 		}
+// 		else {
+// 			appFC.thumbnailEntries = appFC.thumbnailEntries.concat(entries);
+// 			//console.log("concat entries", appFC.thumbnailEntries.length);
+// 		}
+
+// 		if (entries.length == 100) {
+// 			dirReader.readEntries(
+// 				enumFiles,
+// 				errorHandler
+// 			);
+// 		}
+// 		else {
+// 			//console.log("appFC.thumbnailEntries.length", appFC.thumbnailEntries.length);
+// 			//appFC.thumbnailTotalPage = parseInt(appFC.thumbnailEntries.length / 100) + 1;
+
+// 			galleryFillThumbnailDiv_Page();
+// 		}
+// 	}
+
+// 	function errorHandler(fe) {
+// 		console.log(fe.code);
+// 	}
+// }
+
+// function galleryFillThumbnailDiv_Page() {
+// 	if (!appFs) {
+// 		setTimeout(function () {
+// 			galleryFillThumbnailDiv_Page();
+// 		},
+// 			50);
+
+// 		return;
+// 	}
+
+// 	//console.log("galleryFillThumbnailDiv_Page");
+// 	appFC.thumbSelectedFileCnt = 0;
+// 	appFC.thumbnailCnt = 0;
+// 	appFC.thumbFileCnt = 0;
+// 	$('#thumbDiv').empty();
+
+// 	var ValidEntry = 0;
+
+// 	for (var i = 0; i < appFC.thumbnailEntries.length; i++) {
+// 		//console.log(i, appFC.thumbnailEntries[i].name);
+
+// 		if (appFC.thumbnailEntries[i].name.indexOf(".sub") == -1)
+// 			ValidEntry += 1;
+// 	}
+
+// 	appFC.thumbnailTotalPage = parseInt((ValidEntry - 1) / 100) + 1;
+
+// 	// set limit for CurrPage, Index is ZERO-Base
+// 	appFC.thumbnailCurrPage = Math.min(appFC.thumbnailCurrPage, appFC.thumbnailTotalPage - 1);
+
+// 	//console.log(appFC.thumbnailCurrPage, appFC.thumbnailTotalPage);
+
+// 	var startIndex = 100 * appFC.thumbnailCurrPage;
+// 	var endIndex = Math.min(startIndex + 100, ValidEntry);
+
+// 	ValidEntry = 0;
+
+// 	for (var i = 0; i < appFC.thumbnailEntries.length; i++) {
+// 		if (appFC.thumbnailEntries[i].name.indexOf(".sub") == -1)
+// 			ValidEntry += 1;
+
+// 		if (startIndex <= ValidEntry - 1 && ValidEntry - 1 < endIndex) {
+// 			if (-1 != appFC.thumbnailEntries[i].name.indexOf(".jpg")) {
+// 				var filename = appFC.thumbnailEntries[i].name;
+
+// 				if (filename.replace(".jpg", ".sub") == appFC.thumbnailEntries[i - 1].name) {
+// 					appFC.thumbnailCnt += 1;
+
+// 					galleryCreateThumbnailDivEx(
+// 						appFC.thumbnailEntries[i - 1],
+// 						appFC.thumbnailEntries[i],
+// 						appFC.thumbnailCnt);
+// 				}
+// 				else {
+// 					//galleryCreateThumbnailDiv(appFC.thumbnailEntries[i], appFC.thumbnailCnt);
+// 				}
+
+
+// 			}
+
+// 			if (-1 != appFC.thumbnailEntries[i].name.indexOf(".webm")) {
+// 				appFC.thumbnailCnt += 1;
+
+// 				galleryCreateVideoDiv(appFC.thumbnailEntries[i], appFC.thumbnailCnt);
+// 			}
+// 		}
+
+// 		if (ValidEntry - 1 >= endIndex)
+// 			break;
+// 	}
+
+// 	galleryUpdateFileInfo();
+// }
+
+// function galleryFillThumbnailDiv() {
+// 	//console.log("galleryFillThumbnailDiv");
+
+// 	if (!appFs) {
+// 		setTimeout(function () {
+// 			galleryFillThumbnailDiv();
+// 		},
+// 			50);
+
+// 		return;
+// 	}
+
+// 	var dirReader = appFs.root.createReader();
+
+// 	dirReader.readEntries(
+// 		enumFiles,
+// 		errorHandler
+// 	);
+
+// 	function enumFiles(entries) {
+// 		//console.log(entries);
+
+// 		if (entries.length == 100) {
+// 			dirReader.readEntries(
+// 				enumFiles,
+// 				errorHandler
+// 			);
+// 		}
+
+// 		for (var i = 0; i < entries.length; i++) {
+// 			if (entries[i].isFile) {
+// 				if (-1 != entries[i].name.indexOf(".jpg")) {
+// 					appFC.thumbnailCnt += 1;
+
+// 					//console.log(entries[i].name);
+
+// 					galleryCreateThumbnailDiv(entries[i], appFC.thumbnailCnt);
+// 				}
+
+// 				if (-1 != entries[i].name.indexOf(".webm")) {
+// 					appFC.thumbnailCnt += 1;
+
+// 					galleryCreateVideoDiv(entries[i], appFC.thumbnailCnt);
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	function errorHandler(fe) {
+// 		console.log(fe.code);
+// 	}
+// }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// thumbnail   
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function galleryGetFitSize(dstW, dstH, srcW, srcH) {
+	var size = {
+		x: 0,
+		y: 0,
+		w: 0,
+		h: 0
+	};
+
+	if (dstW * srcH < srcW * dstH) {
+		// use full display width
+
+		size.w = dstW;
+		size.x = 0;
+
+		size.h = Math.floor(size.w * srcH / srcW);
+		size.y = Math.floor((dstH - size.h) / 2);
+	}
+	else {
+		// use full display height
+
+		size.h = dstH;
+		size.y = 0;
+
+		size.w = Math.floor(size.h * srcW / srcH);
+		size.x = Math.floor((dstW - size.w) / 2);
+	}
+
+	return size;
+}
+
+var requestFullScreenEle;
+$(document).on("webkitfullscreenchange", function () {
+	if (document.fullscreenElement) {
+		//console.log(`Element: ${document.fullscreenElement.id} entered full-screen mode.`);
+		//console.log(document.fullscreenElement);
+		requestFullScreenEle = document.fullscreenElement;
+		requestFullScreenEle.style.border = 'none';
+	}
+	else {
+		//console.log('Leaving full-screen mode.');
+		var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorChecked;
+		requestFullScreenEle.style.border = borderCfg;
+	}
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// delete file 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function galleryDeleteFiles(eleId) {
+	var i;
+
+	for (i = 0; i < eleId.length; i++) {
+		if (eleId[i].fileEntrySub) {
+			eleId[i].fileEntrySub.remove(function () {
+			},
+				function () {
+					console.log(fe.code);
+				}
+			);
+		}
+
+		eleId[i].fileEntryOrg.remove(function () {
+		},
+			function () {
+				console.log(fe.code);
+			}
+		);
+
+		($('#' + eleId[i].id).parent()).remove();
+
+		//galleryDeleteSelectedFileFinish();
+	}
+
+	refleshGallery();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// save canvas to local storage 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function lsSaveCanvasById(id, filename) {
+	var canvasElement = document.getElementById(id);
+
+	lsSaveCanvas(canvasElement, filename);
+}
+
+function lsSaveCanvas(canvasElement, filename) {
+	var MIME_TYPE = "image/jpeg";
+	var imgURL = canvasElement.toDataURL(MIME_TYPE);
+
+	lsSaveUrl(imgURL, filename);
+}
+
+function lsSaveImage(image, filename) {
+	var canvas = document.getElementById('saveFileCanvas');
+	var ctx = canvas.getContext('2d');
+
+	$('#saveFileCanvas').attr('width', image.width);
+	$('#saveFileCanvas').attr('height', image.height);
+
+	ctx.drawImage(image, 0, 0, image.width, image.height);
+
+	lsSaveCanvas(canvas, filename);
+}
+
+function lsSaveUrl(url, filename) {
+	var MIME_TYPE = "image/jpeg";
+	var dlLink = document.createElement('a');
+
+	dlLink.download = filename;
+	dlLink.href = url;
+	dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+	document.body.appendChild(dlLink);
+	dlLink.click();
+	document.body.removeChild(dlLink);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// save files to local storage default folder (file by file)
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function lsSaveFilesToDefaultFoloer(eleId) {
+	var i;
+
+	for (i = 0; i < eleId.length; i++) {
+		lsSaveImage(eleId[i].imgSrc, eleId[i].fileName);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// save files to local storage selected folder 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+async function lsSaveFilesToSelectedFolder(eleId, format) {
+	if (0 == eleId.length) return;
+
+	if (galleryData.length <= 0) return;
+
+	for (var i = 0; i < galleryData.length; i++) {
+		if (galleryData[i].name == eleId[0].fileName) {
+			var imageUrl;
+
+			// video
+			if (galleryData[i].name.indexOf("mp4") != -1 ||
+				galleryData[i].name.indexOf("webm") != -1) {
+				// const videoBlob = new Blob([galleryData[i].video], { type: 'application/octet-stream' });
+				// imageUrl = URL.createObjectURL(videoBlob);
+				imageUrl = URL.createObjectURL(galleryData[i].video);
+			}
+			// image
+			else {
+				// const imageBlob = new Blob([galleryData[i].normalImage], { type: 'application/octet-stream' });
+				// imageUrl = URL.createObjectURL(imageBlob);
+				imageUrl = galleryData[i].normalImage;
+			}
+			const a = document.createElement('a');
+			a.href = imageUrl;
+			a.download = galleryData[i].name; // 設定下載檔名
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+			URL.revokeObjectURL(imageUrl); // 釋放 URL
+			break;
+		}
+	}
+	return;
+
+
+	function addImageProcess(url) {
+		return new Promise((resolve, reject) => {
+			let img = new Image()
+			img.onload = () => resolve(imageToCanvas(img))
+			img.onerror = () => reject("Load Error")
+			img.src = url;
+		})
+	}
+
+	if (format == "PDF") {
+		//if(chrome.runtime.lastError) return;
+
+		var totalImageQty = 0;
+		var firstImageIndex = -1;
+
+		for (i = 0; i < eleId.length; i++) {
+			if (eleId[i].tagName == "IMG") {
+				totalImageQty += 1;
+
+				if (firstImageIndex == -1)
+					firstImageIndex = i;
+			}
+		}
+
+		var pdf;
+		var imageCount = 0;
+		var filename = eleId[firstImageIndex].fileName.split(".")[0];
+
+		for (let i = 0; i < eleId.length; i++) {
+			if (eleId[i].tagName == "IMG") {
+				eleId[i].fileEntryOrg.file(async function (file) {
+					await addImageProcess(window.URL.createObjectURL(file)).then(async function (canvas) {
+
+						imageCount += 1;
+
+						if (imageCount == 1) {
+							pdf = await new jsPDF({
+								orientation: 'l', // landscape
+								unit: 'pt', // points, pixels won't work properly
+								format: [canvas.width, canvas.height] // set needed dimensions for any element
+							});
+						}
+
+						var imgData = await canvas.toDataURL("image/jpeg", 1.0);
+						await pdf.addImage(imgData, 'JPEG', 0, 0, canvas.width, canvas.height);
+
+						if (imageCount < totalImageQty)
+							pdf.addPage();
+
+						if (imageCount == totalImageQty) {
+							pdf.save(filename + ".pdf");
+						}
+					}).catch((err) => {
+						console.log(err);
+					})
+				});
+			}
+		}
+		return;
+	}
+
+	//var dirHanle = await window.showDirectoryPicker();
+
+	for (var i = 0; i < eleId.length; i++) {
+		if (eleId[i].tagName == "IMG") {
+			eleId[i].fileEntryOrg.file(async function (file) {
+
+				await addImageProcess(window.URL.createObjectURL(file)).then((canvas) => {
+
+					var filename = file.name.split(".")[0];
+
+					switch (format) {
+						case "JPG":
+							filename += ".jpg";
+							canvas.toBlob(function (blob) {
+								//CustomSave(filename, dirHanle, blob);
+								saveBlobToJpg(filename, blob);
+							},
+								"image/jpeg", 1.0
+							);
+							break;
+
+						case "PNG":
+							filename += ".png";
+							canvas.toBlob(function (blob) {
+								//CustomSave(filename, dirHanle, blob);
+								saveBlobToPng(filename, blob);
+							},
+								"image/png", 1.0
+							);
+							break;
+
+						case "TIFF":
+							filename += ".tiff";
+							CanvasToTIFF.toBlob(canvas, function (blob) {
+								//CustomSave(filename, dirHanle, blob);
+								saveBlobToTiff(filename, blob);
+							});
+							break;
+					}
+				}).catch((err) => {
+					console.log(err);
+				})
+			});
+		}
+		else if (eleId[i].tagName == "VIDEO") {
+			eleId[i].fileEntryOrg.file(async function (blob) {
+				var filename = blob.name.split(".")[0] + ".webm";
+				saveBlobToWebm(filename, blob);
+				//CustomSave(filename, dirHanle, blob);
+				// fileEntry.File(function(blob){
+				// 	CustomSave(filename, dirHanle, blob);
+				// });
+			});
+		}
+	}
+
+	async function CustomSave(filename, dirHandle, blob) {
+		var draftHandle = await dirHandle.getFileHandle(filename, { create: true });
+		var writableStream = await draftHandle.createWritable();
+		await writableStream.write(blob);
+		await writableStream.close();
+	}
+	return;
+
+	// chrome.fileSystem.chooseEntry(
+	// 	{ type: 'openDirectory' }, 
+	// 	async function(dirEntry) {
+	// 		if(chrome.runtime.lastError) return;
+	// 		if ( !dirEntry || !dirEntry.isDirectory ) return;			
+
+	// 		for ( i = 0; i < eleId.length; i++ )
+	// 		{
+	// 			if ( eleId[i].tagName == "IMG" )
+	// 			{					
+	// 				switch ( format )
+	// 				{
+	// 					case "JPG":	
+	// 						eleId[i].fileEntryOrg.file( async function(file)
+	// 						{
+	// 							await addImageProcess(window.URL.createObjectURL(file)).then((canvas) => {
+	// 								//console.log(file.name, "Save as ", format);
+	// 								var filename = file.name.split(".")[0] + ".jpg";
+	// 								writeCanvasToJpg(dirEntry, canvas, filename);
+	// 							}).catch((err)=>{
+	// 								console.log(err);
+	// 							})								
+	// 						});
+	// 						break;
+
+	// 					case "PNG":
+	// 						eleId[i].fileEntryOrg.file( async function(file)
+	// 						{
+	// 							await addImageProcess(window.URL.createObjectURL(file)).then((canvas) => {
+	// 								//console.log(file.name, "Save as ", format);
+	// 								var filename = file.name.split(".")[0] + ".png";
+	// 								writeCanvasToPng(dirEntry, canvas, filename);
+	// 							}).catch((err)=>{
+	// 								console.log(err);
+	// 							})								
+	// 						});
+	// 						break;
+
+	// 					case "TIFF":
+	// 						eleId[i].fileEntryOrg.file( async function(file)
+	// 						{
+	// 							await addImageProcess(window.URL.createObjectURL(file)).then((canvas) => {
+	// 								//console.log(file.name, "Save as ", format);
+	// 								var filename = file.name.split(".")[0] + ".tif";
+	// 								writeCanvasToTiff(dirEntry, canvas, filename);
+	// 							}).catch((err)=>{
+	// 								console.log(err);
+	// 							})								
+	// 						});
+	// 						break;
+	// 				}		
+	// 			}
+
+	// 			if ( eleId[i].tagName == "VIDEO" )
+	// 			{
+	// 				appFs.root.getFile(eleId[i].fileEntryOrg.name, {}, function(fileEntry)
+	// 				{
+	// 					fileEntry.copyTo(dirEntry);
+	// 				});
+	// 			}
+	// 		}
+	// 	}
+	// );
+
+	function imageToCanvas(image) {
+		var canvas = document.getElementById('saveFileCanvas');
+		var ctx = canvas.getContext('2d');
+
+		$('#saveFileCanvas').attr('width', image.width);
+		$('#saveFileCanvas').attr('height', image.height);
+
+		ctx.drawImage(image, 0, 0, image.width, image.height);
+
+		return canvas;
+	}
+
+	function writeCanvasToPng(dirEntry, canvas, filename) {
+		canvas.toBlob(function (blob) {
+			dirEntry.getFile(filename, { create: true }, function (entry) {
+				entry.createWriter(function (writer) {
+					writer.write(blob);
+				});
+			});
+		},
+			"image/png", 1.0
+		);
+	}
+
+	function writeCanvasToJpg(dirEntry, canvas, filename) {
+		canvas.toBlob(function (blob) {
+			dirEntry.getFile(filename, { create: true }, function (entry) {
+				entry.createWriter(function (writer) {
+					writer.write(blob);
+				});
+			});
+		},
+			"image/jpeg", 1.0
+		);
+	}
+
+	function writeCanvasToTiff(dirEntry, canvas, filename) {
+		CanvasToTIFF.toBlob(canvas, function (blob) {
+			dirEntry.getFile(filename, { create: true }, function (entry) {
+				entry.createWriter(function (writer) {
+					writer.write(blob);
+				});
+			});
+		});
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// active check 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function intVideoStreamActiveCheck() {
+	videoLastUpdateTime = new Date();
+
+	setInterval(async function () {
+		var curTime = new Date();
+		var diff = curTime - videoLastUpdateTime;
+
+		//console.log(window.stream);
+
+		if (typeof window.stream == 'undefined' ||
+			(diff > 1000 &&
+				window.stream.active == false &&
+				chrome.WindowState == 'minimized')) {
+			//connectVideoSrc();
+			//await startVideo();
+		}
+	}, 3000);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mouse event
+///////////////////////////////////////////////////////////////////////////////////////////
+var fullPhotoMode = false;
+var fullScreenMode = false;
+var oldScreenWidth = 0;
+var oldScreenHeight = 0;
+
+function switchFullPhotoMode(enable) {
+	fullPhotoMode = enable;
+	window.onresize();
+	fcToogleToolBar();
+	sysUpdateToolBarTip();
+	//toolBarSetAllElementState('previewToolBar', 0);
+
+	setHideIconCountdown();
+}
+
+function sysToolBarOnClick(event) {
+	switch (event.target.id) {
+		case "sys_close":
+
+			if (IsRecording) {
+				StopRecord();
+				setTimeout(function () {
+					sysToolBarOnClick(event);
+				}, 1000);
+				return;
+			}
+
+			if (true == chrome.app.window.current().isFullscreen()) {
+				document.webkitCancelFullScreen();
+			}
+
+			window.close();
+
+			break;
+
+		case "sys_fullScreen":
+			if (document.body.clientWidth >= window.screen.width &&
+				document.body.clientHeight >= window.screen.height - 50 &&
+				!fullScreenMode) {
+				if ($('#dialogSave').hasClass('ui-dialog-content') &&
+					$('#dialogSave').dialog('isOpen') === true) {
+					$("#dialogSave").dialog("close");
+				}
+
+				document.webkitCancelFullScreen();
+				window.resizeTo(840, 660);
+				return;
+			}
+
+			if (fullScreenMode) {
+				if ($('#dialogSave').hasClass('ui-dialog-content') &&
+					$('#dialogSave').dialog('isOpen') === true) {
+					$("#dialogSave").dialog("close");
+				}
+
+				window.resizeTo(oldScreenWidth, oldScreenHeight);
+			}
+			else {
+				oldScreenWidth = document.body.clientWidth;
+				oldScreenHeight = document.body.clientHeight
+				window.resizeTo(window.screen.width, window.screen.height);
+			}
+			fullScreenMode = !fullScreenMode;
+			return;
+
+		// appFC.resizeDelayMs = 0;
+
+		// if ( true == chrome.app.window.current().isFullscreen() )
+		// {
+		// 	document.webkitCancelFullScreen();
+		// }
+		// else
+		// {
+		// 	document.documentElement.webkitRequestFullScreen();
+		// }
+
+		// break;
+
+		case "sys_fullPhoto":
+			switchFullPhotoMode(!fullPhotoMode);
+			// fullPhotoMode = !fullPhotoMode;
+			// window.onresize();
+			// fcToogleToolBar();
+			// sysUpdateToolBarTip();			
+			break;
+
+		case "sys_smallScreen":
+			if (IsRecording || appFC.capturePeriodRun) {
+				if ($('#dialogSave').hasClass('ui-dialog-content') &&
+					$('#dialogSave').dialog('isOpen') === true) {
+					$("#dialogSave").dialog("close");
+				}
+
+				$("#dialogSave").dialog({
+					title: "!",
+					dialogClass: "no-close",
+					autoOpen: false,
+					width: 250,
+					height: 100,
+					show: {
+						effect: "fade",
+						duration: 500
+					},
+					buttons: {
+						"No": function () {
+							$(this).dialog("close");
+						},
+						"Yes": function () {
+							if (IsRecording) StopRecord();
+							if (appFC.capturePeriodRun) stopPeriodicCapture();
+							//chrome.app.window.current().minimize();
+							chrome.windows.update(appID, { state: "minimized" });
+							$(this).dialog("close");
+						}
+					},
+					close: function (event, ui) {
+						$(this).dialog("destroy");
+					}
+				});
+				$("#dialogSave").html("<br/>Minimizing the window will stop taking pictures or videos. Continue?<br/> ");
+				$("#dialogSave").dialog("open");
+				return;
+			}
+			chrome.app.window.current().minimize();
+
+			break;
+	}
+
+	//fcMouseEventNotify(UiType.sysToolBar, MouseStatus.click, event);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool tip
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function sysUpdateToolBarTip() {
+	var strId;
+
+	if (appFC.showToolBar) strId = "btnHideFunctionIcon";
+	else strId = "btnShowFunctionIcon";
+
+	fcUpdateElementTitle("sys_fullPhoto", strId);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mouse event
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var IsScanMode = false;
+var IsMultiscanMode = false;
+
+var previewStatus =
+{
+	freeze: false,
+	flip: false,
+	mirror: false,
+	zoomRatio: 1,
+	zoomX: 0,
+	zoomY: 0,
+	zoomW: 0,
+	zoomH: 0,
+	panWinW: 0,
+	panWinH: 0,
+	zoomScrollBarPos: 0,
+	previewRotate: 0,
+	canvas: null
+}
+
+function resetPreviewStatus(modecfg) {
+	modecfg.freeze = false;
+	modecfg.flip = false;
+	modecfg.mirror = false;
+	modecfg.zoomRatio = 1;
+	modecfg.zoomX = 0;
+	modecfg.zoomY = 0;
+	modecfg.zoomW = 0;
+	modecfg.zoomH = 0;
+	modecfg.panWinW = 0;
+	modecfg.panWinH = 0;
+	modecfg.zoomScrollBarPos = 0;
+	appFC.previewRotate = 0;
+}
+
+function backupPreviewStatus(modecfg) {
+	previewStatus.freeze = modecfg.freeze;
+	previewStatus.flip = modecfg.flip;
+	previewStatus.mirror = modecfg.mirror;
+	previewStatus.zoomRatio = modecfg.zoomRatio;
+	previewStatus.zoomX = modecfg.zoomX;
+	previewStatus.zoomY = modecfg.zoomY;
+	previewStatus.zoomW = modecfg.zoomW;
+	previewStatus.zoomH = modecfg.zoomH;
+	previewStatus.panWinW = modecfg.panWinW;
+	previewStatus.panWinH = modecfg.panWinH;
+	previewStatus.zoomScrollBarPos = modecfg.zoomScrollBarPos;
+	previewStatus.previewRotate = appFC.previewRotate;
+
+	if (previewStatus.canvas == null) {
+		previewStatus.canvas = document.createElement('canvas');
+	}
+
+	previewStatus.canvas.width = modecfg.baseImageCanvas.width;
+	previewStatus.canvas.height = modecfg.baseImageCanvas.height;
+	var ctx = previewStatus.canvas.getContext('2d');
+	ctx.drawImage(modecfg.baseImageCanvas, 0, 0);
+}
+
+function recoverPreviewStatus(modecfg) {
+	modecfg.freeze = previewStatus.freeze;
+	modecfg.flip = previewStatus.flip;
+	modecfg.mirror = previewStatus.mirror;
+	modecfg.zoomRatio = previewStatus.zoomRatio;
+	modecfg.zoomX = previewStatus.zoomX;
+	modecfg.zoomY = previewStatus.zoomY;
+	modecfg.zoomW = previewStatus.zoomW;
+	modecfg.zoomH = previewStatus.zoomH;
+	modecfg.panWinW = previewStatus.panWinW;
+	modecfg.panWinH = previewStatus.panWinH;
+	modecfg.zoomScrollBarPos = previewStatus.zoomScrollBarPos;
+	appFC.previewRotate = previewStatus.previewRotate;
+}
+
+function recoverPreviewCanvas(modecfg) {
+	if (previewStatus.canvas != null) {
+		modecfg.baseImageContext.drawImage(previewStatus.canvas, 0, 0);
+		modecfg.imageProcess();
+	}
+}
+
+function modeToolBarOnClick(event) {
+	if (event.target.id == "mode_about") {
+		fcToogleDlg("mode_about", aboutDlgOpen, aboutDlgClose);
+		return;
+	}
+
+	if ($('#dialogSave').is(":visible")) {
+		//console.log("dialogSave is visible => return")
+		return;
+	}
+
+	if (IsRecording) {
+		$("#dialogSave").dialog({
+			title: "!",
+			dialogClass: "no-close",
+			autoOpen: false,
+			width: 250,
+			height: 100,
+			show: {
+				effect: "fade",
+				duration: 500
+			},
+			buttons: {
+				"No": function () {
+					$(this).dialog("close");
+				},
+				"Yes": function () {
+					$(this).dialog("close");
+					StopRecord();
+					setTimeout(function () {
+						modeToolBarOnClick(event);
+					}, 1000);
+
+				}
+			},
+			close: function (event, ui) {
+				$(this).dialog("destroy");
+			}
+		});
+		$("#dialogSave").html("<br/>Will you stop recording?<br/> ");
+		$("#dialogSave").dialog("open");
+
+		// StopRecord();
+		// setTimeout(function () {
+		// 	modeToolBarOnClick(event)
+		// }, 1000);
+		return;
+	}
+
+	// Leaving Mode
+	switch (appFC.curMode.baseId) {
+		case 'playbackArea':
+			if (event.target.id != "mode_about" &&
+				event.target.id != "mode_playback")
+				closeAndBackPlayback(appFC.curMode);
+			break;
+
+		case 'previewArea':
+			var mc = appFC.curMode;
+
+			if (true == appFC.capturePeriodRun) {
+				$("#dialogSave").dialog({
+					title: "!",
+					dialogClass: "no-close",
+					autoOpen: false,
+					width: 250,
+					height: 100,
+					show: {
+						effect: "fade",
+						duration: 500
+					},
+					buttons: {
+						"No": function () {
+							$(this).dialog("close");
+						},
+						"Yes": function () {
+							$(this).dialog("close");
+							stopPeriodicCapture();
+							setTimeout(function () {
+								modeToolBarOnClick(event);
+							}, 500);
+
+						}
+					},
+					close: function (event, ui) {
+						$(this).dialog("destroy");
+					}
+				});
+				$("#dialogSave").html("<br/>Discard Interval Timer Shooting?<br/> ");
+				$("#dialogSave").dialog("open");
+				return;
+			}
+
+			// ScanMode or MultiScanMode
+			if (event.target.id != "mode_preview") {
+				stopPeriodicCapture();
+			}
+
+			// Preview
+			if (!IsScanMode && !IsMultiscanMode) {
+				if (event.target.id == "mode_preview")
+					return;
+				backupPreviewStatus(mc);
+				hideCaptureHit();
+			}
+
+			// ScanMode
+			if (IsScanMode) {
+				IsTransform = false;
+				fcResetCanvasArray(mc);
+				$("#displayCanvas").css("transform", "scale(1,1)");
+				toolBarSetAllElementState("scanToolBarS2", 0);
+				resetPreviewStatus(previewModeCfg);
+			}
+
+			// MultiScanMode
+			if (IsMultiscanMode && arrMultiscanData.length) {
+				if ($('#dialogSave').hasClass('ui-dialog-content') &&
+					$('#dialogSave').dialog('isOpen') === true) {
+					$("#dialogSave").dialog("close");
+				}
+
+				$("#dialogSave").dialog({
+					title: "!",
+					dialogClass: "no-close",
+					autoOpen: false,
+					width: 250,
+					height: 100,
+					show: {
+						effect: "fade",
+						duration: 500
+					},
+					buttons: {
+						"No": function () {
+							$(this).dialog("close");
+						},
+						"Yes": function () {
+							arrMultiscanData = [];
+							HideMultiScanCnt();
+							$(this).dialog("close");
+
+							setTimeout(function () {
+								modeToolBarOnClick(event);
+							}, 300);
+
+						}
+					},
+					close: function (event, ui) {
+						$(this).dialog("destroy");
+					}
+				});
+				$("#dialogSave").html("<br/>Discard captured images?<br/> ");
+				//$("#dialogSave").dialog({ my: "center", at: "center", of: window });
+				$("#dialogSave").dialog("open");
+				return;
+			}
+
+			//$('#lbMsCnt').hide();
+			// 20241028 取消離開preview時清除畫布
+			// fcClearCanvas(mc.drawingCanvas);
+			// fcPushDrawingCanvas(mc);
+
+			if (mc.imageProcess)
+				mc.imageProcess();
+
+			removeCropBox();
+			IsScanMode = false;
+			IsMultiscanMode = false;
+			break;
+
+		case 'drawingArea':
+			toolBarSetAllElementState("drawingToolBar", 0);
+			appFC.fnDraw = null;
+			break;
+	}
+
+	switch (event.target.id) {
+		case "mode_preview":
+			showRecordBtn(true);
+			recoverPreviewStatus(previewModeCfg);
+			fcSwitchMode(previewModeCfg);
+			if (previewStatus.freeze) {
+				//console.log("freeze");
+				recoverPreviewCanvas(previewModeCfg);
+				previewModeCfg.imageProcess();
+			}
+			break;
+
+		case "mode_playback":
+			if (playbackModeCfg.curMode != PlbToolBarType.image)
+				refleshGallery();
+			fcSwitchMode(playbackModeCfg);
+			showRecordBtn(false);
+
+			//if (appFC.thumbnailReflesh)
+			//refleshGallery();
+			break;
+
+		case "mode_drawingBoard":
+			fcSwitchMode(drawingBoardModeCfg);
+			showRecordBtn(false);
+			break;
+
+		case "mode_about":
+			fcToogleDlg("mode_about", aboutDlgOpen, aboutDlgClose);
+			break;
+
+		case "mode_scan":
+
+			//$("#videoSrc").hide();
+			// navigator.mediaDevices.enumerateDevices().then(function(info){
+			// 	console.log(info);
+			// });
+
+			IsScanMode = true;
+			fcResetCanvasArray(previewModeCfg);
+			resetPreviewStatus(previewModeCfg);
+			previewModeCfg.imageProcess();
+
+			fcSwitchMode(previewModeCfg);
+
+			resetDrawingStatus();
+
+			showToolBar(appFC.curMode.lToolBar, false);
+			showToolBar(appFC.curMode.rToolBar, false);
+			showToolBar(appFC.curMode.bToolBar, false);
+			showRecordBtn(false);
+			showToolBar(appFC.curMode.lS1ToolBar, true);
+			showToolBar(appFC.curMode.lS2ToolBar, false);
+			showToolBar(appFC.curMode.lMsToolBar, false);
+
+			isFullcrop = false;
+			attachCropBox(dispW, dispH, true);
+			toolBarSetAllElementState("scanToolBarS1", 0);
+			break;
+
+		case "mode_multiscan":
+			IsMultiscanMode = true;
+			resetPreviewStatus(previewModeCfg);
+
+			fcSwitchMode(previewModeCfg);
+
+			resetDrawingStatus();
+
+			showToolBar(appFC.curMode.lToolBar, false);
+			showToolBar(appFC.curMode.rToolBar, false);
+			showToolBar(appFC.curMode.bToolBar, false);
+			showRecordBtn(false);
+			showToolBar(appFC.curMode.lMsToolBar, true);
+			showToolBar(appFC.curMode.lS1ToolBar, false);
+			showToolBar(appFC.curMode.lS2ToolBar, false);
+
+			isFullcrop = false;
+			attachCropBox(dispW, dispH, true);
+			toolBarSetAllElementState("multiscanToolBar", 0);
+
+			if (arrMultiscanData.length)
+				ShowMultiScanCnt();
+			else
+				HideMultiScanCnt();
+			break;
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof DrawData == "undefined") {
+	var DrawData = {};
+	DrawData.id = 0;
+	DrawData.fn = 1;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  apply draw type
+///////////////////////////////////////////////////////////////////////////////////////////
+function resetDrawingStatus() {
+	toolBarSetAllElementState("drawingToolBar", 0);
+	appFC.fnDraw = null;
+}
+
+function drawingToolBarOnClick(event) {
+	//console.log(event);
+
+	var fnTbl =
+		[
+			['btn_freehand', drawFreeHand],
+			['btn_arrow', drawArrow],
+			['btn_eraser', drawEraser],
+			['btn_line', drawLine],
+			['btn_rectangleLine', drawRectangleLine],
+			['btn_rectangle', drawRectangle],
+			['btn_circleLine', drawCircleLine],
+			['btn_circle', drawCircle],
+			['btn_text', drawText],
+		];
+
+	var i;
+	var mc = appFC.curMode;
+
+	if (event.target.id == "btn_erase_all") {
+		//console.log(mc);
+		fcClearCanvas(mc.drawingCanvas);
+		fcPushDrawingCanvas(mc);
+		if (mc.imageProcess) mc.imageProcess();
+
+		//if ( IsTransform && IsScanMode ) back2ScanModePreview();
+		fcCloseActiveDlg();
+
+	} else if (event.target.id == "btn_configDraw") {
+		$("#configDrawDlg").toggle(500);
+	} else if (event.target.id == "sys_fullPhoto") {
+		switchFullPhotoMode(!fullPhotoMode);
+
+		// fullPhotoMode = !fullPhotoMode;
+		// window.onresize();
+		// fcToogleToolBar();
+		// sysUpdateToolBarTip();			
+	} else {
+		for (i = 0; i < fnTbl.length; i++) {
+			if (event.target.id == fnTbl[i][DrawData.id]) {
+				if (appFC.fnDraw == fnTbl[i][DrawData.fn]) {
+					appFC.fnDraw = undefined;
+				} else {
+					appFC.fnDraw = fnTbl[i][DrawData.fn];
+				}
+			}
+		}
+		fcCloseActiveDlg();
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  common tool
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function baseDrawGetSize(startX, startY, endX, endY) {
+	var size =
+	{
+		x: 0,
+		y: 0,
+		w: 0,
+		h: 0,
+
+		centerX: 0,
+		centerY: 0,
+		endX: 0,
+		endY: 0,
+
+		regularX: 0,
+		regularY: 0,
+		regularSide: 0,
+	};
+
+	// caculate normal size
+
+	size.x = Math.min(startX, endX);
+	size.y = Math.min(startY, endY);
+
+	size.w = Math.abs(endX - startX);
+	size.h = Math.abs(endY - startY);
+
+	size.centerX = size.x + size.w / 2;
+	size.centerY = size.y + size.h / 2;
+
+	size.endX = size.x + size.w;
+	size.endY = size.y + size.h;
+
+	// caculate regular size
+
+	size.regularX = size.x;
+	size.regularY = size.y;
+
+	if (size.w > size.h) {
+		size.regularSide = size.h;
+
+		if (size.regularX !== startX) {
+			size.regularX = startX - size.regularSide;
+		}
+	}
+	else {
+		size.regularSide = size.w;
+
+		if (size.regularY !== startY) {
+			size.regularY = startY - size.regularSide;
+		}
+	}
+
+	return size;
+}
+
+function baseDrawEllipse(context, startX, startY, endX, endY) {
+	var size;
+	var startX, startY;
+	var centerX, centerY;
+	var endX, endY;
+
+	size = baseDrawGetSize(startX, startY, endX, endY);
+
+	startX = size.x;
+	startY = size.y;
+	centerX = size.centerX;
+	centerY = size.centerY;
+	endX = size.endX;
+	endY = size.endY;
+
+	context.moveTo(centerX, startY);
+
+	context.bezierCurveTo(endX, startY, endX, endY, centerX, endY);
+	context.bezierCurveTo(startX, endY, startX, startY, centerX, startY);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  freehand
+///////////////////////////////////////////////////////////////////////////////////////////
+var lastTimeMill = 0;
+var ptlist = new Array();
+function drawFreeHand(state) {
+	//console.log("free hand " + state);
+	var ctx = appFC.drawContext;
+
+	switch (state) {
+		case DrawState.start:
+
+			fcClearDrawingCanvas();
+
+			ctx.strokeStyle = appFC.drawStyle;
+			ctx.lineWidth = appFC.lineWidth;
+
+			ptlist.push({ x: appFC.drawStartX, y: appFC.drawStartY });
+			ptlist.push({ x: appFC.drawStartX, y: appFC.drawStartY });
+			ptlist.push({ x: appFC.drawStartX, y: appFC.drawStartY });
+			break;
+
+		case DrawState.move:
+			if (ptlist.length == 0)
+				return;
+			var d = new Date();
+
+			if (d.getTime() - lastTimeMill < 10)
+				break;
+
+			lastTimeMill = d.getTime();
+
+			ptlist.push({ x: appFC.drawCurX, y: appFC.drawCurY });
+			ctx.clearRect(0, 0, appFC.drawCanvas.width, appFC.drawCanvas.height);
+			ctx.moveTo(ptlist[0].x, ptlist[0].y);
+			ctx.beginPath();
+
+			for (var i = 1; i < ptlist.length - 2; i++) {
+				var c = (ptlist[i].x + ptlist[i + 1].x) / 2;
+				var d = (ptlist[i].y + ptlist[i + 1].y) / 2;
+				ctx.quadraticCurveTo(ptlist[i].x, ptlist[i].y, c, d);
+			}
+
+			ctx.quadraticCurveTo(
+				ptlist[i].x,
+				ptlist[i].y,
+				ptlist[i + 1].x,
+				ptlist[i + 1].y
+			);
+
+			//ctx.lineTo(appFC.drawCurX, appFC.drawCurY);
+			ctx.stroke();
+
+			break;
+
+		case DrawState.end:
+			ptlist = [];
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  arrow
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function getArrowEnds(startPos, endPos, size) {
+	var ends =
+	{
+		end1:
+		{
+			x: 0,
+			y: 0,
+		},
+		end2:
+		{
+			x: 0,
+			y: 0,
+		}
+	};
+
+	var dx = endPos.x - startPos.x;
+	var dy = endPos.y - startPos.y;
+	var length = Math.sqrt(dx * dx + dy * dy);
+	var unitDx = dx / length;
+	var unitDy = dy / length;
+
+	ends.end1.x = endPos.x - unitDx * size - unitDy * size;
+	ends.end1.y = endPos.y - unitDy * size + unitDx * size;
+
+	ends.end2.x = endPos.x - unitDx * size + unitDy * size;
+	ends.end2.y = endPos.y - unitDy * size - unitDx * size;
+
+	return ends;
+}
+
+function drawArrow(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			fcClearDrawingCanvas();
+
+			var startPos = { x: appFC.drawStartX, y: appFC.drawStartY };
+			var endPos = { x: appFC.drawCurX, y: appFC.drawCurY };
+
+			var size = Math.max(appFC.lineWidth * 2, appCfg.minArrowSize);
+
+			var ends = getArrowEnds(startPos, endPos, size);
+
+			var ctx = appFC.drawContext;
+
+
+			ctx.fillStyle = appFC.drawStyle;
+			ctx.strokeStyle = appFC.drawStyle;
+			ctx.lineWidth = appFC.lineWidth;
+
+			ctx.beginPath();
+			ctx.moveTo(startPos.x, startPos.y);
+			ctx.lineTo((ends.end1.x + ends.end2.x) / 2, (ends.end1.y + ends.end2.y) / 2);
+			ctx.closePath();
+			ctx.stroke();
+
+			ctx.moveTo(endPos.x, endPos.y);
+			ctx.lineTo(ends.end1.x, ends.end1.y);
+			ctx.lineTo(ends.end2.x, ends.end2.y);
+			ctx.closePath();
+			ctx.fill();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  eraser
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawEraserRect(context, centerX, centerY, size, style) {
+	var x, y;
+	var offset = 1;
+
+	x = centerX - size / 2;
+	y = centerY - size / 2;
+
+	if (typeof style == "undefined") {
+		x -= offset;
+		y -= offset;
+		size += offset * 2;
+
+		context.clearRect(x - 1, y - 1, size + 2, size + 2);
+	}
+	else {
+		context.beginPath();
+
+		context.strokeStyle = style;
+		context.fillStyle = style;
+		context.lineWidth = 0;
+
+		context.rect(x, y, size, size);
+		//context.rect(x + 1, y + 1, size - 2, size - 2);
+		context.fill();
+
+		context.stroke();
+	}
+}
+
+function drawEraser(state) {
+	var ctx = appFC.baseContext;
+	var size = appFC.lineWidth * 2;
+
+	if (size < 10) size = 10;
+
+	switch (state) {
+		case DrawState.start:
+
+			fcClearDrawingCanvas();
+
+			// Draw Rect
+			drawEraserRect(ctx, appFC.drawCurX, appFC.drawCurY, size, appFC.eraserStyle);
+			break;
+
+		case DrawState.move:
+			// Eraser Rect
+			drawEraserRect(ctx, appFC.drawLastX, appFC.drawLastY, size);
+			// Draw Rect
+			drawEraserRect(ctx, appFC.drawCurX, appFC.drawCurY, size, appFC.eraserStyle);
+			break;
+
+		case DrawState.end:
+			// Eraser Rect
+			drawEraserRect(ctx, appFC.drawCurX, appFC.drawCurY, size);
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  line
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawLine(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			fcClearDrawingCanvas();
+
+			var ctx = appFC.drawContext;
+
+			ctx.strokeStyle = appFC.drawStyle;
+			ctx.lineWidth = appFC.lineWidth;
+
+			ctx.beginPath();
+			ctx.moveTo(appFC.drawStartX, appFC.drawStartY);
+			ctx.lineTo(appFC.drawCurX, appFC.drawCurY);
+			ctx.stroke();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  rectangle line
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawRectangleLine(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			fcClearDrawingCanvas();
+
+			var ctx = appFC.drawContext;
+			var size;
+
+			ctx.strokeStyle = appFC.drawStyle;
+			ctx.lineWidth = appFC.lineWidth;
+
+			size = baseDrawGetSize(appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+
+			ctx.beginPath();
+
+			//ctx.rect(size.x, size.y, size.w, size.h);
+			if (appFC.drawRegularShape) {
+				ctx.rect(size.regularX, size.regularY, size.regularSide, size.regularSide);
+			}
+			else {
+				ctx.rect(size.x, size.y, size.w, size.h);
+			}
+
+			ctx.stroke();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  rectangle
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawRectangle(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			fcClearDrawingCanvas();
+
+			var ctx = appFC.drawContext;
+			var size;
+
+			ctx.fillStyle = appFC.drawStyle;
+			ctx.strokeStyle = appFC.clearStyle;
+			ctx.lineWidth = 0;
+
+			size = baseDrawGetSize(appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+
+			if (appFC.drawRegularShape) {
+				ctx.rect(size.regularX, size.regularY, size.regularSide, size.regularSide);
+			}
+			else {
+				ctx.rect(size.x, size.y, size.w, size.h);
+			}
+
+			ctx.fill();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  circle line
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawCircleLine(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			var ctx = appFC.drawContext;
+			var size;
+
+			fcClearDrawingCanvas();
+
+			ctx.strokeStyle = appFC.drawStyle;
+			ctx.lineWidth = appFC.lineWidth;
+
+			ctx.beginPath();
+
+			if (appFC.drawRegularShape) {
+				size = baseDrawGetSize(appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+				baseDrawEllipse(ctx, size.regularX, size.regularY, size.regularX + size.regularSide / 3 * 4, size.regularY + size.regularSide);
+			}
+			else {
+				baseDrawEllipse(ctx, appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+			}
+
+			ctx.closePath();
+
+			ctx.stroke();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  circle
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawCircle(state) {
+	switch (state) {
+		case DrawState.start:
+			break;
+
+		case DrawState.move:
+
+			var ctx = appFC.drawContext;
+			var size;
+
+			fcClearDrawingCanvas();
+
+			ctx.fillStyle = appFC.drawStyle;
+
+			if (appFC.drawRegularShape) {
+				size = baseDrawGetSize(appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+				baseDrawEllipse(ctx, size.regularX, size.regularY, size.regularX + size.regularSide / 3 * 4, size.regularY + size.regularSide);
+			}
+			else {
+				baseDrawEllipse(ctx, appFC.drawStartX, appFC.drawStartY, appFC.drawCurX, appFC.drawCurY);
+			}
+
+			ctx.fill();
+
+			break;
+
+		case DrawState.end:
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//  text
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawText(state) {
+	switch (state) {
+		case DrawState.start:
+			if (false == appFC.drawText) {
+				fcToogleDlg("textInputDlg", textInputDlgOpen, null);
+				//fcToogleDlg("textInputDlg", textInputDlgOpen, textInputDlgClose);
+			}
+			break;
+
+		case DrawState.move:
+			break;
+
+		case DrawState.end:
+			if (false == appFC.drawText) {
+				if (getTextInputLength()) {
+					fcCanvasCtrl(DrawState.end);
+				}
+			}
+			break;
+	}
+}
+
+function textInputDlgOpen() {
+	updateTextInputCfg();
+	resetTextInputContent();
+
+	appFC.drawFontStyle = appFC.drawStyle;
+
+	appFC.drawing = false;
+
+	appFC.drawText = true;
+
+	showTextInputDlg(true);
+}
+
+function textInputDlgClose() {
+	showTextInputDlg(false);
+
+	fcClearDrawingCanvas();
+
+	//baseDrawText();
+
+	appFC.drawText = false;
+
+	if (appFC.fnDraw)
+		appFC.fnDraw(DrawState.end);
+}
+
+function textInputDlgCloseClick() {
+	//fcCloseActiveDlg();
+	showTextInputDlg(false);
+
+	fcClearDrawingCanvas();
+
+	baseDrawText();
+
+	appFC.drawText = false;
+
+	if (appFC.fnDraw)
+		appFC.fnDraw(DrawState.end);
+}
+
+function baseDrawText() {
+	var startX, startY;
+	var curY;
+	var textH;
+	var ctx;
+	var content;
+	var curPos;
+	var curStr;
+	var pos;
+	var fontStyle;
+
+	if (0 == getTextInputLength()) return;
+
+	startX = appFC.drawStartX;
+	startY = appFC.drawStartY;
+
+	textH = appFC.fontSize;
+
+	ctx = appFC.drawContext;
+	content = getTextInputContent();
+
+	fontStyle = '';
+	if (appFC.fontBold) fontStyle += 'Bold ';
+	if (appFC.fontItalic) fontStyle += 'Italic ';
+
+	ctx.fillStyle = appFC.drawFontStyle;
+	ctx.strokeStyle = appFC.drawStyle;
+	ctx.font = fontStyle + textH + 'pt' + ' ' + appFC.fontFamily;
+
+	curPos = content;
+
+	curY = startY;
+
+	while (-1 != curPos.indexOf('\n')) {
+		curY += textH;
+
+		pos = curPos.indexOf('\n');
+
+		curStr = curPos.substring(0, pos);
+
+		ctx.fillText(curStr, startX, curY);
+
+		curPos = curPos.substring(pos + 1);
+	}
+
+	ctx.fillText(curPos, startX, curY + textH);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Scan mode config
+///////////////////////////////////////////////////////////////////////////////////////////
+var IsTransform = false;
+var isFullcrop = false;
+
+var testCnt = 0;
+
+async function scanToolBarOnClick(event) {
+	var mc = previewModeCfg;
+
+	switch (event.target.id) {
+		case "scbtn_importPic":
+			displayPictureWinClose(false);
+			removeCropBox();
+			lsSelectFilesDlg();
+			break;
+
+		case "scbtn_fullcrop":
+
+			if (isFullcrop)
+				attachCropBox(dispW, dispH, true);
+			else
+				attachCropBoxFull(dispW, dispH);
+
+			isFullcrop = !isFullcrop;
+			break;
+
+		case 'scbtn_transform':
+			//if( $("#cropBox").length == 0 || IsDeviceConnected == false)
+			if ($("#cropBox").length == 0)
+				return;
+
+			// if(IsDeviceConnected == false)
+			// {
+			// 	console.log("IsDeviceConnected");
+			// 	if ( mc.imageProcess ) 
+			// 	{
+			// 		fcCanvasCtrl(DrawState.end);
+			// 		mc.imageProcess();
+			// 	}
+			// }
+
+			Perspective_ScanMode();
+
+			removeCropBox();
+
+			fcResetCanvasArray(mc);
+
+			showToolBar(appFC.curMode.lS1ToolBar, false);
+			showToolBar(appFC.curMode.rToolBar, true);
+			showToolBar(appFC.curMode.bToolBar, true);
+			showToolBar(appFC.curMode.lS2ToolBar, true);
+
+			IsTransform = true;
+
+
+			// fcClearCanvas(mc.drawingCanvas);
+			// fcPushDrawingCanvas(mc);
+			// if ( mc.imageProcess )
+			// 	mc.imageProcess();
+
+			break;
+
+		case "scbtn_preview":
+			back2ScanModePreview();
+			break;
+
+		case "scbtn_mirrow":
+			mc.mirror = !mc.mirror;
+			fcCanvasCtrl(DrawState.mirror);
+			break;
+
+		case "scbtn_flip":
+			mc.flip = !mc.flip;
+			fcCanvasCtrl(DrawState.flip);
+			break;
+
+		case "scbtn_config":
+			fcCloseActiveDlg();
+			//fcToogleDlg("btn_config", configDlgOpen, configDlgClose);
+			$("#configDlg").toggle(500);
+			break;
+
+		case "scbtn_setting":
+			fcToogleDlg("btn_setting", previewSettingDlgOpen, previewSettingDlgClose);
+			break;
+
+		case "scbtn_ocr":
+			OCR_scan();
+			break;
+
+		case "scbtn_saveDisk":
+			showSaveHit();
+			fcSaveCanvasToFile(mc['combineCanvas']);
+			break;
+
+		case "scbtn_redo":
+		case "scbtn_redo2":
+			fcCanvasCtrl(DrawState.redo);
+			break;
+
+		case "scbtn_undo":
+			//console.log(mc.canvasStep + "/" + mc.canvasArray.length);		
+			fcCanvasCtrl(DrawState.undo);
+			break;
+		case "scbtn_undo2":
+			//console.log(mc.canvasStep + "/" + mc.canvasArray.length);
+
+			if (mc.canvasStep == 1)
+				return;
+			fcCanvasCtrl(DrawState.undo);
+			break;
+	}
+
+	// if (mc.mirror && mc.flip)
+	// 	$("#displayCanvas").css("transform", "scale(-1,-1)");
+	// else if (!mc.mirror && mc.flip)
+	// 	$("#displayCanvas").css("transform", "scale(1,-1)");
+	// else if (mc.mirror && !mc.flip)
+	// 	$("#displayCanvas").css("transform", "scale(-1,1)");
+	// else if (!mc.mirror && !mc.flip)
+	// 	$("#displayCanvas").css("transform", "scale(1,1)");
+
+	toolBarOnMouseClick(event);
+}
+
+function back2ScanModePreview() {
+	var mc = previewModeCfg;
+	mc.freeze = false;
+
+	removeCropBox();
+	fcResetCanvasArray(mc);
+
+	fcClearCanvas(document.getElementById("previewArea-combineCanvas"));
+	fcClearDrawingCanvas();
+	fcClearDispCanvas();
+	//fcPushDrawingCanvas(mc);
+	if (mc.imageProcess) mc.imageProcess();
+
+	if (isFullcrop)
+		attachCropBoxFull(dispW, dispH);
+	else
+		attachCropBox(dispW, dispH);
+
+	showToolBar(appFC.curMode.lS2ToolBar, false);
+	showToolBar(appFC.curMode.rToolBar, false);
+	showToolBar(appFC.curMode.bToolBar, false);
+	showToolBar(appFC.curMode.lS1ToolBar, true);
+
+	toolBarSetAllElementState("scanToolBarS2", 0);
+
+	mc.mirror = false;
+	mc.flip = false;
+	IsTransform = false;
+}
+
+var arrMultiscanData = [];
+
+function cloneCanvas(oldCanvas) {
+
+	//create a new canvas
+	var newCanvas = document.createElement('canvas');
+	var context = newCanvas.getContext('2d');
+
+	//set dimensions
+	newCanvas.width = oldCanvas.width;
+	newCanvas.height = oldCanvas.height;
+
+	//apply the old canvas to the new one
+	context.drawImage(oldCanvas, 0, 0);
+
+	//return the new canvas
+	return newCanvas;
+}
+
+function showMergeDailog(event = null) {
+	$("#dialogSave").dialog({
+		dialogClass: "no-close",
+		autoOpen: false,
+		width: 250,
+		height: 80,
+		show: {
+			effect: "fade",
+			duration: 500
+		},
+		hide: {
+			effect: "fade",
+			duration: 500
+		},
+		buttons: {
+			"JPG": function () {
+				$(this).dialog("close");
+				fcSaveCanvasToFileExt(arrMultiscanData);
+				arrMultiscanData = [];
+				if (event) modeToolBarOnClick(event);
+				HideMultiScanCnt();
+			},
+			"PDF": function () {
+				$(this).dialog("close");
+				fcSaveCanvasToPdfExt(arrMultiscanData);
+				arrMultiscanData = [];
+				if (event) modeToolBarOnClick(event);
+				HideMultiScanCnt();
+			},
+			"X": function () { $(this).dialog("close"); }
+		},
+		close: function (event, ui) {
+			$(this).dialog("destroy");
+		}
+	});
+	$("#dialogSave").html("");
+	$("#dialogSave").dialog("open");
+}
+
+function showMergeHitDialog() {
+	$("#dialogSave").dialog({
+		dialogClass: "no-close",
+		title: "!",
+		autoOpen: false,
+		width: 250,
+		height: 100,
+		show: {
+			effect: "fade",
+			duration: 500
+		},
+		hide: {
+			effect: "fade",
+			duration: 500
+		},
+		buttons: {
+			"OK": function () {
+				$(this).dialog("close");
+			}
+		},
+		close: function (event, ui) {
+			$(this).dialog("destroy");
+		}
+	});
+	$("#dialogSave").html("<br>Please take pictures first.");
+	$("#dialogSave").dialog("open");
+}
+
+function CreateMultiScanCnt() {
+	createLabelElement("uiArea", "lbMsCnt");
+
+	$('#lbMsCnt').addClass('MultiScanCnt');
+	$("#lbMsCnt").css({ top: winH - 80, left: (winW / 2), position: 'absolute' });
+}
+
+function ShowMultiScanCnt(text = "") {
+	$('#lbMsCnt').text(text);
+	$('#lbMsCnt').show();
+	$('#mscbtn_cancel').show();
+}
+function HideMultiScanCnt() {
+	$('#lbMsCnt').hide();
+	$('#mscbtn_cancel').hide();
+}
+
+function multiscanToolBarOnClick(event) {
+	var mc = previewModeCfg;
+
+	switch (event.target.id) {
+		case "mscbtn_capture":
+
+			if ($("#cropBox").length == 0 || IsDeviceConnected == false)
+				return;
+
+			if ($('#dialogSave').is(":visible")) {
+				$("#dialogSave").dialog("close");
+			}
+
+			var canvas = Perspective_MultiScanMode();
+			arrMultiscanData.push(cloneCanvas(canvas));
+
+			if ($('#lbMsCnt').length == 0) {
+				CreateMultiScanCnt();
+			}
+
+			ShowMultiScanCnt(arrMultiscanData.length);
+
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case "mscbtn_merge":
+			if (arrMultiscanData.length == 0) {
+				showMergeHitDialog();
+				return;
+			}
+			showMergeDailog();
+			break;
+
+		case "mscbtn_cancel":
+			if (arrMultiscanData.length) {
+				$("#dialogSave").dialog({
+					title: "!",
+					dialogClass: "no-close",
+					autoOpen: false,
+					width: 250,
+					height: 100,
+					show: {
+						effect: "fade",
+						duration: 500
+					},
+					buttons: {
+						"No": function () {
+							$(this).dialog("close");
+						},
+						"Yes": function () {
+							arrMultiscanData = [];
+							HideMultiScanCnt();
+							$(this).dialog("close");
+						}
+					},
+					close: function (event, ui) {
+						$(this).dialog("destroy");
+					}
+				});
+				$("#dialogSave").html("<br/>Discard captured images?<br/> ");
+				$("#dialogSave").dialog("open");
+				return;
+			}
+			break;
+
+		case "mscbtn_fullcrop":
+
+			if (isFullcrop)
+				attachCropBox(dispW, dispH, true);
+			else
+				attachCropBoxFull(dispW, dispH);
+
+			isFullcrop = !isFullcrop;
+			break;
+	}
+
+	if (mc.mirror && mc.flip)
+		$("#displayCanvas").css("transform", "scale(-1,-1)");
+	else if (!mc.mirror && mc.flip)
+		$("#displayCanvas").css("transform", "scale(1,-1)");
+	else if (mc.mirror && !mc.flip)
+		$("#displayCanvas").css("transform", "scale(-1,1)");
+	else if (!mc.mirror && !mc.flip)
+		$("#displayCanvas").css("transform", "scale(1,1)");
+
+	toolBarOnMouseClick(event);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mode config
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var previewModeCfg =
+{
+	baseId: 'previewArea',
+
+	lToolBar: 'previewToolBar',
+	lS1ToolBar: 'scanToolBarS1',
+	lS2ToolBar: 'scanToolBarS2',
+	lMsToolBar: 'multiscanToolBar',
+	rToolBar: 'drawingToolBar',
+	bToolBar: 'drawingCfgArea',
+
+	taskCtrl: previewModeTaskCtrl,
+	start: previewModeStart,
+	init: previewModeInit,
+	onResize: previewModeOnResize,
+	canvasCtrl: previewCanvasControl,
+	imageProcess: previewImageProcess,
+	chgBaseImgCtrl: previewChangeBaseImageCtrl,
+
+	imgW: appCfg.defPreviewRsoX,
+	imgH: appCfg.defPreviewRsoY,
+
+	freeze: false,
+
+	hasTempDraw: false,
+	mergeTempDraw: false,
+
+	reqUndo: false,
+	reqRedo: false,
+
+	flip: false,
+	mirror: false,
+
+	zoomRatio: 1,
+	zoomX: 0,
+	zoomY: 0,
+	zoomW: appCfg.defPreviewRsoX,
+	zoomH: appCfg.defPreviewRsoY,
+
+	panWinW: 0,
+	panWinH: 0,
+
+	zoomScrollBarPos: 0,
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// flow control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewModeTaskCtrl(isEnter) {
+	var mc = previewModeCfg;
+
+	if (isEnter) {
+		mc.panMove = false;
+
+		if (appFC.capturePeriodRun) showPeriodicCaptureInfoBar(true);
+
+		//ScrollBarDlgSetPos('zoomDlg', mc.zoomScrollBarPos);
+
+		if (mc.zoomRatio > 1) fcShowPanWin(true);
+	}
+	else {
+		displayPictureWinClose(false);
+		showPeriodicCaptureInfoBar(false);
+		fcShowPanWin(false);
+	}
+}
+
+function previewModeStart() {
+	//previewCheckReqVideoResolution();
+
+	previewModeOnResize();
+}
+
+function previewModeInit() {
+	var mc = previewModeCfg;
+
+	videoW = mc.imgW = appFC.reqImgW;
+	videoH = mc.imgH = appFC.reqImgH;
+	resetCanvasGroupSize(mc, videoW, videoH);
+
+	getCanvasGroupContext(mc);
+
+	fcInitCanvasArray(mc);
+
+	fcInitCropWinEvent();
+
+	fcShowPanWin(false);
+
+	fcShowMode(mc, false);
+}
+
+function previewModeOnResize() {
+	if (previewModeCfg.freeze) fcUpdateImage();
+
+	if ((IsScanMode || IsMultiscanMode) && !IsTransform) {
+		removeCropBox();
+		attachCropBox(dispW, dispH);
+	}
+
+	fcUpdatePanWin();
+	fcUpdateCropWin();
+
+	resizePeriodicCaptureInfoBar();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var recordStatus = 0;
+
+async function listFiles(directoryHandle) {
+	const files = [];
+	for await (const entry of directoryHandle.values()) {
+		if (entry.kind === "file") {
+			files.push(entry);
+		} else if (entry.kind === "directory") {
+			const subDirectoryHandle = await directoryHandle.getDirectory(entry.name);
+			const subFiles = await listFiles(subDirectoryHandle);
+			files.push(...subFiles);
+		}
+	}
+	return files;
+}
+
+async function previewToolBarOnClick(event) {
+	var mc = previewModeCfg;
+
+	switch (event.target.id) {
+		case 'btn_freeze':
+			mc.freeze = !mc.freeze;
+			break;
+
+		case "btn_undo":
+			fcCanvasCtrl(DrawState.undo);
+			break;
+
+		case "btn_redo":
+			fcCanvasCtrl(DrawState.redo);
+			break;
+
+		case "btn_mirrow":
+			mc.mirror = !mc.mirror;
+			mc.zoomX = mc.imgW - mc.zoomX - mc.zoomW;
+			fcUpdateCropWin();
+			fcCanvasCtrl(DrawState.mirror);
+			break;
+
+		case "btn_flip":
+			mc.flip = !mc.flip;
+			mc.zoomY = mc.imgH - mc.zoomY - mc.zoomH;
+			fcUpdateCropWin();
+			fcCanvasCtrl(DrawState.flip);
+			break;
+
+		case "btn_config":
+			//fcCloseActiveDlg();
+			//fcToogleDlg("btn_config", configDlgOpen, configDlgClose);
+			$("#configDlg").toggle(500);
+			break;
+
+		case "btn_brightness":
+			fcToogleDlg("btn_brightness", previewBrightnessDlgOpen, previewBrightnessDlgClose);
+			break;
+
+		case "btn_whitebalance":
+			fcToogleDlg("btn_whitebalance", previewWhiteBalanceDlgOpen, previewWhiteBalanceDlgClose);
+			break;
+
+		case "btn_zoom":
+			$("#configDlg").hide();
+			$("#zoomDlg").toggle(500);
+			//fcToogleDlg("btn_zoom", fcZoomDlgOpen, fcZoomDlgClose);
+			break;
+
+		case "btn_setting":
+			//testDeviceAvailability(CurrentVideoDevice); break;
+			fcToogleDlg("btn_setting", previewSettingDlgOpen, previewSettingDlgClose);
+			break;
+
+		case "btn_capture":
+			//LogDeviceList(); break;
+			if (typeof window.stream == "undefined" ||
+				!window.stream.active ||
+				!IsDeviceConnected)
+				break;
+			fcSaveCanvasToFile(mc['combineCanvas']);
+
+			showCaptureHit();
+
+			// if ( $('#captureHit').css("display") == "none")
+			// {
+			// 	$("#captureHit").css({
+			// 		position: "absolute",
+			// 		top: '60px',
+			// 		left:((winW/2)-20)+'px'});  
+			// 	$("#captureHit").show(100).delay(1500).hide(300);
+			// }			
+			break;
+
+		case "btn_timesave":
+			if (typeof window.stream == "undefined" ||
+				!window.stream.active ||
+				!IsDeviceConnected)
+				break;
+			if (false == appFC.capturePeriodRun) {
+				fcToogleDlg("btn_timesave", previewPeriodicCaptureDlgOpen, previewPeriodicCaptureDlgClose);
+			}
+			break;
+
+		case "btn_importPic":
+			lsSelectFilesDlg();
+			break;
+
+		case "btn_record":
+			if (typeof window.stream == "undefined" ||
+				!window.stream.active ||
+				!IsDeviceConnected) {
+				console.log("window.stream", window.stream);
+				console.log("IsDeviceConnected", IsDeviceConnected);
+				break;
+			}
+
+			if ($('#dialogSave').hasClass('ui-dialog-content') &&
+				$('#dialogSave').dialog('isOpen') === true)
+				$("#dialogSave").dialog("close");
+
+			if (appFC.capturePeriodRun) {
+				stopPeriodicCapture();
+			}
+
+			fcResetCanvasArray(mc);
+
+			if (mc.flip || mc.mirror) {
+				mc.flip = false;
+				mc.mirror = false;
+
+				fcUpdateCropWin();
+				fcCanvasCtrl(DrawState.flip);
+				fcCanvasCtrl(DrawState.mirror);
+
+				toolBarSetElementState('previewToolBar', "btn_flip", 0);
+				toolBarSetElementState('previewToolBar', "btn_mirrow", 0);
+			}
+
+			if (mc.zoomRatio > 1) {
+				fcResetZoomRatio();
+			}
+
+			if (mc.freeze) {
+				mc.freeze = false;
+				toolBarSetElementState('previewToolBar', "btn_freeze", 0);
+			}
+
+			if (IsRecording) {
+				StopRecord();
+			}
+			else {
+				StartRecord();
+			}
+			break;
+
+		case "btn_pause":
+			if (IsRecording) {
+				if (IsPause) {
+					recordingTimeBlinkStop();
+					ResumeRecord();
+				}
+				else {
+					recordingTimeBlinkStart();
+					PauseRecord();
+				}
+			}
+			break;
+
+		case 'btn_test':
+			chrome.windows.getCurrent(function (data) {
+				console.log(data);
+				chrome.windows.update(data.id, { state: "minimized" });
+			});
+			break;
+
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+var timerID = null;
+var totalSec = 0;
+
+function showCaptureHit() {
+	$("#captureHit").css({
+		position: "absolute",
+		top: '60px',
+		left: ((winW / 2) - 20) + 'px'
+	});
+	$("#captureHit").show(100);
+
+	totalSec = 1500;
+
+	if (timerID == null)
+		timerID = setInterval(captureHitInterval, 500);
+}
+
+function hideCaptureHit() {
+	$("#captureHit").hide();
+}
+
+function captureHitInterval() {
+	totalSec -= 500;
+	if (totalSec <= 0) {
+		$("#captureHit").hide(150);
+		clearInterval(timerID);
+		timerID = null;
+	}
+}
+
+
+function showSaveHit() {
+	$("#SaveHit").css({
+		position: "absolute",
+		top: '60px',
+		left: ((winW / 2) - 20) + 'px'
+	});
+	$("#SaveHit").show(100);
+
+	totalSec = 1500;
+
+	if (timerID == null)
+		timerID = setInterval(saveHitInterval, 500);
+}
+
+function hideSaveHit() {
+	$("#SaveHit").hide();
+}
+
+function saveHitInterval() {
+	totalSec -= 500;
+	if (totalSec <= 0) {
+		$("#SaveHit").hide(150);
+		clearInterval(timerID);
+		timerID = null;
+	}
+}
+
+var blinkId;
+function blink_text() {
+	$('#recordtime').fadeOut(500);
+	$('#recordtime').fadeIn(500);
+}
+
+function recordingTimeBlinkStart() {
+	blinkId = setInterval(blink_text, 2000);
+}
+
+function recordingTimeBlinkStop() {
+	clearInterval(blinkId);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewOverlayCanvas(dstContext, srcCanvas) {
+	var mc = previewModeCfg;
+
+	dstContext.drawImage(srcCanvas, 0, 0, mc.imgW, mc.imgH);
+}
+
+function previewUpdateFrameRate() {
+	var i;
+	var sum;
+
+	if (false == appFC.frameRateInit) {
+		appFC.frameRateInit = true;
+
+		appFC.frameLastTime = new Date();
+
+		appFC.frameSlotIdx = appFC.frameCnt;
+
+		for (i = 0; i < appFC.frameCnt; i++) {
+			appFC.frameInterval[i] = 0;
+		}
+
+		return;
+	}
+
+	var curTime = new Date();
+	var msDiff = curTime - appFC.frameLastTime;
+	var idx = appFC.frameSlotIdx % appFC.frameCnt;
+
+	appFC.frameLastTime = curTime;
+	appFC.frameInterval[idx] = msDiff;
+
+	sum = 0;
+	for (i = 0; i < appFC.frameCnt; i++) {
+		sum = sum + appFC.frameInterval[i];
+	}
+
+	appFC.frameRate = appFC.frameCnt * 1000 / sum;
+
+	appFC.frameRate = appFC.frameRate.toFixed(2);
+
+	if (0 == idx) fcUpdateSysInfoData();
+
+	appFC.frameSlotIdx = idx + 1;
+}
+
+var colorMatrix =
+	['1', '0', '0', '0', '0'
+		, '0', '1', '0', '0', '0'
+		, '0', '0', '1', '0', '0'
+		, '0', '0', '0', '1', '0'];
+
+
+var backupFrame = document.createElement("canvas");
+var lastFreezeStatus = false;
+
+function previewVideoStreamUpdate(videoCanvas) {
+	var mc = previewModeCfg;
+
+	if (mc.freeze && !lastFreezeStatus) {
+		backupFrame.width = previewModeCfg.imgW;
+		backupFrame.height = previewModeCfg.imgH;
+
+		var ctx = backupFrame.getContext('2d');
+		ctx.drawImage(videoCanvas, 0, 0);
+	}
+
+	lastFreezeStatus = mc.freeze;
+
+	previewUpdateFrameRate();
+
+	if (mc.freeze && IsScanMode) return;
+
+	// r = [0], g = [6], b = [12], a = [18]
+	colorMatrix[0] = 1 + appFC.previewBrightnessAdj / 100 + appFC.previewWhiteBalanceAdj / 100;
+	colorMatrix[6] = 1 + appFC.previewBrightnessAdj / 100;
+	colorMatrix[12] = 1 + appFC.previewBrightnessAdj / 100 - appFC.previewWhiteBalanceAdj / 100;
+
+	var filterStr = '';
+	var filter = document.querySelector('#filter feColorMatrix');
+	if (filter != null) {
+		colorMatrix.forEach(item => filterStr += item + ' ');
+		//var redToBlue = '0 0 1 0 0  0 0.55 0 0 0  1 0 0 0 0  0 0 0 1 0 ';		
+		filter.setAttribute('values', filterStr);
+		mc.baseImageContext.filter = 'url(#filter)';
+	}
+
+	//console.log("Window W,H", winW, winH);
+	if (mc.freeze) {
+		previewOverlayCanvas(mc.baseImageContext, backupFrame);
+	}
+	else {
+		previewOverlayCanvas(mc.baseImageContext, videoCanvas);
+
+		//let mc = previewModeCfg;
+		// let srcX, srcY, srcW, srcH;
+		// const dispWHR = dispW / dispH;
+		// const srcWHR = mc.imgW / mc.imgH
+
+		// if (dispWHR > srcWHR) {
+		// 	// crop top and bottom
+		// 	srcX = 0;
+		// 	srcW = mc.imgW;
+		// 	srcH = mc.imgW / dispWHR;
+		// 	srcY = (mc.imgH - srcH) / 2;
+		// } else {
+		// 	// crop left and right
+		// 	srcY = 0;
+		// 	srcH = mc.imgH;
+		// 	srcW = mc.imgH * dispWHR;
+		// 	srcX = (mc.imgW - srcW) / 2;
+		// }
+
+		// mc.baseImageContext.drawImage(videoCanvas, srcX, srcY, srcW, srcH, 0, 0, dispX, dispY);
+
+		//console.log(mc.imgW, mc.imgH);
+		//mc.baseImageContext.drawImage(videoCanvas, 0, 0, mc.imgW, mc.imgH);
+	}
+
+	previewImageProcess();
+}
+
+var lastPreviewRotate = 0;
+
+function previewImageProcess() {
+	var mc = previewModeCfg;
+	var ctx = mc.imageProcessContext;
+
+	// brightness caibass
+	// if ( appFC.previewBrightnessAdj != 0 || appFC.previewWhiteBalanceAdj != 0 )
+	// {
+	// 	var vv = document.getElementById('videoSrc');
+	// 	vv.style.setProperty('filter', "brightness(" + appFC.previewBrightnessAdj + "%)");
+	// 	vv.style.setProperty('filter', "hue-rotate(" + appFC.previewWhiteBalanceAdj + "deg)");
+	// }
+
+	// if ( appFC.previewBrightnessAdj != 0 || appFC.previewWhiteBalanceAdj != 0 )
+	// {
+	// 	var pixels = mc.baseImageContext.getImageData(0, 0, mc.imgW, mc.imgH);
+	// 	var d = pixels.data;
+	// 	var adj = appFC.previewBrightnessAdj;
+	// 	var adjWb = appFC.previewWhiteBalanceAdj;
+
+	// 	for ( var i=0; i<d.length; i+=4 )
+	// 	{
+	// 		d[i] += adj + adjWb;
+	// 		d[i+1] += adj;
+	// 		d[i+2] += adj - adjWb;
+	// 	}
+
+	// 	mc.baseImageContext.putImageData(pixels, 0, 0);
+	// }
+
+	// flip & mirror
+	var scaleX = 1;
+	var scaleY = 1;
+	var offsetX = 0;
+	var offsetY = 0;
+
+	// scan mode use 
+	// DisplayCanvas => transform: scale(1, 1)
+	//if (!IsScanMode)
+	if (true) {
+		if (mc.mirror) {
+			scaleX = -1;
+			offsetX = mc.imgW;
+		}
+
+		if (mc.flip) {
+			scaleY = -1;
+			offsetY = mc.imgH;
+		}
+	}
+
+	// rotate
+	if (appFC.previewRotate == 0) {
+		ctx.save();
+		ctx.translate(offsetX, offsetY);
+		ctx.scale(scaleX, scaleY);
+		previewOverlayCanvas(mc.imageProcessContext, mc.baseImageCanvas);
+		ctx.restore();
+		lastPreviewRotate = 0;
+	}
+	else {
+		if (appFC.previewRotate != lastPreviewRotate) {
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0, 0, mc.imgW, mc.imgH);
+			//ctx.clearRect(0, 0, mc.imgW, mc.imgH);
+		}
+
+		ctx.save();
+		ctx.translate(mc.imgW / 2, mc.imgH / 2);
+		ctx.rotate((Math.PI / 180) * appFC.previewRotate);
+		ctx.scale(scaleX, scaleY)
+		ctx.drawImage(mc.baseImageCanvas, -mc.imgW / 2, -mc.imgH / 2, mc.imgW, mc.imgH);
+		ctx.restore();
+
+		lastPreviewRotate = appFC.previewRotate;
+	}
+
+	// next step
+	previewRedoUndo();
+}
+
+function previewRedoUndo() {
+	var mc = previewModeCfg;
+
+	if (mc.reqUndo) {
+		mc.reqUndo = false;
+		fcDrawingUndo(mc);
+	} else if (mc.reqRedo) {
+		mc.reqRedo = false;
+		fcDrawingRedo(mc);
+	} else {
+		previewMergeDrawing();
+	}
+}
+
+function previewMergeDrawing() {
+	var mc = previewModeCfg;
+
+	if (mc.zoomRatio == 1) {
+		previewOverlayCanvas(mc.combineContext, mc.imageProcessCanvas);
+	}
+	else {
+		mc.combineContext.drawImage(mc.imageProcessCanvas, mc.zoomX, mc.zoomY, mc.zoomW, mc.zoomH, 0, 0, mc.imgW, mc.imgH);
+	}
+
+	if (1 === appCfg.disableDrawingCanvasOverlay) {
+		previewDisplay();
+
+		return;
+	}
+
+	if (mc.mergeTempDraw) {
+		mc.mergeTempDraw = false;
+
+		//previewOverlayCanvas(mc.drawingContext, mc.tempDrawingCanvas);
+
+		// ******
+		// const windowX = window.screenX || window.screenLeft;
+		// const windowY = window.screenY || window.screenTop;
+		// const windowWidth = window.innerWidth;
+		// const windowHeight = window.innerHeight;
+		mc.drawingContext.drawImage(
+			mc.tempDrawingCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
+
+		fcPushDrawingCanvas(mc);
+	}
+
+	//previewOverlayCanvas(mc.combineContext, mc.drawingCanvas);
+
+	mc.combineContext.drawImage(
+		mc.drawingCanvas,
+		0, 0, mc.imgW, mc.imgH,
+		0, 0, mc.imgW, mc.imgH
+	);
+
+	previewMergeTempDrawing();
+}
+
+function previewMergeTempDrawing() {
+	var mc = previewModeCfg;
+
+	if (mc.hasTempDraw) {
+		//previewOverlayCanvas(mc.combineContext, mc.tempDrawingCanvas);
+
+		mc.combineContext.drawImage(
+			mc.tempDrawingCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
+	}
+
+	previewDisplay();
+}
+
+function previewDisplay() {
+	var mc = previewModeCfg;
+
+	if (fcIsModeActive(mc)) {
+		fcUpdateImage();
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewCanvasControl(state) {
+	var mc = previewModeCfg;
+
+	switch (state) {
+		case DrawState.start:
+			return false;
+			break;
+
+		case DrawState.move:
+			mc.hasTempDraw = true;
+			break;
+
+		case DrawState.end:
+			if (false == appFC.drawText) {
+				mc.hasTempDraw = false;
+				mc.mergeTempDraw = true;
+			}
+			break;
+
+		case DrawState.undo:
+			if (mc.canvasStep > 0) {
+				mc.reqUndo = true;
+			}
+			break;
+
+		case DrawState.redo:
+			if (mc.canvasStep < (mc.canvasArray.length - 1)) {
+				mc.reqRedo = true;
+			}
+			break;
+	}
+
+	if (mc.freeze) return false;
+
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// configDlg
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function configDlgOpen() {
+	showConfigDlg(true);
+}
+
+function configDlgClose() {
+	showConfigDlg(false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// brightness
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewBrightnessDlgOpen() {
+	showBrightnessDlg(true);
+}
+
+function previewBrightnessDlgClose() {
+	showBrightnessDlg(false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// white balance
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewWhiteBalanceDlgOpen() {
+	showWhiteBalanceDlg(true);
+}
+
+function previewWhiteBalanceDlgClose() {
+	showWhiteBalanceDlg(false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// setting dialog
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewSettingDlgOpen() {
+	showSettingDlg(true);
+}
+
+function previewSettingDlgClose() {
+	showSettingDlg(false);
+
+	fcUpdateFontCfg();
+
+	checkVideoSource();
+
+	//previewCheckReqVideoResolution();
+
+	updateTranslatedString();
+}
+
+function previewSetttingDlgCloseClick() {
+	fcCloseActiveDlg();
+}
+
+function previewCheckReqVideoResolution() {
+	const eleId = document.getElementById('sdVideoRsoScrollbar');
+	const idx = eleId.selectedIndex;
+
+	appFC.reqImgW = appFC.curVideoResolutionList[idx][VrField.w];
+	appFC.reqImgH = appFC.curVideoResolutionList[idx][VrField.h];
+
+	// if ((appFC.reqImgW != appFC.imgW) || (appFC.reqImgH != appFC.imgH)) {
+	// 	//alert("ChangeImageSize " + appFC.reqImgW + ", " + appFC.reqImgH);
+
+	// 	fcChangeBaseImageSize(appFC.reqImgW, appFC.reqImgH);
+	// 	fcUpdateSelVideoResolutionIdx(idx);
+	// }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// video resolution change control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+async function previewChangeBaseImageCtrl(state, w, h) {
+	var mc = previewModeCfg;
+
+	switch (state) {
+		case BaseImgChg.before:
+
+			mc.zoomRatio = 1;
+			fcShowPanWin(false);
+			//ScrollBarDlgSetPos('zoomDlg', 0);
+
+			mc.freeze = false;
+			toolBarSetElementState('previewToolBar', "btn_freeze", 0);
+
+			//disconnectVideoSrc();
+			await stopVideo();
+
+			videoW = mc.imgW = w;
+			videoH = mc.imgH = h;
+
+			break;
+
+		case BaseImgChg.after:
+
+			//connectVideoSrc();
+			await startVideo();
+			break;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// periodic capture
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function previewPeriodicCaptureDlgClickClose() {
+	fcCloseActiveDlg();
+}
+
+function previewPeriodicCaptureDlgClose() {
+	showPeriodicCaptureDlg(false);
+}
+
+function previewPeriodicCaptureDlgOpen() {
+	showPeriodicCaptureDlg(true);
+}
+
+var frameLimit = false;
+
+function previewPeriodicCaptureRun() {
+	var totalFrame;
+
+	fcCloseActiveDlg();
+
+	appFC.capturePeriodSec = periodicCaptureDlgPeriod();
+	appFC.captureIntervalHour = periodicCaptureDlgInterval();
+
+	if (appFC.capturePeriodSec < 1) return;
+
+	totalFrame = appFC.captureIntervalHour * 60 / appFC.capturePeriodSec;
+	totalFrame = Math.floor(totalFrame);
+
+	// total frame limit
+	// if ( totalFrame > 500)
+	// {
+	// 	if ( frameLimit == false )
+	// 	{
+	// 		$("#dialogSave").dialog({
+	// 			title: "!",
+	// 			dialogClass: "no-close",
+	// 			autoOpen: false,
+	// 			width: 250,
+	// 			height: 100,
+	// 			show: {
+	// 				effect: "fade",
+	// 				duration: 500
+	// 			},
+	// 			buttons: { 
+	// 				"No": function(){
+	// 					$(this).dialog("close");
+	// 				},
+	// 				"Yes": function(){
+	// 					$(this).dialog("close");
+
+	// 					frameLimit = true;
+
+	// 					setTimeout(function() {
+	// 						previewPeriodicCaptureRun();
+	// 					}, 500);
+
+	// 				}						
+	// 			}
+	// 		});
+	// 		$("#dialogSave").html("<br/>Up to 500 shots<br/> Do you want to continue?" );
+	// 		$("#dialogSave").dialog( "open" );
+	// 		return;
+	// 	}
+	// 	else
+	// 	{
+	// 		frameLimit = false;
+	// 		totalFrame = 500;
+	// 	}		
+	// }
+
+	appFC.capturePeriodTotalCnt = totalFrame;
+
+	if (appFC.capturePeriodTotalCnt) {
+		appFC.capturePeriodRun = true;
+
+		appFC.capturePeriodCurCnt = 0;
+
+		appFC.capturePeriodMs = appFC.capturePeriodSec * 1000;
+
+		previewPeriodicCaptureSnap();
+
+		showPeriodicCaptureInfoBar(true);
+	}
+}
+
+var PCCanvas = null;
+
+function previewPeriodicCaptureSnap() {
+	var mc = previewModeCfg;
+
+	if (PCCanvas == null) {
+		PCCanvas = document.createElement('canvas');
+	}
+
+	if (appFC.capturePeriodCurCnt >= appFC.capturePeriodTotalCnt) {
+		appFC.capturePeriodRun = false;
+
+		showPeriodicCaptureInfoBar(false);
+
+		return;
+	}
+
+	if (false == appFC.capturePeriodRun) return;
+
+	var result = false;
+
+	// Down Scale
+	// up to 2592*1944 or 2560*1920	
+	// if (appFC.imgW > 2600)
+	// {
+	// 	PCCanvas.width = mc['combineCanvas'].width / 2;
+	// 	PCCanvas.height = mc['combineCanvas'].height / 2;
+	// 	var ctx = PCCanvas.getContext('2d');
+	// 	ctx.drawImage(mc['combineCanvas'], 0,0, PCCanvas.width, PCCanvas.height);
+	// 	result = fcSaveCanvasToFile(PCCanvas);
+	// }
+	// else
+	// {
+	// 	result = fcSaveCanvasToFile(mc['combineCanvas']);
+	// }
+
+	result = fcSaveCanvasToFile(mc['combineCanvas']);
+
+	//if ( fcSaveCanvasToFile(PCCanvas) )
+	//if ( fcSaveCanvasToFile(mc['combineCanvas']) )
+	if (result) {
+		appFC.capturePeriodCurCnt += 1;
+
+		updatePeriodicCaptureInfoBar();
+
+		if (appFC.capturePeriodCurCnt >= appFC.capturePeriodTotalCnt) {
+			appFC.capturePeriodMs = 1000;
+		}
+	}
+
+	setTimeout(function () {
+		previewPeriodicCaptureSnap();
+	},
+		appFC.capturePeriodMs);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// constant
+///////////////////////////////////////////////////////////////////////////////////////////
+
+if (typeof PlbToolBarType == "undefined") {
+	var PlbToolBarType = {};
+	PlbToolBarType.thumbnail = 0;
+	PlbToolBarType.image = 1;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mode config
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var playbackModeCfg =
+{
+	baseId: 'playbackArea',
+
+	lToolBar: 'thumbnailToolBar',
+	rToolBar: 'playbackRToolBar',
+	bToolBar: 'playbackInfoBar',
+
+	taskCtrl: playbackModeTaskCtrl,
+	start: playbackModeStart,
+	init: playbackModeInit,
+	onResize: playbackModeOnResize,
+	canvasCtrl: playbackCanvasControl,
+	imageProcess: playbackImageProcess,
+	chgBaseImgCtrl: playbackChangeBaseImageCtrl,
+
+	imgW: appCfg.defPictureW,
+	imgH: appCfg.defPictureH,
+
+	curImage: 0,
+
+	curMode: PlbToolBarType.thumbnail,
+
+	zoomRatio: 1,
+	zoomX: 0,
+	zoomY: 0,
+	zoomW: appCfg.defPreviewRsoX,
+	zoomH: appCfg.defPreviewRsoY,
+
+	panWinW: 0,
+	panWinH: 0,
+
+	zoomScrollBarPos: 0,
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// flow control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackModeTaskCtrl(isEnter) {
+	if (isEnter) {
+		fcShowDisplayCanvas(false);
+	}
+	else {
+		displayPictureWinClose(false);
+
+		fcShowDisplayCanvas(true);
+
+		fcShowPanWin(false);
+	}
+}
+
+function playbackModeInit() {
+	var mc = playbackModeCfg;
+
+	getCanvasGroupContext(mc);
+
+	fcInitCanvasArray(mc);
+
+	playbackCreateThumbnailDiv();
+
+	playbackCreateInfoBar();
+
+	fcShowMode(mc, false);
+}
+
+function playbackModeOnResize() {
+	fcUpdateImage();
+
+	fcUpdatePanWin();
+	fcUpdateCropWin();
+}
+
+function playbackModeStart() {
+	var mc = playbackModeCfg;
+
+	if (mc.curMode == PlbToolBarType.image) {
+		playbackImageProcess();
+
+		fcShowDisplayCanvas(true);
+
+		if (mc.zoomRatio > 1) {
+			fcUpdatePanWin();
+			fcUpdateCropWin();
+			fcShowPanWin(true);
+		}
+	}
+	else {
+		mc.zoomScrollBarPos = 0;
+		mc.zoomRatio = 1;
+	}
+
+	//ScrollBarDlgSetPos('zoomDlg', mc.zoomScrollBarPos);	
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// thumbnail
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackCreateThumbnailDiv() {
+	createDivElement('playbackArea', 'thumbDiv');
+
+	var iconW = appCfg.toolBarIconW;
+	var iconH = appCfg.toolBarIconH;
+	var titleH = appCfg.titleIconH;
+
+	var css =
+	{
+		position: 'absolute',
+		left: iconW + 'px',
+		top: titleH + 'px',
+		width: 'calc(100% - ' + (iconW * 2) + 'px)',
+		height: 'calc(100% - ' + (titleH + iconH) + 'px)',
+		'text-align': 'center',
+		overflow: 'auto',
+		'user-select': 'none'
+	};
+
+	$('#thumbDiv').css(css);
+}
+
+function playbackShowThumbnail(mode) {
+	showElement('thumbDiv', mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function thumbnailToolBarOnClick(event) {
+	var eleId;
+	var i;
+
+	switch (event.target.id) {
+		case "btn_delete":
+			eleId = $('img.selected,Video.selected');
+
+			if (eleId.length) {
+				fcToogleDlg("btn_delete", playbackDeleteConfirmDlgOpen, playbackDeleteConfirmDlgClose);
+			}
+
+			break;
+
+		case "btn_saveDisk":
+			var hasImg = false;
+
+			eleId = $('img.selected,Video.selected');
+
+			for (i = 0; i < eleId.length; i++) {
+				if (eleId[i].tagName == "IMG") {
+					hasImg = true;
+					break;
+				}
+			}
+
+			if (false) {
+				$("#dialogSave").dialog({
+					dialogClass: "no-close",
+					autoOpen: false,
+					width: 250,
+					height: 80,
+					show: {
+						effect: "fade",
+						duration: 500
+					},
+					hide: {
+						effect: "fade",
+						duration: 500
+					},
+					buttons: {
+						"JPG": function () {
+							$(this).dialog("close");
+							lsSaveFilesToSelectedFolder(eleId, "JPG");
+						},
+						"PNG": function () {
+							$(this).dialog("close");
+							lsSaveFilesToSelectedFolder(eleId, "PNG");
+						},
+						"PDF": function () {
+							$(this).dialog("close");
+							lsSaveFilesToSelectedFolder(eleId, "PDF");
+						},
+						"TIFF": function () {
+							$(this).dialog("close");
+							lsSaveFilesToSelectedFolder(eleId, "TIFF");
+						},
+						"X": function () { $(this).dialog("close"); }
+					},
+					close: function (event, ui) {
+						$(this).dialog("destroy");
+					}
+				});
+				$("#dialogSave").html("");
+				$("#dialogSave").dialog("open");
+			}
+			else {
+				lsSaveFilesToSelectedFolder(eleId, "");
+			}
+			break;
+
+		case "btn_toggleAll":
+			if (appFC.thumbFileCnt != appFC.thumbSelectedFileCnt) {
+				gallerySelectAll(true);
+
+				appFC.thumbSelectedFileCnt = appFC.thumbFileCnt;
+			}
+			else {
+				gallerySelectAll(false);
+
+				appFC.thumbSelectedFileCnt = 0;
+			}
+
+			galleryUpdateFileInfo();
+
+			break;
+
+		case "btn_Next":
+			galleryNextPage();
+			break;
+
+		case "btn_Previous":
+			galleryPreviousPage();
+			break;
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+function closeAndBackPlayback(mc) {
+	playbackShowToolBar(false);
+	playbackSetToolBarType(PlbToolBarType.thumbnail);
+	playbackShowToolBar(true);
+
+	fcShowDisplayCanvas(false);
+	playbackShowThumbnail(true);
+
+	mc.curMode = PlbToolBarType.thumbnail;
+	mc.zoomRatio = 1;
+	mc.zoomScrollBarPos = 0;
+	//ScrollBarDlgSetPos('zoomDlg', mc.zoomScrollBarPos);	
+	fcShowPanWin(false);
+	fcCloseActiveDlg();
+}
+
+function picturePlaybackToolBarOnClick(event) {
+	var mc = playbackModeCfg;
+
+	if (event.target.id == 'ppbtn_transform') {
+		if ($("#cropBox").length == 0) {
+			attachCropBox(dispW, dispH);
+			fcToogleDlg("btn_delete", perspectiveImageConfirmDlgOpen, perspectiveImageConfirmDlgClose);
+		}
+		else {
+			fcToogleDlg("btn_delete", perspectiveImageConfirmDlgOpen, perspectiveImageConfirmDlgClose);
+			removeCropBox();
+		}
+	}
+
+	switch (event.target.id) {
+		case "ppbtn_closeAndBackPlayback":
+
+			closeAndBackPlayback(mc);
+
+			break;
+
+		case "ppbtn_redo":
+
+			fcCanvasCtrl(DrawState.redo);
+
+			break;
+
+		case "ppbtn_undo":
+
+			fcCanvasCtrl(DrawState.undo);
+
+			break;
+
+		case "ppbtn_importPic":
+
+			lsSelectFilesDlg();
+
+			break;
+
+		case "ppbtn_savePlayback":
+
+			fcSaveCanvasToFile_withrefleshGallery(mc['combineCanvas']);
+			//refleshGallery();
+			//playbackModeCfg;
+			//closeAndBackPlayback(mc);
+			break;
+
+		case "ppbtn_zoom":
+			$("#configDlg").hide();
+			$("#zoomDlg").toggle(500);
+
+			//fcToogleDlg("ppbtn_zoom", fcZoomDlgOpen, fcZoomDlgClose);
+
+			break;
+
+		case "ppbtn_transform":
+
+			// if ($("svg").length)
+			// {
+			// 	perspectiveImageConfirmDlgClose();			
+			// 	$("svg").remove();
+			// }
+			// else
+			// {
+			// 	attachCropBox(dispW, dispH);
+			// 	fcToogleDlg("btn_delete", perspectiveImageConfirmDlgOpen, perspectiveImageConfirmDlgClose);
+			// }			
+			break;
+
+		case "ppbtn_ocr":
+			OCR();
+			break;
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+function playbackShowToolBar(mode) {
+	var mc = playbackModeCfg;
+
+	showElement(mc.lToolBar, mode);
+	showElement(mc.rToolBar, mode);
+	showElement(mc.bToolBar, mode);
+}
+
+function playbackSetToolBarType(type) {
+	var mc = playbackModeCfg;
+
+	switch (type) {
+		case PlbToolBarType.thumbnail:
+			mc.lToolBar = 'thumbnailToolBar';
+			mc.rToolBar = 'playbackRToolBar';
+			mc.bToolBar = 'playbackInfoBar';
+			break;
+
+		case PlbToolBarType.image:
+			mc.lToolBar = 'picPlaybackToolBar';
+			mc.rToolBar = 'drawingToolBar';
+			mc.bToolBar = 'drawingCfgArea';
+			break;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// display single image
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackDisplayVideoMode(image) {
+	var mc = playbackModeCfg;
+
+	mc.curImage = image;
+
+	mc.curMode = PlbToolBarType.image;
+
+	fcChangeBaseImageSize(image.width, image.height);
+
+	fcCloseActiveDlg();
+
+	fcUpdatePanWin();
+	fcUpdateCropWin();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Perspective Image
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function perspectiveImageConfirmDlgClickHandler(isYes) {
+	if (isYes) {
+		//Perspective_ScanImage()
+		Perspective_Image();
+
+		//var mc = previewModeCfg;
+		//mc.freeze = false;
+		//updateVideoStreamFrame();
+	}
+
+	fcCloseActiveDlg();
+}
+
+function perspectiveImageConfirmDlgOpen() {
+	setConfirmDlgClickHandler(perspectiveImageConfirmDlgClickHandler);
+
+	//setConfirmDlgTip("btnStart", "btnCancel");
+
+	showConfirmDlg(true);
+}
+
+function perspectiveImageConfirmDlgClose() {
+	showConfirmDlg(false);
+	var mc = previewModeCfg;
+	mc.freeze = false;
+}
+
+function Perspective_MultiScanMode() {
+	return Perspective();
+}
+
+function Perspective_ScanMode() {
+	var canvas = Perspective();
+	var width = canvas.width;
+	var height = canvas.height;
+	var img = new Image;
+
+	appFC.curMode.freeze = true;
+
+	img.width = width;
+	img.height = height;
+	img.src = canvas.toDataURL();
+	img.onload = function () {
+		var mc = appFC.curMode;
+		var ctx = mc.baseImageContext;//appFC.drawContext;
+		//var ctx = mc.imageProcessContext;
+		var rW = mc.imgW / width;
+		var rH = mc.imgH / height;
+
+		//console.log("disp: " + width + " / " + height);
+		//console.log("mc.img: " + mc.imgW + " / " + mc.imgH);
+
+		fcClearDrawingCanvas();
+		ctx.beginPath();
+		ctx.rect(0, 0, mc.imgW, mc.imgH);
+		ctx.fillStyle = "black";
+		ctx.fill();
+
+		//ctx.drawImage(img, 0, 0, width, height);
+		//ctx.drawImage(img, 0, (mc.imgH - (height*rW))/2, mc.imgW, height * rW);
+
+		if (width / height >= mc.imgW / mc.imgH)
+			ctx.drawImage(img, 0, (mc.imgH - (height * rW)) / 2, mc.imgW, height * rW);
+		else
+			ctx.drawImage(img, (mc.imgW - (width * rH)) / 2, 0, width * rH, mc.imgH);
+
+		fcCanvasCtrl(DrawState.end);
+		if (mc.imageProcess) mc.imageProcess();
+	}
+}
+
+function Perspective() {
+	// Make transform martix
+	var path = document.getElementById("croppath").getAttribute("d");
+	var commands = path.split(/(?=[LMC])/);
+	var rectSrc = [];
+	var rectTgt = [];
+	var rectTmp = [];
+	var rectTmp1 = [];
+	var rectTmp2 = [];
+
+	rectTmp[0] = parseInt(commands[0].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectTmp[1] = parseInt(commands[0].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectTmp[2] = parseInt(commands[1].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectTmp[3] = parseInt(commands[1].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectTmp[4] = parseInt(commands[2].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectTmp[5] = parseInt(commands[2].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectTmp[6] = parseInt(commands[3].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectTmp[7] = parseInt(commands[3].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+
+	//var centX = (rectTmp[0] + rectTmp[2] + rectTmp[4] + rectTmp[6]) / 4;
+	var centY = (rectTmp[1] + rectTmp[3] + rectTmp[5] + rectTmp[7]) / 4;
+
+	// 計算重心 確保四點座標順序
+	for (i = 0; i < 4; i++) {
+		//var subX = rectTmp[i*2] - centX;
+		var subY = rectTmp[i * 2 + 1] - centY;
+
+		if (subY < 0) {
+			rectTmp1.push(rectTmp[i * 2]);
+			rectTmp1.push(rectTmp[i * 2 + 1]);
+		}
+		else {
+			rectTmp2.push(rectTmp[i * 2]);
+			rectTmp2.push(rectTmp[i * 2 + 1]);
+		}
+	}
+
+	while (rectTmp1.length > 0) {
+		var MinIndex = 0;
+		var MinVal = 9999;
+		for (i = 0; i < rectTmp1.length; i++) {
+			if (rectTmp1[i * 2] < MinVal) {
+				MinVal = rectTmp1[i * 2];
+				MinIndex = i;
+			}
+		}
+		rectSrc.push(rectTmp1[MinIndex * 2]);
+		rectSrc.push(rectTmp1[MinIndex * 2 + 1]);
+		rectTmp1.splice(MinIndex * 2, 2);
+	}
+
+	while (rectTmp2.length > 0) {
+		var MaxIndex = 0;
+		var MaxVal = -9999;
+		for (i = 0; i < rectTmp2.length; i++) {
+			if (rectTmp1[i * 2] > MaxVal) {
+				MaxVal = rectTmp1[i * 2];
+				MaxIndex = i;
+			}
+		}
+		rectSrc.push(rectTmp2[MaxIndex * 2]);
+		rectSrc.push(rectTmp2[MaxIndex * 2 + 1]);
+		rectTmp2.splice(MaxIndex * 2, 2);
+	}
+
+	var mc = previewModeCfg;
+	var dispW = document.getElementById("displayCanvas").width
+	var dispH = document.getElementById("displayCanvas").height
+
+	// scale rectSrc to image size
+	rectSrc[0] = rectSrc[0] / dispW * mc.imgW;
+	rectSrc[1] = rectSrc[1] / dispH * mc.imgH;
+	rectSrc[2] = rectSrc[2] / dispW * mc.imgW;
+	rectSrc[3] = rectSrc[3] / dispH * mc.imgH;
+	rectSrc[4] = rectSrc[4] / dispW * mc.imgW;
+	rectSrc[5] = rectSrc[5] / dispH * mc.imgH;
+	rectSrc[6] = rectSrc[6] / dispW * mc.imgW;
+	rectSrc[7] = rectSrc[7] / dispH * mc.imgH;
+
+	// calc rectTgt
+	var startX = (rectSrc[0] + rectSrc[6]) / 2;
+	var startY = (rectSrc[1] + rectSrc[3]) / 2;
+	var width = Math.abs(Math.floor(((rectSrc[2] + rectSrc[4]) / 2 - startX)));
+	var height = Math.abs(Math.floor(((rectSrc[7] + rectSrc[5]) / 2 - startY)));
+
+	// var width = Math.sqrt(((rectSrc[2] - rectSrc[0]) ^ 2) + ((rectSrc[3] - rectSrc[1]) ^ 2));
+	// var height = Math.sqrt(((rectSrc[4] - rectSrc[2]) ^ 2) + ((rectSrc[5] - rectSrc[3]) ^ 2));s
+
+	rectTgt[0] = startX; rectTgt[1] = startY;
+	rectTgt[2] = startX + width; rectTgt[3] = startY;
+	rectTgt[4] = startX + width; rectTgt[5] = startY + height;
+	rectTgt[6] = startX; rectTgt[7] = startY + height;
+
+	// calc matrix
+	perspectiveTran = PerspT(rectSrc, rectTgt);
+
+	////////////////////////////////////////
+	var srcCanvas = document.getElementById("previewArea-combineCanvas");
+	var tempCanvas = document.getElementById("tempCanvas");
+
+	tempCanvas.width = srcCanvas.width;
+	tempCanvas.height = srcCanvas.height;
+
+	var tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+
+	tempCtx.drawImage(srcCanvas, 0, 0);
+	var pixels = new ImageData(width, height);
+	//var pixels = tempCtx.getImageData(0, 0, width, height);
+	var srcCopy = tempCtx.getImageData(0, 0, mc.imgW, mc.imgH).data.slice(0);
+
+	///////////////////////////////////////////
+	for (var y = 0; y < height; y++) {
+		for (var x = 0; x < width; x++) {
+			var res = perspectiveTran.transformInverse(x + startX, y + startY);
+			var index = (y * width + x) * 4;
+			var SourceIndex = (Math.round(res[1]) * mc.imgW + Math.round(res[0])) * 4;
+
+			pixels.data[index] = srcCopy[SourceIndex];
+			pixels.data[index + 1] = srcCopy[SourceIndex + 1];
+			pixels.data[index + 2] = srcCopy[SourceIndex + 2];
+			pixels.data[index + 3] = 255;
+		}
+	}
+
+	var resultCanvas = document.getElementById('saveFileCanvas');
+	resultCanvas.width = width;
+	resultCanvas.height = height;
+	var ctxTgt = resultCanvas.getContext('2d', { willReadFrequently: true });
+	ctxTgt.putImageData(pixels, 0, 0);
+
+	return resultCanvas;
+}
+
+function Perspective_Image() {
+	var path = document.getElementById("croppath").getAttribute("d");
+	var commands = path.split(/(?=[LMC])/);
+	var rectSrc = [];
+	var rectTgt = [];
+
+	rectSrc[0] = parseInt(commands[0].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectSrc[1] = parseInt(commands[0].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectSrc[2] = parseInt(commands[1].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectSrc[3] = parseInt(commands[1].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectSrc[4] = parseInt(commands[2].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectSrc[5] = parseInt(commands[2].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+	rectSrc[6] = parseInt(commands[3].replace("M", "").replace("L", "").replace("Z", "").split(",")[0]);
+	rectSrc[7] = parseInt(commands[3].replace("M", "").replace("L", "").replace("Z", "").split(",")[1]);
+
+	var mc = playbackModeCfg;
+	var image = mc.curImage;
+	var dispW = document.getElementById("displayCanvas").width
+	var dispH = document.getElementById("displayCanvas").height
+
+	// scale rectSrc to image size
+	if (mc.zoomRatio > 1) {
+		rectSrc[0] = parseInt(mc.zoomX + rectSrc[0] / dispW * image.width / mc.zoomRatio);
+		rectSrc[1] = parseInt(mc.zoomY + rectSrc[1] / dispH * image.height / mc.zoomRatio);
+		rectSrc[2] = parseInt(mc.zoomX + rectSrc[2] / dispW * image.width / mc.zoomRatio);
+		rectSrc[3] = parseInt(mc.zoomY + rectSrc[3] / dispH * image.height / mc.zoomRatio);
+		rectSrc[4] = parseInt(mc.zoomX + rectSrc[4] / dispW * image.width / mc.zoomRatio);
+		rectSrc[5] = parseInt(mc.zoomY + rectSrc[5] / dispH * image.height / mc.zoomRatio);
+		rectSrc[6] = parseInt(mc.zoomX + rectSrc[6] / dispW * image.width / mc.zoomRatio);
+		rectSrc[7] = parseInt(mc.zoomY + rectSrc[7] / dispH * image.height / mc.zoomRatio);
+	}
+	else {
+		rectSrc[0] = rectSrc[0] / dispW * image.width;
+		rectSrc[1] = rectSrc[1] / dispH * image.height;
+		rectSrc[2] = rectSrc[2] / dispW * image.width;
+		rectSrc[3] = rectSrc[3] / dispH * image.height;
+		rectSrc[4] = rectSrc[4] / dispW * image.width;
+		rectSrc[5] = rectSrc[5] / dispH * image.height;
+		rectSrc[6] = rectSrc[6] / dispW * image.width;
+		rectSrc[7] = rectSrc[7] / dispH * image.height;
+	}
+
+	// calc rectTgt
+	var startX = (rectSrc[0] + rectSrc[6]) / 2;
+	var startY = (rectSrc[1] + rectSrc[3]) / 2;
+	var width = Math.floor(((rectSrc[2] + rectSrc[4]) / 2 - startX));
+	var height = Math.floor(((rectSrc[7] + rectSrc[5]) / 2 - startY));
+
+	rectTgt[0] = startX; rectTgt[1] = startY;
+	rectTgt[2] = startX + width; rectTgt[3] = startY;
+	rectTgt[4] = startX + width; rectTgt[5] = startY + height;
+	rectTgt[6] = startX; rectTgt[7] = startY + height;
+
+	// calc matrix
+	perspectiveTran = PerspT(rectSrc, rectTgt);
+
+	////////////////////////////////////////
+
+	var canvas = imageToCanvas(image);
+	var ctxSrc = canvas.getContext('2d', { willReadFrequently: true });
+	var pixels = ctxSrc.getImageData(0, 0, width, height);
+	var srcCopy = ctxSrc.getImageData(0, 0, image.width, image.height).data.slice(0);
+
+	///////////////////////////////////////////
+	for (var y = 0; y < height; y++) {
+		for (var x = 0; x < width; x++) {
+			var res = perspectiveTran.transformInverse(x + startX, y + startY);
+			var index = (y * width + x) * 4;
+			var SourceIndex = (Math.round(res[1]) * image.width + Math.round(res[0])) * 4;
+			//var SourceIndex = (Math.floor(res[1]) * image.width + Math.floor(res[0])) * 4;
+
+			pixels.data[index] = srcCopy[SourceIndex];
+			pixels.data[index + 1] = srcCopy[SourceIndex + 1];
+			pixels.data[index + 2] = srcCopy[SourceIndex + 2];
+		}
+	}
+
+	canvas = document.getElementById('saveFileCanvas');
+	canvas.width = width;
+	canvas.height = height;
+
+	var ctxTgt = canvas.getContext('2d', { willReadFrequently: true });
+	ctxTgt.putImageData(pixels, 0, 0);
+
+	var img = new Image;
+	img.onload = function () {
+		playbackDisplayImgMode(this);
+	};
+
+	img.width = width;
+	img.height = height;
+	img.src = canvas.toDataURL();
+
+	// reset zoom
+	fcResetZoomRatio();
+
+	//delete srcCopy;
+	//srcCopy = null;
+
+	function imageToCanvas(image) {
+		var canvas = document.getElementById('saveFileCanvas');
+		var ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+		$('#saveFileCanvas').attr('width', image.width);
+		$('#saveFileCanvas').attr('height', image.height);
+		ctx.drawImage(image, 0, 0, image.width, image.height);
+		return canvas;
+	}
+}
+
+function dataURItoBlob(dataURI) {
+	// convert base64/URLEncoded data component to raw binary data held in a string
+	var byteString;
+	if (dataURI.split(',')[0].indexOf('base64') != -1)
+		byteString = atob(dataURI.split(',')[1]);
+	else
+		byteString = unescape(dataURI.split(',')[1]);
+
+	// separate out the mime component
+	var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+	// write the bytes of the string to a typed array
+	var ia = new Uint8Array(byteString.length);
+	for (var i = 0; i < byteString.length; i++) {
+		ia[i] = byteString.charCodeAt(i);
+	}
+
+	return new Blob([ia], { type: mimeString });
+}
+
+
+function LoadPng2Blob(blob) {
+	var CHUNK_SIZE = 256 * 1024;
+	var start = 0;
+	var stop = CHUNK_SIZE;
+
+	var remainder = blob.size % CHUNK_SIZE;
+	var chunks = Math.floor(blob.size / CHUNK_SIZE);
+
+	var chunkIndex = 0;
+
+	if (remainder != 0) chunks = chunks + 1;
+
+	var fr = new FileReader();
+	var canvas = document.getElementById('displayCanvas');
+
+	fr.onload = function () {
+		var message = {
+			blobAsText: fr.result,
+			mimeString: "mimeString",
+			chunks: chunks,
+		};
+		// APP_ID was obtained elsewhere
+		chrome.runtime.sendMessage(OcrAppID, message, function (result) {
+			if (chrome.runtime.lastError) {
+				console.log("could not send message to app");
+			}
+		});
+		processChunk();
+	};
+
+	fr.onerror = function () { appendLog("An error ocurred while reading file"); };
+	processChunk();
+
+	function processChunk() {
+		chunkIndex++;
+
+		// exit if there are no more chunks
+		if (chunkIndex > chunks) {
+			return;
+		}
+
+		if (chunkIndex == chunks && remainder != 0) {
+			stop = start + remainder;
+		}
+
+		var blobChunk = blob.slice(start, stop);
+
+		// prepare for next chunk
+		start = stop;
+		stop = stop + CHUNK_SIZE;
+
+		// convert chunk as binary string
+		fr.readAsBinaryString(blobChunk);
+	}
+}
+
+function OCR_scan() {
+	var message = {
+		launch: true,
+		senderName: appName
+	};
+
+	chrome.runtime.sendMessage(OcrAppID, message, function (e) {
+		//console.log(e);		
+		if (chrome.runtime.lastError) {
+			console.log(chrome.runtime.lastError);
+
+			console.log("could not send message to app");
+			$("#dialogOcr").dialog({
+				dialogClass: "no-close",
+				autoOpen: false,
+				width: 250,
+				height: 140,
+				show: {
+					effect: "fade",
+					duration: 500
+				},
+				hide: {
+					effect: "fade",
+					duration: 500
+				},
+				buttons: {
+					"Add it now": function () {
+						var newURL = OcrAppLink;//"https://chrome.google.com/webstore/detail/smart-dc-ocr/kbepikplfggknbcgfedhldpdmncjegih?hl=en-GB&authuser=1";
+						//chrome.tabs.create({ url: newURL });
+						window.open(newURL);
+						$(this).dialog("close");
+					},
+					"Later": function () { $(this).dialog("close"); }
+				}
+			});
+			$("#dlgOcrTxt").text("This feature requires installing a free OCR extension from the Chrome Web Store.");
+			//$("#dlgTxt").text("This function depends on Smart DC OCR App. Please download the App from Chrome Web Store or Offical Website.");
+			$("#dialogOcr").dialog("open");
+			return;
+		}
+
+		//if (e != "Success")	{}
+
+		var canvas = document.getElementById('previewArea-combineCanvas');
+		//var canvas = document.getElementById('saveFileCanvas');
+
+		canvas.toBlob(function (blob) {
+			setTimeout(function () {
+				LoadPng2Blob(blob);
+			}, 200);
+		});
+	});
+}
+
+function OCR() {
+	var message = {
+		launch: true,
+		senderName: appName
+	};
+
+	chrome.runtime.sendMessage(OcrAppID, message, function (e) {
+		//console.log(e);		
+		if (chrome.runtime.lastError) {
+			console.log("could not send message to app");
+			$("#dialogOcr").dialog({
+				dialogClass: "no-close",
+				autoOpen: false,
+				width: 250,
+				height: 140,
+				show: {
+					effect: "fade",
+					duration: 500
+				},
+				hide: {
+					effect: "fade",
+					duration: 500
+				},
+				buttons: {
+					"Add it now": function () {
+						var newURL = OcrAppLink;//"https://chrome.google.com/webstore/detail/smart-dc-ocr/kbepikplfggknbcgfedhldpdmncjegih?hl=en-GB&authuser=1";
+						//chrome.tabs.create({ url: newURL });
+						window.open(newURL);
+						$(this).dialog("close");
+					},
+					"Later": function () { $(this).dialog("close"); }
+				}
+			});
+			$("#dlgOcrTxt").text("This feature requires installing a free OCR extension from the Chrome Web Store.");
+			//$("#dlgTxt").text("This function depends on Smart DC OCR App. Please download the App from Chrome Web Store or Offical Website.");
+			$("#dialogOcr").dialog("open");
+			return;
+		}
+
+		//if (e != "Success")	{}
+
+		var canvas = document.getElementById('displayCanvas');
+		canvas.toBlob(function (blob) {
+			setTimeout(function () {
+				LoadPng2Blob(blob);
+			}, 200);
+		});
+	});
+}
+
+function playbackDisplayImgMode(image) {
+	var mc = playbackModeCfg;
+
+	mc.curImage = image;
+
+	mc.curMode = PlbToolBarType.image;
+
+	fcChangeBaseImageSize(image.width, image.height);
+
+	fcCloseActiveDlg();
+
+	fcUpdatePanWin();
+	fcUpdateCropWin();
+}
+
+function playbackChangeBaseImageCtrl(state, w, h) {
+	var mc = playbackModeCfg;
+
+	switch (state) {
+		case BaseImgChg.before:
+			break;
+
+		case BaseImgChg.after:
+			if (mc.curImage == 0)
+				return;
+
+			playbackShowToolBar(false);
+			playbackSetToolBarType(PlbToolBarType.image);
+			playbackShowToolBar(!fullPhotoMode);
+
+			mc.imgW = mc.curImage.width;
+			mc.imgH = mc.curImage.height;
+
+			mc.baseImageContext.drawImage(mc.curImage, 0, 0, mc.curImage.width, mc.curImage.height);
+
+			playbackImageProcess();
+			playbackShowThumbnail(false);
+			fcShowDisplayCanvas(true);
+			break;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackOverlayCanvas(dstContext, srcCanvas) {
+	var mc = playbackModeCfg;
+
+	dstContext.drawImage(srcCanvas, 0, 0, mc.imgW, mc.imgH, 0, 0, mc.imgW, mc.imgH);
+}
+
+function playbackImageProcess() {
+	var mc = playbackModeCfg;
+
+	playbackOverlayCanvas(mc.imageProcessContext, mc.baseImageCanvas);
+
+	playbackRedoUndo();
+}
+
+function playbackRedoUndo() {
+	var mc = playbackModeCfg;
+
+	if (mc.reqUndo) {
+		mc.reqUndo = false;
+
+		fcDrawingUndo(mc);
+	}
+	else if (mc.reqRedo) {
+		mc.reqRedo = false;
+
+		fcDrawingRedo(mc);
+	}
+	else {
+		playbackMergeDrawing();
+	}
+}
+
+function playbackMergeDrawing() {
+	var mc = playbackModeCfg;
+
+	if (mc.zoomRatio == 1) {
+		playbackOverlayCanvas(mc.combineContext, mc.imageProcessCanvas);
+	}
+	else {
+		mc.combineContext.drawImage(mc.imageProcessCanvas, mc.zoomX, mc.zoomY, mc.zoomW, mc.zoomH, 0, 0, mc.imgW, mc.imgH);
+	}
+
+	if (mc.mergeTempDraw) {
+		mc.mergeTempDraw = false;
+
+		playbackOverlayCanvas(mc.drawingContext, mc.tempDrawingCanvas);
+
+		fcPushDrawingCanvas(mc);
+	}
+
+	playbackOverlayCanvas(mc.combineContext, mc.drawingCanvas);
+
+	playbackMergeTempDrawing();
+}
+
+function playbackMergeTempDrawing() {
+	var mc = playbackModeCfg;
+
+	if (mc.hasTempDraw) {
+		playbackOverlayCanvas(mc.combineContext, mc.tempDrawingCanvas);
+	}
+
+	playbackDisplay();
+}
+
+function playbackDisplay() {
+	var mc = playbackModeCfg;
+
+	if (fcIsModeActive(mc)) {
+		fcUpdateImage();
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackCanvasControl(state) {
+	var mc = playbackModeCfg;
+
+	switch (state) {
+		case DrawState.start:
+			return false;
+			break;
+
+		case DrawState.move:
+			mc.hasTempDraw = true;
+			break;
+
+		case DrawState.end:
+			if (false == appFC.drawText) {
+				mc.hasTempDraw = false;
+				mc.mergeTempDraw = true;
+			}
+			break;
+
+		case DrawState.undo:
+			if (mc.canvasStep > 0) {
+				mc.reqUndo = true;
+			}
+			break;
+
+		case DrawState.redo:
+			if (mc.canvasStep < (mc.canvasArray.length - 1)) {
+				mc.reqRedo = true;
+			}
+			break;
+	}
+
+	return false;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// information bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackCreateInfoBar() {
+	var id = 'playbackInfoBar';
+	var eleId = '#' + id;
+
+	// create base element
+
+	createSpanElement('uiArea', id);
+
+	var css =
+	{
+		top: 'calc(100% - ' + appCfg.toolBarIconH + 'px)',
+		left: appCfg.toolBarIconW + 'px',
+		height: appBaseCfg.iconH + 'px',
+		width: 'calc(100% - ' + (2 * appCfg.toolBarIconW) + 'px)',
+		background: appCfg.toolBarColorLeave,
+		opacity: appCfg.toolBarOpacityLeave,
+		position: 'absolute',
+	};
+
+	$(eleId).css(css);
+
+	showElement(id, false);
+
+	// create Page display element
+	//createLabelElement(id, 'pbFileInfo_Text');
+	createLabelElement(id, 'pbFileInfo_Page');
+	createLabelElement(id, 'pbFileInfo_Item');
+
+	id = 'pbFileInfo_Text';
+	eleId = '#' + id;
+
+	css.top = (appBaseCfg.iconH - appCfg.pbInfoH) / 2 + 'px';
+	css.left = 'calc(40% - ' + (appCfg.pbInfoW / 2) + 'px)';
+	css.height = appCfg.pbInfoH;
+	css.width = (appCfg.pbInfoW / 2);//appCfg.pbInfoW;
+
+	$(eleId).css(css);
+
+	$(eleId).css('line-height', appCfg.pbInfoH + 'px');
+	$(eleId).css('font-size', appCfg.pbInfoFontSize);
+	$(eleId).css('font-weight', appCfg.pbInfoFontWWeight);
+	$(eleId).css('color', appCfg.pbInfoColor_Page);
+	$(eleId).css('text-align', 'left');
+
+
+
+	id = 'pbFileInfo_Page';
+	eleId = '#' + id;
+
+	css.top = (appBaseCfg.iconH - appCfg.pbInfoH) / 2 + 'px';
+	css.left = 'calc(40% - ' + (appCfg.pbInfoW / 2) + 'px)';
+	//css.left = 'calc(40% - ' + ((appCfg.pbInfoW / 2) - (appCfg.pbInfoW / 2)) + 'px)';
+	css.height = appCfg.pbInfoH;
+	css.width = appCfg.pbInfoW - (appCfg.pbInfoW / 2);
+
+	$(eleId).css(css);
+
+	$(eleId).css('line-height', appCfg.pbInfoH + 'px');
+	$(eleId).css('font-size', appCfg.pbInfoFontSize);
+	$(eleId).css('font-weight', appCfg.pbInfoFontWWeight);
+	$(eleId).css('color', appCfg.pbInfoColor_Page);
+	$(eleId).css('text-align', 'left');
+
+	// create Item display element
+	id = 'pbFileInfo_Item';
+	eleId = '#' + id;
+
+	css.top = (appBaseCfg.iconH - appCfg.pbInfoH) / 2 + 'px';
+	css.left = 'calc(80% - ' + (appCfg.pbInfoW / 2) + 'px)';
+	css.height = appCfg.pbInfoH;
+	css.width = appCfg.pbInfoW;
+
+	$(eleId).css(css);
+
+	$(eleId).css('line-height', appCfg.pbInfoH + 'px');
+	$(eleId).css('font-size', appCfg.pbInfoFontSize);
+	$(eleId).css('font-weight', appCfg.pbInfoFontWWeight);
+	$(eleId).css('color', appCfg.pbInfoColor_Item);
+	$(eleId).css('text-align', 'left');
+}
+
+function playbackUpdateFileInfoElement(Page, Item) {
+	var id;
+
+	id = document.getElementById('pbFileInfo_Page');
+	fcUpdateElementText(id, Page);
+
+	id = document.getElementById('pbFileInfo_Item');
+	fcUpdateElementText(id, Item);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// delete thumbnail file
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function playbackDeletConfirmDlgClickHandler(isYes) {
+	var eleId;
+
+	fcCloseActiveDlg();
+
+	if (isYes) {
+		eleId = $('img.selected, video.selected');
+
+		galleryDeleteFiles(eleId);
+	}
+}
+
+function playbackDeleteConfirmDlgOpen() {
+	setConfirmDlgClickHandler(playbackDeletConfirmDlgClickHandler);
+
+	setConfirmDlgTip("btnDelete", "btnCancel");
+
+	showConfirmDlg(true);
+}
+
+function playbackDeleteConfirmDlgClose() {
+	showConfirmDlg(false);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mode config
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var drawingBoardModeCfg =
+{
+	baseId: 'drawingArea',
+
+	lToolBar: 'drawingBoardToolBar',
+	rToolBar: 'drawingToolBar',
+	bToolBar: 'drawingCfgArea',
+
+	taskCtrl: drawingBoardModeTaskCtrl,
+	start: drawingBoardModeStart,
+	init: drawingBoardModeInit,
+	onResize: drawingBoardModeOnResize,
+	canvasCtrl: drawingBoardCanvasControl,
+	imageProcess: drawingBoardImageProcess,
+
+	imgW: appCfg.defDrawingBoardW,
+	imgH: appCfg.defDrawingBoardH,
+
+	hasTempDraw: false,
+	mergeTempDraw: false,
+
+	reqUndo: false,
+	reqRedo: false,
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// flow control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawingBoardModeTaskCtrl(isEnter) {
+	if (isEnter) {
+		//console.log("drawingBoard load, nothing to do");
+	}
+	else {
+		displayPictureWinClose(false);
+	}
+}
+
+function drawingBoardModeInit() {
+	var mc = drawingBoardModeCfg;
+
+	getCanvasGroupContext(mc);
+
+	fcInitCanvasArray(mc);
+
+	mc.baseImageContext.rect(0, 0, mc.imgW, mc.imgH);
+	mc.baseImageContext.fillStyle = appCfg.drawingBoardBgColor;
+	mc.baseImageContext.fill();
+
+	mc.combineContext.drawImage(mc.baseImageCanvas, 0, 0, mc.imgW, mc.imgH, 0, 0, mc.imgW, mc.imgH);
+
+	fcShowMode(mc, false);
+}
+
+function drawingBoardModeStart() {
+	drawingBoardModeOnResize();
+}
+
+function drawingBoardModeOnResize() {
+	fcUpdateImage();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawingBoardToolBarOnClick(event) {
+	var mc = drawingBoardModeCfg;
+
+	switch (event.target.id) {
+		case "dbbtn_undo":
+
+			fcCanvasCtrl(DrawState.undo);
+
+			break;
+
+		case "dbbtn_redo":
+
+			fcCanvasCtrl(DrawState.redo);
+
+			break;
+
+		case "dbbtn_importPic":
+
+			lsSelectFilesDlg();
+
+			break;
+
+		case "dbbtn_savePlayback":
+			showSaveHit();
+			fcSaveCanvasToFile(mc['combineCanvas']);
+
+			break;
+	}
+
+	toolBarOnMouseClick(event);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawingBoardOverlayCanvas(dstContext, srcCanvas) {
+	var mc = drawingBoardModeCfg;
+
+	dstContext.drawImage(srcCanvas, 0, 0, mc.imgW, mc.imgH, 0, 0, mc.imgW, mc.imgH);
+}
+
+function drawingBoardImageProcess() {
+	var mc = drawingBoardModeCfg;
+
+	drawingBoardOverlayCanvas(mc.imageProcessContext, mc.baseImageCanvas);
+
+	drawingBoardRedoUndo();
+}
+
+function drawingBoardRedoUndo() {
+	var mc = drawingBoardModeCfg;
+
+	if (mc.reqUndo) {
+		mc.reqUndo = false;
+
+		fcDrawingUndo(mc);
+	}
+	else if (mc.reqRedo) {
+		mc.reqRedo = false;
+
+		fcDrawingRedo(mc);
+	}
+	else {
+		drawingBoardMergeDrawing();
+	}
+}
+
+function drawingBoardMergeDrawing() {
+	var mc = drawingBoardModeCfg;
+
+	drawingBoardOverlayCanvas(mc.combineContext, mc.imageProcessCanvas);
+
+	if (mc.mergeTempDraw) {
+		mc.mergeTempDraw = false;
+
+		drawingBoardOverlayCanvas(mc.drawingContext, mc.tempDrawingCanvas);
+
+		fcPushDrawingCanvas(mc);
+	}
+
+	drawingBoardOverlayCanvas(mc.combineContext, mc.drawingCanvas);
+
+	drawingBoardMergeTempDrawing();
+}
+
+function drawingBoardMergeTempDrawing() {
+	var mc = drawingBoardModeCfg;
+
+	if (mc.hasTempDraw) {
+		drawingBoardOverlayCanvas(mc.combineContext, mc.tempDrawingCanvas);
+	}
+
+	drawingBoardDisplay();
+}
+
+function drawingBoardDisplay() {
+	var mc = drawingBoardModeCfg;
+
+	if (fcIsModeActive(mc)) {
+		fcUpdateImage();
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas control
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function drawingBoardCanvasControl(state) {
+	var mc = drawingBoardModeCfg;
+
+	switch (state) {
+		case DrawState.start:
+			return false;
+			break;
+
+		case DrawState.move:
+			mc.hasTempDraw = true;
+			break;
+
+		case DrawState.end:
+			if (false == appFC.drawText) {
+				mc.hasTempDraw = false;
+				mc.mergeTempDraw = true;
+			}
+			break;
+
+		case DrawState.undo:
+			if (mc.canvasStep > 0) {
+				mc.reqUndo = true;
+			}
+			break;
+
+		case DrawState.redo:
+			if (mc.canvasStep < (mc.canvasArray.length - 1)) {
+				mc.reqRedo = true;
+			}
+			break;
+	}
+
+	return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// control data
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var appFC =
+{
+	appVersion: '20180904-1',
+
+	curMode: undefined,
+
+	showToolBar: true,
+
+	imgW: undefined,
+	imgH: undefined,
+
+	reqImgW: undefined,
+	reqImgH: undefined,
+
+	baseCanvas: undefined,
+	baseContext: undefined,
+
+	drawCanvas: undefined,
+	drawContext: undefined,
+
+	drawStyle: undefined,
+	eraserStyle: undefined,
+	clearStyle: 'rgba(0,0,0,0)',
+
+	opacity: undefined,
+	lineWidth: undefined,
+
+	colorHex: undefined,
+	colorR: undefined,
+	colorG: undefined,
+	colorB: undefined,
+
+	drawStartX: undefined,
+	drawStartY: undefined,
+	drawCurX: undefined,
+	drawCurY: undefined,
+	drawLastX: undefined,
+	drawLastY: undefined,
+	drawing: undefined,
+	drawingMove: false,
+	fnDraw: undefined,
+
+	activeDlg: false,
+	activeDlgCloseFn: false,
+
+	previewBrightnessAdj: 0,
+	previewWhiteBalanceAdj: 0,
+	previewRotate: 0,
+
+	fontFamily: "Arial",
+	fontStyle: "Normal",
+	fontSize: 12,
+
+	fontBold: false,
+	fontItalic: false,
+
+	drawText: false,
+
+	drawFontStyle: undefined,
+
+	thumbnailCnt: 0,
+	thumbnailBuild: false,
+	thumbnailCurrPage: 0,
+	thumbnailTotalPage: 1,
+	thumbnailEntries: null,
+	thumbnailReflesh: false,
+
+	capturing: false,
+	lastSaveFilename: "",
+
+	ctrlPress: false,
+
+	showSysInfo: false,
+
+	frameRateInit: false,
+	frameCnt: 16,
+	frameSlotIdx: 0,
+	frameInterval: [],
+	frameLastTime: 0,
+	frameRate: 0,
+
+	thumbFileCnt: 0,
+	thumbSelectedFileCnt: 0,
+
+	capturePeriodRun: false,
+	capturePeriodSec: appCfg.pcdCapturePeriodSec,
+	captureIntervalHour: appCfg.pcdCaptureIntervalHour,
+	capturePeriodTotalCnt: 0,
+	capturePeriodCurCnt: 0,
+	capturePeriodMs: 0,
+
+	resizeDelayMs: appBaseCfg.resizeDelayMs,
+
+	ipwRadiusExpandRatio: 1,
+	ipwExtraSpace: 0,
+
+	panMove: false,
+	panMoveX: 0,
+	panMoveY: 0,
+
+	drawRegularShape: false,
+
+	curVideoResolutionList: VideoResolutionList,
+	reqVideoResolutionList: false,
+
+	idVideoResolutionList: 0,
+
+	curAudioinputList: 0,
+	idAudioinputSelect: 0,
+	idVideoinputSelect: 0,
+
+	checkVideoResolution: false,
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// tool bar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcShowToolBar(mode) {
+	//var sysToolBar = document.getElementById("sysToolBar");
+	var titleBar = document.getElementById("appTitle");
+	if (titleBar) showToolBar("appTitle", mode);
+
+	//showToolBar("sys_close", mode);
+	// showToolBar("sys_fullScreen", mode);
+	// showToolBar("sys_smallScreen", mode);
+	//showToolBar("sysToolBar", !mode);
+	showToolBar("modeToolBar", mode);
+	showToolBar("bottomToolBarData",
+		(appFC.curMode.baseId == "previewArea") &&
+		!IsScanMode && !IsMultiscanMode && mode);
+
+	if (typeof appFC.curMode.lToolBar != "undefined") showToolBar(appFC.curMode.lToolBar, !IsScanMode && !IsMultiscanMode && mode);
+	if (typeof appFC.curMode.lS1ToolBar != "undefined") showToolBar(appFC.curMode.lS1ToolBar, IsScanMode && mode && !IsTransform);
+	if (typeof appFC.curMode.lS2ToolBar != "undefined") showToolBar(appFC.curMode.lS2ToolBar, IsScanMode && mode && IsTransform);
+
+	if (typeof appFC.curMode.lMsToolBar != "undefined") showToolBar(appFC.curMode.lMsToolBar, IsMultiscanMode && mode);
+	if (typeof appFC.curMode.rToolBar != "undefined") showToolBar(appFC.curMode.rToolBar, ((IsScanMode && IsTransform) || !IsScanMode) && !IsMultiscanMode && mode);
+	if (typeof appFC.curMode.bToolBar != "undefined") showToolBar(appFC.curMode.bToolBar, ((IsScanMode && IsTransform) || !IsScanMode) && !IsMultiscanMode && mode);
+}
+
+function fcToogleToolBar() {
+	appFC.showToolBar = !appFC.showToolBar;
+
+	fcShowToolBar(appFC.showToolBar);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mode
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcSwitchMode(modeCfg) {
+	if (appFC.curMode) {
+		fcShowToolBar(false);
+
+		if (appFC.activeDlgCloseFn) appFC.activeDlgCloseFn();
+		fcResetActiveDlg();
+
+		if (appFC.curMode.taskCtrl) appFC.curMode.taskCtrl(false);
+
+		fcShowMode(appFC.curMode, false);
+	}
+
+	appFC.curMode = modeCfg;
+
+	if (appFC.curMode.taskCtrl) appFC.curMode.taskCtrl(true);
+
+	fcUpdateImgSize(appFC.curMode.imgW, appFC.curMode.imgH);
+
+	adjImageDisplayArea();
+	fcUpdateSysInfoWin();
+	fcUpdateSysInfoData();
+
+	if (appFC.curMode.start) appFC.curMode.start();
+
+	appFC.baseCanvas = appFC.curMode.drawingCanvas;
+	appFC.baseContext = appFC.curMode.drawingContext;
+	appFC.drawCanvas = appFC.curMode.tempDrawingCanvas;
+	appFC.drawContext = appFC.curMode.tempDrawingContext;
+	appFC.imgW = appFC.curMode.imgW;
+	appFC.imgH = appFC.curMode.imgH;
+
+	fcShowToolBar(appFC.showToolBar);
+
+	fcShowMode(appFC.curMode, true);
+}
+
+function fcIsModeActive(modeCfg) {
+	return modeCfg === appFC.curMode;
+}
+
+function fcShowMode(modeCfg, mode) {
+	showElement(modeCfg.baseId, mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// image
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateImgSize(w, h) {
+	appFC.imgW = w;
+	appFC.imgH = h;
+}
+
+function fcUpdateImage() {
+	var cm = appFC.curMode;
+
+	//imageDisplayContext.drawImage(cm.combineCanvas, 0, 0, cm.imgW, cm.imgH, 0, 0, 1920, 1080);
+	imageDisplayContext.drawImage(cm.combineCanvas, 0, 0, cm.imgW, cm.imgH, 0, 0, dispW, dispH);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// flow
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcOnResize() {
+	if (appFC.curMode) {
+		if (appFC.curMode.onResize) appFC.curMode.onResize();
+	}
+
+	fcUpdateSysInfoWin();
+}
+
+function fcInit() {
+	$('#displayCanvas')
+		.on('mousedown', fcOnMouseDown)
+		.on('mousemove', fcOnMouseMove)
+		.on('mouseup', fcOnMouseUp)
+		.on('mouseout', fcOnMouseOut)
+		.on('touchstart', fcOnTouchStart)
+		.on('touchend', fcOnTouchEnd)
+		.on('touchmove', fcOnTouchMove)
+		.on('touchcancel', fcOnTouchCancel);
+
+	fcInitSysInfoWin();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// touch event
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcOnTouchStart(event) {
+	fcTouchHandler(event);
+}
+
+function fcOnTouchEnd(event) {
+	fcTouchHandler(event);
+}
+
+function fcOnTouchMove(event) {
+	fcTouchHandler(event);
+}
+
+function fcOnTouchCancel(event) {
+	//console.log('fcOnTouchCancel');
+}
+
+function fcTouchHandler(event) {
+	if (!event.originalEvent) {
+		return;
+	}
+
+	setHideIconCountdown();
+
+	var touches = event.originalEvent.changedTouches;
+	var first = touches[0];
+	var type = "";
+
+	//console.log(event);
+
+	switch (event.type) {
+		case "touchstart": type = "mousedown"; break;
+		case "touchmove": type = "mousemove"; break;
+		case "touchend": type = "mouseup"; break;
+		default: return;
+	}
+
+	// var simulatedEvent = document.createEvent("MouseEvent");
+	// simulatedEvent.initMouseEvent(type, true, true, window, 1,
+	// 	first.screenX, first.screenY,
+	// 	first.clientX, first.clientY, false,
+	// 	false, false, false, 0, null);
+
+	var press = (type == "mousemove") ? 1 : 0;
+
+	var simulatedEvent = new MouseEvent(type, {
+		bubbles: true,
+		cancelable: true,
+		view: window,
+		detail: 1,
+		screenX: first.screenX,
+		screenY: first.screenY,
+		clientX: first.clientX,
+		clientY: first.clientY,
+		ctrlKey: false,
+		altKey: false,
+		shiftKey: false,
+		metaKey: false,
+		button: 0,
+		buttons: press,
+		relatedTarget: null
+	});
+
+	first.target.dispatchEvent(simulatedEvent);
+
+	if (event.pointerType === "pen") {
+		// 不阻止 Apple Pencil 預設行為
+		return;
+	}
+	event.preventDefault();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// mouse event
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var hideIconInterval = null;
+var hideIconCountdown = 0;
+
+function setHideIconCountdown() {
+	if (fullPhotoMode) {
+		var btn = document.getElementById('sys_fullPhoto');
+		btn.style.backgroundColor = appCfg.toolBarColorLeave;
+		btn.style.opacity = appCfg.toolBarOpacityLeave;
+
+		hideIconCountdown = 3;
+
+		if (!hideIconInterval) {
+			hideIconInterval = setInterval(function () {
+
+				hideIconCountdown -= 1;
+
+				//console.log("hideIcondown = " + hideIconCountdown);
+
+				if (hideIconCountdown == 0) {
+					if (fullPhotoMode) {
+						var btn = document.getElementById('sys_fullPhoto');
+						btn.style.backgroundColor = appCfg.toolBarColorHide;
+						btn.style.opacity = appCfg.toolBarOpacityHide;
+					}
+
+					clearInterval(hideIconInterval);
+					hideIconInterval = null;
+				}
+			}, 1000);
+		}
+	}
+}
+
+var lastMouseEvent;
+
+function fcOnMouseMove(event) {
+	if (appFC.fnDraw) {
+		if (appFC.drawing) {
+			if (event.buttons == 0) {
+				if (typeof lastMouseEvent === 'undefined')
+					lastMouseEvent = event;
+
+				// Fix
+				// move outside drawing area and release left button
+				// then move back will cause error
+				//fcSetDrawCurPos(event);
+				fcSetDrawCurPos(lastMouseEvent);
+
+				appFC.fnDraw(DrawState.end);
+
+				appFC.drawing = false;
+
+				if (appFC.drawingMove) {
+					fcCanvasCtrl(DrawState.end);
+				}
+			}
+			else {
+				fcSetDrawCurPos(event);
+				lastMouseEvent = event;
+
+				appFC.drawingMove = true;
+
+				appFC.fnDraw(DrawState.move);
+
+				fcCanvasCtrl(DrawState.move);
+			}
+		}
+	}
+
+	if (fnDisplayPicture) {
+		var eleId = '#importPictureWin';
+		var pd = $(eleId).data('picData');
+
+		if (pd.mouseDown) {
+			if (pd.type == 0) {
+				moveEx(event);
+			}
+			else {
+				updateSizeEx(pd.type, event);
+			}
+		}
+	}
+
+	setHideIconCountdown();
+}
+
+function fcOnMouseDown(event) {
+	fcMouseEventNotify(UiType.displayCanvas, MouseStatus.click, event);
+
+	if (appFC.fnDraw && !(IsRecording && !IsPause)) {
+		fcClearDrawingCanvas();
+
+		appFC.drawing = true;
+		appFC.drawingMove = false;
+
+		fcSetDrawStartPos(event);
+
+		appFC.fnDraw(DrawState.start);
+
+		fcCanvasCtrl(DrawState.start);
+	}
+}
+
+function fcOnMouseUp(event) {
+	if (appFC.fnDraw) {
+		if (appFC.drawing) {
+			fcSetDrawCurPos(event);
+
+			appFC.fnDraw(DrawState.end);
+
+			appFC.drawing = false;
+
+			// 20220612
+			// if ( appFC.drawingMove )
+			// {
+			// 	fcCanvasCtrl(DrawState.end);
+			// }
+
+			fcCanvasCtrl(DrawState.end);
+		}
+	}
+
+	if (fnDisplayPicture) {
+		var eleId = '#importPictureWin';
+		var pd = $(eleId).data('picData');
+		pd.mouseDown = false;
+
+		updateImgSizeEx();
+		fnDisplayPicture = false;
+	}
+}
+
+function fcOnMouseOut(event) {
+	//console.log('fcOnMouseOut');
+	if (appFC.fnDraw) {
+		// btn_eraser = 2
+		if (appFC.drawing && getToolBarSelectedBtnIdx(drawingToolBarData, 1) == 2) {
+			appFC.fnDraw(DrawState.end);
+			fcCanvasCtrl(DrawState.end); // add 20220612
+		}
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// canvas
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcClearCanvas(canvas) {
+	//context.clearRect(0, 0, canvas.width, canvas.height);
+	if (canvas)
+		canvas.width += 0;
+}
+
+function fcClearDispCanvas() {
+	var canvas = document.getElementById("displayCanvas");
+	canvas.width += 0;
+}
+
+function fcClearDrawingCanvas() {
+	fcClearCanvas(appFC.drawCanvas);
+}
+
+function fcPushDrawingCanvas(modeCfg) {
+	if (modeCfg.canvasArray.length) {
+		if (modeCfg.canvasStep != (modeCfg.canvasArray.length - 1)) {
+			modeCfg.canvasArray.length = modeCfg.canvasStep + 1;
+		}
+	}
+
+	modeCfg.canvasStep += 1;
+
+	modeCfg.canvasArray.push(modeCfg.drawingCanvas.toDataURL());
+}
+
+function fcResetCanvasArray(modeCfg) {
+	// clear backup canvas
+
+	modeCfg.canvasArray.length = 0;
+
+	modeCfg.canvasStep = -1;
+
+	// clear drawing canvas
+
+	fcClearCanvas(modeCfg.drawingCanvas);
+
+	// save clean canvas
+
+	fcPushDrawingCanvas(modeCfg);
+}
+
+function fcInitCanvasArray(modeCfg) {
+	modeCfg.canvasArray = new Array();
+
+	fcResetCanvasArray(modeCfg);
+}
+
+function fcShowDisplayCanvas(mode) {
+	showElement('displayCanvas', mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// drawing
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateDrawStyle() {
+	appFC.drawStyle = 'rgba(' + appFC.colorR + ', ' + appFC.colorG + ', ' + appFC.colorB + ', ' + appFC.opacity + ')';
+
+	appFC.eraserStyle = 'rgba(' + appFC.colorR + ', ' + appFC.colorG + ', ' + appFC.colorB + ', ' + appCfg.eraserOpacity + ')';
+
+	//console.log(appFC.drawStyle);
+}
+
+function fcDrawConvertRatio() {
+	return 1;
+	//return appFC.imgW / dispW;
+}
+
+function fcSetDrawStartPos(event) {
+	// console.log(event);
+	// var id$ = $('#displayCanvas');
+	// var pos = id$.position();
+	// console.log(pos.left, pos.top);
+
+	// appFC.drawStartX = event.offsetX - pos.left;
+	// appFC.drawStartY = event.offsetY - pos.top;
+	// appFC.drawCurX = appFC.drawLastX = appFC.drawStartX;
+	// appFC.drawCurY = appFC.drawLastY = appFC.drawStartY;
+	// return;
+
+
+	var ratio = fcDrawConvertRatio();
+
+	appFC.drawStartX = event.offsetX * ratio;
+	appFC.drawStartY = event.offsetY * ratio;
+
+	appFC.drawStartX = Math.floor(appFC.drawStartX * 10) / 10;
+	appFC.drawStartY = Math.floor(appFC.drawStartY * 10) / 10;
+
+	appFC.drawCurX = appFC.drawLastX = appFC.drawStartX;
+	appFC.drawCurY = appFC.drawLastY = appFC.drawStartY;
+}
+
+function fcSetDrawCurPos(event) {
+	// var id$ = $('#displayCanvas');
+	// var pos = id$.position();
+	// console.log(pos.left, pos.top);
+
+	// appFC.drawLastX = appFC.drawCurX;
+	// appFC.drawLastY = appFC.drawCurY;
+	// appFC.drawCurX = event.offsetX - pos.left;
+	// appFC.drawCurY = event.offsetY - pos.top;
+	// return;
+
+	var ratio = fcDrawConvertRatio();
+
+	appFC.drawLastX = appFC.drawCurX;
+	appFC.drawLastY = appFC.drawCurY;
+
+	appFC.drawCurX = event.offsetX * ratio;
+	appFC.drawCurY = event.offsetY * ratio;
+
+	appFC.drawCurX = Math.floor(appFC.drawCurX * 10) / 10;
+	appFC.drawCurY = Math.floor(appFC.drawCurY * 10) / 10;
+}
+
+function fcDumpDrawPos() {
+	console.log("start : " + appFC.drawStartX + ", " + appFC.drawStartY);
+	console.log("cur : " + appFC.drawCurX + ", " + appFC.drawCurY);
+	console.log("last : " + appFC.drawLastX + ", " + appFC.drawLastY);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// drawing canvas control 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcCanvasCtrl(state) {
+	var mc = appFC.curMode;
+
+	if (mc.canvasCtrl) {
+		if (true == mc.canvasCtrl(state)) {
+			fcUpdateSysInfoData();
+			return;
+		}
+	}
+
+	switch (state) {
+		case DrawState.start:
+			if (mc.imageProcess) mc.imageProcess();// test
+			break;
+
+		case DrawState.move:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.end:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.undo:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.redo:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.mirror:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.flip:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.brightness:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.whiteBalance:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.zoom:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+
+		case DrawState.pan:
+			if (mc.imageProcess) mc.imageProcess();
+			break;
+	}
+
+	fcUpdateSysInfoData();
+}
+
+function fcLoadCanvasFromArray(mc) {
+	var storeCanvas = new Image();
+
+	storeCanvas.src = mc.canvasArray[mc.canvasStep];
+	storeCanvas.onload = function () {
+		fcClearCanvas(mc.drawingCanvas);
+		//mc.drawingContext.drawImage(storeCanvas, 0, 0, mc.imgW, mc.imgH);
+		mc.drawingContext.drawImage(
+			storeCanvas,
+			0, 0, mc.imgW, mc.imgH,
+			0, 0, mc.imgW, mc.imgH
+		);
+		if (mc.imageProcess) mc.imageProcess();
+	}
+}
+
+function fcDrawingUndo(mc) {
+	if (mc.canvasStep > 0) {
+		mc.canvasStep -= 1;
+
+		fcLoadCanvasFromArray(mc);
+	}
+}
+
+function fcDrawingRedo(mc) {
+	if (mc.canvasStep < (mc.canvasArray.length - 1)) {
+		mc.canvasStep += 1;
+
+		fcLoadCanvasFromArray(mc);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// dialog control 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcCloseActiveDlg() {
+	if (appFC.activeDlgCloseFn) appFC.activeDlgCloseFn();
+
+	fcResetActiveDlg();
+}
+
+function fcResetActiveDlg() {
+	appFC.activeDlgCloseFn = false;
+
+	appFC.activeDlg = false;
+
+	$("#configDlg").hide();
+	$("#zoomDlg").hide();
+	$("#configDrawDlg").hide();
+	removeCropBox();
+	//$("svg").remove();
+}
+
+function fcToogleDlg(eleId, openFn, closeFn) {
+	if (appFC.activeDlgCloseFn) {
+		appFC.activeDlgCloseFn();
+
+		appFC.activeDlgCloseFn = false;
+	}
+
+	if (appFC.activeDlg != eleId) {
+		appFC.activeDlg = eleId
+
+		if (closeFn) appFC.activeDlgCloseFn = closeFn;
+
+		if (openFn) openFn();
+	}
+	else {
+		appFC.activeDlg = false;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// font 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateFontCfg() {
+	var eleId;
+	var idx;
+
+	if (1 === appCfg.disableDrawTextSetting) {
+		return;
+	}
+
+	eleId = document.getElementById('sdfontFamily');
+	idx = eleId.selectedIndex;
+	appFC.fontFamily = fontFamilyData[idx][FontField.value];
+
+	eleId = document.getElementById('fontStyle');
+	idx = eleId.selectedIndex;
+	appFC.fontStyle = fontStyleData[idx][FontField.value];
+
+	eleId = document.getElementById('fontSize');
+	idx = eleId.selectedIndex;
+	appFC.fontSize = fontSizeData[idx][FontField.value];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// base image resolution change 
+///////////////////////////////////////////////////////////////////////////////////////////
+async function fcChangeBaseImageSize(w, h) {
+	var mc = appFC.curMode;
+
+	console.log("Change BaseImageSize", w, h);
+
+	// if (mc.baseId == "previewArea") {
+	// 	console.log("mc == previewModeCfg");
+	// 	return;
+	// }
+
+	if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.before, w, h);
+
+	previewModeCfg.imgW = w;
+	previewModeCfg.imgH = h;
+	drawingBoardModeCfg.imgW = w;
+	drawingBoardModeCfg.imgH = h;
+
+	resetCanvasGroupSize(previewModeCfg, w, h);
+	resetCanvasGroupSize(drawingBoardModeCfg, w, h);
+	fcClearDrawingCanvas();
+	fcResetCanvasArray(mc);
+
+	// appFC.imgW = w;
+	// appFC.imgH = h;
+	adjImageDisplayArea();
+	fcUpdateSysInfoWin();
+	fcUpdateSysInfoData();
+
+	if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.after, w, h);
+
+	fcResetZoomRatio(); // 20230429
+	fcUpdatePanWin();
+	fcUpdateCropWin();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// UI mouse event notify 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcMouseEventNotify(uiType, mouseEventType, mouseEvent) {
+	switch (mouseEventType) {
+		case MouseStatus.click:
+
+			//console.log("UI type " + uiType + " click, id = " + mouseEvent.target.id);
+			displayPictureWinClose(true);
+			break;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// save canvas to internal storage   
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcGetFilenameByDateTime(extension) {
+	var dt = new Date();
+
+	var year = dt.getFullYear();
+	var month = dt.getMonth() + 1;
+	var date = dt.getDate();
+	var hour = dt.getHours();
+	var min = dt.getMinutes();
+	var sec = dt.getSeconds();
+	var ms = dt.getMilliseconds();
+
+	if (month < 10) month = "0" + month;
+	if (date < 10) date = "0" + date;
+	if (hour < 10) hour = "0" + hour;
+	if (min < 10) min = "0" + min;
+	if (sec < 10) sec = "0" + sec;
+
+	if (ms < 10) ms = "00" + ms;
+	else if (ms < 99) ms = "0" + ms;
+
+	var filename = year + month + date + '-' + hour + min + sec + '-' + ms;
+
+	if (extension != "") {
+		filename += '.' + extension;
+	}
+
+	return filename;
+}
+
+function fcSaveCanvasToFile_withrefleshGallery(canvas) {
+	fcSaveCanvasToFile(canvas, "", true);
+}
+
+async function saveBlobToMp4(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'Mp4 Files',
+				accept: {
+					'mp4/plain': ['.mp4'],
+				},
+			},
+		],
+	};
+	saveBlobToFile(blob, options);
+}
+
+async function saveBlobToWebm(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'Webm Files',
+				accept: {
+					'Webm/plain': ['.webm'],
+				},
+			},
+		],
+	};
+	saveBlobToFile(blob, options);
+}
+
+async function saveBlobToJpg(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'Jpeg Files',
+				accept: {
+					'Jpeg/plain': ['.jpg'],
+				},
+			},
+		],
+	};
+
+	downloadBlob(blob, suggName);
+
+	//saveBlobToFile(blob, options);
+}
+
+async function saveBlobToTiff(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'Tiff Files',
+				accept: {
+					'Tiff/plain': ['.tif'],
+				},
+			},
+		],
+	};
+
+	saveBlobToFile(blob, options);
+}
+
+async function saveBlobToPng(suggName, blob) {
+	const options = {
+		suggestedName: suggName,
+		types: [
+			{
+				description: 'PNG Files',
+				accept: {
+					'PNG/plain': ['.png'],
+				},
+			},
+		],
+	};
+
+	saveBlobToFile(blob, options);
+}
+
+async function saveBlobToFile(blob, options) {
+	try {
+		const fileHandle = await window.showSaveFilePicker(options);
+		const writableStream = await fileHandle.createWritable();
+
+		await writableStream.write(blob);
+		await writableStream.close();
+	}
+	catch (err) {
+		console.log(err);
+	}
+}
+
+async function fcSaveCanvasToFile(canvas, DateStr = "", RefleshGallery = false) {
+	if (DateStr == "")
+		DateStr = fcGetFilenameByDateTime('');
+
+	console.log(DateStr);
+
+	var filenameSub = DateStr + '.sub';
+	var filename = DateStr + '.jpg';
+
+	//if ( appFC.capturing ) return false;
+	if (appFC.lastSaveFilename == filename) return false;
+
+	appFC.capturing = true;
+	appFC.lastSaveFilename = filename;
+
+	// thumbnail
+	var thumbW = appCfg.thumbW;
+	var thumbH = appCfg.thumbH;
+	var paddingS = appCfg.thumbPadding;
+	var w, h;
+	w = (thumbW - (paddingS * 2));
+	h = (thumbH - (paddingS * 2));
+
+	var subW, subH;
+
+	if (canvas.width / canvas.height > w / h) {
+		subW = w;
+		subH = canvas.height * w / canvas.width;
+	}
+	else {
+		subW = canvas.width * h / canvas.height;
+		subH = h;
+	}
+
+	var canvasT = document.getElementById("tempCanvas");
+	canvasT.width = subW;
+	canvasT.height = subH;
+
+	var ctxT = canvasT.getContext('2d');
+
+	ctxT.drawImage(canvas, 0, 0, subW, subH);
+
+
+	canvas.toBlob(
+		function (blob) {
+			saveBlobToJpg(DateStr, blob);
+		},
+		'image/jpeg',
+		1.0
+	);
+	return;
+
+	const db = await openDatabase();
+	const transaction = db.transaction(storeName, 'readwrite');
+	const store = transaction.objectStore(storeName);
+
+	//const imageData = canvas.toDataURL(); // 將 Canvas 轉為 Base64
+
+	const data = { name: filename, normalImage: canvas.toDataURL(), thumbnailImage: canvasT.toDataURL() };
+	store.add(data);
+
+	if (RefleshGallery) {
+		refleshGallery();
+	}
+
+
+	// canvasT.toBlob(
+	// 	function (blob) {
+	// 		appFs.root.getFile(
+	// 			filenameSub,
+	// 			{ create: true },
+	// 			function (fileEntry) {
+	// 				fileEntry.createWriter(
+	// 					function (fileWriter) {
+	// 						fileWriter.onwriteend = function () {
+	// 							//console.log(fileEntry);
+	// 							//reflesh all for seq
+
+	// 							//refleshGalleryFillThumbnailDiv();
+	// 							//galleryAddThumbnailDiv(fileEntry);
+	// 							//appFC.thumbnailCnt += 1;
+	// 							//galleryCreateThumbnailDiv(fileEntry, appFC.thumbnailCnt, true);
+
+	// 							//appFC.capturing = false;
+
+	// 							//if ( RefleshGallery )
+	// 							if (appFC.curMode.baseId == 'playbackArea') {
+	// 								//console.log("reflesah GGG");
+	// 								setTimeout(function () {
+	// 									refleshGallery();
+	// 									closeAndBackPlayback(playbackModeCfg);
+	// 								},
+	// 									1000);
+	// 							}
+
+	// 						};
+
+	// 						fileWriter.write(blob);
+	// 					}
+	// 				);
+	// 			}
+	// 		);
+	// 	},
+	// 	'image/jpeg',
+	// 	1.0
+	// );
+
+	// canvas.toBlob(
+	// 	function (blob) {
+	// 		appFs.root.getFile(
+	// 			filename,
+	// 			{ create: true },
+	// 			function (fileEntry) {
+	// 				fileEntry.createWriter(
+	// 					function (fileWriter) {
+	// 						fileWriter.onwriteend = function () {
+	// 							//console.log(fileEntry);
+	// 							//reflesh all for seq
+
+	// 							//refleshGalleryFillThumbnailDiv();
+
+	// 							// 20220109
+	// 							appFC.thumbnailReflesh = true;
+	// 							//galleryAddThumbnailDiv(fileEntry);
+
+	// 							//appFC.thumbnailCnt += 1;
+	// 							//galleryCreateThumbnailDiv(fileEntry, appFC.thumbnailCnt, true);
+
+	// 							appFC.capturing = false;
+	// 						};
+
+	// 						fileWriter.write(blob);
+	// 					}
+	// 				);
+	// 			}
+	// 		);
+	// 	},
+	// 	'image/jpeg',
+	// 	1.0
+	// );
+
+	return true;
+}
+
+async function fcSaveCanvasToPdfExt(arrCanvas) {
+	var filename = fcGetFilenameByDateTime('');
+	var width = -1; //arrCanvas[0].width;
+	var height = -1; //arrCanvas[0].height;
+
+	for (var j = 0; j < arrCanvas.length; j++) {
+		if (arrCanvas[j].width > width) width = arrCanvas[j].width;
+		if (arrCanvas[j].height > height) height = arrCanvas[j].height;
+	}
+
+	//Orientation of the first page. Possible values are "portrait" or "landscape" (or shortcuts "p" or "l").
+	var ort = (width > height) ? 'l' : 'p';
+	var pdf = new jsPDF({
+		orientation: ort, // landscape
+		unit: 'pt', // points, pixels won't work properly
+		format: [width, height] // set needed dimensions for any element
+	});
+
+	for (var i = 0; i < arrCanvas.length; i++) {
+		var startX = (width - arrCanvas[i].width) / 2;
+		var startY = (height - arrCanvas[i].height) / 2;
+
+		if (i > 0)
+			pdf.addPage();
+
+		var imgData = await arrCanvas[i].toDataURL("image/jpeg", 1.0);
+		await pdf.addImage(imgData, 'JPEG', startX, startY, arrCanvas[i].width, arrCanvas[i].height);
+
+		//await pdf.addImage(imgData, 'JPEG', 0, 0, width, height);
+	}
+
+	pdf.save(filename + ".pdf");
+}
+
+async function fcSaveCanvasToFileExt(arrCanvas) {
+	var filename = fcGetFilenameByDateTime('');
+
+	if (appFC.lastSaveFilename == filename) return;
+
+	for (var i = 0; i < arrCanvas.length; i++) {
+		fcSaveCanvasToFile(arrCanvas[i], filename + "-" + i);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// key down handler    
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcOnKeyDown(event) {
+	if ("Control" == event.key) {
+		appFC.ctrlPress = true;
+
+		return;
+	}
+
+	switch (event.key) {
+		case "I":
+		case "i":
+			if (appFC.ctrlPress) {
+				fcToggleSysInfo();
+			}
+			break;
+	}
+
+	//appFC.ctrlPress = false;
+}
+
+function fcOnKeyUp(event) {
+	if ("Control" == event.key) {
+		appFC.ctrlPress = false;
+
+		return;
+	}
+}
+
+function fcOnWheel(event) {
+	if (appFC.ctrlPress) {
+		//event.preventDefault();
+		//console.log(event);
+
+		var mc = appFC.curMode;
+		var pos = mc.zoomScrollBarPos
+
+		pos -= event.deltaY / 10;
+		pos = Math.min(Math.max(pos, 0), appCfg.scrollZoomW);
+		zoomScrollBarNotify(appCfg.scrollZoomW, pos);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// system info    
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateSysInfoWin() {
+	//console.log("UpdateSysInfoWin");
+	var css =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+		background: appBaseCfg.ColorLeave,
+		opacity: appBaseCfg.OpacityLeave,
+	};
+
+	var x, y;
+	var w, h;
+
+	w = appCfg.sysInfoWinW;
+	h = appCfg.sysInfoWinH;
+
+	x = Math.min((winW - appCfg.toolBarIconW), (dispX + dispW));
+	x = x - w;
+	y = Math.min((dispY + dispH), (winH - appCfg.drawSetH));
+
+	css.width = w + 'px';
+	css.height = h + 'px';
+	css.left = (x - appCfg.sysInfoGap) + 'px';
+	css.top = (y - appCfg.sysInfoGap - h) + 'px';
+
+	$('#sysInfoWin').css(css);
+
+	$('#configDrawDlg').css("top", "calc(100% - 100px)");
+	$('#configDrawDlg').css('left', (winW - 300 - appCfg.toolBarIconW) + "px");
+
+	const offsetLimitX = 0; //320
+
+	var obj = document.getElementById("bottomToolBarData");
+	if (obj) {
+		var pos = (winW / 2 - 30);
+		if (pos < offsetLimitX)
+			pos = offsetLimitX;
+		obj.style.left = pos + 'px';
+		//obj.style.width = '60px';
+	}
+
+	// obj = document.getElementById("recordtime");
+	// if (obj) {
+	// 	var pos = (winW / 2 - 32);
+	// 	if (pos < offsetLimitX)
+	// 		pos = offsetLimitX;
+	// 	obj.style.left = pos + 'px';
+	// 	//obj.style.width = '60px';
+	// }
+
+	// obj = document.getElementById("recordtime");
+	// if (obj && IsRecording) {
+	// 	obj.style.right = (document.documentElement.clientWidth / 2 - 30) + "px";
+	// }
+}
+
+function fcInitSysInfoWin() {
+	var idx = 0;
+
+	createSpanElement('uiArea', 'sysInfoWin');
+
+	fcCreateSysInfoElement('appVersion', idx++);
+	fcCreateSysInfoElement('cfgVersion', idx++);
+	fcCreateSysInfoElement('imgSize', idx++);
+	fcCreateSysInfoElement('frmRate', idx++);
+	fcCreateSysInfoElement('redoundo', idx++);
+
+	fcShowSysInfo(false);
+}
+
+function fcCreateSysInfoElement(subId, idx) {
+	var id = 'sysInfoWin' + '-' + subId;
+
+	createLabelElement('sysInfoWin', id);
+
+	var css =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+	};
+
+	css.left = appCfg.sysInfoGap + 'px';
+	css.top = (appCfg.sysInfoGap + idx * appCfg.sysInfoH) + 'px';
+	css.height = appCfg.sysInfoH + 'px';
+	css.width = (appCfg.sysInfoWinW - 2 * appCfg.sysInfoGap) + 'px';
+
+	$('#' + id).css(css);
+}
+
+function fcUpdateSysInfoElement(subId, text) {
+	var id;
+
+	id = document.getElementById('sysInfoWin' + '-' + subId);
+
+	fcUpdateElementText(id, text);
+}
+
+function fcUpdateSysInfoImgSize() {
+	var text = appFC.imgW + 'x' + appFC.imgH;
+
+	fcUpdateSysInfoElement('imgSize', text);
+}
+
+function fcUpdateSysInfoFrameRate() {
+	fcUpdateSysInfoElement('frmRate', appFC.frameRate);
+}
+
+function fcUpdateSysInfoCanvasArray() {
+	var cm = appFC.curMode;
+
+	var text = (cm.canvasStep + 1) + ' / ' + cm.canvasArray.length;
+
+	fcUpdateSysInfoElement('redoundo', text);
+}
+
+function fcUpdateSysInfoAppVersion() {
+	fcUpdateSysInfoElement('appVersion', appFC.appVersion);
+}
+
+function fcUpdateSysInfoCfgVersion() {
+	fcUpdateSysInfoElement('cfgVersion', appCfg.cfgVersion);
+}
+
+function fcUpdateSysInfoData() {
+	fcUpdateSysInfoAppVersion();
+
+	fcUpdateSysInfoCfgVersion();
+
+	fcUpdateSysInfoImgSize();
+
+	fcUpdateSysInfoFrameRate();
+
+	fcUpdateSysInfoCanvasArray();
+}
+
+function fcToggleSysInfo() {
+	appFC.showSysInfo = !appFC.showSysInfo;
+
+	fcShowSysInfo(appFC.showSysInfo);
+}
+
+function fcShowSysInfo(mode) {
+	if (mode) {
+		fcUpdateSysInfoWin();
+		fcUpdateSysInfoData();
+	}
+
+	showElement('sysInfoWin', mode);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// icon    
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcGetDefIconPath(pic) {
+	return "url('css/images/" + "icon" + "/" + pic + "')";
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// element text    
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateElementText(id, text) {
+	var txt;
+
+	txt = document.createTextNode(text);
+
+	id.innerText = txt.textContent;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// zoom
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcZoomDlgOpen() {
+	showZoomDlg(true);
+}
+
+function fcZoomDlgClose() {
+	showZoomDlg(false);
+}
+
+function fcResetZoomRatio() {
+	fcUpdateZoomRatio(1, 0);
+
+	$('#zoomDlg-zoom-slider').val(0);
+}
+
+function fcUpdateZoomRatio(ratio, pos) {
+	var startX, startY;
+	var centerX, centerY;
+	var w, h;
+	var mc = appFC.curMode;
+
+	centerX = mc.zoomX + mc.zoomW / 2;
+	centerY = mc.zoomY + mc.zoomH / 2;
+
+	w = mc.imgW / ratio;
+	h = mc.imgH / ratio;
+
+	startX = centerX - w / 2;
+	startY = centerY - h / 2;
+
+	startX = Math.max(startX, 0);
+	startY = Math.max(startY, 0);
+
+	startX = Math.min(startX, (mc.imgW - w));
+	startY = Math.min(startY, (mc.imgH - h));
+
+	mc.zoomRatio = ratio;
+	mc.zoomX = startX;
+	mc.zoomY = startY;
+	mc.zoomW = w;
+	mc.zoomH = h;
+
+	fcCanvasCtrl(DrawState.zoom);
+
+	if (ratio <= 1) fcShowPanWin(false);
+	else fcShowPanWin(true);
+
+	fcUpdateCropWin();
+
+	mc.zoomScrollBarPos = pos;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// pan window 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdatePanWin() {
+	var mc = appFC.curMode;
+
+	var css =
+	{
+		position: 'absolute',
+		'margin-left': '0px',
+		background: appCfg.panWinColor,
+		opacity: appCfg.panOpacity,
+	};
+
+	var x, y;
+
+	var w = dispW / 8;
+	var h = dispH / 8;
+
+	x = Math.max(appCfg.toolBarIconW, dispX);
+	y = Math.min((dispY + dispH), (winH - appCfg.drawSetH));
+
+	css.width = w + 'px';
+	css.height = h + 'px';
+	css.left = (x + appCfg.panWinGapX) + 'px';
+	css.top = (y - appCfg.panWinGapY - h) + 'px';
+
+	$('#panWin').css(css);
+
+	css.left = 0;
+	css.top = 0;
+	css.background = 'undefined';
+	css.opacity = 1;
+	$('#cropWin').css(css);
+	updateCanvasSize('cropWin', w, h)
+
+	mc.panWinW = w;
+	mc.panWinH = h;
+}
+
+function fcUpdateCropWin() {
+	var mc = appFC.curMode;
+	var x, y, w, h;
+	var ratio = mc.panWinW / mc.imgW;
+	var canvas;
+	var ctx;
+
+	x = mc.zoomX * ratio;
+	y = mc.zoomY * ratio;
+	w = mc.zoomW * ratio;
+	h = mc.zoomH * ratio;
+
+	canvas = document.getElementById('cropWin');
+	ctx = canvas.getContext('2d');
+
+	fcClearCanvas(canvas);
+
+	ctx.fillStyle = appCfg.panCropColor;
+	ctx.fillRect(x, y, w, h);
+}
+
+function fcShowPanWin(mode) {
+	showElement('panWin', mode);
+	showElement('cropWin', mode);
+}
+
+function fcAdjCropWin(offsetX, offsetY) {
+	var mc = appFC.curMode;
+
+	var ratio = mc.imgW / mc.panWinW;
+
+	mc.zoomX += (offsetX - appFC.panMoveX) * ratio;
+	mc.zoomY += (offsetY - appFC.panMoveY) * ratio;
+
+	mc.zoomX = Math.max(mc.zoomX, 0);
+	mc.zoomY = Math.max(mc.zoomY, 0);
+
+	if ((mc.zoomX + mc.zoomW) > mc.imgW) mc.zoomX = mc.imgW - mc.zoomW;
+	if ((mc.zoomY + mc.zoomH) > mc.imgH) mc.zoomY = mc.imgH - mc.zoomH;
+
+	fcUpdateCropWin();
+
+	fcCanvasCtrl(DrawState.pan);
+
+	appFC.panMoveX = offsetX;
+	appFC.panMoveY = offsetY;
+}
+
+function fcInitCropWinEvent() {
+	$('#cropWin')
+		.on('mousedown', function (event) {
+			if (fcCropAreaDetect(event.offsetX, event.offsetY)) {
+				appFC.panMove = true;
+				appFC.panMoveX = event.offsetX;
+				appFC.panMoveY = event.offsetY;
+			}
+		})
+		.on('mousemove', function (event) {
+			if (appFC.panMove) {
+				fcAdjCropWin(event.offsetX, event.offsetY);
+			}
+		})
+		.on('mouseup', function (event) {
+			appFC.panMove = false;
+		})
+		.on('mouseout', function (event) {
+			appFC.panMove = false;
+		})
+		.on('touchstart', function (event) {
+			fcTouchHandler(event);
+		})
+		.on('touchmove', function (event) {
+			fcTouchHandler(event);
+		})
+		.on('touchend', function () {
+			fcTouchHandler(event);
+		})
+		.on('touchcancel', function () {
+			fcTouchHandler(event);
+		});
+
+	function fcCropAreaDetect(curX, curY) {
+		var mc = appFC.curMode;
+		var x, y, w, h;
+		var ratio = mc.panWinW / mc.imgW;
+
+		x = mc.zoomX * ratio;
+		y = mc.zoomY * ratio;
+		w = mc.zoomW * ratio;
+		h = mc.zoomH * ratio;
+
+		if (((curX >= x) && (curX <= (x + w))) && ((curY >= y) && (curY <= (y + h)))) return true;
+
+		return false;
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// update video resolution 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateVideoResolution() {
+
+	return;
+
+	let eleId;
+	let idx;
+
+	if (appFC.reqVideoResolutionList !== appFC.curVideoResolutionList) {
+		appFC.curVideoResolutionList = appFC.reqVideoResolutionList;
+
+		appFC.reqVideoResolutionList = false;
+
+		updateVideoResolutionElement(appFC.curVideoResolutionList);
+		//updateAudioinputElement();
+		eleId = document.getElementById('sdVideoRsoScrollbar');
+		idx = eleId.selectedIndex;
+
+		videoW = appFC.curVideoResolutionList[idx][VrField.w];
+		videoH = appFC.curVideoResolutionList[idx][VrField.h];
+
+		// if (screen.width < screen.height) {
+		// 	if (window.matchMedia("(orientation: portrait)").matches) {
+		// 		// 直的
+		// 		videoW = appFC.curVideoResolutionList[idx][VrField.h];
+		// 		videoH = appFC.curVideoResolutionList[idx][VrField.w];
+		// 		// if (appFC.reqImgH < appFC.reqImgW) {
+		// 		// 	alert("SWAP I " + appFC.reqImgW + "," + appFC.reqImgH);
+		// 		// 	let imgW = appFC.reqImgW;
+		// 		// 	appFC.reqImgW = appFC.reqImgH;
+		// 		// 	appFC.reqImgH = imgW;
+		// 		// }
+		// 	}
+		// 	else {
+		// 		// 橫的
+		// 		if (appFC.reqImgH > appFC.reqImgW) {
+		// 			alert("SWAP II " + appFC.reqImgW + "," + appFC.reqImgH);
+		// 			let imgW = appFC.reqImgW;
+		// 			appFC.reqImgW = appFC.reqImgH;
+		// 			appFC.reqImgH = imgW; //reqImgW;
+		// 		}
+		// 	}
+		// }
+
+
+		// if (fcIsModeActive(previewModeCfg)) {
+		// 	appFC.checkVideoResolution = true;
+		// }
+	}
+}
+
+function fcUpdateSelVideoResolutionIdx(idx) {
+	var i;
+
+	if (idx <= (appFC.curVideoResolutionList.length - 1)) {
+		for (i = 0; i < appFC.curVideoResolutionList.length; i++) {
+			appFC.curVideoResolutionList[i][VrField.data] = 0;
+		}
+
+		appFC.curVideoResolutionList[idx][VrField.data] = 1;
+
+		// 0516
+		//chrome.storage.local.set({'resolutionIdx':idx});
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// multi-language 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function fcUpdateElementTitle(eleId, strId) {
+	var ele;
+
+	ele = document.getElementById(eleId);
+
+	if (ele) {
+		//ele.title = chrome.i18n.getMessage(strId);
+
+		ele.title = get_i18n_Message(strId);
+
+		//ele.title = LanguageJson[eleId].message;
+	}
+}
+
+function setElementText(eleId, strId) {
+	var ele;
+
+	ele = document.getElementById(eleId);
+
+	if (ele) {
+		//ele.title = chrome.i18n.getMessage(strId);
+		//ele.text = get_i18n_Message(strId);
+
+		ele.innerHTML = get_i18n_Message(strId);
+	}
+}
+
+function get_i18n_Message(strId) {
+	// Only English is complete
+	if (LanguageJson[strId] == null ||
+		LanguageJson[strId] === undefined) {
+		return LanguageJsonDefault[strId]['message'];
+	}
+	else {
+		return LanguageJson[strId]['message'];
+	}
+}
+
+function fcUpdateElementHtml(eleId, strId) {
+	var ele;
+
+	ele = document.getElementById(eleId);
+
+	if (ele) {
+		$('#' + eleId).html(chrome.i18n.getMessage(strId));
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// size change
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var winW;
+var winH;
+
+var titleW;
+var titleH;
+
+var resizeInterval = null;
+
+window.onresize = function (event) {
+	if (appBaseCfg.resizeDelayMs) {
+		//console.log(appFC.resizeDelayMs);
+		appFC.resizeDelayMs = appBaseCfg.resizeDelayMs;
+
+		if (resizeInterval)
+			return;
+
+		resizeInterval = setInterval(function () {
+			appFC.resizeDelayMs -= appBaseCfg.resizeDelayMs / 2;
+			if (appFC.resizeDelayMs <= 0) {
+				clearInterval(resizeInterval);
+				resizeInterval = null;
+				updateSize();
+			}
+		}, appBaseCfg.resizeDelayMs / 2);
+
+		// setTimeout(function() {
+		// 	updateSize();
+		// 	appFC.resizeDelayMs = appBaseCfg.resizeDelayMs;
+		// }, appFC.resizeDelayMs);
+	}
+	else {
+		updateSize();
+	}
+};
+
+function updateWinSize() {
+	winW = window.innerWidth;
+	winH = window.innerHeight;
+	//console.log('win size = ' + winW + 'x' + winH);
+}
+
+function updateSize() {
+	updateWinSize();
+
+	updateTitleBarSize();
+
+	adjImageDisplayAreaEx();
+
+	fcOnResize();
+
+	resizePictureWin();
+
+	resizeConfirmDlg();
+
+	if ($('#lbMsCnt').length > 0) {
+		$('#lbMsCnt').css({
+			top: winH - 80,
+			left: (winW / 2)
+		});
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// init
+///////////////////////////////////////////////////////////////////////////////////////////
+
+window.onmousemove = function () {
+	setHideIconCountdown();
+}
+
+// window.ontouchstart = function()
+// {
+// 	setHideIconCountdown();
+// }
+
+// window.ontouchmove = function()
+// {
+// 	setHideIconCountdown();
+// }
+
+async function loadConfig() {
+	// chrome.storage.local.get(['resolutionIdx'], async function(item){
+	// 	if ( item !== undefined && item.resolutionIdx !== undefined)
+	// 		appBaseCfg.resolutionIdx = item.resolutionIdx;
+	// });
+
+	// const response = await chrome.storage.local.get(['languageIdx'], async function(item){
+
+	// 	if ( item !== undefined && item.languageIdx !== undefined)
+	// 	{
+	// 		appBaseCfg.languageIdx = item.languageIdx;
+	// 		document.getElementById('sdLanguageFamily').selectedIndex = item.languageIdx;
+	// 	}
+
+	// 	loadTranslatedString();
+	// });
+}
+
+window.onload = async function () {
+	//await loadConfig();	
+
+	updateSize();
+
+	cfgBody();
+
+	initToolBar();
+	hideAllToolBars();
+
+	//initColorBar();
+	//initScrollBar();
+	initScrollBarDlg();
+	initSettingDlg();
+	initTextInputDlg();
+	initPictureWin();
+	initConfigDlg();
+	initConfigDrawDlg();
+
+	preInitAboutDlg();
+	initAboutDlg();
+	afterInitAboutDlg();
+
+	initPeriodicCaptureDlg();
+	initPeriodicCaptureInfoBar();
+	initConfirmDlg();
+
+	cfgTitleBar();
+
+	fcInit();
+
+	// try {
+	// 	initializeDevices();
+	// 	//await tryConnectDevice();
+	// 	//connectVideoSrc();
+	// }
+	// catch (e) {
+
+	// }
+
+	previewModeCfg.init();
+	playbackModeCfg.init();
+	drawingBoardModeCfg.init();
+
+	galleryInit();
+
+	fcSwitchMode(previewModeCfg);
+
+	try {
+		await initializeDevices();
+		//await tryConnectDevice();
+		//connectVideoSrc();
+	}
+	catch (e) {
+
+	}
+
+	updateVideoStreamFrame();
+	//intVideoStreamActiveCheck();
+
+	updateTranslatedString();
+};
+
+var LanguageJson;
+var LanguageJsonDefault;
+
+async function loadTranslatedString() {
+	var jsonPath = LanguageData[appBaseCfg.languageIdx][2];
+
+	const response = await $.getJSON("./locales/en/messages.json", async function (dataDef) {
+		LanguageJsonDefault = dataDef;
+
+		const response2 = await $.getJSON(jsonPath, function (data) {
+
+			LanguageJson = data;
+		});
+	});
+}
+
+function updateTranslatedString() {
+	var tbl = [
+
+		["btn_freehand", "btnFreehand"],
+		["btn_arrow", "btnArrow"],
+		["btn_eraser", "btnEraser"],
+		["btn_line", "btnLine"],
+		["btn_rectangleLine", "btnRectangle"],
+		["btn_rectangle", "btnFilledRectangle"],
+		["btn_circleLine", "btnEllipse"],
+		["btn_circle", "btnFilledEllipse"],
+		["btn_erase_all", "btnEraseAll"],
+		["btn_text", "btnText"],
+
+		["btn_setting", "btnSetting"],
+		["btn_capture", "btnCapture"],
+		["btn_freeze", "btnFreezeLiveView"],
+		["btn_timesave", "btnIntervalShooting"],
+		["btn_mirrow", "btnFlipVertical"],
+		["btn_flip", "btnFlipHorizontal"],
+		["btn_zoom", "btnZoom"],
+		["btn_importPic", "btnImportImageFile"],
+		["btn_redo", "btnRedo"],
+		["btn_undo", "btnUndo"],
+		["btn_record", "btnRecord"],
+		["btn_whitebalance", "btnWhiteBalance"],
+		["btn_brightness", "btnBrightness"],
+		["btn_config", "btnConfig"],
+
+		["mode_about", "btnAbout"],
+		["mode_preview", "btnLiveView"],
+		["mode_playback", "btnGallery"],
+		["mode_drawingBoard", "btnDrawingBoard"],
+		["mode_scan", "btnScanMode"],
+		["mode_multiscan", "btnMultiScanMode"],
+
+		["sys_close", "btnCloseWindow"],
+		["sys_fullScreen", "btnMaxWindow"],
+		["sys_fullPhoto", "btnHideFunctionIcon"],
+		["sys_smallScreen", "btnMinWindow"],
+
+		["btn_saveDisk", "btnSaveToDisk"],
+		["btn_delete", "btnDelete"],
+		["btn_toggleAll", "btnToogleSelectAll"],
+		["btn_Next", "btn_Next"],
+		["btn_Previous", "btn_Previous"],
+
+		["ppbtn_savePlayback", "btnSaveToGallery"],
+		["ppbtn_closeAndBackPlayback", "btnBackToGallery"],
+		["ppbtn_zoom", "btnZoom"],
+		["ppbtn_importPic", "btnImportImageFile"],
+		["ppbtn_redo", "btnRedo"],
+		["ppbtn_undo", "btnUndo"],
+		["ppbtn_transform", "ppbtn_transform"],
+		["ppbtn_ocr", "ppbtn_ocr"],
+
+		["dbbtn_savePlayback", "btnSaveToGallery"],
+		["dbbtn_redo", "btnRedo"],
+		["dbbtn_undo", "btnUndo"],
+		["dbbtn_importPic", "btnImportImageFile"],
+
+		["sdVideoRsoIcon", "textVideoResolution"],
+		["sdFontIcon", "textFont"],
+
+		["periodicCaptureDlg_periodIcon", "textInterval"],
+		["periodicCaptureDlg_intervalIcon", "textDuration"],
+		["periodicCaptureDlg_startIcon", "btnStart"],
+
+		["periodicCaptureInfoBar", "btnCancel"],
+
+		["drawingOpacity", "textTransparency"],
+		["drawingLineWidth", "textWidth"],
+
+
+		["scbtn_transform", "scbtn_transform"],
+		["scbtn_importPic", "scbtn_importPic"],
+		["scbtn_fullcrop", "scbtn_fullcrop"],
+		["scbtn_redo", "scbtn_redo"],
+		["scbtn_redo2", "scbtn_redo"],
+		["scbtn_undo", "scbtn_undo"],
+		["scbtn_undo2", "scbtn_undo"],
+		["scbtn_preview", "scbtn_preview"],
+		["scbtn_saveDisk", "scbtn_saveDisk"],
+		["scbtn_ocr", "scbtn_ocr"],
+		["scbtn_flip", "scbtn_flip"],
+		["scbtn_mirrow", "scbtn_mirrow"],
+		["scbtn_fullcrop", "scbtn_fullcrop"],
+
+		["mscbtn_capture", "mscbtn_capture"],
+		["mscbtn_merge", "mscbtn_merge"],
+		["mscbtn_fullcrop", "mscbtn_fullcrop"],
+
+		["configDlg-brightness-icon", "config_brightness"],
+		["configDlg-brightness-slider", "config_brightness"],
+		["configDlg-brightness-reset", "config_reset"],
+		["configDlg-rotate-icon", "config_rotate"],
+		["configDlg-rotate-slider", "config_rotate"],
+		["configDlg-rotate-reset", "config_reset"],
+		["configDlg-whiteBalence-icon", "config_wb"],
+		["configDlg-whiteBalence-slider", "config_wb"],
+		["configDlg-whiteBalence-reset", "config_reset"],
+
+		["dialogSave", "dlgSave"]
+	];
+
+	var tbl2 = [
+		["pbFileInfo_Text", "lbPage"],
+		["fontStyle-lbNormal", "lbNormal"],
+		["fontStyle-lbBold", "lbBold"],
+		["fontStyle-lbItalic", "lbItalic"],
+		["fontStyle-lbBoldItalic", "lbBoldItalic"],
+		["periodicCaptureDlg_periodUnit", "lbSeconds"],
+		["periodicCaptureDlg_intervalUnit", "lbMinutes"]
+	];
+
+	var i;
+	var eleId = document.getElementById('sdLanguageFamily');
+	var idx = eleId.selectedIndex;
+	var jsonPath = LanguageData[idx][2];
+
+	appBaseCfg.languageIdx = idx;
+
+	//chrome.storage.local.set({'languageIdx':idx});
+
+	$.getJSON(jsonPath, function (data) {
+
+		LanguageJson = data;
+
+		//console.log(LanguageJson, tbl[0][0], tbl[0][1]);
+
+		for (i = 0; i < tbl.length; i++) {
+			fcUpdateElementTitle(tbl[i][0], tbl[i][1]);
+		}
+
+		for (i = 0; i < tbl2.length; i++) {
+			setElementText(tbl2[i][0], tbl2[i][1]);
+		}
+	});
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// key down handler
+///////////////////////////////////////////////////////////////////////////////////////////
+
+document.body.addEventListener('keydown', function (event) {
+	fcOnKeyDown(event);
+});
+
+document.body.addEventListener('keyup', function (event) {
+	fcOnKeyUp(event);
+});
+
+document.body.addEventListener('wheel', function (event) {
+	fcOnWheel(event);
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// block context menu
+///////////////////////////////////////////////////////////////////////////////////////////
+
+(function () {
+	function stop() {
+		return false;
+	}
+
+	document.oncontextmenu = stop;
+})();
+
+
+
+var galleryData;
+const ItemsPerPage = 30;
+
+async function getGalleryCount(db) {
+	return new Promise((resolve, reject) => {
+		const transaction = db.transaction(storeName, "readonly");
+		const store = transaction.objectStore(storeName);
+		const countRequest = store.count();
+
+		countRequest.onsuccess = () => {
+			resolve(countRequest.result);
+		};
+
+		countRequest.onerror = () => {
+			reject(countRequest.error);
+		};
+	});
+}
+
+var GalleryUpdating = false;
+
+async function refleshGallery() {
+	if (GalleryUpdating) {
+		return;
+	}
+	GalleryUpdating = true;
+
+	galleryData = [];
+
+	const db = await openDatabase();
+	const transaction = db.transaction(storeName, 'readonly');
+	const store = transaction.objectStore(storeName);
+	// appFC.thumbnailReflesh = false;
+	// appFC.thumbnailEntries = null;
+
+	// const request = store.getAll();
+	// request.onsuccess = event => {
+	// 	const images = event.target.result;
+	// 	if (images.length >= 0) {
+	// 		console.log(images);
+	// 		galleryData = images;
+	// 		galleryFillThumbnailDiv_Page();
+	// 	} else {
+	// 		//alert('無圖片可讀取');
+	// 	}
+	// };
+
+	const countRequest = store.count();
+
+	countRequest.onsuccess = () => {
+		var ValidEntry = countRequest.result;
+
+		appFC.thumbnailTotalPage = parseInt((ValidEntry - 1) / ItemsPerPage) + 1;
+		appFC.thumbnailCurrPage = Math.min(appFC.thumbnailCurrPage, appFC.thumbnailTotalPage - 1);
+
+		let index = 0; // 用於追踪當前游標位置
+		var startIndex = ItemsPerPage * appFC.thumbnailCurrPage;
+		var endIndex = Math.min(startIndex + ItemsPerPage, ValidEntry);
+
+		//console.log("Gallery RNG", startIndex, endIndex, ValidEntry);
+
+		const transaction = db.transaction(storeName, 'readonly');
+		const store = transaction.objectStore(storeName);
+		const request = store.openCursor(null, 'prev');
+
+		request.onsuccess = (event) => {
+			const cursor = event.target.result;
+
+			if (cursor) {
+				if (index >= startIndex && index < endIndex) {
+					// 只加入範圍內的資料
+					galleryData.push(cursor.value);
+				}
+
+				index++; // 移到下一筆
+
+				if (index < endIndex) {
+					cursor.continue(); // 繼續讀取下一筆
+				} else {
+					// 當達到目標範圍時結束
+					galleryFillThumbnailDiv_Page();
+					GalleryUpdating = false;
+					return;
+				}
+			}
+			else {
+				// 如果游標已經到達結束
+				galleryFillThumbnailDiv_Page();
+				GalleryUpdating = false;
+				return;
+			}
+		};
+	};
+}
+
+function galleryFillThumbnailDiv_Page() {
+	appFC.thumbSelectedFileCnt = 0;
+	appFC.thumbnailCnt = 0;
+	appFC.thumbFileCnt = 0;
+
+	playbackShowThumbnail(false);
+	$('#thumbDiv').empty();
+
+	//console.log(galleryData);
+
+	// var ValidEntry = galleryData.length;
+
+	// appFC.thumbnailTotalPage = parseInt((ValidEntry - 1) / ItemsPerPage) + 1;
+	// appFC.thumbnailCurrPage = Math.min(appFC.thumbnailCurrPage, appFC.thumbnailTotalPage - 1);
+
+	// var startIndex = ItemsPerPage * appFC.thumbnailCurrPage;
+	// var endIndex = Math.min(startIndex + ItemsPerPage, ValidEntry);
+
+	for (var i = 0; i < galleryData.length; i++) {
+		//for (var i = startIndex; i < endIndex; i++) {
+		if (galleryData[i].name.indexOf(".jpg") > 0) {
+			appFC.thumbnailCnt += 1;
+			galleryCreateThumbnailDivEx(galleryData[i], i);
+		}
+
+		if (galleryData[i].name.indexOf(".mp4") > 0 ||
+			galleryData[i].name.indexOf(".webm") > 0) {
+			galleryCreateVideoDiv(galleryData[i], i);
+		}
+	}
+
+	galleryUpdateFileInfo();
+
+	//playbackShowThumbnail(true);
+
+	setTimeout(function () {
+		playbackShowThumbnail(true);
+	}, 100);
+}
+
+function galleryCreateThumbnailDivEx(data, no, insertFirst = false) {
+	var divId = 'thumb' + '_' + no;
+	var imgId = 'img' + '_' + no;
+	var eleId;
+	var thumbW = appCfg.thumbW;
+	var thumbH = appCfg.thumbH;
+	var paddingS = appCfg.thumbPadding;
+	var w, h;
+
+	// div
+	if (insertFirst) {
+		var temp = document.createElement("div");
+		temp.id = divId;
+		document.getElementById('thumbDiv').prepend(temp);
+	}
+	else {
+		createDivElement('thumbDiv', divId);
+	}
+
+	w = (thumbW - (paddingS * 2));
+	h = (thumbH - (paddingS * 2));
+
+	eleId = '#' + divId;
+
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('padding', paddingS + 'px');
+	//$(eleId).css('display', 'block');
+	$(eleId).css('position', 'relative');
+	$(eleId).css('display', 'inline-block');
+	//$(eleId).css('transform', 'translateZ(0)');
+	//transform: translateZ(0);
+
+	// img
+	createImgElement(divId, imgId);
+
+	var imageSub = new Image();
+
+	imageSub.addEventListener("load",
+		function () {
+			var size = galleryGetFitSize(w, h, imageSub.width, imageSub.height);
+			var border = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorNormal;
+
+			eleId = '#' + imgId;
+
+			var css =
+			{
+				left: size.x + paddingS,
+				top: size.y + paddingS,
+				width: size.w,
+				height: size.h,
+				position: 'absolute',
+				border: border,
+			};
+
+			$(eleId).css(css);
+
+			$(eleId).addClass('thumbImg');
+
+			eleId = document.getElementById(imgId);
+			eleId.src = data.thumbnailImage;
+			eleId.fileName = data.name;
+			eleId.checked = false;
+
+			$(eleId).on('click', function (event) {
+				var ele = document.getElementById(event.target.id);
+				var bkColor;
+				var borderCfg;
+
+				if (ele.checked) {
+					ele.checked = false;
+					bkColor = appCfg.thumbFrmColorNormal;
+					galleryReductSelectedFile();
+				}
+				else {
+					gallerySelectAll(false);
+
+					ele.checked = true;
+					bkColor = appCfg.thumbFrmColorChecked;
+					galleryAddSelectedFile();
+				}
+
+				borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+				$(this).css('border', borderCfg);
+				$(this).toggleClass('selected');
+			});
+
+			$(eleId).dblclick(function () {
+				var eleId = document.getElementById(this.id);
+
+				eleId.checked = true;
+				var bkColor = appCfg.thumbFrmColorChecked;
+				galleryAddSelectedFile();
+				var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+				$(this).css('border', borderCfg);
+				$(this).toggleClass('selected');
+
+
+				var imageOrg = new Image();
+				imageOrg.src = data.normalImage;
+				imageOrg.addEventListener("load", function () {
+					playbackDisplayImgMode(imageOrg);
+				});
+			});
+
+			galleryAddFileFinish();
+		}
+	);
+
+	imageSub.src = data.thumbnailImage;
+}
+
+function galleryCreateVideoDiv(data, no, insertFirst = false) {
+	var divId = 'thumb' + '_' + no;
+	var imgId = 'img' + '_' + no;
+	var iconId = "vIcon_" + no;
+	var eleId;
+	var thumbW = appCfg.thumbW;
+	var thumbH = appCfg.thumbH;
+	var paddingS = appCfg.thumbPadding;
+	var w, h;
+
+	// div
+	if (insertFirst) {
+		var temp = document.createElement("div");
+		temp.id = divId;
+		document.getElementById('thumbDiv').prepend(temp);
+	}
+	else {
+		createDivElement('thumbDiv', divId);
+	}
+
+	//createDivElement('thumbDiv', divId);
+
+	w = (thumbW - (paddingS * 2));
+	h = (thumbH - (paddingS * 2));
+
+	eleId = '#' + divId;
+
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('padding', paddingS + 'px');
+	//$(eleId).css('display', 'block');
+	$(eleId).css('position', 'relative');
+	$(eleId).css('display', 'inline-block');
+	//$(eleId).css('transform', 'translateZ(0)');
+
+	// Video
+
+	//createVideoElement(divId, imgId);
+	let parent = document.getElementById(divId);
+	let child = document.createElement("video");
+	child.id = imgId;
+	parent.appendChild(child);
+	// child.setAttribute('playsinline', '');
+	// child.setAttribute('webkit-playsinline', '');
+
+	createDivElement(divId, iconId);
+
+	var size = galleryGetFitSize(w, h, 1280, 720);
+	//console.log(size);
+	//var size = galleryGetFitSize(w, h, image.width, image.height);
+	var border = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorNormal;
+
+	eleId = '#' + imgId;
+
+	var css =
+	{
+		left: size.x + paddingS,
+		top: size.y + paddingS,
+		width: size.w,
+		height: size.h,
+		position: 'absolute',
+		border: border,
+	};
+
+	$(eleId).css(css);
+	$(eleId).addClass('thumbImg');
+
+	eleId = document.getElementById(imgId);
+
+	if (data.name.indexOf(".mp4") > 0) {
+		eleId.src = URL.createObjectURL(data.video);
+	}
+	else { // webm
+		//eleId.src = data.video;
+		eleId.src = URL.createObjectURL(data.video);
+	}
+
+	eleId.autoplay = false;
+	eleId.controls = false;
+	eleId.loop = false;
+
+	eleId.fileName = data.name;
+	eleId.checked = false;
+
+	css =
+	{
+		right: 6,
+		bottom: 17,
+		width: 36,
+		height: 12,
+		position: "absolute",
+		backgroundColor: "#000",
+		color: "#EEE",
+		textAlign: "center",
+		fontSize: 12,
+		opacity: .75
+	};
+
+	$('#' + iconId).css(css);
+
+	eleId.addEventListener("loadedmetadata", function () {
+		var a = Math.round(eleId.duration);
+		document.getElementById(iconId).innerText = Math.floor(a / 60) + ":" + padLeft(a % 60, 2)
+	});
+
+	$(eleId).on('click', function (event) {
+		var ele = document.getElementById(event.target.id);
+		var bkColor;
+		var borderCfg;
+
+		// new for extension
+		// if (chrome.WindowState == "fullscreen") {
+		// 	return;
+		// }
+
+		// if (chrome.app.window.current().isFullscreen() )
+		// {
+		// 	return;
+		// }
+
+		//console.log(ele.checked);
+
+		if (ele.checked) {
+			ele.checked = false;
+			bkColor = appCfg.thumbFrmColorNormal;
+			galleryReductSelectedFile();
+		}
+		else {
+			gallerySelectAll(false);
+
+			ele.checked = true;
+			bkColor = appCfg.thumbFrmColorChecked;
+			galleryAddSelectedFile();
+		}
+		borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+		$(this).css('border', borderCfg);
+		$(this).toggleClass('selected');
+	});
+
+	$(eleId).dblclick(function () {
+		var eleId = document.getElementById(this.id);
+
+		eleId.checked = true;
+		var bkColor = appCfg.thumbFrmColorChecked;
+		galleryAddSelectedFile();
+		var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+		$(this).css('border', borderCfg);
+		$(this).toggleClass('selected');
+
+		//console.log(eleId);
+		eleId.muted = false;
+		eleId.currentTime = 0;
+		//eleId.style.border = 'none';	
+
+		//eleId.webkitRequestFullScreen();
+		enterFullscreen(eleId);
+	});
+
+	eleId.addEventListener('ended', function (e) {
+		if (document.fullscreenElement != null) {
+			document.exitFullscreen();
+		}
+	}, false);
+
+	eleId.addEventListener('mouseover', function (e) {
+		var playPromise = eleId.play();
+		if (playPromise !== undefined) {
+			playPromise.then(_ => {
+
+				eleId.muted = true;
+				eleId.play();
+			})
+				.catch(error => {
+					// Auto-play was prevented
+					// Show paused UI.
+				});
+		}
+	});
+
+	eleId.addEventListener('mouseleave', function (e) {
+		var playPromise = eleId.play();
+		if (playPromise !== undefined) {
+			playPromise.then(_ => {
+
+				//eleId.stop();
+				eleId.pause();
+				eleId.currentTime = 0;
+			})
+				.catch(error => {
+					// Auto-play was prevented
+					// Show paused UI.
+				});
+		}
+	});
+	galleryAddFileFinish();
+}
+
+function enterFullscreen(element) {
+	if (element.webkitRequestFullscreen) {
+		element.webkitRequestFullscreen(); // Chrome, Safari
+	} else if (element.mozRequestFullScreen) {
+		element.mozRequestFullScreen(); // Firefox
+	} else if (element.requestFullscreen) {
+		element.requestFullscreen(); // 標準 API
+	} else if (element.msRequestFullscreen) {
+		element.msRequestFullscreen(); // IE/Edge
+	} else {
+		console.error('不支援全螢幕 API');
+	}
+}
+
+// function galleryFillThumbnailDiv() {
+// 	//console.log("galleryFillThumbnailDiv");
+
+// 	if (!appFs) {
+// 		setTimeout(function () {
+// 			galleryFillThumbnailDiv();
+// 		},
+// 			50);
+
+// 		return;
+// 	}
+
+// 	var dirReader = appFs.root.createReader();
+
+// 	dirReader.readEntries(
+// 		enumFiles,
+// 		errorHandler
+// 	);
+
+// 	function enumFiles(entries) {
+// 		//console.log(entries);
+
+// 		if (entries.length == 100) {
+// 			dirReader.readEntries(
+// 				enumFiles,
+// 				errorHandler
+// 			);
+// 		}
+
+// 		for (var i = 0; i < entries.length; i++) {
+// 			if (entries[i].isFile) {
+// 				if (-1 != entries[i].name.indexOf(".jpg")) {
+// 					appFC.thumbnailCnt += 1;
+
+// 					//console.log(entries[i].name);
+
+// 					galleryCreateThumbnailDiv(entries[i], appFC.thumbnailCnt);
+// 				}
+
+// 				if (-1 != entries[i].name.indexOf(".mp4")) {
+// 					appFC.thumbnailCnt += 1;
+
+// 					galleryCreateVideoDiv(entries[i], appFC.thumbnailCnt);
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	function errorHandler(fe) {
+// 		console.log(fe.code);
+// 	}
+// }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// delete file 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function galleryDeleteFiles(eleId) {
+	var i;
+	const dbRequest = indexedDB.open(dbName);
+
+	dbRequest.onsuccess = event => {
+		const db = event.target.result;
+		const transaction = db.transaction(storeName, 'readwrite');
+		const store = transaction.objectStore(storeName);
+
+		// 建立游標 (cursor) 來搜尋符合的資料
+		const cursorRequest = store.openCursor();
+
+		cursorRequest.onsuccess = event => {
+			const cursor = event.target.result;
+			if (cursor) {
+				for (i = 0; i < eleId.length; i++) {
+					if (cursor.value.name === eleId[i].fileName) {
+						cursor.delete(); // 刪除符合的資料
+						console.log(`已刪除檔案：${eleId[i].fileName}`);
+					} else {
+						cursor.continue(); // 繼續搜尋
+					}
+				}
+
+			}
+		};
+
+		cursorRequest.onerror = event => {
+			console.error('搜尋過程中發生錯誤:', event.target.error);
+		};
+	};
+
+	dbRequest.onerror = event => {
+		console.error('資料庫開啟失敗:', event.target.error);
+	};
+
+	// for (i = 0; i < eleId.length; i++) {
+	// 	if (eleId[i].fileEntrySub) {
+	// 		eleId[i].fileEntrySub.remove(function () {
+	// 		},
+	// 			function () {
+	// 				console.log(fe.code);
+	// 			}
+	// 		);
+	// 	}
+
+	// 	eleId[i].fileEntryOrg.remove(function () {
+	// 	},
+	// 		function () {
+	// 			console.log(fe.code);
+	// 		}
+	// 	);
+
+	// 	($('#' + eleId[i].id).parent()).remove();
+
+	// 	//galleryDeleteSelectedFileFinish();
+	// }
+
+	refleshGallery();
+}
+
+var galleryDebounce = false;
+
+async function galleryNextPage() {
+	// if (galleryDebounce)
+	// 	return;
+
+	galleryDebounce = true;
+	// setTimeout(() => { galleryDebounce = false }, 300);
+
+	appFC.thumbnailCurrPage += 1;
+	appFC.thumbnailCurrPage = appFC.thumbnailCurrPage % appFC.thumbnailTotalPage;
+
+	await refleshGallery();
+	galleryDebounce = false;
+	//galleryFillThumbnailDiv_Page();
+}
+
+async function galleryPreviousPage() {
+	// if (galleryDebounce)
+	// 	return;
+
+	galleryDebounce = true;
+	// setTimeout(() => { galleryDebounce = false }, 300);
+
+	appFC.thumbnailCurrPage += appFC.thumbnailTotalPage - 1;
+	appFC.thumbnailCurrPage = appFC.thumbnailCurrPage % appFC.thumbnailTotalPage;
+
+	await refleshGallery();
+	galleryDebounce = false
+	//galleryFillThumbnailDiv_Page();
+}
+
+// Video
+function galleryAddVideoDiv(fileEntry) {
+	appFC.thumbnailCnt += 1;
+	galleryCreateVideoDiv(fileEntry, appFC.thumbnailCnt, true);
+}
+
+// function galleryCreateVideoDiv(entry, no, insertFirst = false) {
+// 	var divId = 'thumb' + '_' + no;
+// 	var imgId = 'img' + '_' + no;
+// 	var iconId = "vIcon_" + no;
+// 	var eleId;
+// 	var thumbW = appCfg.thumbW;
+// 	var thumbH = appCfg.thumbH;
+// 	var paddingS = appCfg.thumbPadding;
+// 	var w, h;
+
+// 	// div
+// 	if (insertFirst) {
+// 		var temp = document.createElement("div");
+// 		temp.id = divId;
+// 		document.getElementById('thumbDiv').prepend(temp);
+// 	}
+// 	else {
+// 		createDivElement('thumbDiv', divId);
+// 	}
+
+// 	//createDivElement('thumbDiv', divId);
+
+// 	w = (thumbW - (paddingS * 2));
+// 	h = (thumbH - (paddingS * 2));
+
+// 	eleId = '#' + divId;
+
+// 	$(eleId).css('width', w + 'px');
+// 	$(eleId).css('height', h + 'px');
+// 	$(eleId).css('padding', paddingS + 'px');
+// 	$(eleId).css('display', 'inline-block');
+// 	$(eleId).css('position', 'relative');
+
+// 	// Video
+
+// 	createVideoElement(divId, imgId);
+// 	createDivElement(divId, iconId);
+
+// 	entry.file(
+// 		function (file) {
+// 			var reader = new FileReader();
+
+// 			reader.onloadstart = function (e) {
+// 				var size = galleryGetFitSize(w, h, 1280, 720);
+// 				//console.log(size);
+// 				//var size = galleryGetFitSize(w, h, image.width, image.height);
+// 				var border = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorNormal;
+
+// 				eleId = '#' + imgId;
+
+// 				var css =
+// 				{
+// 					left: size.x + paddingS,
+// 					top: size.y + paddingS,
+// 					width: size.w,
+// 					height: size.h,
+// 					position: 'absolute',
+// 					border: border,
+// 				};
+
+// 				$(eleId).css(css);
+// 				$(eleId).addClass('thumbImg');
+
+// 				eleId = document.getElementById(imgId);
+// 				eleId.src = entry.toURL();
+
+// 				eleId.autoplay = false;
+// 				eleId.controls = false;
+// 				eleId.loop = false;
+
+// 				eleId.fileName = e.name;
+// 				eleId.fileEntryOrg = entry;
+// 				eleId.checked = false;
+
+// 				css =
+// 				{
+// 					right: 6,
+// 					bottom: 17,
+// 					width: 36,
+// 					height: 12,
+// 					position: "absolute",
+// 					backgroundColor: "#000",
+// 					color: "#EEE",
+// 					textAlign: "center",
+// 					fontSize: 12,
+// 					opacity: .75
+// 				};
+
+// 				$('#' + iconId).css(css);
+
+// 				eleId.addEventListener("loadedmetadata", function () {
+// 					var a = Math.round(eleId.duration);
+// 					document.getElementById(iconId).innerText = Math.floor(a / 60) + ":" + padLeft(a % 60, 2)
+// 				});
+
+// 				$(eleId).on('click', function (event) {
+// 					var ele = document.getElementById(event.target.id);
+// 					var bkColor;
+// 					var borderCfg;
+
+// 					// new for extension
+// 					if (chrome.WindowState == "fullscreen") {
+// 						return;
+// 					}
+
+// 					// if (chrome.app.window.current().isFullscreen() )
+// 					// {
+// 					// 	return;
+// 					// }
+
+// 					//console.log(ele.checked);
+
+// 					if (ele.checked) {
+// 						ele.checked = false;
+// 						bkColor = appCfg.thumbFrmColorNormal;
+// 						galleryReductSelectedFile();
+// 					}
+// 					else {
+// 						gallerySelectAll(false);
+
+// 						ele.checked = true;
+// 						bkColor = appCfg.thumbFrmColorChecked;
+// 						galleryAddSelectedFile();
+// 					}
+// 					borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+// 					$(this).css('border', borderCfg);
+// 					$(this).toggleClass('selected');
+// 				});
+
+// 				$(eleId).dblclick(function () {
+// 					var eleId = document.getElementById(this.id);
+
+// 					eleId.checked = true;
+// 					var bkColor = appCfg.thumbFrmColorChecked;
+// 					galleryAddSelectedFile();
+// 					var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+// 					$(this).css('border', borderCfg);
+// 					$(this).toggleClass('selected');
+
+// 					//console.log(eleId);
+// 					eleId.muted = false;
+// 					eleId.currentTime = 0;
+// 					//eleId.style.border = 'none';	
+
+// 					eleId.webkitRequestFullScreen();
+// 				});
+
+// 				eleId.addEventListener('ended', function (e) {
+// 					if (document.fullscreenElement != null) {
+// 						document.exitFullscreen();
+// 					}
+// 				}, false);
+
+// 				eleId.addEventListener('mouseover', function (e) {
+// 					var playPromise = eleId.play();
+// 					if (playPromise !== undefined) {
+// 						playPromise.then(_ => {
+
+// 							eleId.muted = true;
+// 							eleId.play();
+// 						})
+// 							.catch(error => {
+// 								// Auto-play was prevented
+// 								// Show paused UI.
+// 							});
+// 					}
+// 				});
+
+// 				eleId.addEventListener('mouseleave', function (e) {
+// 					var playPromise = eleId.play();
+// 					if (playPromise !== undefined) {
+// 						playPromise.then(_ => {
+
+// 							//eleId.stop();
+// 							eleId.pause();
+// 							eleId.currentTime = 0;
+// 						})
+// 							.catch(error => {
+// 								// Auto-play was prevented
+// 								// Show paused UI.
+// 							});
+// 					}
+// 				});
+// 				galleryAddFileFinish();
+// 			}
+// 			reader.readAsText(file);
+// 		},
+// 		function (fe) {
+// 			console.log(fe.code);
+// 		}
+// 	);
+// }
+
+// Picture
+function galleryAddThumbnailDiv(fileEntry) {
+	appFC.thumbnailCnt += 1;
+	galleryCreateThumbnailDiv(fileEntry, appFC.thumbnailCnt, true);
+}
+
+function galleryCreateThumbnailDiv(entry, no, insertFirst = false) {
+	var divId = 'thumb' + '_' + no;
+	var imgId = 'img' + '_' + no;
+	var eleId;
+	var thumbW = appCfg.thumbW;
+	var thumbH = appCfg.thumbH;
+	var paddingS = appCfg.thumbPadding;
+	var w, h;
+
+	// div
+	if (insertFirst) {
+		var temp = document.createElement("div");
+		temp.id = divId;
+		document.getElementById('thumbDiv').prepend(temp);
+	}
+	else {
+		createDivElement('thumbDiv', divId);
+	}
+
+	w = (thumbW - (paddingS * 2));
+	h = (thumbH - (paddingS * 2));
+
+	eleId = '#' + divId;
+
+	$(eleId).css('width', w + 'px');
+	$(eleId).css('height', h + 'px');
+	$(eleId).css('padding', paddingS + 'px');
+	$(eleId).css('display', 'inline-block');
+	$(eleId).css('position', 'relative');
+
+	// img
+	createImgElement(divId, imgId);
+
+	entry.file(
+		function (file) {
+			var image = new Image();
+
+			image.addEventListener("load",
+				function () {
+					var size = galleryGetFitSize(w, h, image.width, image.height);
+					var border = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorNormal;
+
+					eleId = '#' + imgId;
+
+					var css =
+					{
+						left: size.x + paddingS,
+						top: size.y + paddingS,
+						width: size.w,
+						height: size.h,
+						position: 'absolute',
+						border: border,
+					};
+
+					$(eleId).css(css);
+
+					$(eleId).addClass('thumbImg');
+
+					eleId = document.getElementById(imgId);
+					eleId.src = image.src;
+
+					eleId.fileName = file.name;
+					eleId.imgSrc = image;
+					eleId.fileEntry = entry;
+					eleId.checked = false;
+
+					//console.log(eleId.fileName);
+
+					$(eleId)
+						.on('click', function (event) {
+							var ele = document.getElementById(event.target.id);
+							var bkColor;
+							var borderCfg;
+
+							if (ele.checked) {
+								ele.checked = false;
+								bkColor = appCfg.thumbFrmColorNormal;
+								galleryReductSelectedFile();
+							}
+							else {
+								gallerySelectAll(false);
+
+								ele.checked = true;
+								bkColor = appCfg.thumbFrmColorChecked;
+								galleryAddSelectedFile();
+							}
+
+							borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+							$(this).css('border', borderCfg);
+							$(this).toggleClass('selected');
+						});
+
+					$(eleId).dblclick(function () {
+						var eleId = document.getElementById(this.id);
+
+						eleId.checked = true;
+						var bkColor = appCfg.thumbFrmColorChecked;
+						galleryAddSelectedFile();
+						var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+						$(this).css('border', borderCfg);
+						$(this).toggleClass('selected');
+
+						//console.log(this.id + " double clicked, szie = " + eleId.imgSrc.width + 'x' + eleId.imgSrc.height);
+						playbackDisplayImgMode(eleId.imgSrc);
+					});
+
+					galleryAddFileFinish();
+				}
+			);
+
+			image.src = window.URL.createObjectURL(file);
+		},
+		function (fe) {
+			console.log(fe.code);
+		}
+	);
+}
+
+// function galleryCreateThumbnailDivEx(entrySub, entryOrg, no, insertFirst = false) {
+// 	var divId = 'thumb' + '_' + no;
+// 	var imgId = 'img' + '_' + no;
+// 	var eleId;
+// 	var thumbW = appCfg.thumbW;
+// 	var thumbH = appCfg.thumbH;
+// 	var paddingS = appCfg.thumbPadding;
+// 	var w, h;
+
+// 	// div
+// 	if (insertFirst) {
+// 		var temp = document.createElement("div");
+// 		temp.id = divId;
+// 		document.getElementById('thumbDiv').prepend(temp);
+// 	}
+// 	else {
+// 		createDivElement('thumbDiv', divId);
+// 	}
+
+// 	w = (thumbW - (paddingS * 2));
+// 	h = (thumbH - (paddingS * 2));
+
+// 	eleId = '#' + divId;
+
+// 	$(eleId).css('width', w + 'px');
+// 	$(eleId).css('height', h + 'px');
+// 	$(eleId).css('padding', paddingS + 'px');
+// 	$(eleId).css('display', 'inline-block');
+// 	$(eleId).css('position', 'relative');
+
+// 	// img
+// 	createImgElement(divId, imgId);
+
+// 	entrySub.file(
+// 		function (file) {
+// 			var imageSub = new Image();
+
+// 			imageSub.addEventListener("load",
+// 				function () {
+// 					var size = galleryGetFitSize(w, h, imageSub.width, imageSub.height);
+// 					var border = appCfg.thumbFrmSize + 'px' + ' solid ' + appCfg.thumbFrmColorNormal;
+
+// 					eleId = '#' + imgId;
+
+// 					var css =
+// 					{
+// 						left: size.x + paddingS,
+// 						top: size.y + paddingS,
+// 						width: size.w,
+// 						height: size.h,
+// 						position: 'absolute',
+// 						border: border,
+// 					};
+
+// 					$(eleId).css(css);
+
+// 					$(eleId).addClass('thumbImg');
+
+// 					eleId = document.getElementById(imgId);
+// 					eleId.src = imageSub.src;
+
+// 					eleId.fileName = file.name;
+
+// 					eleId.fileEntrySub = entrySub;
+// 					eleId.fileEntryOrg = entryOrg;
+// 					eleId.checked = false;
+
+// 					// var imageOrg = new Image();
+// 					// eleId.fileEntryOrg.file( function(file)
+// 					// {
+// 					// 	imageOrg.src = window.URL.createObjectURL(file);
+// 					// 	imageOrg.addEventListener("load", function ()
+// 					// 	{
+// 					// 		eleId.imgSrc = imageOrg;					
+// 					// 	});	
+// 					// });
+
+// 					//console.log(eleId.fileName);
+
+// 					$(eleId).on('click', function (event) {
+// 						var ele = document.getElementById(event.target.id);
+// 						var bkColor;
+// 						var borderCfg;
+
+// 						if (ele.checked) {
+// 							ele.checked = false;
+// 							bkColor = appCfg.thumbFrmColorNormal;
+// 							galleryReductSelectedFile();
+// 						}
+// 						else {
+// 							gallerySelectAll(false);
+
+// 							ele.checked = true;
+// 							bkColor = appCfg.thumbFrmColorChecked;
+// 							galleryAddSelectedFile();
+// 						}
+
+// 						borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+// 						$(this).css('border', borderCfg);
+// 						$(this).toggleClass('selected');
+// 					});
+
+// 					$(eleId).dblclick(function () {
+// 						var eleId = document.getElementById(this.id);
+
+// 						eleId.checked = true;
+// 						var bkColor = appCfg.thumbFrmColorChecked;
+// 						galleryAddSelectedFile();
+// 						var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+// 						$(this).css('border', borderCfg);
+// 						$(this).toggleClass('selected');
+
+// 						var imageOrg = new Image();
+
+// 						eleId.fileEntryOrg.file(function (file) {
+// 							imageOrg.src = window.URL.createObjectURL(file);
+// 							imageOrg.addEventListener("load", function () {
+// 								playbackDisplayImgMode(imageOrg);
+
+// 							});
+// 						});
+
+// 						//console.log(this.id + " double clicked, szie = " + eleId.imgSrc.width + 'x' + eleId.imgSrc.height);
+// 						//playbackDisplayImgMode(eleId.imgSrc);
+// 					});
+
+// 					galleryAddFileFinish();
+// 				}
+// 			);
+
+// 			imageSub.src = window.URL.createObjectURL(file);
+// 		},
+// 		function (fe) {
+// 			console.log(fe.code);
+// 		}
+// 	);
+// }
+
+function gallerySelectAll(mode) {
+	var ids = $('.thumbImg');
+	var className = 'selected';
+	var eleId;
+	var $id;
+	var i;
+	var checked;
+	var bkColor;
+	var borderCfg;
+
+	if (mode) {
+		checked = true;
+		bkColor = appCfg.thumbFrmColorChecked;
+	}
+	else {
+		checked = false;
+		bkColor = appCfg.thumbFrmColorNormal;
+	}
+
+	borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+
+	for (i = 0; i < ids.length; i++) {
+		eleId = document.getElementById(ids[i].id);
+		eleId.checked = checked;
+
+		$id = $('#' + ids[i].id);
+
+		$id.css('border', borderCfg);
+
+		if (mode) $id.addClass(className);
+		else $id.removeClass(className);
+	}
+}
+
+function galleryDeleteSelectedFileFinish() {
+	appFC.thumbFileCnt -= 1,
+		appFC.thumbSelectedFileCnt -= 1,
+
+		galleryUpdateFileInfo();
+}
+
+function galleryAddFileFinish() {
+	appFC.thumbFileCnt += 1;
+
+	galleryUpdateFileInfo();
+}
+
+function galleryAddSelectedFile() {
+	galleryUpdateSelectedFileDelay();
+	//appFC.thumbSelectedFileCnt += 1,
+	//galleryUpdateFileInfo();
+}
+
+function galleryReductSelectedFile() {
+	galleryUpdateSelectedFileDelay();
+	//appFC.thumbSelectedFileCnt -= 1,
+	//galleryUpdateFileInfo();
+}
+
+var selectedFileDelay = -1;
+function galleryUpdateSelectedFileDelay() {
+	if (selectedFileDelay == -1) {
+		selectedFileDelay = 2;
+		setTimeout(galleryUpdateSelectedFileDelay, 100);
+	}
+	else if (selectedFileDelay > 0) {
+		selectedFileDelay -= 1;
+		setTimeout(galleryUpdateSelectedFileDelay, 100);
+	}
+	else // selectedFileDalay == 0
+	{
+		selectedFileDelay = -1;
+		galleryUpdateSelectedFile();
+	}
+}
+
+function galleryUpdateSelectedFile() {
+	var ids = $('.thumbImg');
+	var className = 'selected';
+
+	appFC.thumbSelectedFileCnt = 0;
+
+	for (var i = 0; i < ids.length; i++) {
+		var eleId = document.getElementById(ids[i].id);
+		var $id = $('#' + ids[i].id);
+
+		if (eleId.checked) {
+			appFC.thumbSelectedFileCnt += 1;
+			$id.addClass(className);
+		}
+		else {
+			$id.removeClass(className);
+		}
+		// if ( eleId.checked )
+		// {
+		// 	var bkColor = appCfg.thumbFrmColorChecked;
+		// 	var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+		// 	$id.css('border', borderCfg);
+		// 	$id.addClass(className);
+		// 	appFC.thumbSelectedFileCnt += 1;
+		// }			
+		// else
+		// {
+		// 	var bkColor = appCfg.thumbFrmColorNormal;
+		// 	var borderCfg = appCfg.thumbFrmSize + 'px' + ' solid ' + bkColor;
+		// 	$id.css('border', borderCfg);
+		// 	$id.removeClass(className);
+		// }
+	}
+
+	galleryUpdateFileInfo();
+}
+
+function galleryUpdateFileInfo() {
+	// var page = 
+	// 	chrome.i18n.getMessage("lbPage") + " " +
+	// 	Math.min(appFC.thumbnailCurrPage + 1, appFC.thumbnailTotalPage) + 
+	// 	"/" + appFC.thumbnailTotalPage;
+
+	var page =
+		"PAGE: " +
+		//get_i18n_Message("lbPage") + " " +
+		Math.min(appFC.thumbnailCurrPage + 1, appFC.thumbnailTotalPage) +
+		"/" + appFC.thumbnailTotalPage;
+
+	// var item =
+	// 	"[ " + Math.min(appFC.thumbSelectedFileCnt, appFC.thumbFileCnt)
+	// 	+ '/' + Math.min(appFC.thumbFileCnt, 100) + " ]";
+
+	var item =
+		"IMAGE： " + Math.min(appFC.thumbFileCnt, ItemsPerPage);
+
+	// text = "PAGE " + (appFC.thumbnailCurrPage + 1) + "/" + appFC.thumbnailTotalPage + "   " 
+	// 	+ "[" + appFC.thumbSelectedFileCnt + '/' + appFC.thumbFileCnt + "]";
+	//text = appFC.thumbSelectedFileCnt + ' / ' + appFC.thumbFileCnt;
+
+	playbackUpdateFileInfoElement(page, item);
+
+	galleryUpdateSelectAllToolTip();
+}
+
+function galleryUpdateSelectAllToolTip() {
+	var strId;
+
+	if (appFC.thumbFileCnt && (appFC.thumbFileCnt === appFC.thumbSelectedFileCnt)) strId = "btnUnselectAll";
+	else strId = "btnSelectAll";
+
+	fcUpdateElementTitle("btn_toggleAll", strId);
+}///////////////////////////////////////////////////////////////////////////////////////////
+// record
+///////////////////////////////////////////////////////////////////////////////////////////
+
+var mediaRecorder;
+var recordedChunks = [];
+var IsRecording = false;
+var IsPause = false;
+var recordingStartTime;
+var recordingTotal;
+var recordingPauseTime;
+var OldImgW = 1280;
+var OldImgH = 720;
+var RECORD_LIMIT_SEC = 900;//600;
+
+function showRecordBtn(visible) {
+    return;
+    showElement('bottomToolBarData', visible);
+    if (visible)
+        $("#btn_pause").hide();
+}
+
+function showAllToolBars(visible) {
+    var idTbl = [
+        "btn_setting",
+        "btn_capture",
+        "btn_freeze",
+        //"btn_timesave",
+        "btn_mirrow",
+        "btn_flip",
+        //'btn_brightness',
+        //'btn_whitebalance',
+        "btn_config",
+        "btn_zoom",
+        "btn_importPic",
+        "btn_redo",
+        "btn_undo",
+
+        // "mode_about",       
+        // "mode_preview",     
+        // "mode_playback",    
+        // "mode_drawingBoard",
+
+        'btn_freehand',
+        'btn_arrow',
+        'btn_eraser',
+        'btn_line',
+        'btn_rectangleLine',
+        'btn_rectangle',
+        'btn_circleLine',
+        'btn_circle',
+        'btn_erase_all',
+        'btn_text',
+        'btn_configDraw',
+        // 'previewToolBar',
+        // 'drawingToolBar',
+        // 'modeToolBar',
+        'drawingCfgColorBar',
+        'drawingOpacity',
+        'drawingLineWidth'
+    ];
+
+    var i;
+
+    for (i = 0; i < idTbl.length; i++) {
+        showToolBar(idTbl[i], visible);
+    }
+
+    if (visible) {
+        //document.getElementById("sysToolBar").style.opacity = appCfg.toolBarOpacityLeave;
+        document.getElementById("sysToolBar").style.background = appCfg.toolBarColorLeave;
+    }
+    else {
+        //document.getElementById("sysToolBar").style.opacity = '0';
+        document.getElementById("sysToolBar").style.backgroundColor = '#000';
+    }
+
+    //opacity: appCfg.toolBarOpacityLeave,
+}
+
+var recordStream;
+var recordingFormat;
+var previewStream;
+
+async function StartRecord() {
+    console.log("Start Recording");
+
+    if (!IsRecording)//(appFC.imgW != 1280 || appFC.imgH != 720)
+    {
+        IsRecording = true;
+
+        // OldImgW = appFC.imgW;
+        // OldImgH = appFC.imgH;
+
+        showRecordBtn(false);
+
+        //showAllToolBars(false);
+        fcCloseActiveDlg();
+        $("#btn_pause").show();
+
+        // fcChangeBaseImageSize(1280, 720);
+        // setTimeout(StartRecord, 2500);
+        //setTimeout(StartRecord, 500);
+        //return;
+    }
+
+    IsPause = false;
+    showAllToolBars(false);
+    // fcCloseActiveDlg();
+    // $("#btn_pause").show();	
+
+    // -- recording time stamp
+    document.getElementById("recordtime").style.fontSize = "18px";
+    document.getElementById("recordtime").style.fontWeight = "bold";
+    document.getElementById("recordtime").style.color = "red";
+    document.getElementById("recordtime").style.position = "absolute";
+
+    document.getElementById("recordtime").style.top = (48 * 3.5 - 9) + "px"; //"35px";
+    document.getElementById("recordtime").style.left = 48 * 1.5 + "px";
+
+    //document.getElementById("recordtime").style.bottom = "60px"; //"35px";
+    //document.getElementById("recordtime").style.left = (document.documentElement.clientWidth / 2 - 32) + "px";
+    document.getElementById("recordtime").style.visibility = "visible";
+    //recordingsec = 0;
+
+    let getd = new Date();
+    recordingStartTime = getd.getTime();
+    recordingPauseTime = 0;
+    RecordingTimer();
+
+
+    // record all canvas
+    // var mc = previewModeCfg;
+    // var canvas = mc['combineCanvas'];
+    let canvas = document.getElementById("previewArea-videoOrg");
+    console.log(canvas);
+
+    // const audioStream = await navigator.mediaDevices.getUserMedia({
+    //     audio: { deviceId: { exact: CurrentAudioDevice.deviceId } }
+    // });
+
+    const audioStream = null;
+
+
+    //window.stream.getAudioTracks()[0].enabled = true;
+    let canvasStream = canvas.captureStream();
+    console.log(canvasStream);
+
+    //合併音訊和視訊流
+    // recordStream = new MediaStream([
+    //     ...canvasStream.getTracks(),
+    //     ...audioStream.getTracks()
+    // ]);
+
+
+    if (audioStream && audioStream.getTracks()) {
+        recordStream = new MediaStream([
+            ...canvasStream.getTracks(),
+            ...audioStream.getTracks()
+        ]);
+    } else {
+        recordStream = new MediaStream(canvasStream.getTracks());
+    }
+
+
+    // 使用合併的流進行錄影
+    // const mediaRecorder = new MediaRecorder(combinedStream);
+    // mediaRecorder.ondataavailable = (event) => {
+    //     const blob = new Blob([event.data], { type: 'video/webm' });
+    //     const videoURL = URL.createObjectURL(blob);
+    //     console.log("Recording completed. Video URL:", videoURL);
+    // };
+    // mediaRecorder.start();
+
+    recordedChunks = [];
+
+    let mimeType;
+
+    if (MediaRecorder.isTypeSupported('video/webm; codecs="vp9, opus"')) {
+        console.log("using webm vp9 opus");
+        mimeType = 'video/webm; codecs="vp9, opus"';
+        recordingFormat = 'webm';
+    } else if (MediaRecorder.isTypeSupported('video/webm; codecs="vp8, vorbis"')) {
+        console.log("using webm vp8 vorbis");
+        mimeType = 'video/webm; codecs="vp8, vorbis"';
+        recordingFormat = 'webm';
+    } else if (MediaRecorder.isTypeSupported('video/mp4; codecs="avc1.42E01E, mp4a.40.2"')) {
+        console.log("using video/mp4; codecs=avc1.42E01E, mp4a.40.2");
+        mimeType = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+        recordingFormat = 'mp4';
+    } else if (MediaRecorder.isTypeSupported('video/webm')) {
+        console.log("using webm");
+        mimeType = 'video/webm';
+        recordingFormat = 'webm';
+    } else if (MediaRecorder.isTypeSupported('video/mp4')) {
+        console.log("using mp4");
+        mimeType = 'video/mp4';
+        recordingFormat = 'mp4';
+    }
+
+    var options = {
+        audioBitsPerSecond: 128000,
+        videoBitsPerSecond: 5000000,
+        mimeType: mimeType //'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+    };
+
+    // var options = {  audioBitsPerSecond : 96000,
+    // 	videoBitsPerSecond : 256 * 8 * 1000,
+    // 	mimeType: 'video/webm;codecs=vp9; '};
+
+    // var options = {  audioBitsPerSecond : 96000,
+    // 	videoBitsPerSecond : 256 * 8 * 1000,
+    // 	mimeType: 'video/webm;codecs=vp8; '};
+
+    mediaRecorder = new MediaRecorder(recordStream, options);
+    //mediaRecorder.ondataavailable = handleDataAvailable;
+
+    //mediaRecorder = new MediaRecorder(recordStream);
+    mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+            console.log("data available");
+            recordedChunks.push(event.data);
+        } else {
+            console.log("no data");
+        }
+    };
+    mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: mimeType });
+        const filename = fcGetFilenameByDateTime(recordingFormat);
+        downloadBlob(blob, filename);
+    };
+    mediaRecorder.start(1000);
+
+    //showRecordBtn(true);
+
+    // function handleDataAvailable(event) {
+    //     if (event.data && event.data.size > 0) {
+    //         recordedChunks.push(event.data);
+    //         //DownloadRecord();
+    //         SaveRecord();
+    //     } else {
+    //         console.log("no data");
+    //     }
+    // }
+};
+
+async function StopRecord() {
+    IsRecording = false;
+    document.getElementById("recordtime").style.visibility = "hidden";
+    showAllToolBars(true);
+    $("#btn_pause").hide();
+    mediaRecorder.stop();
+
+    // recordStream.getTracks().forEach(function (track) {
+    //     track.stop();
+    //     recordStream.removeTrack(track);
+    // });
+
+    // if (window.stream != undefined)
+    // 	window.stream.getAudioTracks()[0].enabled = false;
+
+    //window.stream = previewStream;
+
+    var getd = new Date();
+    var recordingNow = getd.getTime();
+    if (IsPause) {
+        IsPause = false;
+        recordingTotal = recordingPauseTime;
+    }
+    else {
+        recordingTotal = recordingPauseTime + recordingNow - recordingStartTime;
+    }
+};
+
+function PauseRecord() {
+    IsPause = true;
+    //showAllToolBars(true);
+    mediaRecorder.pause();
+
+    var getd = new Date();
+    var recordingNow = getd.getTime();
+    recordingPauseTime += recordingNow - recordingStartTime;
+}
+
+function ResumeRecord() {
+    IsPause = false;
+    //showAllToolBars(false);
+    mediaRecorder.resume();
+
+    // set recording time
+    var getd = new Date();
+    recordingStartTime = getd.getTime();
+    RecordingTimer();
+}
+
+async function SaveRecord() {
+    var filename = fcGetFilenameByDateTime(recordingFormat);
+    console.log("recordingFormat: " + recordingFormat);
+    console.log("filename: " + filename);
+
+    if (recordingFormat == 'mp4') {
+        // const db = await openDatabase();
+        // const transaction = db.transaction(storeName, 'readwrite');
+        // const store = transaction.objectStore(storeName);
+        let blob = new Blob(recordedChunks, { type: 'video/mp4' });
+
+        //await saveBlobToMp4(filename, blob);
+        downloadBlob(blob, filename);
+
+        // const data = { name: filename, video: blob };
+        // store.add(data);
+
+        recordedChunks = [];
+        blob = null;
+    }
+    else if (recordingFormat == 'webm') {
+
+        let blob = new Blob(recordedChunks, { type: 'video/webm' });
+
+        setTimeout(function () {
+            ysFixWebmDuration(blob, recordingTotal, async function (fixedBlob) {
+                // const db = await openDatabase();
+                // const transaction = db.transaction(storeName, 'readwrite');
+                // const store = transaction.objectStore(storeName);
+                // const data = { name: filename, video: fixedBlob };
+
+                //const data = { name: filename, video: URL.createObjectURL(fixedBlob) };
+
+                //await saveBlobToMp4(filename, fixedBlob);
+                downloadBlob(fixedBlob, filename);
+
+                //store.add(data);
+                recordedChunks = [];
+                blob = null;
+            });
+        }, 100);
+    }
+
+    // if (OldImgW != 1280 || OldImgH != 720) {
+    //     fcChangeBaseImageSize(OldImgW, OldImgH);
+    // }
+}
+
+function DownloadRecord() {
+    //console.log("Download Record");
+
+    let blob = new Blob(recordedChunks, {
+        type: 'video/webm'
+    });
+
+    //console.log(recordingTotal);
+
+    // var url = URL.createObjectURL(blob);
+    // var a = document.createElement('a');
+    // document.body.appendChild(a);
+
+    // var filename = new Date().toISOString().slice(0,19);
+    // a.style = 'display: none';
+    // a.href = url;
+    // a.download = filename + '.webm';
+    // a.click();
+    // window.URL.revokeObjectURL(url);
+    // recordedChunks = [];
+    // if (OldImgW != 1280 || OldImgH != 720)
+    // {
+    // 	fcChangeBaseImageSize(OldImgW, OldImgH);
+    // }
+
+    setTimeout(function () {
+        ysFixWebmDuration(blob, recordingTotal, function (fixedBlob) {
+            var url = URL.createObjectURL(fixedBlob);
+            var a = document.createElement('a');
+            document.body.appendChild(a);
+
+            var filename = new Date().toISOString().slice(0, 19);
+
+            a.style = 'display: none';
+            a.href = url;
+            a.download = filename + '.webm';
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+            recordedChunks = [];
+
+            // if (OldImgW != 1280 || OldImgH != 720) {
+            //     fcChangeBaseImageSize(OldImgW, OldImgH);
+            // }
+        });
+    }, 100);
+};
+
+function padLeft(str, len) {
+    str = '' + str;
+    if (str.length >= len) {
+        return str;
+    } else {
+        return padLeft("0" + str, len);
+    }
+};
+
+function RecordingTimer() {
+    if (IsRecording && !IsPause) {
+        var getd = new Date();
+        var recordingNow = getd.getTime();
+        recordingTotal = recordingPauseTime + recordingNow - recordingStartTime;
+        var recordingsec = Math.floor((recordingTotal) / 1000);
+
+        if (recordingsec >= RECORD_LIMIT_SEC) {
+            StopRecord();
+            return;
+        }
+
+        document.getElementById("recordtime").innerText =
+            padLeft(Math.floor(recordingsec / 60), 2) + " : " + padLeft(recordingsec % 60, 2);
+
+        setTimeout(() => {
+            RecordingTimer()
+        }, 1000);
+    }
+};///////////////////////////////////////////////////////////////////////////////////////////
+// constant 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+let videoW = appCfg.defPreviewRsoX;
+let videoH = appCfg.defPreviewRsoY;
+//let currStream = null;
+
+const videoElement = document.getElementById('videoSrc');
+let videoLastUpdateTime;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// check device 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+function isSupportedDevice(vid, pid) {
+    for (let i = 0; i < DevList.length; i++) {
+        if (vid === DevList[i][0] && pid === DevList[i][1]) {
+            appFC.reqVideoResolutionList = DevList[i][2];
+            return true;
+        }
+    }
+    return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// connect stream 
+///////////////////////////////////////////////////////////////////////////////////////////
+let IsDeviceConnected = false;
+let PreviousDevices = [];
+// let CurrentDevices = [];
+let CurrentVideoDevice = null;
+let CurrentAudioDevice = null;
+
+async function makeDeviceList() {
+    try {
+        const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+        const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+
+        videoSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
+        audioSelect.innerHTML = ''; //'<option value="">請選擇一個影片裝置</option>'; // 清空選單
+
+        //console.log("make Device List Step 1");
+
+        let devices = await navigator.mediaDevices.enumerateDevices();
+        devices = devices.filter(
+            device => device.deviceId.length > 20
+        );
+
+        //console.log("make Device List Step 2");
+
+        devices
+            .filter(device =>
+                device.kind === "videoinput" &&
+                !device.label.includes("Virtual") &&
+                !device.label.includes("Basler") &&
+                !device.deviceId.includes("communications"))
+            .forEach(device => {
+                // Build video drop-down list
+                //if (testDeviceAvailability(device.deviceId)) {
+                const option = document.createElement('option');
+                option.value = device.deviceId;
+                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
+                option.device = device;
+                videoSelect.appendChild(option);
+                //}
+            });
+
+        //console.log("make Device List Step 3");
+
+        devices
+            .filter(device =>
+                device.kind === "audioinput" &&
+                !device.label.includes("Virtual") &&
+                !device.deviceId.includes("default") &&
+                !device.deviceId.includes("communications"))
+            .forEach(device => {
+                // Build audio drop-down list
+                const option = document.createElement('option');
+                option.value = device.deviceId;
+                option.textContent = device.label || `未命名裝置 (${device.deviceId})`;
+                option.device = device;
+                audioSelect.appendChild(option);
+            });
+
+        //console.log("make Device List Step 4");
+
+        if (CurrentVideoDevice)
+            videoSelect.value = CurrentVideoDevice.deviceId;
+        if (CurrentAudioDevice)
+            audioSelect.value = CurrentAudioDevice.deviceId;
+
+        return devices
+            .map(device => ({ deviceId: device.deviceId, label: device.label, kind: device.kind }));
+    } catch (error) {
+        console.error("無法列出影片裝置:", error);
+        connectError();
+        return false;
+    }
+}
+
+async function selectVideoDefaultDevice(devices) {
+    let device = null;
+
+    const videoDevices = devices
+        .filter(device =>
+            device.kind === "videoinput" &&
+            !device.label.includes('visual') &&
+            !device.label.includes('Basler') &&
+            !device.deviceId.includes("communications")
+        );
+
+    for (let i = 0; i < videoDevices.length; i++) {
+        if (await testDeviceAvailability(videoDevices[0].deviceId)) {
+            device = videoDevices[0];
+        } else {
+            console.log("XXX");
+            if (PreviousDevices)
+                PreviousDevices = PreviousDevices.filter(device => device.deviceId != videoDevices[0].deviceId);
+
+            const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+            const optionToRemove = Array.from(videoSelect.options).find(opt => opt.value === videoDevices[0].deviceId);
+            if (optionToRemove) {
+                optionToRemove.remove();
+            }
+        }
+        // if (i == 0) {
+        //     device = videoDevices[0];
+        // }
+
+        // if (checkDC(videoDevices[i])) {
+        //     device = videoDevices[i];
+        //     break;
+        // }
+    }
+
+    //console.log("Select Video Device", device);
+
+    return device;
+}
+
+async function selectAudioDefaultDevice(devices) {
+    let device = null;
+
+    const audioDevices = devices
+        .filter(device =>
+            device.kind === "audioinput" &&
+            !device.deviceId.includes('default') &&
+            !device.deviceId.includes("communications")
+        );
+
+    for (let i = 0; i < audioDevices.length; i++) {
+        if (i == 0) {
+            device = audioDevices[0];
+        }
+
+        if (checkDC(audioDevices[i])) {
+            device = audioDevices[i];
+            break;
+        }
+    }
+
+    return device;
+}
+
+// 請求權限並顯示裝置選項
+async function initializeDevices() {
+    try {
+        //const hasPermissions = await checkMediaPermissions();
+        const hasPermissions = await checkCameraPermission();
+
+        if (hasPermissions) {
+            PreviousDevices = await makeDeviceList();
+
+            console.log(PreviousDevices);
+
+            CurrentVideoDevice = await selectVideoDefaultDevice(PreviousDevices);
+            CurrentAudioDevice = await selectAudioDefaultDevice(PreviousDevices);
+
+            const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+            const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+
+            if (CurrentVideoDevice)
+                videoSelect.value = CurrentVideoDevice.deviceId;
+            if (CurrentAudioDevice)
+                audioSelect.value = CurrentAudioDevice.deviceId;
+
+            if (CurrentVideoDevice) {
+                await startVideo();
+                return;
+            } else {
+                setRecordBottonEnable(false);
+            }
+        }
+        else {
+            setRecordBottonEnable(false);
+        }
+
+    } catch (error) {
+        console.log(error);
+        alert("Please connect the camera.");
+        connectError();
+    }
+}
+
+async function checkCameraPermission() {
+    try {
+        // 嘗試請求攝影機權限
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        console.log("Camera / Audio permission granted.");
+
+        // 停止攝影機流
+        stream.getTracks().forEach(track => track.stop());
+
+        return true;
+    } catch (error) {
+        if (error.name === "NotAllowedError") {
+            console.warn("Camera permission denied.");
+        } else if (error.name === "NotFoundError") {
+            console.warn("No camera found on the device.");
+        } else {
+            console.error("An error occurred:", error);
+        }
+
+        return false;
+    }
+}
+
+async function checkMediaPermissions() {
+    try {
+        // 檢查攝影機權限
+        const cameraPermission = await navigator.permissions.query({ name: 'camera' });
+        console.log('Camera Permission:', cameraPermission.state);
+
+        // 檢查麥克風權限
+        const microphonePermission = await navigator.permissions.query({ name: 'microphone' });
+        console.log('Microphone Permission:', microphonePermission.state);
+
+        // 判斷是否有權限
+        if (cameraPermission.state === 'granted' && microphonePermission.state === 'granted') {
+            console.log('已取得攝影機和麥克風的權限');
+            return true;
+        } else {
+            //console.log('尚未取得完整權限');
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            stream.getTracks().forEach(track => track.stop());
+            return true;
+        }
+    } catch (error) {
+        console.log('無法檢查權限:', error);
+        connectError();
+        return false;
+    }
+}
+
+let supportedDevice = false;
+let connectedDevices = [];
+
+async function checkVideoSource() {
+    const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+
+    if (!CurrentVideoDevice)
+        return;
+
+    if (CurrentVideoDevice.deviceId != videoSelect.value) {
+
+        await stopVideo();
+
+        const videoOption = videoSelect.options[videoSelect.selectedIndex];
+        CurrentVideoDevice = videoOption.device;
+
+        await startVideo();
+    }
+}
+
+function setRecordBottonEnable(enable) {
+    if (enable) {
+        $('#btn_record').hover(toolBarOnMouseEnter, toolBarOnMouseLeave).prop('disabled', false);
+        $('#btn_record').css('background-image', "url('css/images/icon/record2.png')");
+    } else {
+        $('#btn_record').off('mouseenter mouseleave').prop('disabled', true);
+        $('#btn_record').css('background-image', "url('css/images/icon/record3.png')");
+    }
+}
+
+let isMouseOverDisabled = false;
+
+async function getConstraints() {
+
+    let constraints = null;
+
+    if (!CurrentVideoDevice) return null;
+
+    if (checkDC(CurrentVideoDevice)) {
+        videoW = 1920;
+        videoH = 1080;
+
+        constraints = {
+            //audio: { deviceId: { exact: CurrentAudioDevice.deviceId } },
+            video: {
+                deviceId: { exact: CurrentVideoDevice.deviceId },
+                width: { exact: videoW },
+                height: { exact: videoH }
+            }
+        };
+
+        appFC.reqVideoResolutionList = [
+            // width  height   def 
+            [videoW, videoH, 1]
+        ];
+        await fcUpdateVideoResolution();
+    }
+    else {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { deviceId: { exact: CurrentVideoDevice.deviceId } },
+        });
+
+        const videoTrack = stream.getVideoTracks()[0];
+        const settings = videoTrack.getSettings();
+
+        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
+
+        videoW = settings.width;;
+        videoH = settings.height;
+
+        appFC.reqVideoResolutionList = [
+            // width  height   def 
+            [videoW, videoH, 1]
+        ];
+        await fcUpdateVideoResolution();
+
+        if (false) { //(CurrentAudioDevice) {
+            constraints = {
+                audio: {
+                    deviceId: { exact: CurrentAudioDevice.deviceId }
+                },
+                video: {
+                    deviceId: { exact: CurrentVideoDevice.deviceId },
+                }
+            }
+        } else {
+            constraints = {
+                video: {
+                    deviceId: { exact: CurrentVideoDevice.deviceId },
+                }
+            }
+        }
+    };
+
+    return constraints;
+}
+
+let flReqTrackEnded = false;
+
+function handleTrackEnded() {
+    stopVideo();
+    cleanDisplayCanvas();
+    flReqTrackEnded = true;
+}
+
+let debounceTimer = null;
+let isEnumerating = false;
+let reqEnumerating = false;
+
+//navigator.mediaDevices.addEventListener('devicechange', handleDeviceChange);
+// const debouncedDeviceChangeHandler = debounce(handleDeviceChange, 1000);
+// navigator.mediaDevices.addEventListener('devicechange', debouncedDeviceChangeHandler);
+
+navigator.mediaDevices.addEventListener('devicechange', () => {
+    console.log(`[${getCurrentTimeWithMs()}] devicechange 事件觸發 (debounce)`);
+    if (debounceTimer) {
+        clearTimeout(debounceTimer);
+    }
+    debounceTimer = setTimeout(() => {
+        reqEnumerating = true;
+        debounceTimer = null;
+        handleDeviceChange();
+    }, 500);
+});
+
+async function handleDeviceChange() {
+    console.log(`[${getCurrentTimeWithMs()}] handleDeviceChange`);
+
+    if (isEnumerating) {
+        console.log(`[${getCurrentTimeWithMs()}] 目前已有 enumerateDevices 執行中，跳過此次處理`);
+        return;
+    }
+
+    isEnumerating = true;
+    reqEnumerating = false;
+
+
+    // if (window.stream && window.stream.getVideoTracks()[0]) { //(IsDeviceConnected) {
+    //     console.log("window.stream.getVideoTracks()[0].readyState", window.stream.getVideoTracks()[0].readyState);
+
+    //     if (window.stream.getVideoTracks()[0].readyState === 'ended') {
+
+    //         setRecordBottonImg(false);
+
+    //         if (IsRecording) {
+    //             await StopRecord();
+    //         }
+
+    //         await stopVideo();
+    //         cleanDisplayCanvas();
+
+    //         //PreviousDevices = PreviousDevices.filter(item => item.deviceId !== CurrentVideoDevice.deviceId);
+    //         //await delay(500);
+    //     }
+    // }
+
+    let CurrentDevices = await makeDeviceList();
+
+    const missing = PreviousDevices.filter(item =>
+        !CurrentDevices.some(current => current.deviceId === item.deviceId)
+    );
+    const extra = CurrentDevices.filter(item =>
+        !PreviousDevices.some(current => current.deviceId === item.deviceId)
+    );
+
+    if (missing.length > 0) console.log("miss", missing);
+    if (extra.length > 0) console.log("extra", extra);
+
+    const videoSelect = document.getElementById(appFC.idVideoinputSelect);
+    const audioSelect = document.getElementById(appFC.idAudioinputSelect);
+
+    // Video
+    let reqChangeVideoDevice = false;
+    const plugVideo = extra.filter(dev => dev.kind == 'videoinput');
+    const unplugVideo = missing.filter(dev => dev.kind == 'videoinput');
+
+    if (plugVideo.length > 0) console.log("plugVideo", plugVideo);
+    if (unplugVideo.length > 0) console.log("unplugVideo", unplugVideo);
+
+    if (plugVideo.length > 0) {
+
+        if (CurrentVideoDevice == null) {
+            // 原本無 video device
+            CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+            //CurrentVideoDevice = plugVideo[0];
+            reqChangeVideoDevice = true;
+
+            // } else if (checkDC(plugVideo[0])) {
+            //     // 原本存在 video device，插入 DC
+            //     console.log("Plug DC");
+            //     videoSelect.value = plugVideo[0].deviceId;
+            //     CurrentVideoDevice = plugVideo[0];
+            //     reqChangeVideoDevice = true;
+        } else {
+            // 原本存在 video device，插入非 DC
+            // do nothing
+        }
+    }
+
+    // 合併於 flReqTrackEnded
+    // if (unplugVideo.length > 0) {
+    //     // unplug current video device
+    //     if (unplugVideo.some(dev => dev.deviceId == CurrentVideoDevice.deviceId)) {
+
+    //         console.log("unplug current video device");
+
+    //         CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+
+    //         if (CurrentVideoDevice) {
+    //             videoSelect.value = CurrentVideoDevice.deviceId;
+    //             reqChangeVideoDevice = true;
+    //         } else {
+    //             videoSelect.value = null;
+    //         }
+    //     } else {
+    //         // un-plug others
+    //     }
+    // }
+
+    if (flReqTrackEnded) {
+        console.log("flReqTrackEnded");
+        flReqTrackEnded = false;
+
+        setRecordBottonEnable(false);
+
+        if (IsRecording) {
+            await StopRecord();
+        }
+
+        await stopVideo();
+        cleanDisplayCanvas();
+
+        // remove current device from list
+        if (CurrentVideoDevice)
+            CurrentDevices = CurrentDevices.filter(device => device.deviceId != CurrentVideoDevice.deviceId);
+
+        CurrentVideoDevice = await selectVideoDefaultDevice(CurrentDevices);
+        if (CurrentVideoDevice) {
+            videoSelect.value = CurrentVideoDevice.deviceId;
+            reqChangeVideoDevice = true;
+        } else {
+            videoSelect.value = null;
+        }
+    }
+
+    // Audio
+    const plugAudio = extra.filter(dev => dev.kind == 'audioinput');
+    const unplugAudio = missing.filter(dev => dev.kind == 'audioinput');
+    if (plugAudio.length > 0) console.log("plugAudio", plugAudio);
+    if (unplugAudio.length > 0) console.log("unplugAudio", unplugAudio);
+
+    if (plugAudio.length > 0) {
+        if (CurrentAudioDevice == null) {
+            audioSelect.value = plugAudio[0].deviceId;
+            CurrentAudioDevice = plugAudio[0];
+        } else if (checkDC(plugAudio[0])) {
+            audioSelect.value = plugAudio[0].deviceId;
+            CurrentAudioDevice = plugAudio[0];
+        }
+    }
+
+    if (unplugAudio.length > 0) {
+        CurrentAudioDevice = await selectAudioDefaultDevice(CurrentDevices);
+
+        if (CurrentAudioDevice) {
+            audioSelect.value = CurrentAudioDevice.deviceId;
+        } else {
+            audioSelect.value = null;
+        }
+    }
+
+    // Change Video Device (source)
+    if (reqChangeVideoDevice && CurrentVideoDevice) {
+        IsDeviceConnected = false;
+        //await stopVideo();
+        await startVideo();
+    }
+
+    PreviousDevices = CurrentDevices;
+
+    isEnumerating = false;
+
+    if (reqEnumerating) {
+        await handleDeviceChange();
+    }
+}
+
+function checkDC(device) {
+    if (!device || !device.label) {
+        console.warn("Invalid device object or label is missing");
+        return false;
+    }
+    return device.label.includes("Document Camera");
+}
+
+async function fcChangeBaseImageSizeEx(vW, vH) {
+
+    if (fullPhotoMode) {
+        dispW = winW;
+        dispH = winH;
+        dispX = 0;
+        dispY = 0;
+    }
+    else {
+        dispW = winW - appBaseCfg.iconW * 2;
+        dispH = winH - titleH - appBaseCfg.drawSetH;
+        dispX = appBaseCfg.iconW;
+        dispY = titleH;
+    }
+
+    console.log("fcChangeBaseImageSizeEx Disp", dispX, dispY, dispW, dispH);
+
+    cssCommonSizeObj.left = dispX;
+    cssCommonSizeObj.top = dispY;
+    cssCommonSizeObj.width = dispW;
+    cssCommonSizeObj.height = dispH;
+
+    const id$ = $('#displayCanvas');
+    id$.css(cssCommonSizeObj);
+    id$.attr('width', dispW);
+    id$.attr('height', dispH);
+
+    videoW = vW;
+    videoH = vH;
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    appFC.imgW = dispW;
+    appFC.imgH = dispH;
+
+    calculateCropVertices(videoW, videoH, dispW, dispH);
+    if (gl) gl.viewport(0, 0, dispW, dispH);
+
+    const mc = appFC.curMode;
+    // resetCanvasGroupSize(mc, dispW, dispH);
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    drawingBoardModeCfg.imgW = dispW;
+    drawingBoardModeCfg.imgH = dispH;
+
+    resetCanvasGroupSize(previewModeCfg, dispW, dispH);
+    resetCanvasGroupSize(drawingBoardModeCfg, dispW, dispH);
+
+    const canvas = document.getElementById("drawingArea-baseImageCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawingBoardModeCfg.imageProcess();
+
+    //fcClearDrawingCanvas();
+
+    //fcClearCanvas(previewModeCfg.drawCanvas);
+    //fcClearCanvas(drawingBoardModeCfg.drawCanvas);
+
+    //fcResetCanvasArray(previewModeCfg);
+    //fcResetCanvasArray(drawingBoardModeCfg);
+
+    fcUpdateSysInfoWin();
+    fcUpdateSysInfoData();
+    fcResetZoomRatio();
+    fcUpdatePanWin();
+    fcUpdateCropWin();
+}
+
+async function startVideo() {
+    const constraints = await getConstraints();
+
+    if (!constraints) {
+        return;
+    } else {
+        console.log("Start Video constraints", constraints);
+    }
+
+
+    try {
+        window.stream = await navigator.mediaDevices.getUserMedia(constraints);
+        console.log("start Video stream", window.stream);
+        if (!window.stream)
+            return;
+
+        const videoTrack = window.stream.getVideoTracks()[0];
+        videoTrack.onended = () => {
+            console.log("Video track has ended.", new Date());
+            handleTrackEnded(); // 你的處理邏輯
+        };
+
+
+        videoElement.srcObject = window.stream;
+
+        //makeDeviceList();
+
+        videoElement.setAttribute('playsinline', '');
+        videoElement.setAttribute('webkit-playsinline', '');
+        videoElement.onloadeddata = () => {
+            initWebGL(); // Start WebGL once video is loaded
+            fcChangeBaseImageSizeEx(videoElement.videoWidth, videoElement.videoHeight);
+            //gl.viewport(0, 0, dispW, dispH);
+        };
+
+        await videoElement.load();
+
+        const playPromise = videoElement.play();
+
+        if (playPromise !== undefined) {
+            await playPromise.then(_ => {
+                videoElement.muted = true;
+                videoElement.hidden = true;
+                IsDeviceConnected = true;
+                setRecordBottonEnable(true);
+            })
+        }
+    } catch (error) {
+        console.log("無法顯示影像流:", error);
+        connectError();
+    }
+}
+
+async function stopVideo() {
+    //console.log("stopVideo");
+    if (window.stream) {
+
+        window.stream.getTracks().forEach(function (track) {
+            track.stop();
+            window.stream.removeTrack(track);
+        });
+
+        console.log("stopVideo", window.stream);
+        setTimeout(() => {
+            console.log("Stream active after stopping all tracks:", window.stream.active);
+            if (window.stream.active == false)
+                window.stream = null;
+        }, 100); // 短延遲檢查
+        videoElement.srcObject = null;
+
+    }
+    IsDeviceConnected = false;
+    setRecordBottonEnable(false);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// update stream frame 
+///////////////////////////////////////////////////////////////////////////////////////////
+
+let lastTime = -1;
+let canvasGL;
+let contextVideoOrg;
+
+async function updateVideoStreamFrame() {
+    if (!videoElement) {
+        videoElement = document.getElementById('videoSrc');
+    }
+
+    if (!canvasGL) {
+        canvasGL = document.getElementById('previewArea-WebGL');
+    }
+
+    if (!contextVideoOrg) {
+        let canvasVideoOrg = document.getElementById('previewArea-videoOrg');
+        contextVideoOrg = canvasVideoOrg.getContext('2d');
+    }
+
+    if (IsDeviceConnected) {
+        contextVideoOrg.drawImage(videoElement, 0, 0, videoW, videoH);
+
+        // WebGL Render
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, videoElement);
+        gl.useProgram(program);
+
+        // Set attributes
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positionVertices), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(positionLocation);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texCoordVertices), gl.STATIC_DRAW);
+        gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(texCoordLocation);
+
+        // Set brightness uniform
+        const brightnessValue = parseFloat(document.getElementById('configDlg-brightness-slider').value);
+        gl.uniform1f(brightnessLocation, brightnessValue);
+        const whiteBalanceValue = parseFloat(document.getElementById('configDlg-whiteBalence-slider').value);
+        gl.uniform3f(whiteBalanceLocation, whiteBalanceValue, 1.0, 2.0 - whiteBalanceValue);
+
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        var time = videoElement.currentTime;
+
+        if (time && (time !== lastTime)) {
+            //console.log('time: ' + time);
+            lastTime = time;
+            videoLastUpdateTime = new Date();
+            previewVideoStreamUpdate(canvasGL);
+            //previewVideoStreamUpdate(videoElement);
+        }
+
+        const track = window.stream.getVideoTracks()[0];
+        const settings = track.getSettings();
+        //console.log(settings.width, settings.height);
+
+        if (videoW != settings.width) {
+            console.log("updateVideoStreamFrame => fcChangeBaseImageSizeEx", videoW, settings.width);
+            fcChangeBaseImageSizeEx(settings.width, settings.height);
+        }
+    }
+
+    requestAnimationFrame(updateVideoStreamFrame);
+}
+
+function connectError() {
+    setRecordBottonEnable(false);
+    cleanDisplayCanvas();
+}
+
+function cleanDisplayCanvas() {
+    const canvas = document.getElementById('displayCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'rgba(128, 128, 128, 1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+$(document.body).on('mouseup', (event) => {
+    //console.log('Body click');
+
+    // 判斷點擊的是否是未被處理的元素
+    // if (!event.isDefaultPrevented()) {
+    //     console.log('未被其他處理器攔截的點擊', event.target);
+    //     // 執行統一處理
+    // }
+
+    if (event.target === document.body) {
+        fcCloseActiveDlg();
+    } else {
+        switch (event.target.id) {
+            case "displayCanvas":
+                fcCloseActiveDlg();
+                break;
+        }
+    }
+});
+//const video = document.getElementById('webcam');
+var gl;
+var texture;
+var vertexShader;
+var fragmentShader;
+var program;
+var positionLocation;
+var texCoordLocation;
+var brightnessLocation;
+var whiteBalanceLocation;
+var cropLocation;
+var positionBuffer;
+var texCoordBuffer;
+
+// Initialize WebGL
+function initWebGL() {
+	let canvas = document.getElementById('previewArea-WebGL');
+	//var canvas = document.getElementById('displayCanvas');
+	gl = canvas.getContext('webgl');
+
+	//console.log("initWebGL", canvas, gl);
+
+	if (!gl) {
+		//alert('WebGL not supported');
+		throw new Error('WebGL not supported');
+	}
+
+	const vertexShaderSource = `
+      attribute vec4 a_position;
+      attribute vec2 a_texCoord;
+      varying vec2 v_texCoord;
+      void main() {
+        gl_Position = a_position;
+        v_texCoord = a_texCoord;
+      }
+    `;
+
+	const fragmentShaderSource = `
+      precision mediump float;
+      uniform sampler2D u_image;
+      uniform float u_brightness;
+      uniform vec3 u_whiteBalance;
+      varying vec2 v_texCoord;
+      
+      void main() {
+        vec4 color = texture2D(u_image, v_texCoord);
+
+        color.rgb *= u_brightness; // Apply brightness adjustment
+        color.r *= u_whiteBalance.r;
+        color.g *= u_whiteBalance.g;
+        color.b *= u_whiteBalance.b;
+        gl_FragColor = color;
+      }
+    `;
+
+	vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+	fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+	program = createProgram(gl, vertexShader, fragmentShader);
+
+	// Get locations
+	positionLocation = gl.getAttribLocation(program, 'a_position');
+	texCoordLocation = gl.getAttribLocation(program, 'a_texCoord');
+	brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
+	whiteBalanceLocation = gl.getUniformLocation(program, 'u_whiteBalance');
+
+	// Set up position buffer
+	positionBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+	// gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+	// 	-1, -1, 1, -1, -1, 1,
+	// 	-1, 1, 1, -1, 1, 1,
+	// ]), gl.STATIC_DRAW);
+
+	// Set up texture coordinate buffer
+	texCoordBuffer = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+	// gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+	// 	// 0, 1,  // 左下角 -> 原本是 (0, 0)
+	// 	// 1, 1,  // 右下角 -> 原本是 (1, 0)
+	// 	// 0, 0,  // 左上角 -> 原本是 (0, 1)
+	// 	// 0, 0,  // 左上角 -> 原本是 (0, 1)
+	// 	// 1, 1,  // 右下角 -> 原本是 (1, 0)
+	// 	// 1, 0   // 右上角 -> 原本是 (1, 1)
+	// 	0, 0,
+	// 	1, 0,
+	// 	0, 1,
+	// 	0, 1,
+	// 	1, 0,
+	// 	1, 1,
+	// ]), gl.STATIC_DRAW);
+
+	// Create texture
+	texture = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, texture);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+	//requestAnimationFrame(render);
+}
+
+// Helper functions
+function createShader(gl, type, source) {
+	const shader = gl.createShader(type);
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		console.error(gl.getShaderInfoLog(shader));
+		gl.deleteShader(shader);
+		return null;
+	}
+	return shader;
+}
+
+function createProgram(gl, vertexShader, fragmentShader) {
+	const program = gl.createProgram();
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		console.error(gl.getProgramInfoLog(program));
+		gl.deleteProgram(program);
+		return null;
+	}
+	return program;
+}
+
+let positionVertices = [];
+let texCoordVertices = [];
+
+function calculateCropVertices(inputWidth, inputHeight, outputWidth, outputHeight) {
+	//console.log("calculateCropVertices");
+	const inputAspectRatio = inputWidth / inputHeight;
+	const outputAspectRatio = outputWidth / outputHeight;
+
+	if (outputAspectRatio > inputAspectRatio) {
+		// 裁切上下
+		const heightRatio = inputAspectRatio / outputAspectRatio;
+		const cropTop = (1 - heightRatio) / 2;
+		const cropBottom = 1 - cropTop;
+
+		positionVertices = [
+			-1, -1, // 左下角
+			1, -1, // 右下角
+			-1, 1, // 左上角
+			-1, 1, // 左上角
+			1, -1, // 右下角
+			1, 1, // 右上角
+		];
+
+		texCoordVertices = [
+			0, cropBottom, // 左下角
+			1, cropBottom, // 右下角
+			0, cropTop,    // 左上角
+			0, cropTop,    // 左上角
+			1, cropBottom, // 右下角
+			1, cropTop,    // 右上角
+		];
+	} else {
+		// 裁切左右
+		const widthRatio = outputAspectRatio / inputAspectRatio;
+		const cropLeft = (1 - widthRatio) / 2;
+		const cropRight = 1 - cropLeft;
+
+		positionVertices = [
+			-1, -1, // 左下角
+			1, -1, // 右下角
+			-1, 1, // 左上角
+			-1, 1, // 左上角
+			1, -1, // 右下角
+			1, 1, // 右上角
+		];
+
+		texCoordVertices = [
+			cropLeft, 1, // 左下角
+			cropRight, 1, // 右下角
+			cropLeft, 0,  // 左上角
+			cropLeft, 0,  // 左上角
+			cropRight, 1, // 右下角
+			cropRight, 0, // 右上角
+		];
+	}
+}async function showVideoSource() {
+    $('#displayCanvas').hide();
+    $('#previewArea-WebGL').hide();
+    $('#videoSrc').show();
+}
+
+async function showWebGL() {
+    $('#displayCanvas').hide();
+    $('#videoSrc').hide();
+    $('#previewArea-WebGL').show();
+}
+
+function downloadBlob(blob, filename) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+}
+
+function adjImageDisplayAreaEx() {
+    let id$;
+    let totalW, totalH;
+    let x, y, w, h;
+
+    if (fullPhotoMode) {
+        w = totalW = winW;
+        h = totalH = winH;
+        x = 0;
+        y = 0;
+    }
+    else {
+        w = totalW = winW - appBaseCfg.iconW * 2;
+        h = totalH = winH - titleH - appBaseCfg.drawSetH;
+        x = appBaseCfg.iconW;
+        y = titleH;
+    }
+
+    cssCommonSizeObj.left = x;
+    cssCommonSizeObj.top = y;
+    cssCommonSizeObj.width = w;
+    cssCommonSizeObj.height = h;
+
+    id$ = $('#displayCanvas');
+    id$.css(cssCommonSizeObj);
+    id$.attr('width', w);
+    id$.attr('height', h);
+
+    dispX = x;
+    dispY = y;
+    dispW = w;
+    dispH = h;
+
+    calculateCropVertices(videoW, videoH, w, h);
+    if (gl) gl.viewport(0, 0, dispW, dispH);
+    //console.log("adjImageDisplayArea Disp", dispX, dispY, dispW, dispH);
+
+    previewModeCfg.imgW = dispW;
+    previewModeCfg.imgH = dispH;
+    drawingBoardModeCfg.imgW = dispW;
+    drawingBoardModeCfg.imgH = dispH;
+
+    resetCanvasGroupSize(previewModeCfg, dispW, dispH);
+    resetCanvasGroupSize(drawingBoardModeCfg, dispW, dispH);
+    const canvas = document.getElementById("drawingArea-baseImageCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgb(255, 255, 255)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (drawingBoardModeCfg.imageProcessContext)
+        drawingBoardModeCfg.imageProcess();
+}
+
+async function LogDeviceList() {
+    const CurrentDevices = await makeDeviceList();
+    console.log(CurrentDevices);
+}
+
+async function checkMediaDevice() {
+    const stream = await navigator.mediaDevices.getUserMedia({
+        video: { deviceId: { exact: deviceId } }
+    });
+};
+
+async function testDeviceAvailability(deviceId) {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { deviceId: { exact: deviceId } }
+        });
+
+        console.log('設備可用:', deviceId);
+        stream.getTracks().forEach(track => track.stop()); // 停止媒體流
+
+        return true;
+    } catch (error) {
+        console.error('設備不可用:', deviceId, error.message);
+        return false;
+    }
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getCurrentTimeWithMs() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
+
+
+// window.addEventListener("orientationchange", async () => {
+//     // alert("orientationchange");
+//     // await updateVideoDevices();
+//     // await stopVideo();
+//     // await startVideo();
+
+//     //appFC.checkVideoResolution = true;
+//     //previewCheckReqVideoResolution();
+// });
+
+
+// if (screen.width < screen.height) {
+// 	if (window.matchMedia("(orientation: portrait)").matches) {
+// 		// 直的
+// 		if (h < w) {
+// 			alert("SWAP I " + appFC.reqImgW + "," + appFC.reqImgH);
+// 			let tmp = w;
+// 			w = h;
+// 			h = tmp;
+// 		}
+// 	}
+// 	else {
+// 		// 橫的
+// 		if (h > w) {
+// 			alert("SWAP II " + appFC.reqImgW + "," + appFC.reqImgH);
+// 			let tmp = w;
+// 			w = h;
+// 			h = tmp;
+// 		}
+// 	}
+// }
+
+async function testVideoResolution() {
+    const w = 1920;
+    const h = 1080;
+    fcChangeBaseImageSize(w, h);
+    return;
+
+    const mc = previewModeCfg;
+
+
+    // //if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.before, w, h);
+    await stopVideo();
+
+    videoW = mc.imgW = w;
+    videoH = mc.imgH = h;
+
+    resetCanvasGroupSize(mc, w, h);
+    fcClearDrawingCanvas();
+    fcResetCanvasArray(mc);
+
+    appFC.imgW = w;
+    appFC.imgH = h;
+    adjImageDisplayArea();
+    fcUpdateSysInfoWin();
+    fcUpdateSysInfoData();
+
+    await startVideo();
+
+    // //if (mc.chgBaseImgCtrl) await mc.chgBaseImgCtrl(BaseImgChg.after, w, h);
+
+    fcResetZoomRatio(); // 20230429
+    fcUpdatePanWin();
+    fcUpdateCropWin();
+
+}
